@@ -1,0 +1,1550 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Braincopia — Universe Guide</title>
+<meta name="description" content="The Braincopia Universe Guide: the manifesto, the Five Laws, the seven worlds, the HI/AI workflow, the Surreal Mandate, and the 2025 issue map.">
+<meta name="theme-color" content="#1C1C1C">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+/* ── RESET & TOKENS ─────────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --violet:      #5B0ECC;
+  --green:       #24B574;
+  --yellow:      #FFD600;
+  --deep:        #3D0999;
+  --cream:       #F7F4EE;
+  --warm:        #EDE8DF;
+  --nearblack:   #1C1C1C;
+  --black:       #000000;
+  --white:       #FFFFFF;
+  --gold:        #B8A050;
+  --violet-dim:  #2a0077;
+  --card-bg:     #111111;
+  --border:      #2a2a2a;
+}
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Libre Baskerville', Georgia, serif;
+  background: var(--nearblack);
+  color: var(--cream);
+  cursor: none;
+  overflow-x: hidden;
+}
+
+/* ── CUSTOM CURSOR ──────────────────────────────────────────────────────── */
+.cursor {
+  position: fixed; width: 12px; height: 12px;
+  background: var(--yellow); border-radius: 50%;
+  pointer-events: none; z-index: 9999;
+  transform: translate(-50%,-50%);
+  transition: transform .1s, width .2s, height .2s, background .2s;
+  mix-blend-mode: difference;
+}
+.cursor-ring {
+  position: fixed; width: 36px; height: 36px;
+  border: 1px solid var(--yellow); border-radius: 50%;
+  pointer-events: none; z-index: 9998;
+  transform: translate(-50%,-50%);
+  transition: transform .18s ease, width .2s, height .2s;
+  opacity: .5;
+}
+a:hover ~ .cursor, button:hover ~ .cursor { width: 20px; height: 20px; }
+/* Touch and coarse pointers get the system cursor back */
+@media (hover: none), (pointer: coarse) {
+  body { cursor: auto; }
+  .cursor, .cursor-ring { display: none; }
+}
+
+/* ── NAV ────────────────────────────────────────────────────────────────── */
+nav {
+  position: fixed; top: 0; left: 0; width: 100%; z-index: 900;
+  background: rgba(28,28,28,.96);
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 32px; height: 54px;
+  backdrop-filter: blur(12px);
+}
+.nav-logo {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.5rem; color: var(--green); letter-spacing: .12em;
+  text-decoration: none;
+}
+.nav-tagline {
+  font-family: 'Space Mono', monospace;
+  font-size: .55rem; color: var(--yellow); letter-spacing: .18em;
+  text-transform: uppercase;
+}
+.nav-links {
+  display: flex; gap: 28px; list-style: none;
+}
+.nav-links a {
+  font-family: 'Space Mono', monospace; font-size: .6rem;
+  color: #888; text-decoration: none; letter-spacing: .12em;
+  text-transform: uppercase; transition: color .2s;
+}
+.nav-links a:hover { color: var(--yellow); }
+.nav-links a.back { color: var(--green); }
+.nav-pill {
+  background: var(--yellow); color: var(--nearblack);
+  font-family: 'Space Mono', monospace; font-size: .55rem;
+  font-weight: 700; letter-spacing: .14em; text-transform: uppercase;
+  padding: 5px 12px; border-radius: 2px;
+}
+
+/* ── HERO / COVER ───────────────────────────────────────────────────────── */
+#cover {
+  min-height: 100vh; background: var(--nearblack);
+  display: grid; grid-template-columns: 1fr 1fr;
+  position: relative; overflow: hidden;
+  padding-top: 54px;
+}
+.cover-left {
+  display: flex; flex-direction: column; justify-content: center;
+  padding: 80px 48px 80px 56px;
+  position: relative; z-index: 2;
+}
+.cover-section-label {
+  font-family: 'Space Mono', monospace; font-size: .6rem;
+  letter-spacing: .28em; color: var(--yellow); text-transform: uppercase;
+  margin-bottom: 20px;
+}
+.cover-the {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.4rem; color: #666; letter-spacing: .2em;
+  margin-bottom: -8px;
+}
+.cover-h1 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(4.5rem, 9vw, 8rem); line-height: .92;
+  color: var(--white); letter-spacing: -.01em;
+}
+.cover-h1 .accent { color: var(--yellow); display: block; }
+.cover-sub {
+  font-family: 'Space Mono', monospace; font-size: .65rem;
+  color: #666; letter-spacing: .18em; text-transform: uppercase;
+  margin-top: 14px; margin-bottom: 28px;
+  border-top: 1px solid #333; padding-top: 14px;
+}
+.cover-quote-block {
+  border-left: 4px solid var(--yellow);
+  padding-left: 20px; margin-bottom: 36px;
+}
+.cover-quote {
+  font-family: 'Playfair Display', serif; font-style: italic;
+  font-size: 1.15rem; line-height: 1.6; color: var(--white);
+}
+.cover-quote em { color: var(--yellow); font-style: italic; }
+.cover-pills {
+  display: flex; flex-wrap: wrap; gap: 6px; margin-top: 28px;
+}
+.pill {
+  font-family: 'Space Mono', monospace; font-size: .52rem;
+  letter-spacing: .14em; text-transform: uppercase;
+  padding: 5px 10px; border: 1px solid var(--border);
+  color: var(--gold); background: transparent; cursor: default;
+  transition: background .2s, color .2s;
+}
+.pill:hover { background: var(--yellow); color: var(--nearblack); border-color: var(--yellow); }
+.pill.filled { background: var(--yellow); color: var(--nearblack); border-color: var(--yellow); }
+
+.cover-right {
+  position: relative; background: var(--violet-dim);
+  overflow: hidden; display: flex; align-items: center; justify-content: center;
+}
+.cover-right-inner {
+  position: relative; z-index: 2; padding: 60px 40px;
+  display: flex; flex-direction: column; gap: 24px;
+}
+.hi-ai-badge {
+  width: 100px; height: 100px; border-radius: 50%;
+  background: var(--yellow); display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  border: 3px solid var(--nearblack);
+  margin: 0 auto 12px;
+}
+.hi-ai-badge span:first-child {
+  font-family: 'Bebas Neue', sans-serif; font-size: 1.6rem;
+  color: var(--nearblack); line-height: 1;
+}
+.hi-ai-badge span:last-child {
+  font-family: 'Space Mono', monospace; font-size: .5rem;
+  color: var(--nearblack); letter-spacing: .1em;
+}
+.cover-stat {
+  background: rgba(0,0,0,.4); border: 1px solid rgba(255,255,255,.08);
+  padding: 20px 24px;
+}
+.cover-stat .stat-n {
+  font-family: 'Bebas Neue', sans-serif; font-size: 3rem;
+  color: var(--green); line-height: 1;
+}
+.cover-stat .stat-label {
+  font-family: 'Space Mono', monospace; font-size: .6rem;
+  color: #888; letter-spacing: .14em; text-transform: uppercase;
+  margin-top: 4px;
+}
+/* Noise overlay */
+.cover-right::after {
+  content: ''; position: absolute; inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  opacity: .4; pointer-events: none; z-index: 1;
+}
+.bg-circle {
+  position: absolute; border-radius: 50%; pointer-events: none;
+}
+
+/* ── SECTION WRAPPER ────────────────────────────────────────────────────── */
+section { position: relative; }
+.section-inner { max-width: 1200px; margin: 0 auto; padding: 100px 48px; }
+.section-tag {
+  font-family: 'Space Mono', monospace; font-size: .6rem;
+  letter-spacing: .3em; color: var(--yellow); text-transform: uppercase;
+  margin-bottom: 10px;
+}
+.section-num {
+  font-family: 'Bebas Neue', sans-serif; font-size: 8rem;
+  line-height: 1; color: #1e1e1e; position: absolute;
+  top: 60px; right: 40px; pointer-events: none; user-select: none;
+}
+.section-h2 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(3rem, 6vw, 5.5rem); line-height: .95;
+  letter-spacing: -.01em;
+}
+.rule { height: 2px; background: var(--green); margin: 20px 0 36px; width: 80px; }
+.rule.yellow { background: var(--yellow); }
+.rule.violet { background: var(--violet); }
+.rule.full { width: 100%; height: 1px; background: #2a2a2a; }
+
+/* ── MANIFESTO ──────────────────────────────────────────────────────────── */
+#manifesto { background: var(--nearblack); }
+.manifesto-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 64px;
+  align-items: start;
+}
+.manifesto-pull {
+  border-left: 4px solid var(--yellow); padding-left: 28px;
+  margin-bottom: 32px;
+}
+.manifesto-pull p {
+  font-family: 'Playfair Display', serif; font-weight: 700;
+  font-size: 1.45rem; line-height: 1.5; color: var(--white);
+}
+.manifesto-pull p em { color: var(--yellow); font-style: italic; }
+.body-copy {
+  font-family: 'Libre Baskerville', serif; font-size: .95rem;
+  line-height: 1.85; color: #bbb; margin-bottom: 16px;
+}
+.body-copy strong { color: var(--white); }
+.manifesto-aside {
+  background: #111; border: 1px solid var(--border);
+  padding: 32px; position: sticky; top: 80px;
+}
+.aside-label {
+  font-family: 'Space Mono', monospace; font-size: .58rem;
+  letter-spacing: .25em; color: var(--yellow); text-transform: uppercase;
+  margin-bottom: 12px; padding-bottom: 10px;
+  border-bottom: 1px solid #333;
+}
+.aside-text {
+  font-family: 'Playfair Display', serif; font-style: italic;
+  font-size: 1.05rem; line-height: 1.7; color: var(--cream);
+}
+
+/* ── FIVE LAWS ──────────────────────────────────────────────────────────── */
+#five-laws { background: #0a0a0a; }
+.laws-grid {
+  display: flex; flex-direction: column; gap: 0;
+}
+.law-row {
+  display: grid; grid-template-columns: 80px 1fr;
+  gap: 0; border: 1px solid var(--border);
+  border-top: none; transition: background .25s;
+}
+.law-row:first-child { border-top: 1px solid var(--border); }
+.law-row:hover { background: #141414; }
+.law-roman {
+  font-family: 'Bebas Neue', sans-serif; font-size: 2rem;
+  color: var(--gold); padding: 28px 0 28px 28px;
+  border-right: 1px solid var(--border);
+  display: flex; align-items: center;
+}
+.law-content { padding: 28px 36px; }
+.law-title {
+  font-family: 'Space Mono', monospace; font-size: .65rem;
+  letter-spacing: .22em; color: var(--yellow); text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.law-desc {
+  font-family: 'Libre Baskerville', serif; font-size: .9rem;
+  line-height: 1.7; color: #aaa;
+}
+.law-desc strong { color: var(--white); }
+.intelligence-box {
+  background: #111; border: 1px solid var(--gold);
+  padding: 28px 32px; margin-bottom: 48px;
+  border-left: 4px solid var(--gold);
+}
+.intelligence-box .i-label {
+  font-family: 'Space Mono', monospace; font-size: .58rem;
+  letter-spacing: .24em; color: var(--gold); margin-bottom: 10px;
+}
+.intelligence-box .i-text {
+  font-family: 'Playfair Display', serif; font-size: 1.05rem;
+  line-height: 1.6; color: var(--cream);
+}
+
+/* ── WHY WE BUILT THIS ──────────────────────────────────────────────────── */
+#why { background: var(--violet); }
+#why .section-tag { color: var(--yellow); }
+#why .section-h2 { color: var(--white); }
+#why .section-h2 .accent { color: var(--yellow); }
+#why .rule { background: var(--yellow); }
+.why-pull {
+  border-left: 5px solid var(--yellow); padding-left: 28px;
+  margin: 36px 0 48px;
+}
+.why-pull p {
+  font-family: 'Playfair Display', serif; font-style: italic;
+  font-size: 1.2rem; line-height: 1.7; color: var(--white);
+}
+.pillars-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 24px; }
+.pillar {
+  background: rgba(0,0,0,.25); padding: 28px 24px;
+  border-top: 3px solid var(--yellow);
+  transition: background .2s;
+}
+.pillar:hover { background: rgba(0,0,0,.45); }
+.pillar-icon {
+  width: 32px; height: 32px; border: 2px solid var(--yellow);
+  transform: rotate(45deg); margin-bottom: 20px;
+  display: flex; align-items: center; justify-content: center;
+}
+.pillar-icon-inner { width: 10px; height: 10px; background: var(--yellow); }
+.pillar-title {
+  font-family: 'Space Mono', monospace; font-size: .58rem;
+  letter-spacing: .2em; color: var(--yellow); text-transform: uppercase;
+  margin-bottom: 10px; line-height: 1.6;
+}
+.pillar-desc {
+  font-family: 'Libre Baskerville', serif; font-size: .88rem;
+  line-height: 1.75; color: rgba(255,255,255,.78);
+}
+.why-banner {
+  background: var(--deep); padding: 20px 32px;
+  margin-top: 48px; text-align: center;
+}
+.why-banner p {
+  font-family: 'Space Mono', monospace; font-size: .72rem;
+  letter-spacing: .2em; color: var(--white); text-transform: uppercase;
+}
+.why-banner p span { color: var(--yellow); }
+
+/* ── UNIVERSE MAP ───────────────────────────────────────────────────────── */
+#universe-map { background: var(--nearblack); }
+.worlds-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 48px; }
+.world-card {
+  background: var(--card-bg); border: 1px solid var(--border);
+  padding: 32px 28px; position: relative; overflow: hidden;
+  transition: transform .2s, border-color .2s;
+}
+.world-card:hover { transform: translateY(-3px); border-color: #444; }
+.world-accent-bar {
+  position: absolute; top: 0; left: 0; right: 0; height: 3px;
+}
+.world-icon { font-size: 1.8rem; margin-bottom: 14px; display: block; }
+.world-label {
+  font-family: 'Space Mono', monospace; font-size: .58rem;
+  letter-spacing: .22em; text-transform: uppercase; margin-bottom: 10px;
+}
+.world-title {
+  font-family: 'Playfair Display', serif; font-weight: 700;
+  font-size: 1.25rem; line-height: 1.3; color: var(--white);
+  margin-bottom: 12px;
+}
+.world-desc {
+  font-family: 'Libre Baskerville', serif; font-size: .85rem;
+  line-height: 1.7; color: #999; margin-bottom: 18px;
+}
+.world-tags { display: flex; flex-wrap: wrap; gap: 5px; }
+.tag {
+  font-family: 'Space Mono', monospace; font-size: .5rem;
+  letter-spacing: .1em; text-transform: uppercase;
+  border: 1px solid #333; color: #666; padding: 3px 8px;
+  transition: border-color .2s, color .2s;
+}
+.world-card:hover .tag { border-color: #555; color: #999; }
+.world-card.world-vii {
+  grid-column: 1 / -1;
+  background: #0d0d0d; border-color: #333;
+}
+.world-vii .world-title { font-size: 1.6rem; }
+.world-vii .world-desc { max-width: 680px; }
+.world-vii .world-tags { flex-wrap: wrap; gap: 8px; }
+
+/* ── MACHINE-ASSISTED WORKFLOW ──────────────────────────────────────────── */
+#workflow { background: #080808; }
+.workflow-label {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--violet); padding: 6px 14px; margin-bottom: 32px;
+}
+.workflow-label span {
+  font-family: 'Space Mono', monospace; font-size: .58rem;
+  letter-spacing: .18em; color: var(--white); text-transform: uppercase;
+}
+.workflow-pipeline {
+  display: grid; grid-template-columns: 1fr 60px 1fr 60px 1fr;
+  gap: 0; align-items: stretch; margin-top: 48px;
+}
+.workflow-stage {
+  background: var(--card-bg); border: 1px solid var(--border);
+  padding: 32px 28px; position: relative;
+}
+.workflow-arrow {
+  display: flex; align-items: center; justify-content: center;
+  color: var(--gold); font-size: 1.4rem;
+}
+.ws-num {
+  font-family: 'Bebas Neue', sans-serif; font-size: 5rem;
+  line-height: 1; color: #1e1e1e; position: absolute;
+  bottom: 12px; right: 16px;
+}
+.ws-label {
+  font-family: 'Space Mono', monospace; font-size: .55rem;
+  letter-spacing: .22em; text-transform: uppercase; margin-bottom: 16px;
+  padding-bottom: 10px; border-bottom: 1px solid #222;
+}
+.ws-content {
+  font-family: 'Libre Baskerville', serif; font-size: .88rem;
+  line-height: 1.7; position: relative; z-index: 2;
+}
+.ws-content.human-voice { color: #ccc; font-style: italic; }
+.ws-content.machine-out {
+  color: var(--green); font-family: 'Space Mono', monospace;
+  font-size: .78rem; line-height: 1.6; white-space: pre-wrap;
+}
+.ws-content.editorial-final {
+  color: var(--white); font-family: 'Playfair Display', serif;
+  font-size: .95rem; font-weight: 700;
+}
+.ws-accent-top {
+  position: absolute; top: 0; left: 0; right: 0; height: 3px;
+}
+.ws-meta {
+  margin-top: 14px; font-family: 'Space Mono', monospace;
+  font-size: .52rem; letter-spacing: .1em; color: #555;
+  text-transform: uppercase;
+}
+.workflow-example-label {
+  font-family: 'Space Mono', monospace; font-size: .6rem;
+  letter-spacing: .2em; color: #444; text-transform: uppercase;
+  text-align: center; margin: 48px 0 24px;
+}
+.workflow-full-example {
+  display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px;
+  background: #222; border: 1px solid #222; margin-top: 8px;
+}
+.wfe-col {
+  background: var(--card-bg); padding: 28px 24px;
+}
+.wfe-col:nth-child(2) { background: #0d1a12; }
+.wfe-col:nth-child(3) { background: #0d0022; }
+.wfe-tag {
+  font-family: 'Space Mono', monospace; font-size: .52rem;
+  letter-spacing: .2em; text-transform: uppercase;
+  padding: 3px 8px; margin-bottom: 16px; display: inline-block;
+}
+.wfe-tag.human  { background: #222; color: #888; }
+.wfe-tag.machine { background: rgba(36,181,116,.15); color: var(--green); }
+.wfe-tag.final  { background: rgba(91,14,204,.28); color: #b48cff; }
+.wfe-text {
+  font-size: .9rem; line-height: 1.75;
+}
+.wfe-text.human-t { color: #999; font-style: italic; font-family: 'Libre Baskerville', serif; }
+.wfe-text.machine-t {
+  color: var(--green); font-family: 'Space Mono', monospace; font-size: .78rem;
+  white-space: pre-wrap;
+}
+.wfe-text.final-t { color: var(--white); font-family: 'Playfair Display', serif; font-style: italic; }
+
+/* ── SURREAL MANDATE / SENSORY SHOCK ────────────────────────────────────── */
+#surreal { background: var(--nearblack); overflow: hidden; }
+.surreal-intro-grid {
+  display: grid; grid-template-columns: 5fr 4fr; gap: 80px; align-items: start;
+}
+.surreal-manifesto-quote {
+  border-left: 5px solid var(--violet); padding-left: 28px; margin: 28px 0 36px;
+}
+.surreal-manifesto-quote p {
+  font-family: 'Playfair Display', serif; font-size: 1.3rem;
+  font-style: italic; line-height: 1.6; color: var(--white);
+}
+.surreal-aside {
+  background: var(--violet); padding: 36px 32px;
+}
+.surreal-aside .aside-label { color: var(--yellow); border-bottom-color: rgba(255,255,255,.2); }
+.surreal-aside .aside-text { color: rgba(255,255,255,.88); }
+
+.imagery-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 64px;
+}
+.imagery-card {
+  background: var(--card-bg); border: 1px solid var(--border);
+  overflow: hidden; transition: transform .25s, border-color .25s;
+}
+.imagery-card:hover { transform: translateY(-4px); border-color: var(--violet); }
+.imagery-visual {
+  height: 200px; position: relative; overflow: hidden;
+  display: flex; align-items: center; justify-content: center;
+}
+/* Generative visual placeholders using CSS */
+.vis-bio-digital {
+  background: linear-gradient(135deg, #0a0022 0%, #1a0044 40%, #001a0a 100%);
+}
+.vis-bio-digital::before {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(ellipse 60% 80% at 50% 50%, rgba(36,181,116,.25) 0%, transparent 70%),
+              radial-gradient(ellipse 40% 60% at 20% 30%, rgba(91,14,204,.4) 0%, transparent 60%);
+}
+.vis-bio-digital::after {
+  content: '◈ ◈ ◈\A◈ ◈ ◈'; white-space: pre;
+  font-size: .9rem; color: rgba(36,181,116,.3); line-height: 2.5;
+  letter-spacing: 1.5rem; position: absolute; text-align: center;
+  width: 100%;
+}
+.vis-arch {
+  background: linear-gradient(180deg, #000 0%, #0d0033 50%, #1a0000 100%);
+}
+.vis-arch::before {
+  content: ''; position: absolute; inset: 0;
+  background:
+    repeating-linear-gradient(90deg, rgba(255,214,0,.06) 0, rgba(255,214,0,.06) 1px, transparent 1px, transparent 40px),
+    repeating-linear-gradient(0deg, rgba(255,214,0,.06) 0, rgba(255,214,0,.06) 1px, transparent 1px, transparent 40px);
+}
+.vis-arch::after {
+  content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%);
+  width: 60px; height: 120px;
+  background: linear-gradient(180deg, transparent 0%, rgba(255,214,0,.15) 100%);
+  clip-path: polygon(50% 0%, 100% 100%, 0% 100%);
+}
+.vis-neural {
+  background: radial-gradient(circle at 50% 50%, #0d0030 0%, #000 70%);
+}
+.vis-neural::before {
+  content: ''; position: absolute; inset: 0;
+  background-image: radial-gradient(circle, rgba(91,14,204,.4) 1px, transparent 1px),
+                    radial-gradient(circle, rgba(36,181,116,.3) 1px, transparent 1px);
+  background-size: 30px 30px, 45px 45px;
+  background-position: 0 0, 15px 15px;
+}
+.vis-fashion {
+  background: linear-gradient(135deg, #0d0d0d 0%, #1a0033 60%, #000d0d 100%);
+}
+.vis-fashion::before {
+  content: ''; position: absolute; inset: 0;
+  background: conic-gradient(from 0deg at 50% 50%,
+    rgba(91,14,204,.2) 0deg, rgba(36,181,116,.1) 90deg,
+    rgba(255,214,0,.15) 180deg, rgba(91,14,204,.2) 360deg);
+}
+.vis-texture {
+  background: #050505;
+  background-image:
+    repeating-conic-gradient(rgba(255,255,255,.02) 0deg, rgba(0,0,0,.02) 1deg, rgba(255,255,255,.02) 2deg);
+}
+.vis-texture::before {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(ellipse 80% 50% at 50% 50%, rgba(36,181,116,.12) 0%, transparent 60%),
+              radial-gradient(ellipse 40% 80% at 30% 50%, rgba(91,14,204,.18) 0%, transparent 60%);
+}
+.vis-surreal {
+  background: linear-gradient(225deg, #000 0%, #0d001a 50%, #001a0d 100%);
+}
+.vis-surreal::before {
+  content: ''; position: absolute; inset: 0;
+  background: repeating-linear-gradient(
+    45deg, transparent, transparent 18px,
+    rgba(255,214,0,.04) 18px, rgba(255,214,0,.04) 20px
+  );
+}
+.ic-label {
+  position: absolute; bottom: 10px; left: 12px;
+  font-family: 'Space Mono', monospace; font-size: .5rem;
+  letter-spacing: .12em; color: rgba(255,255,255,.55);
+  text-transform: uppercase;
+}
+.imagery-body { padding: 20px 18px 22px; }
+.imagery-title {
+  font-family: 'Playfair Display', serif; font-weight: 700;
+  font-size: 1rem; color: var(--white); margin-bottom: 8px;
+}
+.imagery-desc {
+  font-family: 'Libre Baskerville', serif; font-size: .82rem;
+  line-height: 1.6; color: #999;
+}
+.imagery-coded {
+  margin-top: 8px; font-family: 'Space Mono', monospace; font-size: .52rem;
+  letter-spacing: .12em; color: var(--green); text-transform: uppercase;
+}
+.imagery-coded::before { content: '✓ '; }
+
+.surreal-rules-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 64px;
+}
+.surreal-rule {
+  border: 1px solid var(--border); padding: 28px 24px; position: relative;
+}
+.surreal-rule .rule-n {
+  font-family: 'Bebas Neue', sans-serif; font-size: 3rem;
+  color: #1e1e1e; position: absolute; top: 12px; right: 16px;
+}
+.surreal-rule .rule-title {
+  font-family: 'Space Mono', monospace; font-size: .6rem;
+  letter-spacing: .2em; text-transform: uppercase; color: var(--yellow);
+  margin-bottom: 10px;
+}
+.surreal-rule .rule-text {
+  font-family: 'Libre Baskerville', serif; font-size: .88rem;
+  line-height: 1.7; color: #999;
+}
+.surreal-rule .rule-example {
+  margin-top: 14px; background: #111; padding: 10px 14px;
+  font-family: 'Space Mono', monospace; font-size: .6rem;
+  color: #b48cff; letter-spacing: .06em; line-height: 1.6;
+  border-left: 2px solid var(--violet);
+}
+
+/* ── TYPOGRAPHY SYSTEM ──────────────────────────────────────────────────── */
+#typography { background: var(--cream); }
+#typography .section-tag { color: var(--violet); }
+#typography .section-h2 { color: var(--deep); }
+.type-blocks { display: flex; flex-direction: column; gap: 0; margin-top: 48px; }
+.type-block {
+  padding: 48px; border: 1px solid rgba(0,0,0,.08);
+  border-top: none; position: relative;
+}
+.type-block:first-child { border-top: 1px solid rgba(0,0,0,.08); }
+.type-block-dark { background: var(--nearblack); }
+.type-block-white { background: var(--white); }
+.type-block-medium { background: var(--nearblack); }
+.type-meta {
+  font-family: 'Space Mono', monospace; font-size: .55rem;
+  letter-spacing: .22em; text-transform: uppercase; margin-bottom: 20px;
+  padding-bottom: 10px;
+}
+.type-block-dark .type-meta { color: var(--yellow); border-bottom: 1px solid #222; }
+.type-block-white .type-meta { color: var(--violet); border-bottom: 1px solid #eee; }
+.type-block-medium .type-meta { color: var(--gold); border-bottom: 1px solid #333; }
+.type-specimen-display {
+  font-family: 'Bebas Neue', sans-serif; font-size: clamp(4rem, 9vw, 7rem);
+  line-height: .92; color: var(--white); letter-spacing: -.01em;
+}
+.type-specimen-editorial {
+  font-family: 'Playfair Display', serif; font-style: italic;
+  font-size: 1.6rem; line-height: 1.55; color: var(--nearblack);
+}
+.type-specimen-body {
+  font-family: 'Libre Baskerville', serif; font-size: 1.1rem;
+  line-height: 1.85; color: var(--cream);
+}
+.type-use-row {
+  margin-top: 14px; font-family: 'Space Mono', monospace; font-size: .55rem;
+  color: #888; letter-spacing: .14em; text-transform: uppercase;
+}
+.color-swatches { display: grid; grid-template-columns: repeat(7, 1fr); gap: 8px; margin-top: 64px; }
+.swatch-color { height: 52px; }
+.swatch-hex { font-family: 'Space Mono', monospace; font-size: .52rem; color: #555; margin-top: 6px; }
+.swatch-name { font-family: 'Space Mono', monospace; font-size: .5rem; color: #777; margin-top: 2px; letter-spacing: .08em; text-transform: uppercase; }
+
+/* ── ISSUE MAP ──────────────────────────────────────────────────────────── */
+#issues { background: var(--nearblack); }
+.issues-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 48px; }
+.issue-card {
+  background: var(--card-bg); border: 1px solid var(--border);
+  padding: 28px; position: relative; overflow: hidden;
+  transition: border-color .2s;
+}
+.issue-card:hover { border-color: #555; }
+.issue-accent { height: 3px; margin-bottom: 20px; }
+.issue-season {
+  font-family: 'Space Mono', monospace; font-size: .55rem;
+  letter-spacing: .22em; text-transform: uppercase; margin-bottom: 10px;
+}
+.issue-vol {
+  font-family: 'Bebas Neue', sans-serif; font-size: 4rem;
+  line-height: 1; color: #1e1e1e; position: absolute;
+  bottom: 14px; right: 20px; user-select: none;
+}
+.issue-title {
+  font-family: 'Playfair Display', serif; font-weight: 900;
+  font-size: 1.6rem; line-height: 1.2; color: var(--white);
+  margin-bottom: 14px; position: relative; z-index: 2;
+}
+.issue-desc {
+  font-family: 'Libre Baskerville', serif; font-size: .88rem;
+  line-height: 1.7; color: #999; margin-bottom: 16px;
+  position: relative; z-index: 2;
+}
+.issue-tags { display: flex; flex-wrap: wrap; gap: 5px; }
+
+/* ── CLOSING DOCTRINE ───────────────────────────────────────────────────── */
+#closing {
+  background: var(--violet); position: relative; overflow: hidden;
+}
+.closing-bg-text {
+  position: absolute; font-family: 'Bebas Neue', sans-serif;
+  font-size: 20rem; color: rgba(61,9,153,.4); line-height: 1;
+  top: 50%; left: -20px; transform: translateY(-50%);
+  user-select: none; pointer-events: none; letter-spacing: -.02em;
+  white-space: nowrap;
+}
+#closing .section-inner { position: relative; z-index: 2; }
+.closing-quote {
+  text-align: center; padding: 60px 80px;
+  border-top: 1px solid rgba(255,255,255,.15);
+  border-bottom: 1px solid rgba(255,255,255,.15);
+  margin: 48px 0;
+}
+.closing-quote p {
+  font-family: 'Playfair Display', serif; font-style: italic;
+  font-size: 1.65rem; line-height: 1.55; color: var(--white);
+}
+.closing-quote p em { color: var(--yellow); font-style: italic; }
+.closing-attribution {
+  font-family: 'Space Mono', monospace; font-size: .6rem;
+  letter-spacing: .2em; color: rgba(255,255,255,.6);
+  text-transform: uppercase; margin-top: 20px;
+}
+.commitments { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+.commit-card {
+  background: rgba(0,0,0,.25); padding: 28px 24px;
+  border-top: 3px solid transparent;
+}
+.commit-card:nth-child(1) { border-top-color: var(--white); }
+.commit-card:nth-child(2) { border-top-color: var(--yellow); }
+.commit-card:nth-child(3) { border-top-color: var(--green); }
+.commit-label {
+  font-family: 'Space Mono', monospace; font-size: .6rem;
+  letter-spacing: .2em; text-transform: uppercase; margin-bottom: 10px;
+}
+.commit-card:nth-child(1) .commit-label { color: var(--white); }
+.commit-card:nth-child(2) .commit-label { color: var(--yellow); }
+.commit-card:nth-child(3) .commit-label { color: var(--green); }
+.commit-text {
+  font-family: 'Libre Baskerville', serif; font-size: .88rem;
+  line-height: 1.7; color: rgba(255,255,255,.78);
+}
+.cta-block {
+  background: var(--yellow); padding: 24px 36px;
+  text-align: center; margin-top: 48px;
+}
+.cta-block a {
+  font-family: 'Bebas Neue', sans-serif; font-size: 1.6rem;
+  letter-spacing: .24em; color: var(--nearblack); text-decoration: none;
+}
+.cta-block a:hover { text-decoration: underline; }
+
+/* ── FOOTER ─────────────────────────────────────────────────────────────── */
+footer {
+  background: var(--nearblack); border-top: 1px solid #1e1e1e;
+  padding: 48px; display: flex; align-items: center; justify-content: space-between;
+  gap: 24px; flex-wrap: wrap;
+}
+.footer-logo {
+  font-family: 'Bebas Neue', sans-serif; font-size: 1.4rem;
+  color: var(--green); letter-spacing: .12em; text-decoration: none;
+}
+.footer-topics {
+  font-family: 'Space Mono', monospace; font-size: .55rem;
+  letter-spacing: .16em; color: #777; text-transform: uppercase;
+}
+.footer-right {
+  font-family: 'Space Mono', monospace; font-size: .55rem;
+  letter-spacing: .14em; color: #777; text-align: right;
+}
+.footer-right a { color: var(--yellow); text-decoration: none; }
+
+/* ── SCROLL ANIMATIONS ──────────────────────────────────────────────────── */
+.fade-up {
+  opacity: 0; transform: translateY(28px);
+  transition: opacity .7s ease, transform .7s ease;
+}
+.fade-up.visible { opacity: 1; transform: translateY(0); }
+.fade-in { opacity: 0; transition: opacity .8s ease; }
+.fade-in.visible { opacity: 1; }
+@media (prefers-reduced-motion: reduce) {
+  .fade-up, .fade-in { opacity: 1; transform: none; transition: none; }
+}
+
+/* ── RESPONSIVE ─────────────────────────────────────────────────────────── */
+@media (max-width: 1024px) {
+  #cover { grid-template-columns: 1fr; }
+  .cover-right { min-height: 40vh; }
+  .manifesto-grid, .surreal-intro-grid { grid-template-columns: 1fr; gap: 40px; }
+  .manifesto-aside { position: static; }
+  .workflow-pipeline { grid-template-columns: 1fr; }
+  .workflow-arrow { transform: rotate(90deg); }
+  .pillars-grid { grid-template-columns: 1fr 1fr; }
+  .imagery-grid { grid-template-columns: 1fr 1fr; }
+  .worlds-grid { grid-template-columns: 1fr; }
+  .commitments { grid-template-columns: 1fr; }
+  .issues-grid { grid-template-columns: 1fr; }
+  nav .nav-links { display: none; }
+  .color-swatches { grid-template-columns: repeat(4, 1fr); }
+  .workflow-full-example { grid-template-columns: 1fr; }
+  .surreal-rules-grid { grid-template-columns: 1fr; }
+  .closing-quote { padding: 40px 20px; }
+}
+@media (max-width: 600px) {
+  .section-inner { padding: 64px 24px; }
+  nav { padding: 0 20px; }
+  .nav-tagline { display: none; }
+  .pillars-grid { grid-template-columns: 1fr; }
+  .imagery-grid { grid-template-columns: 1fr; }
+  .cover-left { padding: 48px 24px; }
+  .type-block { padding: 28px 20px; }
+  footer { padding: 32px 24px; }
+  .footer-right { text-align: left; }
+}
+</style>
+<noscript><style>.fade-up,.fade-in{opacity:1!important;transform:none!important}.cursor,.cursor-ring{display:none}body{cursor:auto}</style></noscript>
+</head>
+<body>
+
+<!-- Cursor -->
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo">Braincopia</a>
+  <span class="nav-tagline">HI / AI Magazine</span>
+  <ul class="nav-links">
+    <li><a href="index.html" class="back">&larr; Magazine</a></li>
+    <li><a href="#manifesto">Manifesto</a></li>
+    <li><a href="#five-laws">Five Laws</a></li>
+    <li><a href="#universe-map">Universe Map</a></li>
+    <li><a href="#workflow">Workflow</a></li>
+    <li><a href="#surreal">Surreal Mandate</a></li>
+    <li><a href="#issues">Issues</a></li>
+  </ul>
+  <span class="nav-pill">HI / AI</span>
+</nav>
+
+<!-- ── COVER ─────────────────────────────────────────────────────────────── -->
+<section id="cover">
+  <div class="cover-left">
+    <p class="cover-section-label">Universe Guide · Vol. I · 2025</p>
+    <p class="cover-the">THE</p>
+    <h1 class="cover-h1">
+      PARALLEL<br>
+      <span class="accent">UNIVERSE</span>
+    </h1>
+    <p class="cover-sub">Manifesto &nbsp;·&nbsp; Universe Map &nbsp;·&nbsp; Editorial Guide &nbsp;·&nbsp; HI/AI Workflow</p>
+    <div class="cover-quote-block">
+      <p class="cover-quote">Braincopia is not a magazine. It is a <em>parallel universe</em> you enter every time you read.</p>
+    </div>
+    <div class="cover-pills">
+      <span class="pill filled">HI / AI</span>
+      <span class="pill">Consciousness</span>
+      <span class="pill">Fashion</span>
+      <span class="pill">Neuroscience</span>
+      <span class="pill">Design</span>
+      <span class="pill">Culture</span>
+      <span class="pill">Mind</span>
+    </div>
+  </div>
+  <div class="cover-right">
+    <div class="bg-circle" style="width:400px;height:400px;background:rgba(91,14,204,.2);top:-80px;right:-100px;"></div>
+    <div class="bg-circle" style="width:200px;height:200px;background:rgba(36,181,116,.08);bottom:60px;left:30px;"></div>
+    <div class="cover-right-inner">
+      <div class="hi-ai-badge">
+        <span>HI/AI</span>
+        <span>MAGAZINE</span>
+      </div>
+      <div class="cover-stat fade-up">
+        <div class="stat-n">7</div>
+        <div class="stat-label">Interconnected Worlds</div>
+      </div>
+      <div class="cover-stat fade-up">
+        <div class="stat-n">5</div>
+        <div class="stat-label">Editorial Laws</div>
+      </div>
+      <div class="cover-stat fade-up">
+        <div class="stat-n" style="color:var(--yellow)">∞</div>
+        <div class="stat-label">Reader Editions</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── 01 MANIFESTO ──────────────────────────────────────────────────────── -->
+<section id="manifesto">
+  <div class="section-inner">
+    <div class="section-num">01</div>
+    <p class="section-tag fade-up">What We Are</p>
+    <h2 class="section-h2 fade-up">THE<br>MANIFESTO</h2>
+    <div class="rule yellow"></div>
+
+    <div class="manifesto-grid">
+      <div>
+        <div class="manifesto-pull fade-up">
+          <p>Braincopia is not a magazine.<br>It is a <em>parallel universe</em><br>you enter every time you read.</p>
+        </div>
+        <p class="body-copy fade-up">We live in the most extraordinary moment in human history. Machines dream. Algorithms design. Models write. And yet — <strong>the human mind remains the only thing that can decide what any of this means.</strong></p>
+        <p class="body-copy fade-up">Braincopia exists at that precise intersection. We are the magazine that refuses to choose between intellect and sensory shock, between academic rigour and surrealist beauty, between fashion week and the philosophy of consciousness.</p>
+        <p class="body-copy fade-up"><strong>We choose everything.</strong> We are the first HI/AI publication — Human Intelligence refined, extended, and challenged by Artificial Intelligence. Our editors are human. Our provocations are machine-assisted. Our conclusions are always yours.</p>
+        <p class="body-copy fade-up">Every issue is a world unto itself. Every cover is a portal. Every article rewires something. You will not leave a Braincopia edition thinking what you thought when you opened it. <strong>That is our only promise.</strong></p>
+      </div>
+      <div>
+        <div class="manifesto-aside fade-in">
+          <p class="aside-label">The Intelligence Principle</p>
+          <p class="aside-text">Human intelligence is the input. Artificial intelligence is the amplifier. Braincopia is the output.</p>
+        </div>
+        <div class="manifesto-aside fade-in" style="margin-top:16px;border-left:4px solid var(--green);padding-left:20px;background:transparent;">
+          <p class="aside-label" style="color:var(--green);border-bottom-color:#333;">HI / AI Defined</p>
+          <p class="aside-text" style="color:#aaa;">Our editors are human.<br>Our provocations are machine-assisted.<br>Our conclusions are always yours.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── 02 FIVE LAWS ──────────────────────────────────────────────────────── -->
+<section id="five-laws">
+  <div class="section-inner">
+    <div class="section-num" style="color:#111">02</div>
+    <p class="section-tag fade-up">Editorial Doctrine</p>
+    <h2 class="section-h2 fade-up" style="color:var(--white)">THE FIVE<br>LAWS</h2>
+    <div class="rule"></div>
+
+    <div class="intelligence-box fade-up">
+      <p class="i-label">The Intelligence Principle</p>
+      <p class="i-text">Human intelligence is the input. Artificial intelligence is the amplifier. Braincopia is the output.</p>
+    </div>
+
+    <div class="laws-grid fade-up">
+      <div class="law-row">
+        <div class="law-roman">I</div>
+        <div class="law-content">
+          <p class="law-title">The Intelligence Principle</p>
+          <p class="law-desc">Human intelligence is the input. Artificial intelligence is the amplifier. Braincopia is the output.</p>
+        </div>
+      </div>
+      <div class="law-row">
+        <div class="law-roman">II</div>
+        <div class="law-content">
+          <p class="law-title">The Surreal Mandate</p>
+          <p class="law-desc">Reality is the starting point, never the destination. Every page distorts the ordinary into something worth seeing.</p>
+        </div>
+      </div>
+      <div class="law-row">
+        <div class="law-roman">III</div>
+        <div class="law-content">
+          <p class="law-title">The Cross-Domain Law</p>
+          <p class="law-desc">Fashion informs business. Neuroscience informs design. AI informs culture. <strong>Nothing is siloed here.</strong></p>
+        </div>
+      </div>
+      <div class="law-row">
+        <div class="law-roman">IV</div>
+        <div class="law-content">
+          <p class="law-title">The Reader Sovereignty Rule</p>
+          <p class="law-desc">Your Voice. Your Edition. The reader is not an audience — they are a <strong>co-author of meaning.</strong></p>
+        </div>
+      </div>
+      <div class="law-row">
+        <div class="law-roman">V</div>
+        <div class="law-content">
+          <p class="law-title">The Fearlessness Clause</p>
+          <p class="law-desc">We publish what the mind needs to encounter, not what it expects to find. <strong>Comfort is not our business.</strong></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── 03 WHY WE BUILT THIS ─────────────────────────────────────────────── -->
+<section id="why">
+  <div class="section-inner">
+    <p class="section-tag fade-up">Section 02</p>
+    <h2 class="section-h2 fade-up">WE BUILT<br><span class="accent">BRAINCOPIA</span></h2>
+    <div class="rule"></div>
+    <div class="why-pull fade-up">
+      <p>Because the loudest rooms aren't always the most interesting. Here, quiet thoughts get column inches. Unpopular takes get edited; not erased. We don't gatekeep perspectives. We publish them.</p>
+    </div>
+    <div class="pillars-grid">
+      <div class="pillar fade-up">
+        <div class="pillar-icon"><div class="pillar-icon-inner"></div></div>
+        <p class="pillar-title">Quiet Thoughts, Column Inches</p>
+        <p class="pillar-desc">The ideas that don't trend still deserve space. Braincopia runs long on things the algorithm buries — slow thinking, uncomfortable questions, the perspective that needs three readings before it lands.</p>
+      </div>
+      <div class="pillar fade-up">
+        <div class="pillar-icon"><div class="pillar-icon-inner"></div></div>
+        <p class="pillar-title">Unpopular Takes Get Edited. Not Erased.</p>
+        <p class="pillar-desc">Disagreement is editorial raw material. We sharpen contrarian arguments rather than suppress them. A take that challenges the room is more valuable than consensus wrapped in beautiful fonts.</p>
+      </div>
+      <div class="pillar fade-up">
+        <div class="pillar-icon"><div class="pillar-icon-inner"></div></div>
+        <p class="pillar-title">No Gatekeeping. Only Publishing.</p>
+        <p class="pillar-desc">We don't curate perspectives by credential, industry, or cultural proximity. The fashion outsider, the AI researcher, the philosopher-designer — all get the same column. The idea is the only currency.</p>
+      </div>
+    </div>
+    <div class="why-banner fade-up">
+      <p>THE LOUDEST ROOMS AREN'T ALWAYS THE MOST INTERESTING. &nbsp;<span>BRAINCOPIA IS THE OTHER ROOM.</span></p>
+    </div>
+  </div>
+</section>
+
+<!-- ── 04 UNIVERSE MAP ───────────────────────────────────────────────────── -->
+<section id="universe-map">
+  <div class="section-inner">
+    <div class="section-num">03</div>
+    <p class="section-tag fade-up">The Seven Worlds</p>
+    <h2 class="section-h2 fade-up">UNIVERSE<br>MAP</h2>
+    <div class="rule"></div>
+    <p class="body-copy fade-up" style="max-width:640px;">Braincopia is organised across seven interconnected worlds. Each issue travels through several of them. Every article belongs to at least one. Together they form the full topology of the Braincopia universe.</p>
+
+    <div class="worlds-grid">
+      <div class="world-card fade-up">
+        <div class="world-accent-bar" style="background:var(--green)"></div>
+        <span class="world-icon">🌀</span>
+        <p class="world-label" style="color:var(--green)">World I</p>
+        <h3 class="world-title">Surreal Fashion &amp; Extreme Design</h3>
+        <p class="world-desc">Where garments become manifestos. Fashion as philosophy, as protest, as hallucination. We document the designers who dress the impossible.</p>
+        <div class="world-tags">
+          <span class="tag">Haute Concept</span>
+          <span class="tag">Body as Canvas</span>
+          <span class="tag">AI Couture</span>
+          <span class="tag">Wearable Art</span>
+        </div>
+      </div>
+      <div class="world-card fade-up">
+        <div class="world-accent-bar" style="background:var(--green)"></div>
+        <span class="world-icon">🧠</span>
+        <p class="world-label" style="color:var(--green)">World II</p>
+        <h3 class="world-title">Artificial &amp; Human Intelligence</h3>
+        <p class="world-desc">The frontier territory where neural networks meet neurons. Reports from inside the algorithm, interviews with machines, essays on what thinking even means now.</p>
+        <div class="world-tags">
+          <span class="tag">AI Ethics</span>
+          <span class="tag">Machine Creativity</span>
+          <span class="tag">Cognitive Science</span>
+          <span class="tag">AGI Watch</span>
+        </div>
+      </div>
+      <div class="world-card fade-up">
+        <div class="world-accent-bar" style="background:var(--yellow)"></div>
+        <span class="world-icon">⚡</span>
+        <p class="world-label" style="color:var(--yellow)">World III</p>
+        <h3 class="world-title">Visionary Business &amp; Strategy</h3>
+        <p class="world-desc">Business intelligence for people who find conventional commerce intellectually unbearable. Market disruption as creative act. The economy as a design problem.</p>
+        <div class="world-tags">
+          <span class="tag">Founder Psychology</span>
+          <span class="tag">Disruption Theory</span>
+          <span class="tag">Brand Philosophy</span>
+          <span class="tag">Future Markets</span>
+        </div>
+      </div>
+      <div class="world-card fade-up">
+        <div class="world-accent-bar" style="background:var(--green)"></div>
+        <span class="world-icon">🎭</span>
+        <p class="world-label" style="color:var(--green)">World IV</p>
+        <h3 class="world-title">Culture, Media &amp; the Zeitgeist</h3>
+        <p class="world-desc">What the culture is whispering before it starts screaming. Deep reads on film, music, subcultures, digital movements, and the invisible forces shaping the collective mind.</p>
+        <div class="world-tags">
+          <span class="tag">Cultural Theory</span>
+          <span class="tag">Media Criticism</span>
+          <span class="tag">Subculture Maps</span>
+          <span class="tag">Digital Tribes</span>
+        </div>
+      </div>
+      <div class="world-card fade-up">
+        <div class="world-accent-bar" style="background:var(--violet)"></div>
+        <span class="world-icon">🔬</span>
+        <p class="world-label" style="color:var(--violet)">World V</p>
+        <h3 class="world-title">Neuroscience &amp; Philosophy of Mind</h3>
+        <p class="world-desc">The oldest questions with the newest tools. Consciousness, identity, perception, free will — interrogated with rigour and rendered with beauty.</p>
+        <div class="world-tags">
+          <span class="tag">Consciousness</span>
+          <span class="tag">Neuroaesthetics</span>
+          <span class="tag">Phenomenology</span>
+          <span class="tag">Cognitive Bias</span>
+        </div>
+      </div>
+      <div class="world-card fade-up">
+        <div class="world-accent-bar" style="background:var(--yellow)"></div>
+        <span class="world-icon">✦</span>
+        <p class="world-label" style="color:var(--yellow)">World VI</p>
+        <h3 class="world-title">Speculative Design &amp; Visual Futures</h3>
+        <p class="world-desc">Design fiction for civilisations not yet built. Concept architecture, future interfaces, the aesthetics of scenarios that haven't happened yet but already feel inevitable.</p>
+        <div class="world-tags">
+          <span class="tag">Design Fiction</span>
+          <span class="tag">Future Aesthetics</span>
+          <span class="tag">Speculative Tech</span>
+          <span class="tag">Concept Worlds</span>
+        </div>
+      </div>
+      <div class="world-card world-vii fade-up">
+        <div class="world-accent-bar" style="background:var(--green)"></div>
+        <span class="world-icon">⊙</span>
+        <p class="world-label" style="color:var(--green)">World VII — The Crossroads</p>
+        <h3 class="world-title">Marketing, Persuasion &amp; the Architecture of Desire</h3>
+        <p class="world-desc">The dark arts made visible. How desire is manufactured, how attention is harvested, how meaning is engineered at scale. We expose the machinery — and teach you to build your own. The collision point of all six worlds above: where fashion influences business, where AI reshapes culture, where neuroscience decodes marketing, where philosophy challenges design.</p>
+        <div class="world-tags">
+          <span class="tag">Attention Economics</span>
+          <span class="tag">Desire Architecture</span>
+          <span class="tag">Algorithmic Influence</span>
+          <span class="tag">Brand Semiotics</span>
+          <span class="tag">Behavioural Design</span>
+          <span class="tag">Viral Mechanics</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── 05 MACHINE-ASSISTED WORKFLOW ─────────────────────────────────────── -->
+<section id="workflow">
+  <div class="section-inner">
+    <div class="section-num" style="color:#111">05</div>
+    <div class="workflow-label fade-up">
+      <span>Machine-Assisted</span>
+    </div>
+    <p class="section-tag fade-up">How We Create</p>
+    <h2 class="section-h2 fade-up" style="color:var(--white)">EVOLUTION<br>OF AN IDEA</h2>
+    <div class="rule green"></div>
+    <p class="body-copy fade-up" style="max-width:640px;color:#999;">Every Braincopia article passes through three stages: raw human intuition, machine amplification, and final human editorial refinement. Here is what that looks like in practice.</p>
+
+    <div class="workflow-pipeline fade-up">
+      <!-- Stage 1 -->
+      <div class="workflow-stage">
+        <div class="ws-accent-top" style="background:var(--cream)"></div>
+        <p class="ws-label" style="color:#999;">Stage 01 &nbsp;·&nbsp; Human Prompt</p>
+        <p class="ws-content human-voice">"I want to write something about how we're all becoming slightly less human every time we let an algorithm decide what we see next. Like we're outsourcing our attention, and nobody's noticed yet."</p>
+        <p class="ws-meta">Raw intuition &nbsp;·&nbsp; Unfiltered &nbsp;·&nbsp; Human voice</p>
+        <div class="ws-num">01</div>
+      </div>
+      <!-- Arrow -->
+      <div class="workflow-arrow">→</div>
+      <!-- Stage 2 -->
+      <div class="workflow-stage">
+        <div class="ws-accent-top" style="background:var(--green)"></div>
+        <p class="ws-label" style="color:var(--green);">Stage 02 &nbsp;·&nbsp; Machine Amplification</p>
+        <p class="ws-content machine-out">HYPOTHESIS_CLUSTER: [attention_sovereignty] [cognitive_offloading] [algorithmic_anhedonia]
+
+SHOCK_VECTOR: "The attention economy doesn't steal your time. It colonises your interiority."
+
+HALLUCINATION_SEED: What if each swipe re-draws the neural boundary between self and feed? What if the user is the product not because of data — but because their *sense of boredom* is being redesigned?
+
+CROSS_DOMAIN_LINKS: → Phenomenology (Merleau-Ponty) → Behavioural economics (Kahneman) → Fashion (the blank-faced model as attention anchor)</p>
+        <p class="ws-meta">Amplified &nbsp;·&nbsp; Cross-domain links &nbsp;·&nbsp; Shock vectors generated</p>
+        <div class="ws-num">02</div>
+      </div>
+      <!-- Arrow -->
+      <div class="workflow-arrow">→</div>
+      <!-- Stage 3 -->
+      <div class="workflow-stage">
+        <div class="ws-accent-top" style="background:var(--violet)"></div>
+        <p class="ws-label" style="color:#b48cff;">Stage 03 &nbsp;·&nbsp; Human Editorial Refinement</p>
+        <p class="ws-content editorial-final">"The algorithm does not steal your time. It quietly re-architects your boredom — until the self that used to wander, wait, and wonder has been replaced by a self that only refreshes. This is not distraction. It is a redesign of interiority."</p>
+        <p class="ws-meta">Refined &nbsp;·&nbsp; Authored &nbsp;·&nbsp; Braincopia-coded</p>
+        <div class="ws-num">03</div>
+      </div>
+    </div>
+
+    <!-- Full worked example -->
+    <p class="workflow-example-label">— Full Worked Example: The Body Electric Issue —</p>
+    <div class="workflow-full-example fade-up">
+      <div class="wfe-col">
+        <span class="wfe-tag human">Human Input</span>
+        <p class="wfe-text human-t">"Something about wearable tech and how putting sensors on the body changes your relationship with it. Less about the device, more about the feeling of being measured."</p>
+      </div>
+      <div class="wfe-col">
+        <span class="wfe-tag machine">Machine Output</span>
+        <p class="wfe-text machine-t">AMPLIFICATION: The quantified self is not a self that knows itself better — it is a self that has outsourced its felt sense to a dashboard.
+
+LINK: Biopolitics (Foucault) + wearable couture + the lived body vs the measured body.
+
+SHOCK: "The smartwatch doesn't track your heart. It replaces your heartbeat's meaning."</p>
+      </div>
+      <div class="wfe-col">
+        <span class="wfe-tag final">Final Article</span>
+        <p class="wfe-text final-t">"The body was, for most of human history, the place where meaning was felt before it could be said. The smartwatch makes it legible. In doing so, it makes it slightly less yours. The heart that beats on a graph is a heart that has been translated — and something, inevitably, is lost in translation."</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── 06 SURREAL MANDATE / SENSORY SHOCK ────────────────────────────────── -->
+<section id="surreal">
+  <div class="section-inner">
+    <div class="section-num">06</div>
+    <p class="section-tag fade-up">Visual Identity</p>
+    <h2 class="section-h2 fade-up">THE SURREAL<br>MANDATE</h2>
+    <div class="rule violet"></div>
+
+    <div class="surreal-intro-grid">
+      <div>
+        <p class="body-copy fade-up">Braincopia refuses to choose between intellect and sensory shock. Our visual language is not illustration — it is provocation. Every image should destabilise before it informs.</p>
+        <div class="surreal-manifesto-quote fade-up">
+          <p>Reality is the starting point, never the destination. Every page distorts the ordinary into something worth seeing.</p>
+        </div>
+        <p class="body-copy fade-up">The Surreal Mandate is our specification for what "Braincopia-coded" imagery looks like. It is the visual grammar that unifies every cover, spread, and digital asset we produce. AI-generated imagery is not decoration. It is an editorial argument made in pixels.</p>
+      </div>
+      <div class="surreal-aside fade-in">
+        <p class="aside-label">What Braincopia imagery is NOT</p>
+        <p class="aside-text" style="color:rgba(255,255,255,.88);font-size:.9rem;line-height:1.7;">
+          ✗ Stock-photo realism<br>
+          ✗ Pastel gradients with sans-serif<br>
+          ✗ "Futuristic" chrome spheres<br>
+          ✗ Floating UI elements on white<br>
+          ✗ Cute robot illustrations<br>
+          ✗ Generic "brain + circuit" imagery<br><br>
+          <span style="color:var(--yellow);">Every image must make someone slightly uncomfortable before it makes them curious.</span>
+        </p>
+      </div>
+    </div>
+
+    <!-- Imagery type grid -->
+    <h3 style="font-family:'Bebas Neue',sans-serif;font-size:2.2rem;color:var(--white);margin-bottom:8px;margin-top:64px;" class="fade-up">BRAINCOPIA-CODED IMAGERY TYPES</h3>
+    <div class="rule full fade-up"></div>
+    <div class="imagery-grid">
+      <div class="imagery-card fade-up">
+        <div class="imagery-visual vis-bio-digital">
+          <span class="ic-label">Bio-Digital Texture</span>
+        </div>
+        <div class="imagery-body">
+          <h4 class="imagery-title">Bio-Digital Textures</h4>
+          <p class="imagery-desc">Organic matter fused with data structures. Flesh that renders as wireframe at its edges. The point where biology and computation become indistinguishable.</p>
+          <p class="imagery-coded">Braincopia Coded</p>
+          <div class="world-tags" style="margin-top:10px;">
+            <span class="tag">World I</span><span class="tag">World II</span><span class="tag">World V</span>
+          </div>
+        </div>
+      </div>
+      <div class="imagery-card fade-up">
+        <div class="imagery-visual vis-arch">
+          <span class="ic-label">Non-Existent Architecture</span>
+        </div>
+        <div class="imagery-body">
+          <h4 class="imagery-title">Architecture for Non-Existent Civilisations</h4>
+          <p class="imagery-desc">Structures that obey physics but not convention. Monuments to ideas, not inhabitants. Buildings that exist to be thought about, not lived in.</p>
+          <p class="imagery-coded">Braincopia Coded</p>
+          <div class="world-tags" style="margin-top:10px;">
+            <span class="tag">World VI</span><span class="tag">World VII</span>
+          </div>
+        </div>
+      </div>
+      <div class="imagery-card fade-up">
+        <div class="imagery-visual vis-neural">
+          <span class="ic-label">Neural Landscapes</span>
+        </div>
+        <div class="imagery-body">
+          <h4 class="imagery-title">Neural Landscapes</h4>
+          <p class="imagery-desc">The interior of thought made exterior. Synaptic maps rendered as terrain. The abstract made geographic — places you could not visit but immediately recognise.</p>
+          <p class="imagery-coded">Braincopia Coded</p>
+          <div class="world-tags" style="margin-top:10px;">
+            <span class="tag">World II</span><span class="tag">World V</span>
+          </div>
+        </div>
+      </div>
+      <div class="imagery-card fade-up">
+        <div class="imagery-visual vis-fashion">
+          <span class="ic-label">Hallucinated Fashion</span>
+        </div>
+        <div class="imagery-body">
+          <h4 class="imagery-title">Hallucinated Fashion</h4>
+          <p class="imagery-desc">Garments that could not exist. Materials that have no name. The body as canvas for ideas that no fabric mill has ever produced. Fashion as philosophical proposition.</p>
+          <p class="imagery-coded">Braincopia Coded</p>
+          <div class="world-tags" style="margin-top:10px;">
+            <span class="tag">World I</span><span class="tag">World III</span>
+          </div>
+        </div>
+      </div>
+      <div class="imagery-card fade-up">
+        <div class="imagery-visual vis-texture">
+          <span class="ic-label">Phenomenological Space</span>
+        </div>
+        <div class="imagery-body">
+          <h4 class="imagery-title">Phenomenological Space</h4>
+          <p class="imagery-desc">Environments that correspond to interior states. The visual texture of grief, focus, or ecstasy — not symbolised, but literally rendered as space you could enter.</p>
+          <p class="imagery-coded">Braincopia Coded</p>
+          <div class="world-tags" style="margin-top:10px;">
+            <span class="tag">World V</span><span class="tag">World IV</span>
+          </div>
+        </div>
+      </div>
+      <div class="imagery-card fade-up">
+        <div class="imagery-visual vis-surreal">
+          <span class="ic-label">Desire Archaeology</span>
+        </div>
+        <div class="imagery-body">
+          <h4 class="imagery-title">Desire Archaeology</h4>
+          <p class="imagery-desc">The physical residue of manufactured want. Unearthed fragments of attention campaigns. Evidence of the machinery of desire treated as ancient artefact and studied as such.</p>
+          <p class="imagery-coded">Braincopia Coded</p>
+          <div class="world-tags" style="margin-top:10px;">
+            <span class="tag">World VII</span><span class="tag">World IV</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Surreal Rules -->
+    <h3 style="font-family:'Bebas Neue',sans-serif;font-size:2.2rem;color:var(--white);margin:64px 0 8px;" class="fade-up">VISUAL RULES OF THE MANDATE</h3>
+    <div class="rule full fade-up"></div>
+    <div class="surreal-rules-grid">
+      <div class="surreal-rule fade-up">
+        <span class="rule-n">01</span>
+        <p class="rule-title">The Discomfort Threshold</p>
+        <p class="rule-text">Every cover image must provoke a micro-moment of cognitive dissonance before it resolves into beauty. If an image is immediately comfortable, it is not Braincopia-coded.</p>
+        <div class="rule-example">PROMPT SIGNAL: "...but make it wrong in one specific way that you can't immediately name"</div>
+      </div>
+      <div class="surreal-rule fade-up">
+        <span class="rule-n">02</span>
+        <p class="rule-title">The Human-Centre Rule</p>
+        <p class="rule-text">Even in the most abstract imagery, a human trace must be present — a gesture, a silhouette, a shadow. Braincopia is always about minds, even when it looks like architecture.</p>
+        <div class="rule-example">PROMPT SIGNAL: "...figure at the threshold, back turned, scale ambiguous"</div>
+      </div>
+      <div class="surreal-rule fade-up">
+        <span class="rule-n">03</span>
+        <p class="rule-title">Controlled Palette Contamination</p>
+        <p class="rule-text">Our brand colours (violet, green, yellow, deep purple) must appear, but never decoratively. They should feel like they infected the image from the inside — not that someone colour-graded it.</p>
+        <div class="rule-example">PROMPT SIGNAL: "...bioluminescent violet seeping through the structure's joints"</div>
+      </div>
+      <div class="surreal-rule fade-up">
+        <span class="rule-n">04</span>
+        <p class="rule-title">The Expansion Horizon</p>
+        <p class="rule-text">Every image should suggest that the most interesting part of what it depicts extends beyond the frame. The reader should feel the urge to see what is to the left, above, or behind the image.</p>
+        <div class="rule-example">PROMPT SIGNAL: "...cropped at the point of maximum implication, never resolution"</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── 07 TYPOGRAPHY SYSTEM ──────────────────────────────────────────────── -->
+<section id="typography">
+  <div class="section-inner">
+    <p class="section-tag fade-up" style="color:var(--violet)">Section 04</p>
+    <h2 class="section-h2 fade-up" style="color:var(--deep)">HOW WE<br>SPEAK</h2>
+    <div class="rule violet"></div>
+
+    <div class="type-blocks fade-up">
+      <div class="type-block type-block-dark">
+        <p class="type-meta">Display — Bebas Neue</p>
+        <div class="type-specimen-display">THINK<br>DIFFERENTLY</div>
+        <p class="type-use-row">Headlines &nbsp;·&nbsp; Covers &nbsp;·&nbsp; Masthead &nbsp;·&nbsp; Section Numbers</p>
+      </div>
+      <div class="type-block type-block-white">
+        <p class="type-meta">Editorial — Playfair Display</p>
+        <div class="type-specimen-editorial">"The mind is not a vessel to be filled, but a fire to be kindled — and Braincopia is the spark."</div>
+        <p class="type-use-row" style="color:#777;">Pull Quotes &nbsp;·&nbsp; Subheadings &nbsp;·&nbsp; Feature Intros</p>
+      </div>
+      <div class="type-block type-block-medium">
+        <p class="type-meta">Body — Libre Baskerville</p>
+        <div class="type-specimen-body">Intelligence — whether human or artificial — is ultimately a pattern-recognition engine operating on the raw material of experience. What separates consciousness from computation may be nothing more than the texture of that experience: its felt quality, its irreducible nowness.</div>
+        <p class="type-use-row">Long-form Body &nbsp;·&nbsp; Analysis &nbsp;·&nbsp; Captions &nbsp;·&nbsp; Footnotes</p>
+      </div>
+    </div>
+
+    <div class="color-swatches fade-up" style="margin-top:48px;">
+      <div class="swatch">
+        <div class="swatch-color" style="background:#5B0ECC;"></div>
+        <div class="swatch-hex">#5B0ECC</div>
+        <div class="swatch-name">Violet</div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:#24B574;"></div>
+        <div class="swatch-hex">#24B574</div>
+        <div class="swatch-name">Green</div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:#FFD600;"></div>
+        <div class="swatch-hex">#FFD600</div>
+        <div class="swatch-name">Yellow</div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:#3D0999;"></div>
+        <div class="swatch-hex">#3D0999</div>
+        <div class="swatch-name">Deep Purple</div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:#F7F4EE;border:1px solid #ddd;"></div>
+        <div class="swatch-hex">#F7F4EE</div>
+        <div class="swatch-name">Cream</div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:#EDE8DF;border:1px solid #ddd;"></div>
+        <div class="swatch-hex">#EDE8DF</div>
+        <div class="swatch-name">Warm Grey</div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:#1C1C1C;"></div>
+        <div class="swatch-hex">#1C1C1C</div>
+        <div class="swatch-name">Near Black</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── 08 ISSUE MAP ──────────────────────────────────────────────────────── -->
+<section id="issues">
+  <div class="section-inner">
+    <div class="section-num">08</div>
+    <p class="section-tag fade-up">2025 Calendar</p>
+    <h2 class="section-h2 fade-up">ISSUE<br>MAP</h2>
+    <div class="rule"></div>
+    <div class="issues-grid">
+      <div class="issue-card fade-up">
+        <div class="issue-accent" style="background:var(--violet)"></div>
+        <p class="issue-season" style="color:#b48cff">Spring 2025 · Vol. I</p>
+        <h3 class="issue-title">The Parallel Universe</h3>
+        <p class="issue-desc">The inaugural edition. We introduce the seven worlds, establish our surreal visual grammar, and ask: what does intelligence look like when it dresses up?</p>
+        <div class="issue-tags">
+          <span class="tag">Origin Stories</span>
+          <span class="tag">AI First Contact</span>
+          <span class="tag">Braincopia Manifesto</span>
+        </div>
+        <div class="issue-vol">I</div>
+      </div>
+      <div class="issue-card fade-up">
+        <div class="issue-accent" style="background:var(--green)"></div>
+        <p class="issue-season" style="color:var(--green)">Summer 2025 · Vol. II</p>
+        <h3 class="issue-title">The Body Electric</h3>
+        <p class="issue-desc">Fashion, neuroscience, and technology collide around the human body as interface. Wearable AI, biometric couture, the aesthetics of the extended self.</p>
+        <div class="issue-tags">
+          <span class="tag">Biometric Fashion</span>
+          <span class="tag">Augmented Body</span>
+          <span class="tag">Somatosensory Design</span>
+        </div>
+        <div class="issue-vol">II</div>
+      </div>
+      <div class="issue-card fade-up">
+        <div class="issue-accent" style="background:var(--yellow)"></div>
+        <p class="issue-season" style="color:var(--yellow)">Autumn 2025 · Vol. III</p>
+        <h3 class="issue-title">Machine Dreams</h3>
+        <p class="issue-desc">The aesthetics of artificial imagination. What does an AI dream of? How machine-generated imagery is reshaping visual culture, advertising, and the concept of authorship.</p>
+        <div class="issue-tags">
+          <span class="tag">Generative Art</span>
+          <span class="tag">AI Authorship</span>
+          <span class="tag">Dream Aesthetics</span>
+        </div>
+        <div class="issue-vol">III</div>
+      </div>
+      <div class="issue-card fade-up">
+        <div class="issue-accent" style="background:var(--violet)"></div>
+        <p class="issue-season" style="color:#b48cff">Winter 2025 · Vol. IV</p>
+        <h3 class="issue-title">The Attention War</h3>
+        <p class="issue-desc">Every second of focus is a battlefield. We investigate the architecture of distraction, the science of captivation, and the businesses built on the scarcity of human consciousness.</p>
+        <div class="issue-tags">
+          <span class="tag">Attention Economy</span>
+          <span class="tag">UX as Manipulation</span>
+          <span class="tag">Cognitive Load Design</span>
+        </div>
+        <div class="issue-vol">IV</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── 09 CLOSING DOCTRINE ───────────────────────────────────────────────── -->
+<section id="closing">
+  <div class="closing-bg-text" aria-hidden="true">MIND</div>
+  <div class="section-inner">
+    <p class="section-tag fade-up" style="color:var(--yellow);">Editorial Doctrine · Volume I</p>
+    <div class="closing-quote fade-up">
+      <p>"We are not here to tell you what to think.<br>We are here to make <em>thinking feel</em><br>like the most alive thing you do."</p>
+      <p class="closing-attribution">— Braincopia Editorial Doctrine · Volume I</p>
+    </div>
+    <div class="commitments">
+      <div class="commit-card fade-up">
+        <p class="commit-label">To the Human</p>
+        <p class="commit-text">Your consciousness is the irreplaceable ingredient. Every question you bring is the raw material of every edition.</p>
+      </div>
+      <div class="commit-card fade-up">
+        <p class="commit-label">To the Algorithm</p>
+        <p class="commit-text">Serve the question. Amplify the human. Produce outputs that the human mind could not reach alone.</p>
+      </div>
+      <div class="commit-card fade-up">
+        <p class="commit-label">To the Reader</p>
+        <p class="commit-text">Your Voice. Your Edition. The page you read has never been read exactly this way before.</p>
+      </div>
+    </div>
+    <div class="cta-block fade-up">
+      <a href="index.html">YOUR VOICE. YOUR EDITION.</a>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ────────────────────────────────────────────────────────────── -->
+<footer>
+  <div>
+    <a class="footer-logo" href="index.html">Braincopia</a>
+    <div class="footer-topics">Fashion &nbsp;·&nbsp; Design &nbsp;·&nbsp; Business &nbsp;·&nbsp; Culture &nbsp;·&nbsp; Mind &nbsp;·&nbsp; Media</div>
+  </div>
+  <div class="footer-right">
+    <div style="color:var(--yellow);font-family:'Space Mono',monospace;font-size:.6rem;letter-spacing:.14em;">HI / AI MAGAZINE</div>
+    <div><a href="index.html">braincopia.com</a></div>
+    <div>Universe Guide · 2025</div>
+  </div>
+</footer>
+
+<script>
+// ── CURSOR ───────────────────────────────────────────────────────────────────
+const cursor = document.getElementById('cursor');
+const ring   = document.getElementById('cursorRing');
+let mx = 0, my = 0, rx = 0, ry = 0;
+
+document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+
+function animCursor() {
+  cursor.style.left = mx + 'px'; cursor.style.top = my + 'px';
+  rx += (mx - rx) * .14; ry += (my - ry) * .14;
+  ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
+  requestAnimationFrame(animCursor);
+}
+if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) animCursor();
+
+document.querySelectorAll('a,button,.world-card,.imagery-card,.issue-card,.law-row')
+  .forEach(el => {
+    el.addEventListener('mouseenter', () => {
+      cursor.style.width = '22px'; cursor.style.height = '22px';
+      ring.style.width = '52px'; ring.style.height = '52px';
+    });
+    el.addEventListener('mouseleave', () => {
+      cursor.style.width = '12px'; cursor.style.height = '12px';
+      ring.style.width = '36px'; ring.style.height = '36px';
+    });
+  });
+
+// ── SCROLL FADE ──────────────────────────────────────────────────────────────
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+}, { threshold: 0.08 });
+
+document.querySelectorAll('.fade-up, .fade-in').forEach(el => io.observe(el));
+
+// ── NAV ACTIVE ───────────────────────────────────────────────────────────────
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('.nav-links a:not(.back)');
+const sio = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      navLinks.forEach(l => {
+        l.style.color = l.getAttribute('href') === '#' + e.target.id ? 'var(--yellow)' : '';
+      });
+    }
+  });
+}, { threshold: 0.4 });
+sections.forEach(s => sio.observe(s));
+
+// ── COVER STATS STAGGER ──────────────────────────────────────────────────────
+document.querySelectorAll('.cover-stat').forEach((el, i) => {
+  setTimeout(() => el.classList.add('visible'), 400 + i * 160);
+});
+</script>
+</body>
+</html>

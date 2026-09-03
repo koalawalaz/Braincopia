@@ -14,6 +14,8 @@
   --yellow:  #FFD600;
   --gold:    #B8A050;
   --gold-ink:#7A6526;
+  --green-ink:#14724A;   /* green, legible as text on light surfaces */
+  --yellow-ink:#7A6100;  /* yellow, ditto */
   --pink:    #FF90E8;
 
   /* surfaces */
@@ -367,7 +369,21 @@ h4 { font-size: 1.1rem; letter-spacing: .06em; }
 .stat b { display: block; font-family: var(--display); font-size: clamp(2rem, 4vw, 3rem); line-height: 1; margin-bottom: 6px; }
 .stat span { font-family: var(--mono); font-size: .55rem; letter-spacing: .18em; text-transform: uppercase; opacity: .7; }
 
-/* laws --------------------------------------------------------------------- */
+
+/* five laws, row layout (long titles need the width) --------------------- */
+.law-list { border: var(--border); box-shadow: var(--shadow); background: var(--white); }
+.law-row { display: grid; grid-template-columns: 92px 1fr; border-bottom: 1px solid var(--hair); transition: background .18s ease; }
+.law-row:last-child { border-bottom: 0; }
+.law-row:hover { background: var(--warm); }
+.law-roman { font-family: var(--display); font-size: 2.1rem; line-height: 1; color: var(--violet); padding: 24px 0 24px 26px; border-right: 1px solid var(--hair); display: flex; align-items: center; }
+.law-content { padding: 24px 30px; }
+.law-title { font-family: var(--mono); font-weight: 700; font-size: .64rem; letter-spacing: .2em; text-transform: uppercase; color: var(--gold-ink); margin-bottom: 9px; }
+.law-desc { font-size: .92rem; line-height: 1.75; color: #4a453f; }
+.law-desc strong { color: var(--ink); font-weight: 700; }
+.toc-world { font-family: var(--mono); font-size: .52rem; letter-spacing: .2em; text-transform: uppercase; color: var(--violet); margin-bottom: 6px; }
+
+/* laws (5-across variant, kept for narrow summaries) */
+
 .laws { display: grid; grid-template-columns: repeat(5, 1fr); border: var(--border); box-shadow: var(--shadow); background: var(--white); }
 .law { padding: 26px 22px; border-right: var(--border); }
 .law:last-child { border-right: 0; }
@@ -434,7 +450,7 @@ h4 { font-size: 1.1rem; letter-spacing: .06em; }
 .ba-before { border-right: var(--border); background: var(--warm); }
 .ba-label { font-family: var(--mono); font-size: .55rem; letter-spacing: .2em; text-transform: uppercase; margin-bottom: 12px; }
 .ba-before .ba-label { color: var(--muted); }
-.ba-after  .ba-label { color: var(--green); }
+.ba-after  .ba-label { color: var(--green-ink); }
 .ba p { font-size: .9rem; line-height: 1.75; margin: 0; }
 .ba-before p { color: var(--muted); }
 .ba-after p { font-family: var(--serif); }
@@ -504,6 +520,9 @@ h4 { font-size: 1.1rem; letter-spacing: .06em; }
 }
 @media (max-width: 620px) {
   :root { --nav-h: 58px; }
+  .law-row { grid-template-columns: 58px 1fr; }
+  .law-roman { padding: 20px 0 20px 16px; font-size: 1.6rem; }
+  .law-content { padding: 20px 18px; }
   .grid-3, .grid-4, .grid-2 { grid-template-columns: 1fr; }
   .laws { grid-template-columns: 1fr; }
   .law { border-right: 0; }

@@ -61,8 +61,8 @@
       var email = form.querySelector('input[type="email"]');
       if (!email || !email.value) return;
       if (status) {
-        status.textContent = 'You are on the list. Issue 02 lands in your inbox first.';
-        status.style.color = '#24B574';
+        status.textContent = 'You are on the list. The next dispatch lands in your inbox first.';
+        status.style.color = '#14724A';
       }
       form.reset();
     });
