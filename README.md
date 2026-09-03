@@ -97,10 +97,10 @@ Universe Guide's typography section.
 ## Cover artwork
 
 No stock imagery anywhere, per the Surreal Mandate. Article and issue covers are
-generated in CSS from a flat colour panel, overlapping geometric shapes and
-display type — the `.cover` component in the stylesheet. To use real artwork
-instead, put an `<img>` inside `.cover` with `position:absolute; inset:0;
-object-fit:cover`.
+a flat colour panel, a hairline grid, and display type — the `.cover` component
+in the stylesheet. There are no decorative shapes: the type is the artwork. To
+use real artwork instead, put an `<img>` inside `.cover` with
+`position:absolute; inset:0; object-fit:cover`.
 
 ## Wiring up the real thing
 

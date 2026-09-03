@@ -269,22 +269,20 @@ h4 { font-size: 1.1rem; letter-spacing: .06em; }
 .cover-title em { font-style: normal; color: var(--yellow); display: block; }
 .cover-foot { position: relative; z-index: 2; font-family: var(--mono); font-size: .5rem; letter-spacing: .2em; text-transform: uppercase; color: rgba(255,255,255,.6); }
 
-.shape { position: absolute; z-index: 1; }
-.shape-circle { border-radius: 50%; }
-.shape-ring { border-radius: 50%; background: transparent; border: 2px solid currentColor; }
-.shape-a { width: 46%; padding-bottom: 46%; height: 0; right: -10%; top: 8%; background: var(--yellow); border-radius: 50%; mix-blend-mode: normal; opacity: .95; }
-.shape-b { width: 34%; padding-bottom: 34%; height: 0; left: -8%; bottom: -6%; background: var(--green); border-radius: 50%; }
-.shape-c { width: 60%; height: 3px; background: #fff; left: 12%; top: 42%; transform: rotate(-14deg); opacity: .5; }
-.shape-d { width: 28%; padding-bottom: 28%; height: 0; right: 16%; bottom: 12%; border: 3px solid var(--yellow); border-radius: 50%; }
+/* No decorative shapes. The panel is flat and the type is the artwork.
+   A hairline grid gives it structure without putting an object on the page. */
+.shape { display: none; }
+.cover::after {
+  content: ''; position: absolute; inset: 0; z-index: 0; pointer-events: none;
+  background:
+    repeating-linear-gradient(90deg, var(--grid) 0 1px, transparent 1px 46px),
+    repeating-linear-gradient(0deg,  var(--grid) 0 1px, transparent 1px 46px);
+}
+.cover-top { padding-bottom: 12px; border-bottom: 1px solid var(--grid-strong); }
 
-/* covers are reused at four sizes; the type scales with the panel */
-.hero-art .cover-title { font-size: clamp(1.9rem, 3.4vw, 3.5rem); }
-.feature .cover-title  { font-size: clamp(1.6rem, 2.8vw, 2.6rem); }
-.post .cover-inner     { padding: 15px; }
-.post .cover-title     { font-size: 1.45rem; }
-.post .cover-kicker    { font-size: .46rem; }
-.post .cover-foot, .post .shape-c { display: none; }
-.row .cover-inner      { display: none; }
+.cover   { --grid: rgba(255,255,255,.10); --grid-strong: rgba(255,255,255,.28); }
+.cover-4 { --grid: rgba(0,0,0,.10);       --grid-strong: rgba(0,0,0,.30); }
+.cover-6 { --grid: rgba(0,0,0,.10);       --grid-strong: rgba(0,0,0,.30); }
 
 .cover-1 { background: var(--violet); }
 .cover-2 { background: var(--green); }
@@ -298,6 +296,17 @@ h4 { font-size: 1.1rem; letter-spacing: .06em; }
 .cover-6 { background: var(--gold); }
 .cover-6 .cover-title, .cover-6 .cover-kicker, .cover-6 .cover-foot { color: #241D05; }
 .cover-6 .cover-title em { color: var(--deep); }
+
+/* covers are reused at four sizes; the type scales with the panel */
+.hero-art .cover-title { font-size: clamp(1.9rem, 3.4vw, 3.5rem); }
+.feature .cover-title  { font-size: clamp(1.6rem, 2.8vw, 2.6rem); }
+.post .cover-inner     { padding: 15px; }
+.post .cover-title     { font-size: 1.45rem; }
+.post .cover-kicker    { font-size: .46rem; }
+.post .cover-foot      { display: none; }
+.post .cover-top       { padding-bottom: 9px; }
+.post .cover::after    { background-size: 30px 30px, 30px 30px; }
+.row .cover-inner      { display: none; }
 
 /* ------------------------------------------------- 6. FEATURED / ARTICLES */
 .feature {
