@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Braincopia — Make It Sound Like You</title>
+<meta name="description" content="One free trick for making AI-assisted writing sound like you again, then the full 29-trick system.">
+<meta name="theme-color" content="#5B0ECC">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Playfair+Display:wght@400;700;900&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --violet: #5B0ECC;
+  --green: #24B574;
+  --yellow: #FFD600;
+  --deep: #3D0999;
+  --cream: #F7F4EE;
+  --warm: #EDE8DF;
+  --nearblack: #1C1C1C;
+}
+body { font-family: 'Libre Baskerville', Georgia, serif; background: #fff; color: var(--nearblack); line-height: 1.6; }
+
+.progress-bar { position: fixed; top: 0; left: 0; right: 0; height: 4px; background: var(--warm); z-index: 999; }
+.progress-fill { height: 100%; background: var(--violet); width: 0%; transition: width .35s ease; }
+.step-count { position: fixed; top: 16px; right: 20px; z-index: 999; font-family: 'Space Mono', monospace; font-size: .55rem; letter-spacing: .2em; text-transform: uppercase; color: #999; }
+.site-link { position: fixed; top: 14px; left: 20px; z-index: 999; font-family: 'Space Mono', monospace; font-size: .55rem; letter-spacing: .2em; text-transform: uppercase; color: #999; text-decoration: none; border: 1px solid #ccc; padding: 5px 10px; background: rgba(255,255,255,.9); }
+.site-link:hover { color: var(--violet); border-color: var(--violet); }
+
+.page { display: none; min-height: 100vh; width: 100%; }
+.page.visible { display: flex; flex-direction: column; justify-content: center; }
+
+.tag { font-family: 'Space Mono', monospace; font-size: .58rem; letter-spacing: .3em; text-transform: uppercase; margin-bottom: 18px; }
+.btn { font-family: 'Bebas Neue', sans-serif; border: none; padding: 16px 40px; font-size: .95rem; letter-spacing: .14em; text-transform: uppercase; cursor: pointer; transition: background .2s, transform .2s; }
+.btn-violet { background: var(--violet); color: #fff; }
+.btn-violet:hover { background: var(--deep); transform: translateY(-2px); }
+.btn-yellow { background: var(--yellow); color: var(--nearblack); }
+.btn-yellow:hover { background: #e6c200; transform: translateY(-2px); }
+.textlink { background: none; border: none; color: var(--violet); text-decoration: underline; cursor: pointer; font-family: 'Libre Baskerville', serif; font-size: .85rem; }
+.needs-you { border: 1px dashed #B8A050; padding: 3px 7px; font-family: 'Space Mono', monospace; font-size: .5rem; letter-spacing: .14em; text-transform: uppercase; color: #B8A050; display: inline-block; margin-bottom: 8px; }
+
+/* 1 — HOOK */
+#page1 { background: #000; color: #fff; text-align: center; padding: 60px 24px; }
+.hook { max-width: 720px; margin: 0 auto; }
+.hook .tag { color: var(--yellow); }
+.hook h1 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(2.6rem, 8vw, 5.4rem); line-height: .95; margin-bottom: 24px; }
+.hook h1 .accent { color: var(--yellow); display: block; }
+.hook p.sub { font-family: 'Playfair Display', serif; font-size: 1.25rem; color: #bbb; margin-bottom: 40px; line-height: 1.6; }
+.hook .fine { font-size: .8rem; color: #777; margin-top: 22px; }
+
+/* 2 — FREE TRICK + CAPTURE */
+#page2 { background: var(--nearblack); color: #fff; padding: 60px 24px; }
+.lm { max-width: 620px; margin: 0 auto; }
+.lm .tag { color: var(--green); }
+.lm h2 { font-family: 'Bebas Neue', sans-serif; font-size: 2.4rem; line-height: 1; margin-bottom: 14px; }
+.lm h2 .accent { color: var(--yellow); }
+.lm p.sub { font-family: 'Playfair Display', serif; font-size: 1.05rem; color: #bbb; margin-bottom: 32px; line-height: 1.6; }
+.trick-sample { border: 1px solid #333; padding: 28px 26px; margin-bottom: 28px; border-left: 4px solid var(--green); }
+.trick-num { font-family: 'Space Mono', monospace; font-size: .55rem; letter-spacing: .22em; color: var(--green); text-transform: uppercase; margin-bottom: 12px; }
+.trick-name { font-family: 'Playfair Display', serif; font-weight: 700; font-size: 1.25rem; color: #fff; margin-bottom: 12px; }
+.trick-body { font-size: .9rem; color: #aaa; line-height: 1.8; margin-bottom: 18px; }
+.ba-row { border-top: 1px solid #2a2a2a; padding-top: 16px; }
+.ba-label { font-family: 'Space Mono', monospace; font-size: .5rem; letter-spacing: .18em; text-transform: uppercase; margin-bottom: 6px; }
+.ba-before .ba-label { color: #666; }
+.ba-after .ba-label { color: var(--yellow); }
+.ba-text { font-size: .88rem; line-height: 1.7; margin-bottom: 16px; }
+.ba-before .ba-text { color: #777; }
+.ba-after .ba-text { color: #fff; font-family: 'Playfair Display', serif; }
+.capture-box { border: 1px solid #333; padding: 26px 24px; }
+.capture-box h3 { font-family: 'Bebas Neue', sans-serif; font-size: 1.3rem; letter-spacing: .06em; margin-bottom: 8px; }
+.capture-box > p { font-size: .85rem; color: #999; line-height: 1.65; margin-bottom: 18px; }
+.capture-list { list-style: none; margin-bottom: 20px; }
+.capture-list li { font-size: .82rem; color: #aaa; padding: 5px 0 5px 15px; position: relative; }
+.capture-list li::before { content: ''; position: absolute; left: 0; top: 13px; width: 5px; height: 5px; background: var(--green); }
+.lm-form { display: flex; flex-direction: column; gap: 12px; }
+.lm-form input { padding: 14px 16px; background: #111; border: 1px solid #333; color: #fff; font-family: 'Libre Baskerville', serif; font-size: .95rem; }
+.lm-form input::placeholder { color: #666; }
+.lm-form input:focus { outline: none; border-color: var(--green); }
+.lm-form button { background: var(--green); color: var(--nearblack); border: none; padding: 15px; font-family: 'Bebas Neue', sans-serif; font-size: .9rem; letter-spacing: .14em; text-transform: uppercase; cursor: pointer; transition: background .2s; }
+.lm-form button:hover { background: #1aaa5d; }
+.lm .fine { font-size: .75rem; color: #666; margin-top: 14px; text-align: center; }
+
+/* 3 — PROOF + CREDIBILITY */
+#page3 { background: #fff; padding: 72px 24px; }
+.proof { max-width: 900px; margin: 0 auto; }
+.proof .tag { color: var(--violet); }
+.proof h2 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(2.2rem, 5vw, 3.4rem); line-height: .98; margin-bottom: 20px; }
+.proof h2 .accent { color: var(--violet); }
+.proof p.sub { font-family: 'Playfair Display', serif; font-size: 1.1rem; color: #555; margin-bottom: 44px; line-height: 1.7; max-width: 680px; }
+.tells-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 48px; }
+.tell { background: var(--cream); padding: 26px 24px; border-top: 3px solid var(--violet); }
+.tell-n { font-family: 'Space Mono', monospace; font-size: .55rem; letter-spacing: .2em; color: var(--violet); text-transform: uppercase; margin-bottom: 10px; }
+.tell h3 { font-family: 'Playfair Display', serif; font-size: 1.15rem; margin-bottom: 10px; color: #000; }
+.tell p { font-size: .87rem; color: #666; line-height: 1.7; }
+.author { background: var(--nearblack); color: #fff; padding: 40px 36px; display: grid; grid-template-columns: auto 1fr; gap: 32px; align-items: start; margin-bottom: 44px; }
+.author-mark { width: 108px; height: 148px; background: var(--violet); display: flex; flex-direction: column; justify-content: flex-end; padding: 14px 12px; }
+.author-mark .bk { font-family: 'Bebas Neue', sans-serif; font-size: 1.5rem; line-height: .9; color: #fff; }
+.author-mark .bk-sub { font-family: 'Space Mono', monospace; font-size: .45rem; letter-spacing: .14em; color: var(--yellow); text-transform: uppercase; margin-top: 6px; }
+.author-copy .tag { color: var(--yellow); margin-bottom: 12px; }
+.author-copy h3 { font-family: 'Bebas Neue', sans-serif; font-size: 1.7rem; line-height: 1; margin-bottom: 14px; }
+.author-copy p { font-size: .9rem; color: #aaa; line-height: 1.8; margin-bottom: 12px; }
+.band { background: var(--violet); color: #fff; padding: 44px 36px; text-align: center; margin-bottom: 44px; }
+.band p { font-family: 'Playfair Display', serif; font-size: 1.3rem; line-height: 1.6; max-width: 640px; margin: 0 auto; }
+.band p em { color: var(--yellow); font-style: normal; }
+.proof-cta { text-align: center; }
+
+/* 4 — PRICING */
+#page4 { background: var(--nearblack); padding: 72px 24px; }
+.pricing { max-width: 1080px; margin: 0 auto; }
+.pricing-head { text-align: center; color: #fff; margin-bottom: 34px; }
+.pricing-head .tag { color: var(--yellow); }
+.pricing-head h2 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(2.2rem, 5vw, 3.4rem); line-height: 1; margin-bottom: 12px; }
+.pricing-head p { font-family: 'Playfair Display', serif; color: #999; font-size: 1.02rem; }
+.cats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-bottom: 34px; }
+.cat { border: 1px solid #2a2a2a; padding: 18px 16px; }
+.cat-n { font-family: 'Space Mono', monospace; font-size: .5rem; letter-spacing: .18em; text-transform: uppercase; margin-bottom: 8px; }
+.cat h4 { font-family: 'Bebas Neue', sans-serif; font-size: 1rem; color: #fff; letter-spacing: .06em; margin-bottom: 7px; }
+.cat p { font-size: .76rem; color: #777; line-height: 1.6; }
+.guarantee { border-left: 4px solid var(--green); background: #0c1f16; padding: 20px 24px; margin-bottom: 38px; display: grid; grid-template-columns: auto 1fr; gap: 18px; align-items: center; }
+.guarantee-n { font-family: 'Bebas Neue', sans-serif; font-size: 2.4rem; color: var(--green); line-height: 1; }
+.guarantee p { font-size: .87rem; color: #bbb; line-height: 1.7; }
+.guarantee p strong { color: #fff; }
+.cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+.card { background: #111; border: 1px solid #2a2a2a; padding: 32px 24px; position: relative; display: flex; flex-direction: column; transition: border-color .2s, transform .2s; }
+.card:hover { border-color: var(--violet); transform: translateY(-4px); }
+.card.featured { border: 2px solid var(--green); background: #0c1f16; }
+.card.premium { border: 2px solid var(--yellow); background: #1a1500; }
+.badge { position: absolute; top: -11px; left: 18px; font-family: 'Space Mono', monospace; font-size: .5rem; letter-spacing: .16em; text-transform: uppercase; font-weight: 700; padding: 5px 12px; }
+.card.featured .badge { background: var(--green); color: #000; }
+.card.premium .badge { background: var(--yellow); color: #000; }
+.card-name { font-family: 'Bebas Neue', sans-serif; font-size: 1.15rem; color: #fff; letter-spacing: .1em; margin-bottom: 10px; }
+.card-price { font-family: 'Bebas Neue', sans-serif; font-size: 2.6rem; line-height: 1; color: var(--green); margin-bottom: 4px; }
+.card.premium .card-price { color: var(--yellow); }
+.card-terms { font-family: 'Space Mono', monospace; font-size: .52rem; letter-spacing: .12em; text-transform: uppercase; color: #666; padding-bottom: 18px; margin-bottom: 18px; border-bottom: 1px solid #2a2a2a; }
+.card ul { list-style: none; margin-bottom: 24px; flex-grow: 1; }
+.card ul li { font-size: .82rem; color: #999; padding: 7px 0 7px 16px; position: relative; line-height: 1.5; }
+.card ul li::before { content: ''; position: absolute; left: 0; top: 15px; width: 6px; height: 6px; background: var(--green); }
+.card.premium ul li::before { background: var(--yellow); }
+.card button { width: 100%; border: none; padding: 13px; font-family: 'Bebas Neue', sans-serif; font-size: .82rem; letter-spacing: .14em; text-transform: uppercase; cursor: pointer; background: var(--violet); color: #fff; transition: background .2s; }
+.card button:hover { background: var(--deep); }
+.card.featured button { background: var(--green); color: #000; }
+.card.featured button:hover { background: #1aaa5d; }
+.card.premium button { background: var(--yellow); color: #000; }
+.card.premium button:hover { background: #e6c200; }
+
+/* 5 — CHECKOUT */
+#page5 { background: #fff; padding: 72px 24px; }
+.checkout { max-width: 620px; margin: 0 auto; }
+.checkout-head { text-align: center; margin-bottom: 32px; }
+.checkout-head h2 { font-family: 'Bebas Neue', sans-serif; font-size: 2.3rem; line-height: 1; margin-bottom: 10px; }
+.checkout-head p { font-size: .88rem; color: #777; }
+.order-summary { background: var(--nearblack); color: #fff; padding: 22px 26px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+.os-label { font-family: 'Space Mono', monospace; font-size: .55rem; letter-spacing: .18em; text-transform: uppercase; color: #888; margin-bottom: 6px; }
+.os-name { font-family: 'Playfair Display', serif; font-size: 1.1rem; }
+.os-price { font-family: 'Bebas Neue', sans-serif; font-size: 2rem; color: var(--green); }
+.form-wrap { background: var(--cream); padding: 34px 30px; margin-bottom: 20px; }
+.fg { margin-bottom: 18px; }
+.fg label { display: block; font-family: 'Space Mono', monospace; font-size: .58rem; letter-spacing: .16em; text-transform: uppercase; font-weight: 700; margin-bottom: 7px; }
+.fg input { width: 100%; padding: 12px 14px; border: 1px solid #d5d0c7; background: #fff; font-family: 'Libre Baskerville', serif; font-size: .95rem; }
+.fg input:focus { outline: none; border-color: var(--violet); }
+.fg-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.checkout-submit { width: 100%; background: var(--violet); color: #fff; border: none; padding: 16px; font-family: 'Bebas Neue', sans-serif; font-size: .95rem; letter-spacing: .14em; text-transform: uppercase; cursor: pointer; transition: background .2s; }
+.checkout-submit:hover { background: var(--deep); }
+.reassure { display: flex; justify-content: center; gap: 22px; margin-top: 16px; flex-wrap: wrap; }
+.reassure span { font-family: 'Space Mono', monospace; font-size: .55rem; letter-spacing: .12em; text-transform: uppercase; color: #999; }
+.checkout-foot { text-align: center; font-size: .82rem; color: #888; }
+
+/* 6 — CONFIRMATION + BACKEND */
+#page6 { background: var(--cream); padding: 72px 24px; }
+.conf { max-width: 900px; margin: 0 auto; }
+.conf-head { text-align: center; margin-bottom: 20px; }
+.conf-head .tag { color: var(--green); }
+.conf-head h2 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(2.2rem, 5vw, 3.2rem); line-height: 1; margin-bottom: 14px; }
+.conf-head p { font-family: 'Playfair Display', serif; font-size: 1.06rem; color: #555; max-width: 620px; margin: 0 auto; line-height: 1.7; }
+.conf-divider { height: 1px; background: #ddd8cf; margin: 44px 0 40px; }
+.backend-intro { text-align: center; margin-bottom: 32px; }
+.backend-intro h3 { font-family: 'Bebas Neue', sans-serif; font-size: 1.9rem; line-height: 1; margin-bottom: 10px; }
+.backend-intro p { font-size: .9rem; color: #666; max-width: 560px; margin: 0 auto; line-height: 1.7; }
+.offers { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.offer { background: #fff; border: 1px solid var(--warm); padding: 30px 26px; display: flex; flex-direction: column; }
+.offer.book { border-top: 4px solid var(--violet); }
+.offer.mag { border-top: 4px solid var(--yellow); }
+.offer-type { font-family: 'Space Mono', monospace; font-size: .52rem; letter-spacing: .2em; text-transform: uppercase; margin-bottom: 12px; }
+.offer.book .offer-type { color: var(--violet); }
+.offer.mag .offer-type { color: #B8A050; }
+.offer h4 { font-family: 'Bebas Neue', sans-serif; font-size: 1.7rem; line-height: 1; margin-bottom: 12px; }
+.offer > p { font-size: .87rem; color: #666; line-height: 1.75; margin-bottom: 18px; }
+.offer .grow { flex-grow: 1; }
+.offer-price { font-family: 'Bebas Neue', sans-serif; font-size: 2.2rem; line-height: 1; margin-bottom: 4px; }
+.offer.book .offer-price { color: var(--violet); }
+.offer.mag .offer-price { color: #B8A050; }
+.offer-terms { font-family: 'Space Mono', monospace; font-size: .52rem; letter-spacing: .12em; text-transform: uppercase; color: #999; margin-bottom: 18px; }
+.offer button { width: 100%; border: none; padding: 13px; font-family: 'Bebas Neue', sans-serif; font-size: .82rem; letter-spacing: .14em; text-transform: uppercase; cursor: pointer; transition: background .2s; }
+.offer.book button { background: var(--violet); color: #fff; }
+.offer.book button:hover { background: var(--deep); }
+.offer.mag button { background: var(--nearblack); color: #fff; }
+.offer.mag button:hover { background: #000; }
+.conf-foot { text-align: center; margin-top: 36px; font-size: .84rem; color: #888; }
+
+@media (max-width: 900px) {
+  .cards, .cats { grid-template-columns: 1fr 1fr; }
+  .author { grid-template-columns: 1fr; }
+}
+@media (max-width: 620px) {
+  .cards, .cats, .tells-grid, .fg-row, .offers { grid-template-columns: 1fr; }
+  .order-summary { flex-direction: column; gap: 14px; text-align: center; }
+  .guarantee { grid-template-columns: 1fr; }
+  .site-link { display: none; }
+}
+</style>
+</head>
+<body>
+
+<div class="progress-bar"><div class="progress-fill" id="progress"></div></div>
+<a class="site-link" href="index.html">&larr; The magazine</a>
+<div class="step-count" id="stepCount">Step 1 of 6</div>
+
+<!-- 1 — HOOK -->
+<div id="page1" class="page visible">
+  <div class="hook">
+    <p class="tag">Braincopia — HI / AI</p>
+    <h1>Everyone Can Tell<br><span class="accent">It's AI</span></h1>
+    <p class="sub">The em-dashes. The tidy three-part lists. The same fourteen templates as every other account in the feed. Your readers clock it in four seconds — and stop trusting the rest.</p>
+    <button class="btn btn-yellow" onclick="showPage(2)">Show Me One Free Trick</button>
+    <p class="fine">No card. One real technique, right now.</p>
+  </div>
+</div>
+
+<!-- 2 — FREE TRICK + CAPTURE -->
+<div id="page2" class="page">
+  <div class="lm">
+    <p class="tag">Free Sample — Trick 01</p>
+    <h2>The <span class="accent">Rhythm Break</span></h2>
+    <p class="sub">Read it now, no email required. The email is only if you want what comes after.</p>
+
+    <div class="trick-sample">
+      <p class="trick-num">Trick 01 / 29 — Voice</p>
+      <p class="trick-name">Vary your sentence lengths on purpose</p>
+      <p class="trick-body">Models write at a steady cadence — most sentences land between 15 and 25 words, forever. Humans don't. We run long when we're building an argument, then stop. Hard. Go through your draft and force one sentence under five words into every paragraph. That single edit breaks the metronome that makes text read as machine-written.</p>
+      <div class="ba-row ba-before">
+        <p class="ba-label">Before</p>
+        <p class="ba-text">The attention economy fundamentally reshapes how we engage with content, and this transformation carries significant implications for how we understand our own cognitive autonomy in digital spaces.</p>
+      </div>
+      <div class="ba-row ba-after">
+        <p class="ba-label">After</p>
+        <p class="ba-text">The attention economy reshapes how you engage with everything you read. Every scroll, every pause, every half-second of hesitation gets measured and fed back to you as a better hook. You didn't agree to that. Nobody asked.</p>
+      </div>
+    </div>
+
+    <div class="capture-box">
+      <h3>WANT THE REST OF THE FREE SET?</h3>
+      <p>Five more things land in your inbox, immediately. Nothing expires, nothing upgrades itself.</p>
+      <ul class="capture-list">
+        <li>Two more tricks, written up in full</li>
+        <li>The four-tells checklist</li>
+        <li>The Five Laws of Braincopia</li>
+        <li>Brand palette files for Canva and Affinity</li>
+        <li>One complete feature from the current issue</li>
+      </ul>
+      <form class="lm-form" onsubmit="submitLead(event)">
+        <input type="email" placeholder="your@email.com" required>
+        <input type="text" placeholder="Your name" required>
+        <button type="submit">Send It All</button>
+      </form>
+      <p class="fine">Your email stays private. Unsubscribe whenever.</p>
+    </div>
+  </div>
+</div>
+
+<!-- 3 — PROOF + CREDIBILITY -->
+<div id="page3" class="page">
+  <div class="proof">
+    <p class="tag">Why This Matters Now</p>
+    <h2>AI Didn't Make You<br><span class="accent">Sound Worse</span></h2>
+    <p class="sub">It made you sound like everyone else. Same vocabulary, same shape, same rhythm — and the same untouched Canva template as the account below you. The problem was never the tool. Nobody taught you to put your voice back in.</p>
+
+    <div class="tells-grid">
+      <div class="tell">
+        <p class="tell-n">Tell 01</p>
+        <h3>The tricolon habit</h3>
+        <p>Three items. Always three. Models reach for the rule of three so reliably that a page with four lists of three reads as generated before anyone finishes it.</p>
+      </div>
+      <div class="tell">
+        <p class="tell-n">Tell 02</p>
+        <h3>The throat-clearing open</h3>
+        <p>"In today's rapidly evolving landscape." Nobody talks like this. Cut every sentence before the first real claim and the piece starts sounding like a person again.</p>
+      </div>
+      <div class="tell">
+        <p class="tell-n">Tell 03</p>
+        <h3>The untouched template</h3>
+        <p>Default fonts, default spacing, default stock. A layout nobody adjusted reads as low effort before a single word is processed — and it happens in Canva more than anywhere else.</p>
+      </div>
+      <div class="tell">
+        <p class="tell-n">Tell 04</p>
+        <h3>Abstraction with no object</h3>
+        <p>"Meaningful engagement." "Significant implications." Swap any abstract noun for one concrete detail only you would know, and the sentence becomes unfakeable.</p>
+      </div>
+    </div>
+
+    <!-- CREDIBILITY — the piece that was missing -->
+    <div class="author">
+      <div class="author-mark">
+        <p class="bk">TRIPPLE<br>CH</p>
+        <p class="bk-sub">Book · PDF</p>
+      </div>
+      <div class="author-copy">
+        <p class="tag">Who's Behind This</p>
+        <h3>FROM THE AUTHOR OF TRIPPLE CH</h3>
+        <span class="needs-you">Your line goes here</span>
+        <p>One or two sentences on what Tripple CH is and what it argues. This is the sentence that makes a stranger trust the other 29 tricks — it has to be yours, not mine.</p>
+        <span class="needs-you">Your line goes here</span>
+        <p>Then one line on why you're the person teaching this: what you've built, published, or run. Concrete beats impressive. A real number, a real title, a real thing you made.</p>
+      </div>
+    </div>
+
+    <div class="band">
+      <p>AI is not creative. <em>You are.</em> These tricks don't hide the machine — they put you back in front of it.</p>
+    </div>
+
+    <div class="proof-cta">
+      <button class="btn btn-violet" onclick="showPage(4)">See the Full Set</button>
+    </div>
+  </div>
+</div>
+
+<!-- 4 — PRICING -->
+<div id="page4" class="page">
+  <div class="pricing">
+    <div class="pricing-head">
+      <p class="tag">Choose Your Set</p>
+      <h2>Get the Tricks</h2>
+      <p>One-time purchase. Yours permanently. No subscription.</p>
+    </div>
+
+    <div class="cats">
+      <div class="cat">
+        <p class="cat-n" style="color:#5B0ECC">Discipline 01</p>
+        <h4>Voice &amp; Writing</h4>
+        <p>Cadence, hedging, abstraction, structure. Ten tricks that put a person back into the prose.</p>
+      </div>
+      <div class="cat">
+        <p class="cat-n" style="color:#24B574">Discipline 02</p>
+        <h4>Canva</h4>
+        <p>Brand kit locking, duotone contamination, frame crops, Magic Resize batching. Eight tricks to escape the template look.</p>
+      </div>
+      <div class="cat">
+        <p class="cat-n" style="color:#FFD600">Discipline 03</p>
+        <h4>Affinity by Canva</h4>
+        <p>Personas, master pages, StudioLink, live filters, gradient maps. Seven tricks for real editorial production.</p>
+      </div>
+      <div class="cat">
+        <p class="cat-n" style="color:#B8A050">Discipline 04</p>
+        <h4>Captions</h4>
+        <p>Hook architecture, line breaks, the ask. Four tricks built on the Braincopia caption system.</p>
+      </div>
+    </div>
+
+    <div class="guarantee">
+      <p class="guarantee-n">30</p>
+      <p><strong>Thirty days, full refund, no questions asked.</strong> Use every trick you bought. If your work doesn't read more like you by the end of the month, email us and the money goes back. You keep the files.</p>
+    </div>
+
+    <div class="cards">
+      <div class="card">
+        <p class="card-name">First Contact</p>
+        <p class="card-price">$2</p>
+        <p class="card-terms">3 tricks · one time</p>
+        <ul>
+          <li>3 core voice tricks</li>
+          <li>Before / after examples</li>
+          <li>Instant access</li>
+        </ul>
+        <button onclick="showPage(5,'a')">Get 3 Tricks</button>
+      </div>
+
+      <div class="card featured">
+        <span class="badge">Most Popular</span>
+        <p class="card-name">The Essentials</p>
+        <p class="card-price">$3</p>
+        <p class="card-terms">5 tricks · one time</p>
+        <ul>
+          <li>Everything in First Contact</li>
+          <li>Voice tricks plus first Canva methods</li>
+          <li>The tell-detection checklist</li>
+          <li>Copy-paste edit prompts</li>
+        </ul>
+        <button onclick="showPage(5,'b')">Get 5 Tricks</button>
+      </div>
+
+      <div class="card">
+        <p class="card-name">The Toolkit</p>
+        <p class="card-price">$12</p>
+        <p class="card-terms">12 tricks · one time</p>
+        <ul>
+          <li>Everything in Essentials</li>
+          <li>Full Canva set — 8 tricks</li>
+          <li>Caption architecture system</li>
+          <li>Long-form structure fixes</li>
+          <li>Voice-print worksheet</li>
+        </ul>
+        <button onclick="showPage(5,'c')">Get 12 Tricks</button>
+      </div>
+
+      <div class="card premium">
+        <span class="badge">Everything</span>
+        <p class="card-name">The Full System</p>
+        <p class="card-price">$29</p>
+        <p class="card-terms">All 29 tricks · one time</p>
+        <ul>
+          <li>Every trick, all four disciplines</li>
+          <li>Complete Affinity production set</li>
+          <li>Genre-specific playbooks</li>
+          <li>Free updates forever</li>
+          <li>Full Braincopia archive access</li>
+        </ul>
+        <button onclick="showPage(5,'d')">Get Everything</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 5 — CHECKOUT -->
+<div id="page5" class="page">
+  <div class="checkout">
+    <div class="checkout-head">
+      <h2>Complete Your Order</h2>
+      <p>Delivered to your inbox within a minute of paying.</p>
+    </div>
+
+    <div class="order-summary">
+      <div>
+        <p class="os-label">Your Selection</p>
+        <p class="os-name" id="osName">The Essentials — 5 tricks</p>
+      </div>
+      <p class="os-price" id="osPrice">$3</p>
+    </div>
+
+    <form class="form-wrap" onsubmit="submitOrder(event)">
+      <div class="fg">
+        <label for="email">Email Address</label>
+        <input type="email" id="email" required>
+      </div>
+      <div class="fg">
+        <label for="name">Full Name</label>
+        <input type="text" id="name" required>
+      </div>
+      <div class="fg">
+        <label for="card">Card Number</label>
+        <input type="text" id="card" placeholder="4242 4242 4242 4242" required>
+      </div>
+      <div class="fg-row">
+        <div class="fg">
+          <label for="exp">Expiry</label>
+          <input type="text" id="exp" placeholder="MM / YY" required>
+        </div>
+        <div class="fg">
+          <label for="cvc">CVC</label>
+          <input type="text" id="cvc" placeholder="123" required>
+        </div>
+      </div>
+      <button type="submit" class="checkout-submit" id="submitBtn">Complete Purchase — $3</button>
+      <div class="reassure">
+        <span>Stripe secured</span>
+        <span>30-day refund</span>
+        <span>Instant delivery</span>
+      </div>
+    </form>
+
+    <p class="checkout-foot">
+      One-time charge. No subscription, no renewal.<br>
+      <button class="textlink" onclick="showPage(4)">Back to pricing</button>
+    </p>
+  </div>
+</div>
+
+<!-- 6 — CONFIRMATION + BACKEND OFFERS -->
+<div id="page6" class="page">
+  <div class="conf">
+    <div class="conf-head">
+      <p class="tag">Order Confirmed</p>
+      <h2>It's In Your Inbox</h2>
+      <p>Everything you just bought is already there. Start with the rhythm break and run one old post through it tonight.</p>
+    </div>
+
+    <div class="conf-divider"></div>
+
+    <div class="backend-intro">
+      <h3>TWO THINGS WORTH ADDING</h3>
+      <p>Offered once, here, because you already have the method. These are where it came from.</p>
+    </div>
+
+    <div class="offers">
+      <div class="offer book">
+        <p class="offer-type">Book · PDF</p>
+        <h4>TRIPPLE CH</h4>
+        <span class="needs-you">Your copy goes here</span>
+        <p class="grow">Three or four sentences on what the book is, who it's for, and what changes after reading it. This is the strongest sales position in the whole funnel — someone who just paid you, reading about your book. It needs your voice more than anything else on this page.</p>
+        <p class="offer-price">$12</p>
+        <p class="offer-terms">One time · instant PDF</p>
+        <button onclick="addBackend('Tripple CH', 12)">Add the Book</button>
+      </div>
+
+      <div class="offer mag">
+        <p class="offer-type">Magazine · Vol. I</p>
+        <h4>THE PARALLEL UNIVERSE</h4>
+        <p class="grow">The full inaugural issue. Seven worlds, the surreal visual grammar, and the editorial thinking every trick you just bought was worked out inside. We don't gatekeep perspectives — we publish them.</p>
+        <p class="offer-price">$12</p>
+        <p class="offer-terms">One time · full issue</p>
+        <button onclick="addBackend('The Parallel Universe', 12)">Add the Magazine</button>
+      </div>
+    </div>
+
+    <p class="conf-foot">Neither is required. What you bought works on its own.<br>
+      <a class="textlink" href="index.html" style="text-decoration:underline">Read the magazine</a> ·
+      <button class="textlink" onclick="showPage(1)">Back to the start</button>
+    </p>
+  </div>
+</div>
+
+<script>
+const PLANS = {
+  a: { name: 'First Contact — 3 tricks',    price: 2  },
+  b: { name: 'The Essentials — 5 tricks',   price: 3  },
+  c: { name: 'The Toolkit — 12 tricks',     price: 12 },
+  d: { name: 'The Full System — 29 tricks', price: 29 }
+};
+let selected = 'b';
+
+function showPage(n, plan) {
+  if (plan) {
+    selected = plan;
+    document.getElementById('osName').textContent = PLANS[plan].name;
+    document.getElementById('osPrice').textContent = '$' + PLANS[plan].price;
+    document.getElementById('submitBtn').textContent = 'Complete Purchase — $' + PLANS[plan].price;
+  }
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('visible'));
+  document.getElementById('page' + n).classList.add('visible');
+  document.getElementById('progress').style.width = ((n - 1) / 5 * 100) + '%';
+  document.getElementById('stepCount').textContent = 'Step ' + n + ' of 6';
+  window.scrollTo(0, 0);
+}
+
+function submitLead(e) {
+  e.preventDefault();
+  const name = e.target[1].value;
+  // PRODUCTION: POST email + name to ConvertKit / Mailchimp, trigger the freebie sequence
+  alert('Sent, ' + name + '. The full free set is in your inbox.');
+  showPage(3);
+}
+
+function submitOrder(e) {
+  e.preventDefault();
+  // PRODUCTION: Stripe Hosted Checkout, then land the customer here on page 6
+  e.target.reset();
+  showPage(6);
+}
+
+function addBackend(item, price) {
+  // PRODUCTION: one-click Stripe charge against the saved card
+  alert(item + ' added — $' + price + '. Sent to the same inbox.');
+}
+
+showPage(1);
+</script>
+
+</body>
+</html>
