@@ -276,16 +276,18 @@ h4 { font-size: 1.1rem; letter-spacing: .06em; }
 .shape-d { width: 28%; padding-bottom: 28%; height: 0; right: 16%; bottom: 12%; border: 3px solid var(--yellow); border-radius: 50%; }
 
 /* covers are reused at four sizes; the type scales with the panel */
-.hero-art .cover-title { font-size: clamp(1.7rem, 2.8vw, 2.8rem); }
-.feature .cover-title  { font-size: clamp(1.5rem, 2.6vw, 2.4rem); }
+.hero-art .cover-title { font-size: clamp(1.9rem, 3.4vw, 3.5rem); }
+.feature .cover-title  { font-size: clamp(1.6rem, 2.8vw, 2.6rem); }
 .post .cover-inner     { padding: 15px; }
-.post .cover-title     { font-size: 1.15rem; }
+.post .cover-title     { font-size: 1.45rem; }
 .post .cover-kicker    { font-size: .46rem; }
 .post .cover-foot, .post .shape-c { display: none; }
 .row .cover-inner      { display: none; }
 
 .cover-1 { background: var(--violet); }
 .cover-2 { background: var(--green); }
+.cover-2 .cover-title, .cover-2 .cover-kicker, .cover-2 .cover-foot { color: #06281A; }
+.cover-2 .cover-title em { color: var(--violet); }
 .cover-3 { background: var(--ink); }
 .cover-4 { background: var(--yellow); }
 .cover-4 .cover-title, .cover-4 .cover-kicker, .cover-4 .cover-foot { color: var(--ink); }
