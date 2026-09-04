@@ -103,12 +103,13 @@ Universe Guide's typography section.
 
 Two rules, and the split is deliberate.
 
-**Issues use the real printed covers.** Vol. I ships with two newsstand versions,
-Big Head and Copies of the Mind, and both are shown on the issue page. They are
-placed whole by the `.cover-stage` / `.cover-photo` components, never cropped and
-never overlaid, because each cover already carries its own masthead, cover lines
-and barcode. To add Vol. II, drop the file in `assets/img/` and follow the
-`printed()` pattern.
+**Issues use the real printed covers, and Vol. I has two.** Big Head and Copies
+of the Mind are two newsstand versions of one issue, so both appear everywhere
+the issue is shown: the front-page hero, the issue map, the store and the issue
+page. `printed_pair()` renders the two side by side; `printed()` renders a single
+cover for issues that only have one. They are placed whole by the `.cover-stage`
+/ `.cover-photo` components, never cropped and never overlaid, because each cover
+already carries its own masthead, cover lines and barcode.
 
 **Web articles use a typographic panel.** The `.cover` component: a flat colour
 panel, a hairline grid, and display type. No stock imagery and no decorative

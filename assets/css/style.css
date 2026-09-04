@@ -327,6 +327,9 @@ h4 { font-size: 1.1rem; letter-spacing: .06em; }
 .hero-art .cover-stage { position: absolute; inset: 0; }
 .hero-art .cover-photo  { max-height: 100%; }
 .feature .cover-stage   { border-right: var(--border); }
+.cover-stage-pair { gap: clamp(10px, 1.6vw, 22px); }
+.cover-stage-pair .cover-photo { max-height: 100%; width: auto; min-width: 0; }
+.feature .cover-stage-pair .cover-photo { max-height: 420px; }
 .covers { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(18px, 3vw, 32px); }
 .cover-version { display: flex; flex-direction: column; gap: 14px; }
 .cover-version .cover-stage { padding: clamp(16px, 2vw, 24px); border: var(--border); box-shadow: var(--shadow); }
