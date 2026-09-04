@@ -28,6 +28,7 @@
   --hair:    #DCD6CB;
 
   /* type */
+  --wordmark:'Bodoni Moda', 'Didot', 'Playfair Display', Georgia, serif;
   --display: 'Bebas Neue', 'Arial Narrow', sans-serif;
   --serif:   'Playfair Display', Georgia, serif;
   --body:    'Libre Baskerville', Georgia, serif;
@@ -196,9 +197,13 @@ h4 { font-size: 1.1rem; letter-spacing: .06em; }
 .nav-inner { display: flex; align-items: center; justify-content: space-between; gap: 20px; height: var(--nav-h); }
 
 .brand { display: flex; align-items: center; gap: 11px; text-decoration: none; flex-shrink: 0; }
-.brand-mark { width: 34px; height: 34px; border: var(--border); background: var(--violet); display: block; }
+.brand-mark { width: 36px; height: 36px; display: block; flex-shrink: 0; }
 .brand-type { display: flex; flex-direction: column; line-height: 1; }
-.brand-name { font-family: var(--display); font-size: 1.5rem; letter-spacing: .04em; }
+.brand-name {
+  font-family: var(--wordmark); font-size: 1.3rem; font-weight: 500;
+  letter-spacing: .07em; line-height: 1;
+  display: inline-block; transform: scaleX(.94); transform-origin: left center;
+}
 .brand-sub { font-family: var(--mono); font-size: .45rem; letter-spacing: .3em; text-transform: uppercase; color: var(--muted); margin-top: 3px; }
 
 .nav-links { display: flex; align-items: center; gap: 4px; list-style: none; }
@@ -307,6 +312,33 @@ h4 { font-size: 1.1rem; letter-spacing: .06em; }
 .post .cover-top       { padding-bottom: 9px; }
 .post .cover::after    { background-size: 30px 30px, 30px 30px; }
 .row .cover-inner      { display: none; }
+
+/* printed covers ---------------------------------------------------------- */
+.cover-stage {
+  background: var(--violet); display: flex; align-items: center; justify-content: center;
+  padding: clamp(20px, 3.5vw, 44px); position: relative; overflow: hidden;
+}
+.cover-stage::after {
+  content: ''; position: absolute; inset: 0; pointer-events: none;
+  background:
+    repeating-linear-gradient(90deg, rgba(255,255,255,.08) 0 1px, transparent 1px 46px),
+    repeating-linear-gradient(0deg,  rgba(255,255,255,.08) 0 1px, transparent 1px 46px);
+}
+.cover-photo {
+  position: relative; z-index: 1; display: block; width: auto; height: auto;
+  max-height: 460px; max-width: 100%;
+  border: var(--border); box-shadow: var(--shadow-lg);
+}
+.hero-art .cover-stage { position: absolute; inset: 0; }
+.hero-art .cover-photo  { max-height: 100%; }
+.feature .cover-stage   { border-right: var(--border); }
+.covers { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(18px, 3vw, 32px); }
+.cover-version { display: flex; flex-direction: column; gap: 14px; }
+.cover-version .cover-stage { padding: clamp(16px, 2vw, 24px); border: var(--border); box-shadow: var(--shadow); }
+.cover-version .cover-photo { max-height: none; width: min(100%, 380px); height: auto; box-shadow: var(--shadow); }
+.cover-caption { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+.cover-caption b { font-family: var(--display); font-size: 1.15rem; letter-spacing: .06em; }
+.cover-caption span { font-family: var(--mono); font-size: .55rem; letter-spacing: .16em; text-transform: uppercase; color: var(--muted); }
 
 /* ------------------------------------------------- 6. FEATURED / ARTICLES */
 .feature {
@@ -529,6 +561,7 @@ h4 { font-size: 1.1rem; letter-spacing: .06em; }
 }
 @media (max-width: 620px) {
   :root { --nav-h: 58px; }
+  .covers { grid-template-columns: 1fr; }
   .law-row { grid-template-columns: 58px 1fr; }
   .law-roman { padding: 20px 0 20px 16px; font-size: 1.6rem; }
   .law-content { padding: 20px 18px; }

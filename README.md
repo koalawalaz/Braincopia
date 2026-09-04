@@ -54,22 +54,28 @@ keys to the `data-tags` attribute on its card in `articles.html` and
 ```
 assets/css/style.css   the whole design system, one file, commented in sections
 assets/js/main.js      nav drawer, archive filters, reading progress, forms
-assets/img/logo.svg    placeholder logo mark
-assets/img/favicon.svg placeholder favicon
+assets/img/logo.png       the round badge, lifted off the printed cover
+assets/img/logo.svg       earlier placeholder mark, no longer referenced
+assets/img/favicon.svg    placeholder favicon
+assets/img/cover-vol1-a.jpg  Vol. I cover version A, Big Head
+assets/img/cover-vol1-b.jpg  Vol. I cover version B, Copies of the Mind
 ```
 
-## Swapping in the real logo
+## The logo
 
-The logo shipped here is a **placeholder**. Replace these two files and every
-page picks up the change with no edits to any HTML:
+`assets/img/logo.png` is the round violet badge, cropped and masked out of the
+printed cover, because no logo file was supplied. It is about 74 pixels of source
+upscaled, so it is soft above roughly 40px. It renders fine at its nav size and
+badly at any larger one.
 
-- `assets/img/logo.svg` — the nav and footer mark, square, `viewBox="0 0 64 64"`
-- `assets/img/favicon.svg` — the browser tab icon
+**Send the vector and drop it in at that path** (or as `logo.svg`, updating the
+`src` in the `.html` files) and everything picks it up. The favicon at
+`assets/img/favicon.svg` is still a placeholder.
 
-If your logo is a PNG, drop it in as `assets/img/logo.png` and find-and-replace
-`assets/img/logo.svg` across the `.html` files. For a wide wordmark rather than a
-square mark, widen `.brand-mark` in the stylesheet and remove the `.brand-type`
-block from the header so the name is not set twice.
+The wordmark is type, not artwork: `.brand-name` sets BRAINCOPIA in Bodoni Moda
+with a slight horizontal compression, matching the condensed Didone masthead on
+the printed covers. Its own token is `--wordmark`, kept separate from the
+`--display` face so the two can never drift.
 
 ## Design tokens
 
@@ -91,16 +97,25 @@ surface, because the vivid versions fail contrast at label sizes. Use the vivid
 colour for fills and rules, the ink twin for type.
 
 Typography: Bebas Neue for display, Playfair Display for editorial and pull
-quotes, Libre Baskerville for body, Space Mono for labels. This matches the
-Universe Guide's typography section.
+quotes, Libre Baskerville for body, Space Mono for labels — the Universe Guide's
+documented system. Bodoni Moda is added on top of it for the wordmark alone,
+because the printed masthead is a Didone the guide does not name.
 
 ## Cover artwork
 
-No stock imagery anywhere, per the Surreal Mandate. Article and issue covers are
-a flat colour panel, a hairline grid, and display type — the `.cover` component
-in the stylesheet. There are no decorative shapes: the type is the artwork. To
-use real artwork instead, put an `<img>` inside `.cover` with
-`position:absolute; inset:0; object-fit:cover`.
+Two rules, and the split is deliberate.
+
+**Issues use the real printed covers.** Vol. I ships with two newsstand versions,
+Big Head and Copies of the Mind, and both are shown on the issue page. They are
+placed whole by the `.cover-stage` / `.cover-photo` components, never cropped and
+never overlaid, because each cover already carries its own masthead, cover lines
+and barcode. To add Vol. II, drop the file in `assets/img/` and follow the
+`printed()` pattern.
+
+**Web articles use a typographic panel.** The `.cover` component: a flat colour
+panel, a hairline grid, and display type. No stock imagery and no decorative
+shapes, per the Surreal Mandate. Articles are not issues, so they do not borrow
+the printed treatment.
 
 ## Wiring up the real thing
 
