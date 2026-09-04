@@ -72,10 +72,6 @@ badly at any larger one.
 `src` in the `.html` files) and everything picks it up. The favicon at
 `assets/img/favicon.svg` is still a placeholder.
 
-The wordmark is type, not artwork: `.brand-name` sets BRAINCOPIA in Bodoni Moda
-with a slight horizontal compression, matching the condensed Didone masthead on
-the printed covers. Its own token is `--wordmark`, kept separate from the
-`--display` face so the two can never drift.
 
 ## Design tokens
 
@@ -97,9 +93,8 @@ surface, because the vivid versions fail contrast at label sizes. Use the vivid
 colour for fills and rules, the ink twin for type.
 
 Typography: Bebas Neue for display, Playfair Display for editorial and pull
-quotes, Libre Baskerville for body, Space Mono for labels — the Universe Guide's
-documented system. Bodoni Moda is added on top of it for the wordmark alone,
-because the printed masthead is a Didone the guide does not name.
+quotes, Libre Baskerville for body, Space Mono for labels. This matches the
+Universe Guide's typography section.
 
 ## Cover artwork
 
