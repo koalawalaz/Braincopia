@@ -142,6 +142,8 @@ Two blocks are placeholders, each flagged in a dashed gold box on the page:
 
 - `about.html`, section `#masthead` — who you are and what *Tripple CH* argues
 - `store.html`, section `#book` — the book description
+- `store.html`, section `#wear` — what wearyour.store sells. The network here
+  blocks that domain, so I linked it without describing it rather than guessing.
 
 The same two gaps exist in `funnel.html`, marked "Your line goes here".
 
