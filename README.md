@@ -63,15 +63,18 @@ assets/img/cover-vol1-b.jpg  Vol. I cover version B, Copies of the Mind
 
 ## The logo
 
-`assets/img/logo.png` is the round violet badge, cropped and masked out of the
-printed cover, because no logo file was supplied. It is about 74 pixels of source
-upscaled, so it is soft above roughly 40px. It renders fine at its nav size and
-badly at any larger one.
+`assets/img/logo.png` is the real badge, supplied as artwork: transparent
+background, trimmed to the mark, exported at 512px. `assets/img/favicon.png` is
+the same mark at 180px and is what every page loads as its tab icon. Both replace
+the placeholders that shipped earlier, and the source is high enough resolution
+to re-export larger if you ever need it.
 
-**Send the vector and drop it in at that path** (or as `logo.svg`, updating the
-`src` in the `.html` files) and everything picks it up. The favicon at
-`assets/img/favicon.svg` is still a placeholder.
-
+`assets/img/logo-lockup.png` is the full lockup, badge over the green Braincopia
+wordmark, trimmed of its white margin. Nothing on the site uses it yet: the
+header and footer set BRAINCOPIA in Bebas Neue beside the badge rather than
+placing the lockup as one image. Swapping to the lockup means replacing the
+`.brand-mark` image and dropping the `.brand-type` block so the name is not set
+twice.
 
 ## Design tokens
 
