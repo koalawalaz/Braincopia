@@ -103,22 +103,22 @@ Universe Guide's typography section.
 
 Two rules, and the split is deliberate.
 
-**Issues use the real printed covers, and Vol. I has two.** Big Head and Copies
-of the Mind are two newsstand versions of one issue. One cover shows at a time,
-chosen from a dropdown — never side by side.
+**Issues live on a rack.** `rack()` renders the newsstand shelf: every cover in a
+row on a dark ground, captioned with its volume. Issues that are out link to
+their page; issues not yet shot show a `.rack-slip` slipcase carrying the title
+and season. There is no control to operate — the whole run is simply visible,
+and the shelf scrolls sideways on narrow screens.
 
-`issue_picker()` renders the stage plus its dropdown. Its `only` argument decides
-what the dropdown offers, and that differs by context:
+It appears in three places. The front page runs it full width directly under the
+hero as "On the Shelf". The issue map leads with it. The Vol. I page uses
+`rack(only=..., big=True)`, which shows just that issue's two covers at roughly
+twice the width.
 
-- **Front page and issue map** list every issue in the calendar. Picking Vol. II,
-  III or IV shows a `.cover-pending` slipcase, since those covers are not shot yet.
-- **The Vol. I page and the store** list only Vol. I's two covers. Both pages are
-  about one specific issue, so offering another issue's cover there would make the
-  page contradict its own heading.
+At desktop and tablet all five covers fit without scrolling; the item width is
+tuned so the row clears the 1240px wrap rather than clipping the last cover by a
+sliver. If you add a sixth issue, re-check that.
 
-Covers are placed whole, never cropped and never overlaid, because each already
-carries its own masthead, cover lines and barcode. The dropdown is progressive:
-with no JavaScript the first option's cover shows and the control does nothing.
+The hero and the store still show one cover whole, via `printed()`.
 
 **Web articles use a typographic panel.** The `.cover` component: a flat colour
 panel, a hairline grid, and display type. No stock imagery and no decorative

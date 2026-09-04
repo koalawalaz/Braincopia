@@ -330,41 +330,43 @@ h4 { font-size: 1.1rem; letter-spacing: .06em; }
 .hero-art .issue-select { position: absolute; left: 50%; bottom: 16px; transform: translateX(-50%); width: min(86%, 420px); }
 .hero-art .issue-select > span { color: rgba(255,255,255,.8); }
 .feature .cover-stage   { border-right: var(--border); }
-/* one cover at a time, chosen from the issue dropdown ---------------------- */
-.issue-picker { display: flex; flex-direction: column; gap: 14px; }
-.issue-picker .cover-stage { flex: 1; }
-.cover-photo.is-off, .cover-pending.is-off { display: none; }
-
-.issue-select { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
-.issue-select > span {
-  font-family: var(--mono); font-size: .55rem; letter-spacing: .2em;
-  text-transform: uppercase; color: var(--muted);
+/* the newsstand rack: every cover on a shelf, nothing to operate ----------- */
+.rack {
+  background: var(--ink); border: var(--border); box-shadow: var(--shadow-lg);
+  padding: clamp(20px, 3vw, 38px); overflow-x: auto;
+  scrollbar-color: #56514a var(--ink);
 }
-.issue-select select {
-  flex: 1 1 240px; min-width: 0; max-width: 100%;
-  font-family: var(--mono); font-size: .68rem; letter-spacing: .08em;
-  text-transform: uppercase; padding: 11px 13px;
-  border: var(--border); background: var(--white); color: var(--ink);
-  box-shadow: var(--shadow-sm); cursor: pointer; border-radius: 0;
+.rack-row { display: flex; gap: clamp(14px, 2vw, 28px); align-items: flex-end; min-width: min-content; }
+.rack-item {
+  flex: 0 0 auto; width: clamp(140px, 14vw, 188px);
+  text-decoration: none; color: inherit;
 }
-.issue-select select:focus-visible { outline: 3px solid var(--violet); outline-offset: 2px; }
-
-.cover-stage-solo { padding: clamp(26px, 4vw, 44px); border: var(--border); box-shadow: var(--shadow); }
-.cover-stage-solo .cover-photo,
-.cover-stage-solo .cover-pending { max-height: none; width: min(100%, 540px); height: auto; }
-
-/* issues whose cover has not been shot */
-.cover-pending {
-  position: relative; z-index: 1; display: flex; flex-direction: column;
-  align-items: center; justify-content: center; gap: 10px; text-align: center;
-  aspect-ratio: 768 / 1362; width: min(100%, 400px);
-  border: var(--border); box-shadow: var(--shadow-lg);
-  background: repeating-linear-gradient(-45deg, var(--warm) 0 12px, var(--paper) 12px 24px);
-  padding: 26px;
+.rack-lg .rack-item { width: clamp(180px, 30vw, 392px); }
+.rack-item img {
+  width: 100%; height: auto; display: block;
+  border: var(--border); box-shadow: 6px 6px 0 rgba(0, 0, 0, .55);
+  transition: transform .16s ease, box-shadow .16s ease;
 }
-.cover-pending-vol { font-family: var(--mono); font-size: .55rem; letter-spacing: .22em; text-transform: uppercase; color: var(--violet); }
-.cover-pending-title { font-family: var(--display); font-size: clamp(1.4rem, 2.4vw, 2rem); line-height: 1; color: var(--ink); }
-.cover-pending-note { font-family: var(--mono); font-size: .52rem; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); max-width: 22ch; line-height: 1.7; }
+a.rack-item:hover img, a.rack-item:focus-visible img {
+  transform: translateY(-6px); box-shadow: 10px 12px 0 rgba(0, 0, 0, .6);
+}
+a.rack-item:focus-visible { outline: 3px solid var(--yellow); outline-offset: 6px; }
+
+.rack-slip {
+  width: 100%; aspect-ratio: 768 / 1362;
+  border: 1px dashed #56514a; padding: 16px;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 8px; text-align: center;
+  background: repeating-linear-gradient(-45deg, #232323 0 10px, #1c1c1c 10px 20px);
+}
+.rack-slip b { font-family: var(--display); font-size: clamp(1rem, 1.6vw, 1.3rem); line-height: 1; color: #fff; }
+.rack-slip span { font-family: var(--mono); font-size: .48rem; letter-spacing: .16em; text-transform: uppercase; color: #8b857c; line-height: 1.7; }
+
+.rack-cap {
+  margin-top: 12px; font-family: var(--mono); font-size: .5rem;
+  letter-spacing: .16em; text-transform: uppercase; color: #a9a49c; line-height: 1.6;
+}
+.rack-cap b { display: block; color: var(--yellow); font-weight: 700; margin-bottom: 3px; }
 
 .covers { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(18px, 3vw, 32px); }
 .cover-version { display: flex; flex-direction: column; gap: 14px; }

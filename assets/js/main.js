@@ -84,18 +84,6 @@
     });
   });
 
-  /* ---- issue cover picker ----------------------------------------------- */
-  document.querySelectorAll('[data-issue-picker]').forEach(function (picker) {
-    var select = picker.querySelector('[data-issue-select]');
-    var panes = picker.querySelectorAll('[data-issue]');
-    if (!select) return;
-    select.addEventListener('change', function () {
-      panes.forEach(function (pane) {
-        pane.classList.toggle('is-off', pane.getAttribute('data-issue') !== select.value);
-      });
-    });
-  });
-
   /* ---- footer year ------------------------------------------------------ */
   document.querySelectorAll('[data-year]').forEach(function (el) {
     el.textContent = new Date().getFullYear();
