@@ -104,15 +104,21 @@ Universe Guide's typography section.
 Two rules, and the split is deliberate.
 
 **Issues use the real printed covers, and Vol. I has two.** Big Head and Copies
-of the Mind are two newsstand versions of one issue. One shows at a time, version
-A first, with a control underneath to flip to the other — never side by side.
-`cover_switch()` renders that pair-with-toggle and is used in all four places the
-issue appears: the front-page hero, the issue map, the store and the issue page.
-`printed()` renders a single static cover for issues that only ship with one.
+of the Mind are two newsstand versions of one issue. One cover shows at a time,
+chosen from a dropdown — never side by side.
+
+`issue_picker()` renders the stage plus its dropdown. Its `only` argument decides
+what the dropdown offers, and that differs by context:
+
+- **Front page and issue map** list every issue in the calendar. Picking Vol. II,
+  III or IV shows a `.cover-pending` slipcase, since those covers are not shot yet.
+- **The Vol. I page and the store** list only Vol. I's two covers. Both pages are
+  about one specific issue, so offering another issue's cover there would make the
+  page contradict its own heading.
 
 Covers are placed whole, never cropped and never overlaid, because each already
-carries its own masthead, cover lines and barcode. The toggle is progressive: with
-no JavaScript, version A shows and the buttons simply do nothing.
+carries its own masthead, cover lines and barcode. The dropdown is progressive:
+with no JavaScript the first option's cover shows and the control does nothing.
 
 **Web articles use a typographic panel.** The `.cover` component: a flat colour
 panel, a hairline grid, and display type. No stock imagery and no decorative

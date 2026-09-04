@@ -84,21 +84,14 @@
     });
   });
 
-  /* ---- cover version switch --------------------------------------------- */
-  document.querySelectorAll('[data-cover-switch]').forEach(function (group) {
-    var imgs = group.querySelectorAll('[data-cover]');
-    var btns = group.querySelectorAll('[data-show]');
-    btns.forEach(function (btn) {
-      btn.addEventListener('click', function () {
-        var key = btn.getAttribute('data-show');
-        imgs.forEach(function (img) {
-          img.classList.toggle('is-off', img.getAttribute('data-cover') !== key);
-        });
-        btns.forEach(function (b) {
-          var on = b === btn;
-          b.classList.toggle('pill-ink', on);
-          b.setAttribute('aria-pressed', on ? 'true' : 'false');
-        });
+  /* ---- issue cover picker ----------------------------------------------- */
+  document.querySelectorAll('[data-issue-picker]').forEach(function (picker) {
+    var select = picker.querySelector('[data-issue-select]');
+    var panes = picker.querySelectorAll('[data-issue]');
+    if (!select) return;
+    select.addEventListener('change', function () {
+      panes.forEach(function (pane) {
+        pane.classList.toggle('is-off', pane.getAttribute('data-issue') !== select.value);
       });
     });
   });

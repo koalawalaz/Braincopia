@@ -258,7 +258,7 @@ h4 { font-size: 1.1rem; letter-spacing: .06em; }
 .hero-meta { margin-top: 30px; padding-top: 20px; border-top: var(--border); display: flex; gap: 26px; flex-wrap: wrap; }
 .hero-meta div { font-family: var(--mono); font-size: .58rem; letter-spacing: .16em; text-transform: uppercase; color: var(--muted); }
 .hero-meta strong { display: block; font-family: var(--display); font-size: 1.7rem; letter-spacing: .04em; color: var(--ink); margin-top: 4px; }
-.hero-art { border-left: 3px solid var(--ink); background: var(--violet); position: relative; min-height: 420px; overflow: hidden; }
+.hero-art { border-left: 3px solid var(--ink); background: var(--violet); position: relative; min-height: 560px; overflow: hidden; }
 
 /* generated cover artwork -------------------------------------------------- */
 .cover { position: relative; overflow: hidden; background: var(--violet); }
@@ -321,24 +321,51 @@ h4 { font-size: 1.1rem; letter-spacing: .06em; }
 }
 .cover-photo {
   position: relative; z-index: 1; display: block; width: auto; height: auto;
-  max-height: 460px; max-width: 100%;
+  max-height: 620px; max-width: 100%;
   border: var(--border); box-shadow: var(--shadow-lg);
 }
 .hero-art .cover-stage { position: absolute; inset: 0; }
-.hero-art .cover-photo  { max-height: 100%; }
+.hero-art .cover-photo, .hero-art .cover-pending { max-height: 100%; width: auto; }
+.hero-art .issue-picker { position: absolute; inset: 0; padding: 0 0 clamp(58px, 6vw, 70px); }
+.hero-art .issue-select { position: absolute; left: 50%; bottom: 16px; transform: translateX(-50%); width: min(86%, 420px); }
+.hero-art .issue-select > span { color: rgba(255,255,255,.8); }
 .feature .cover-stage   { border-right: var(--border); }
-/* one cover at a time, with a control to flip between the two versions */
-.cover-stage-switch { padding-bottom: clamp(58px, 6vw, 72px); }
-.cover-photo.is-off { display: none; }
-.cover-toggle {
-  position: absolute; z-index: 3; left: 50%; bottom: 16px; transform: translateX(-50%);
-  display: flex; gap: 6px; flex-wrap: wrap; justify-content: center; max-width: 92%;
+/* one cover at a time, chosen from the issue dropdown ---------------------- */
+.issue-picker { display: flex; flex-direction: column; gap: 14px; }
+.issue-picker .cover-stage { flex: 1; }
+.cover-photo.is-off, .cover-pending.is-off { display: none; }
+
+.issue-select { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.issue-select > span {
+  font-family: var(--mono); font-size: .55rem; letter-spacing: .2em;
+  text-transform: uppercase; color: var(--muted);
 }
-.cover-toggle .pill { cursor: pointer; background: rgba(255,255,255,.94); transition: background .15s ease, color .15s ease; }
-.cover-toggle .pill:hover { background: var(--yellow); }
-.cover-toggle .pill.pill-ink { background: var(--ink); color: #fff; }
-.cover-stage-solo { padding: clamp(26px, 4vw, 48px); padding-bottom: clamp(66px, 6vw, 84px); border: var(--border); box-shadow: var(--shadow); }
-.cover-stage-solo .cover-photo { max-height: none; width: min(100%, 400px); height: auto; }
+.issue-select select {
+  flex: 1 1 240px; min-width: 0; max-width: 100%;
+  font-family: var(--mono); font-size: .68rem; letter-spacing: .08em;
+  text-transform: uppercase; padding: 11px 13px;
+  border: var(--border); background: var(--white); color: var(--ink);
+  box-shadow: var(--shadow-sm); cursor: pointer; border-radius: 0;
+}
+.issue-select select:focus-visible { outline: 3px solid var(--violet); outline-offset: 2px; }
+
+.cover-stage-solo { padding: clamp(26px, 4vw, 44px); border: var(--border); box-shadow: var(--shadow); }
+.cover-stage-solo .cover-photo,
+.cover-stage-solo .cover-pending { max-height: none; width: min(100%, 540px); height: auto; }
+
+/* issues whose cover has not been shot */
+.cover-pending {
+  position: relative; z-index: 1; display: flex; flex-direction: column;
+  align-items: center; justify-content: center; gap: 10px; text-align: center;
+  aspect-ratio: 768 / 1362; width: min(100%, 400px);
+  border: var(--border); box-shadow: var(--shadow-lg);
+  background: repeating-linear-gradient(-45deg, var(--warm) 0 12px, var(--paper) 12px 24px);
+  padding: 26px;
+}
+.cover-pending-vol { font-family: var(--mono); font-size: .55rem; letter-spacing: .22em; text-transform: uppercase; color: var(--violet); }
+.cover-pending-title { font-family: var(--display); font-size: clamp(1.4rem, 2.4vw, 2rem); line-height: 1; color: var(--ink); }
+.cover-pending-note { font-family: var(--mono); font-size: .52rem; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); max-width: 22ch; line-height: 1.7; }
+
 .covers { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(18px, 3vw, 32px); }
 .cover-version { display: flex; flex-direction: column; gap: 14px; }
 .cover-version .cover-stage { padding: clamp(16px, 2vw, 24px); border: var(--border); box-shadow: var(--shadow); }
@@ -353,6 +380,8 @@ h4 { font-size: 1.1rem; letter-spacing: .06em; }
   border: var(--border); box-shadow: var(--shadow-lg); background: var(--white);
 }
 .feature .cover { min-height: 400px; border-right: var(--border); }
+.feature .issue-picker { padding-bottom: 18px; }
+.feature .issue-select { padding: 0 clamp(20px, 3vw, 40px); }
 .feature-body { padding: clamp(26px, 4vw, 46px); display: flex; flex-direction: column; justify-content: center; }
 .feature-body h3 { font-family: var(--serif); font-weight: 900; font-size: clamp(1.5rem, 3vw, 2.3rem); line-height: 1.1; margin: 14px 0 16px; }
 .feature-body p { color: #4a453f; margin-bottom: 20px; }
