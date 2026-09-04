@@ -84,6 +84,25 @@
     });
   });
 
+  /* ---- cover version switch --------------------------------------------- */
+  document.querySelectorAll('[data-cover-switch]').forEach(function (group) {
+    var imgs = group.querySelectorAll('[data-cover]');
+    var btns = group.querySelectorAll('[data-show]');
+    btns.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var key = btn.getAttribute('data-show');
+        imgs.forEach(function (img) {
+          img.classList.toggle('is-off', img.getAttribute('data-cover') !== key);
+        });
+        btns.forEach(function (b) {
+          var on = b === btn;
+          b.classList.toggle('pill-ink', on);
+          b.setAttribute('aria-pressed', on ? 'true' : 'false');
+        });
+      });
+    });
+  });
+
   /* ---- footer year ------------------------------------------------------ */
   document.querySelectorAll('[data-year]').forEach(function (el) {
     el.textContent = new Date().getFullYear();

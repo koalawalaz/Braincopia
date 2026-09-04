@@ -327,9 +327,18 @@ h4 { font-size: 1.1rem; letter-spacing: .06em; }
 .hero-art .cover-stage { position: absolute; inset: 0; }
 .hero-art .cover-photo  { max-height: 100%; }
 .feature .cover-stage   { border-right: var(--border); }
-.cover-stage-pair { gap: clamp(10px, 1.6vw, 22px); }
-.cover-stage-pair .cover-photo { max-height: 100%; width: auto; min-width: 0; }
-.feature .cover-stage-pair .cover-photo { max-height: 420px; }
+/* one cover at a time, with a control to flip between the two versions */
+.cover-stage-switch { padding-bottom: clamp(58px, 6vw, 72px); }
+.cover-photo.is-off { display: none; }
+.cover-toggle {
+  position: absolute; z-index: 3; left: 50%; bottom: 16px; transform: translateX(-50%);
+  display: flex; gap: 6px; flex-wrap: wrap; justify-content: center; max-width: 92%;
+}
+.cover-toggle .pill { cursor: pointer; background: rgba(255,255,255,.94); transition: background .15s ease, color .15s ease; }
+.cover-toggle .pill:hover { background: var(--yellow); }
+.cover-toggle .pill.pill-ink { background: var(--ink); color: #fff; }
+.cover-stage-solo { padding: clamp(26px, 4vw, 48px); padding-bottom: clamp(66px, 6vw, 84px); border: var(--border); box-shadow: var(--shadow); }
+.cover-stage-solo .cover-photo { max-height: none; width: min(100%, 400px); height: auto; }
 .covers { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(18px, 3vw, 32px); }
 .cover-version { display: flex; flex-direction: column; gap: 14px; }
 .cover-version .cover-stage { padding: clamp(16px, 2vw, 24px); border: var(--border); box-shadow: var(--shadow); }
