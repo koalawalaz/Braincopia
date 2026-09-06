@@ -252,25 +252,33 @@ Three places are front-end only and need connecting to your services:
 
 ## Pricing
 
-One price per thing, no tiers, nothing to choose between. `CATALOGUE` in the build
-script holds the three products; the funnel sells the method as a single offer.
+The method is free. `CATALOGUE` in the build script holds the three things.
 
-| Product | Price |
+| | |
 | --- | --- |
-| The 29 Tricks | $29 |
+| The 29 Tricks | Free |
 | Vol. I — The Parallel Universe (PDF) | $12 |
 | Tripple CH | $12 |
 | Vol. I in print | £7.90 |
 
 Tripple CH is sold on its own and is deliberately not bundled with anything.
 
-Every purchase carries 30% off wearyour.store, stated once on the store page and
-again on the funnel's confirmation step. **No code is issued by anything here** —
-that has to be created in the shop before launch, and it is flagged in-page.
+Because the tricks are free, the funnel no longer charges for them: step 4 offers
+the whole set at no cost and step 5 is a name-and-email delivery form, not a
+checkout. The card fields, the refund guarantee and the Stripe path are gone from
+that flow. The money is in step 6, where the issue and the book are offered to
+someone who already has the method.
 
-The previous four-tier ladder is gone. It priced the Essentials at $0.60 a trick
-against the Full System's $1.00, so buying more cost more per unit and there was
-no reason to climb; and the $2 tier lost 18% of its value to payment fees.
+Buying the issue or the book carries 30% off Wear Your Resistance. **No code is
+issued by anything here** — that has to be created in the shop before launch, and
+it is flagged in-page.
+
+## Wear Your Resistance
+
+An independent Jordanian label, a creative division of Braincopia, at
+wearyour.store. Its section on the store page runs the brand's own words: the
+"Why We Make" line, "Your clothes can say something", and the paragraph about
+what you wear carrying your voice.
 
 ## Copy that still needs you
 
@@ -278,8 +286,6 @@ Two blocks are placeholders, each flagged in a dashed gold box on the page:
 
 - `about.html`, section `#masthead` — who you are and what *Tripple CH* argues
 - `store.html`, section `#book` — the book description
-- `store.html`, section `#wear` — what wearyour.store sells. The network here
-  blocks that domain, so I linked it without describing it rather than guessing.
 
 The same two gaps exist in `funnel.html`, marked "Your line goes here".
 

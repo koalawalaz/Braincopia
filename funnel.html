@@ -118,10 +118,6 @@ body { font-family: 'Libre Baskerville', Georgia, serif; background: #fff; color
 .cat-n { font-family: 'Space Mono', monospace; font-size: .5rem; letter-spacing: .18em; text-transform: uppercase; margin-bottom: 8px; }
 .cat h4 { font-family: 'Bebas Neue', sans-serif; font-size: 1rem; color: #fff; letter-spacing: .06em; margin-bottom: 7px; }
 .cat p { font-size: .76rem; color: #777; line-height: 1.6; }
-.guarantee { border-left: 4px solid var(--green); background: #0c1f16; padding: 20px 24px; margin-bottom: 38px; display: grid; grid-template-columns: auto 1fr; gap: 18px; align-items: center; }
-.guarantee-n { font-family: 'Bebas Neue', sans-serif; font-size: 2.4rem; color: var(--green); line-height: 1; }
-.guarantee p { font-size: .87rem; color: #bbb; line-height: 1.7; }
-.guarantee p strong { color: #fff; }
 .cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
 .cards-one { grid-template-columns: minmax(0, 520px); justify-content: center; }
 .card { background: #111; border: 1px solid #2a2a2a; padding: 32px 24px; position: relative; display: flex; flex-direction: column; transition: border-color .2s, transform .2s; }
@@ -207,7 +203,6 @@ body { font-family: 'Libre Baskerville', Georgia, serif; background: #fff; color
 @media (max-width: 620px) {
   .cards, .cats, .tells-grid, .fg-row, .offers { grid-template-columns: 1fr; }
   .order-summary { flex-direction: column; gap: 14px; text-align: center; }
-  .guarantee { grid-template-columns: 1fr; }
   .site-link { display: none; }
 }
 </style>
@@ -331,8 +326,8 @@ body { font-family: 'Libre Baskerville', Georgia, serif; background: #fff; color
   <div class="pricing">
     <div class="pricing-head">
       <p class="tag">The Method</p>
-      <h2>Get the Tricks</h2>
-      <p>One price. Every trick. Yours permanently, no subscription.</p>
+      <h2>Take the Whole Set</h2>
+      <p>All twenty-nine, free. No card, no trial, nothing that upgrades itself later.</p>
     </div>
 
     <div class="cats">
@@ -358,17 +353,12 @@ body { font-family: 'Libre Baskerville', Georgia, serif; background: #fff; color
       </div>
     </div>
 
-    <div class="guarantee">
-      <p class="guarantee-n">30</p>
-      <p><strong>Thirty days, full refund, no questions asked.</strong> Use every trick you bought. If your work doesn't read more like you by the end of the month, email us and the money goes back. You keep the files.</p>
-    </div>
-
     <div class="cards cards-one">
-      <div class="card premium">
-        <span class="badge">Everything</span>
+      <div class="card featured">
+        <span class="badge">Free</span>
         <p class="card-name">The 29 Tricks</p>
-        <p class="card-price">$29</p>
-        <p class="card-terms">All 29 tricks · one time</p>
+        <p class="card-price">Free</p>
+        <p class="card-terms">All 29 · no card</p>
         <ul>
           <li>Every trick, all four disciplines</li>
           <li>A before and an after on each one</li>
@@ -377,18 +367,18 @@ body { font-family: 'Libre Baskerville', Georgia, serif; background: #fff; color
           <li>Free updates forever</li>
           <li>Full Braincopia archive access</li>
         </ul>
-        <button onclick="showPage(5)">Get the 29 Tricks</button>
+        <button onclick="showPage(5)">Send Me All 29</button>
       </div>
     </div>
   </div>
 </div>
 
-<!-- 5 — CHECKOUT -->
+<!-- 5 — WHERE TO SEND IT -->
 <div id="page5" class="page">
   <div class="checkout">
     <div class="checkout-head">
-      <h2>Complete Your Order</h2>
-      <p>Delivered to your inbox within a minute of paying.</p>
+      <h2>Where Should We Send Them?</h2>
+      <p>All twenty-nine, in your inbox within a minute. No card, ever.</p>
     </div>
 
     <div class="order-summary">
@@ -396,7 +386,7 @@ body { font-family: 'Libre Baskerville', Georgia, serif; background: #fff; color
         <p class="os-label">Your Selection</p>
         <p class="os-name" id="osName">The 29 Tricks</p>
       </div>
-      <p class="os-price" id="osPrice">$29</p>
+      <p class="os-price" id="osPrice">Free</p>
     </div>
 
     <form class="form-wrap" onsubmit="submitOrder(event)">
@@ -408,31 +398,17 @@ body { font-family: 'Libre Baskerville', Georgia, serif; background: #fff; color
         <label for="name">Full Name</label>
         <input type="text" id="name" required>
       </div>
-      <div class="fg">
-        <label for="card">Card Number</label>
-        <input type="text" id="card" placeholder="4242 4242 4242 4242" required>
-      </div>
-      <div class="fg-row">
-        <div class="fg">
-          <label for="exp">Expiry</label>
-          <input type="text" id="exp" placeholder="MM / YY" required>
-        </div>
-        <div class="fg">
-          <label for="cvc">CVC</label>
-          <input type="text" id="cvc" placeholder="123" required>
-        </div>
-      </div>
-      <button type="submit" class="checkout-submit" id="submitBtn">Complete Purchase — $29</button>
+      <button type="submit" class="checkout-submit" id="submitBtn">Send Me the 29 Tricks</button>
       <div class="reassure">
-        <span>Stripe secured</span>
-        <span>30-day refund</span>
+        <span>No card</span>
+        <span>No trial</span>
         <span>Instant delivery</span>
       </div>
     </form>
 
     <p class="checkout-foot">
-      One-time charge. No subscription, no renewal.<br>
-      <button class="textlink" onclick="showPage(4)">Back to pricing</button>
+      Your email stays private. Unsubscribe whenever.<br>
+      <button class="textlink" onclick="showPage(4)">Back</button>
     </p>
   </div>
 </div>
@@ -441,16 +417,16 @@ body { font-family: 'Libre Baskerville', Georgia, serif; background: #fff; color
 <div id="page6" class="page">
   <div class="conf">
     <div class="conf-head">
-      <p class="tag">Order Confirmed</p>
+      <p class="tag">All Yours</p>
       <h2>It's In Your Inbox</h2>
-      <p>Everything you just bought is already there. Start with the rhythm break and run one old post through it tonight.</p>
+      <p>All twenty-nine are already there, free. Start with the rhythm break and run one old post through it tonight.</p>
     </div>
 
     <div class="conf-divider"></div>
 
     <div class="backend-intro">
       <h3>TWO THINGS WORTH ADDING</h3>
-      <p>Offered once, here, because you already have the method. These are where it came from.</p>
+      <p>Offered once, here, because you already have the method. These are where it came from, and they are how Braincopia keeps going.</p>
     </div>
 
     <div class="offers">
@@ -487,13 +463,12 @@ body { font-family: 'Libre Baskerville', Georgia, serif; background: #fff; color
 </div>
 
 <script>
-const PLAN = { name: 'The 29 Tricks', price: 29 };
+const PLAN = { name: 'The 29 Tricks', price: 'Free' };
 
 function showPage(n) {
   if (n === 5) {
     document.getElementById('osName').textContent = PLAN.name;
-    document.getElementById('osPrice').textContent = '$' + PLAN.price;
-    document.getElementById('submitBtn').textContent = 'Complete Purchase — $' + PLAN.price;
+    document.getElementById('osPrice').textContent = PLAN.price;
   }
   document.querySelectorAll('.page').forEach(p => p.classList.remove('visible'));
   document.getElementById('page' + n).classList.add('visible');
@@ -512,7 +487,7 @@ function submitLead(e) {
 
 function submitOrder(e) {
   e.preventDefault();
-  // PRODUCTION: Stripe Hosted Checkout, then land the customer here on page 6
+  // PRODUCTION: POST email + name to the list, deliver all 29, then land here
   e.target.reset();
   showPage(6);
 }
