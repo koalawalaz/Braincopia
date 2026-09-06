@@ -80,16 +80,37 @@ twice.
 
 ## Motion
 
-**Scroll animation.** Section 13 of the stylesheet, CSS only, no JavaScript. The
-hero cover drifts against the page as it passes, the rack covers rise onto the
-shelf left to right, and each section rule draws itself in. All three are
-scroll-driven via `animation-timeline: view()`.
+Two mechanisms, split by browser support.
 
-Every animated element rests at its final state and only ever moves things that
-are already visible — nothing is parked at `opacity: 0` waiting to be scrolled
-into. So the whole block sits behind `prefers-reduced-motion: no-preference` and
-`@supports (animation-timeline: view())`, and where either fails the page simply
-renders as normal. Safari and Firefox currently take that path.
+**Parallax** is JavaScript, in `main.js`, so it runs everywhere. Any element with
+`data-parallax="0.14"` shifts against the scroll at that fraction of viewport
+height: the printed covers drift inside their violet panels, and article cover
+type drifts against its panel. It skips under `prefers-reduced-motion`.
+
+**Scroll-driven CSS** is section 13 of the stylesheet, no JavaScript: rack covers
+rise onto the shelf left to right, and section rules draw themselves in. These use
+`animation-timeline: view()`, so they sit behind `@supports` and only run in
+Chromium for now.
+
+An element must never be in both — they would overwrite each other's `transform`.
+
+Everything here rests at its final state and only moves what is already visible.
+Nothing is parked at `opacity: 0` waiting to be scrolled into, so with motion off,
+support missing or JavaScript disabled the page reads identically.
+
+## Cover proportions
+
+**The magazine is A4, 210 x 297mm, a ratio of 1:1.4143.** `--cover-ratio` in the
+stylesheet holds it. Any box drawn to stand in for a cover — the rack slipcases
+for unshot issues — takes its shape from that token, never from the pixel
+dimensions of a particular export.
+
+Note the mismatch: `cover-vol1-a.jpg` and `-b.jpg` are 768 x 1362, a ratio of
+1:1.7734, about 25% taller than A4. They are placed at their own proportions
+rather than being squeezed, so on the shelf the real covers stand taller than the
+A4 slipcases beside them. Re-exporting those two files at A4 from the print
+artwork fixes it properly. Cropping them to A4 in code would cut 276px, a fifth of
+the height, off each one, which is not a decision to make silently.
 
 ## The Vol. I reel
 

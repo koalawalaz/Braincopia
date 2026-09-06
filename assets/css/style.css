@@ -14,6 +14,10 @@
   --yellow:  #FFD600;
   --gold:    #B8A050;
   --gold-ink:#7A6526;
+
+  /* the magazine is A4: 210 x 297mm. Any box drawn to stand in for a cover
+     uses this, never the pixel dimensions of a particular export. */
+  --cover-ratio: 210 / 297;
   --green-ink:#14724A;   /* green, legible as text on light surfaces */
   --yellow-ink:#7A6100;  /* yellow, ditto */
   --pink:    #FF90E8;
@@ -353,7 +357,7 @@ a.rack-item:hover img, a.rack-item:focus-visible img {
 a.rack-item:focus-visible { outline: 3px solid var(--yellow); outline-offset: 6px; }
 
 .rack-slip {
-  width: 100%; aspect-ratio: 768 / 1362;
+  width: 100%; aspect-ratio: var(--cover-ratio);
   border: 1px dashed #56514a; padding: 16px;
   display: flex; flex-direction: column; align-items: center; justify-content: center;
   gap: 8px; text-align: center;
@@ -575,23 +579,16 @@ a.rack-item:focus-visible { outline: 3px solid var(--yellow); outline-offset: 6p
 
 
 /* ------------------------------------------------- 13. SCROLL ANIMATION */
+/* Parallax is driven from main.js so it works in every browser, not just the
+   ones with scroll-driven CSS. Elements that parallax must not also carry a
+   CSS transform animation, or the two overwrite each other. */
+[data-parallax] { will-change: transform; }
+
 /* Scroll-driven, CSS only, no JavaScript. Every animated element rests at its
    final state, so with no support and no motion allowed the page is unchanged:
    these only ever move things that are already on screen and already visible. */
 @media (prefers-reduced-motion: no-preference) {
   @supports (animation-timeline: view()) {
-
-    /* the hero cover drifts against the page as it passes */
-    .hero-art .cover-photo {
-      animation: coverDrift linear both;
-      animation-timeline: view();
-      animation-range: entry 0% exit 100%;
-      will-change: transform;
-    }
-    @keyframes coverDrift {
-      from { transform: translateY(-20px); }
-      to   { transform: translateY(20px); }
-    }
 
     /* covers rise onto the shelf, left to right */
     .rack-item {

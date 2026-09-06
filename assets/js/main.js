@@ -84,6 +84,32 @@
     });
   });
 
+  /* ---- parallax ---------------------------------------------------------
+     Depth on scroll. Elements only shift; nothing is hidden or revealed, so
+     the page reads identically with this switched off. */
+  var motionOK = !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var layers = document.querySelectorAll('[data-parallax]');
+  if (motionOK && layers.length) {
+    var ticking = false;
+    var draw = function () {
+      var vh = window.innerHeight;
+      layers.forEach(function (el) {
+        var r = el.getBoundingClientRect();
+        if (r.bottom < -200 || r.top > vh + 200) return;   // offscreen, skip
+        var speed = parseFloat(el.getAttribute('data-parallax')) || 0.12;
+        var progress = (r.top + r.height / 2 - vh / 2) / vh;
+        el.style.transform = 'translate3d(0,' + (-progress * speed * 100).toFixed(2) + 'px,0)';
+      });
+      ticking = false;
+    };
+    var request = function () {
+      if (!ticking) { ticking = true; window.requestAnimationFrame(draw); }
+    };
+    window.addEventListener('scroll', request, { passive: true });
+    window.addEventListener('resize', request);
+    draw();
+  }
+
   /* ---- footer year ------------------------------------------------------ */
   document.querySelectorAll('[data-year]').forEach(function (el) {
     el.textContent = new Date().getFullYear();
