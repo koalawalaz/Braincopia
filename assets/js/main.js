@@ -118,10 +118,10 @@
     draw();
   }
 
-  /* ---- the film band ------------------------------------------------------
+  /* ---- the header film ------------------------------------------------------
      Decorative and silent, so it holds still for anyone who asked for less
      motion: paused on its poster frame rather than looping behind them. */
-  document.querySelectorAll('.filmband-video').forEach(function (v) {
+  document.querySelectorAll('.vhero-video').forEach(function (v) {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       v.removeAttribute('autoplay');
       v.pause();

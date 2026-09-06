@@ -153,12 +153,19 @@ barcode goes with it. Change that token to move the crop.
 Re-exporting the two files at A4 from the print artwork removes the crop
 altogether and is the proper fix.
 
-## The film band
+## The video header
 
-The full-width video under the hero on the front page. It parallaxes with
-everything else: the video is laid out at 132% of its frame's height with a 16%
-overhang, and JavaScript translates it inside that, so the shift never uncovers an
-edge. If you raise its `data-parallax`, raise the overhang with it.
+The front page opens on the film. `.vhero` runs it full-bleed behind the masthead
+copy, and it parallaxes: the video is laid out at 128% of the header's height with
+a 14% overhang, and JavaScript translates it inside that, so the shift never
+uncovers an edge. If you raise its `data-parallax`, raise the overhang with it.
+
+`.vhero-scrim` carries two gradients: one from the left so the copy column keeps a
+steady dark ground whatever frame is playing, one from the bottom for the buttons
+and stats. The right side stays clear so the film is actually visible.
+
+This replaced both the old split hero and the separate film band lower down, so
+the front page went from ten sections to eight.
 
 Two encodes ship, and both are needed. `.mp4` is H.264, which Safari and iOS
 require. `.webm` is VP9, for browsers built without proprietary codecs — plenty of
