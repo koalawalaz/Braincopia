@@ -60,6 +60,8 @@ assets/img/favicon.svg    placeholder favicon
 assets/img/cover-vol1-a.jpg  Vol. I cover version A, Big Head
 assets/img/cover-vol1-b.jpg  Vol. I cover version B, Copies of the Mind
 assets/video/braincopia-vol1.mp4  the Vol. I reel, 1080x1350, 5.6s
+assets/video/braincopia-structure.mp4/.webm  the front-page film band
+assets/img/structure-poster.jpg   its poster frame
 tools/reel/                   source and render script for that reel
 ```
 
@@ -121,6 +123,22 @@ barcode goes with it. Change that token to move the crop.
 
 Re-exporting the two files at A4 from the print artwork removes the crop
 altogether and is the proper fix.
+
+## The film band
+
+The full-width video under the hero on the front page. It parallaxes with
+everything else: the video is laid out at 132% of its frame's height with a 16%
+overhang, and JavaScript translates it inside that, so the shift never uncovers an
+edge. If you raise its `data-parallax`, raise the overhang with it.
+
+Two encodes ship, and both are needed. `.mp4` is H.264, which Safari and iOS
+require. `.webm` is VP9, for browsers built without proprietary codecs — plenty of
+Linux Chromium and Firefox builds have no H.264 decoder, and the source list falls
+through to WebM there. MP4 is listed first so Safari takes it.
+
+The source was 5.9MB with an audio track; the web encodes are about 1.9MB each and
+silent, since it autoplays. Under `prefers-reduced-motion` it does not autoplay and
+holds on its poster frame instead.
 
 ## The Vol. I reel
 

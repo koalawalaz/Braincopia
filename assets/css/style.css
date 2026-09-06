@@ -583,6 +583,29 @@ a.rack-item:focus-visible { outline: 3px solid var(--yellow); outline-offset: 6p
 }
 
 
+
+/* the film band -----------------------------------------------------------
+   The video sits taller than its frame so the parallax shift never uncovers
+   an edge. JS translates it; the overhang here is what it travels inside. */
+.filmband { border-top: 3px solid var(--ink); border-bottom: 3px solid var(--ink); background: var(--ink); }
+.filmband-frame { position: relative; height: clamp(280px, 56vh, 620px); overflow: hidden; }
+.filmband-video {
+  position: absolute; left: 0; top: -16%;
+  width: 100%; height: 132%;
+  object-fit: cover; display: block;
+}
+.filmband-cap {
+  position: absolute; left: 0; bottom: 0; z-index: 2;
+  display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap;
+  padding: 14px 20px; background: var(--yellow); border-top: var(--border); border-right: var(--border);
+}
+.filmband-cap b { font-family: var(--display); font-size: 1.25rem; letter-spacing: .06em; color: var(--ink); }
+.filmband-cap span { font-family: var(--mono); font-size: .55rem; letter-spacing: .18em; text-transform: uppercase; color: #5a4f14; }
+
+@media (prefers-reduced-motion: reduce) {
+  .filmband-video { top: 0; height: 100%; }
+}
+
 /* ------------------------------------------------- 13. SCROLL ANIMATION */
 /* Parallax is driven from main.js so it works in every browser, not just the
    ones with scroll-driven CSS. Elements that parallax must not also carry a

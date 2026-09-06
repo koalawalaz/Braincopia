@@ -110,6 +110,16 @@
     draw();
   }
 
+  /* ---- the film band ------------------------------------------------------
+     Decorative and silent, so it holds still for anyone who asked for less
+     motion: paused on its poster frame rather than looping behind them. */
+  document.querySelectorAll('.filmband-video').forEach(function (v) {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      v.removeAttribute('autoplay');
+      v.pause();
+    }
+  });
+
   /* ---- footer year ------------------------------------------------------ */
   document.querySelectorAll('[data-year]').forEach(function (el) {
     el.textContent = new Date().getFullYear();
