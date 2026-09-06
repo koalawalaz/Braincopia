@@ -18,6 +18,7 @@
   /* the magazine is A4: 210 x 297mm. Any box drawn to stand in for a cover
      uses this, never the pixel dimensions of a particular export. */
   --cover-ratio: 210 / 297;
+  --cover-focus: center top;   /* what survives the crop to A4: the masthead */
   --green-ink:#14724A;   /* green, legible as text on light surfaces */
   --yellow-ink:#7A6100;  /* yellow, ditto */
   --pink:    #FF90E8;
@@ -315,7 +316,7 @@ h4 { font-size: 1.1rem; letter-spacing: .06em; }
 /* printed covers ---------------------------------------------------------- */
 .cover-stage {
   background: var(--violet); display: flex; align-items: center; justify-content: center;
-  padding: clamp(20px, 3.5vw, 44px); position: relative; overflow: hidden;
+  padding: clamp(30px, 5vw, 84px) clamp(20px, 3.5vw, 44px); position: relative; overflow: hidden;
 }
 .cover-stage::after {
   content: ''; position: absolute; inset: 0; pointer-events: none;
@@ -324,12 +325,14 @@ h4 { font-size: 1.1rem; letter-spacing: .06em; }
     repeating-linear-gradient(0deg,  rgba(255,255,255,.08) 0 1px, transparent 1px 46px);
 }
 .cover-photo {
-  position: relative; z-index: 1; display: block; width: auto; height: auto;
-  max-height: 620px; max-width: 100%;
+  position: relative; z-index: 1; display: block;
+  height: 560px; width: auto; max-width: 100%;
+  aspect-ratio: var(--cover-ratio);
+  object-fit: cover; object-position: var(--cover-focus);
   border: var(--border); box-shadow: var(--shadow-lg);
 }
 .hero-art .cover-stage { position: absolute; inset: 0; }
-.hero-art .cover-photo, .hero-art .cover-pending { max-height: 100%; width: auto; }
+.hero-art .cover-photo { height: min(100%, 560px); width: auto; }
 .hero-art .issue-picker { position: absolute; inset: 0; padding: 0 0 clamp(58px, 6vw, 70px); }
 .hero-art .issue-select { position: absolute; left: 50%; bottom: 16px; transform: translateX(-50%); width: min(86%, 420px); }
 .hero-art .issue-select > span { color: rgba(255,255,255,.8); }
@@ -348,6 +351,8 @@ h4 { font-size: 1.1rem; letter-spacing: .06em; }
 .rack-lg .rack-item { width: clamp(180px, 30vw, 392px); }
 .rack-item img {
   width: 100%; height: auto; display: block;
+  aspect-ratio: var(--cover-ratio);
+  object-fit: cover; object-position: var(--cover-focus);
   border: var(--border); box-shadow: 6px 6px 0 rgba(0, 0, 0, .55);
   transition: transform .16s ease, box-shadow .16s ease;
 }

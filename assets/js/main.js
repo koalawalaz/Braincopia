@@ -97,8 +97,8 @@
         var r = el.getBoundingClientRect();
         if (r.bottom < -200 || r.top > vh + 200) return;   // offscreen, skip
         var speed = parseFloat(el.getAttribute('data-parallax')) || 0.12;
-        var progress = (r.top + r.height / 2 - vh / 2) / vh;
-        el.style.transform = 'translate3d(0,' + (-progress * speed * 100).toFixed(2) + 'px,0)';
+        var progress = (r.top + r.height / 2 - vh / 2) / vh;   // about -0.9 .. 0.9
+        el.style.transform = 'translate3d(0,' + (-progress * speed * vh).toFixed(2) + 'px,0)';
       });
       ticking = false;
     };

@@ -83,9 +83,14 @@ twice.
 Two mechanisms, split by browser support.
 
 **Parallax** is JavaScript, in `main.js`, so it runs everywhere. Any element with
-`data-parallax="0.14"` shifts against the scroll at that fraction of viewport
-height: the printed covers drift inside their violet panels, and article cover
-type drifts against its panel. It skips under `prefers-reduced-motion`.
+`data-parallax="0.14"` shifts against the scroll by that fraction of viewport
+height — at 900px tall that is about 138px of travel, which is the point: the
+first version multiplied by a flat 100 instead and moved 16px, which nobody could
+see. The printed covers drift inside their violet panels, and article cover type
+drifts against its panel. It skips under `prefers-reduced-motion`.
+
+`.cover-stage` carries extra vertical padding so a drifting cover never hits the
+panel edge and gets clipped. Increase `data-parallax` and that padding together.
 
 **Scroll-driven CSS** is section 13 of the stylesheet, no JavaScript: rack covers
 rise onto the shelf left to right, and section rules draw themselves in. These use
@@ -105,12 +110,17 @@ stylesheet holds it. Any box drawn to stand in for a cover — the rack slipcase
 for unshot issues — takes its shape from that token, never from the pixel
 dimensions of a particular export.
 
-Note the mismatch: `cover-vol1-a.jpg` and `-b.jpg` are 768 x 1362, a ratio of
-1:1.7734, about 25% taller than A4. They are placed at their own proportions
-rather than being squeezed, so on the shelf the real covers stand taller than the
-A4 slipcases beside them. Re-exporting those two files at A4 from the print
-artwork fixes it properly. Cropping them to A4 in code would cut 276px, a fifth of
-the height, off each one, which is not a decision to make silently.
+Every cover box on the site is A4: the printed covers, the rack items and the
+slipcases alike.
+
+`cover-vol1-a.jpg` and `-b.jpg` are 768 x 1362, a ratio of 1:1.7734, about 25%
+taller than A4. They are cropped to fit rather than squeezed, via `object-fit:
+cover`. `--cover-focus` decides what survives that crop; it is `center top`, which
+keeps the masthead and takes roughly a fifth off the bottom of each cover — the
+barcode goes with it. Change that token to move the crop.
+
+Re-exporting the two files at A4 from the print artwork removes the crop
+altogether and is the proper fix.
 
 ## The Vol. I reel
 
