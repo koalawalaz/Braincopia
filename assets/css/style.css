@@ -647,6 +647,83 @@ a.rack-item:focus-visible { outline: 3px solid var(--yellow); outline-offset: 6p
   }
 }
 
+
+/* ------------------------------------------------ 14. THE WORLD PANELS
+   One full-height room per world. Four depths move at their own rate on
+   scroll: the ground stays, the word behind drifts slowest, the copy barely
+   moves, the card floats most. Anything carrying a layout transform is
+   wrapped, because the parallax script owns `transform` on what it moves. */
+.wp {
+  position: relative; min-height: 88vh;
+  display: flex; align-items: center; overflow: hidden;
+  background: var(--wp-ground); color: var(--wp-fg);
+  border-bottom: 3px solid var(--ink);
+}
+.wp-bigtype-wrap {
+  position: absolute; z-index: 1; inset: 0;
+  display: flex; align-items: center; justify-content: center;
+  pointer-events: none; user-select: none;
+}
+.wp-bigtype {
+  font-family: var(--display); font-size: clamp(6rem, 23vw, 20rem);
+  line-height: .78; letter-spacing: .02em; white-space: nowrap;
+  color: var(--wp-fg); opacity: .11;
+}
+.wp-inner {
+  position: relative; z-index: 3; width: 100%;
+  max-width: var(--maxw); margin: 0 auto;
+  padding: clamp(56px, 9vh, 104px) var(--gutter);
+  display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, .8fr);
+  gap: clamp(30px, 5vw, 72px); align-items: center;
+}
+.wp-num {
+  font-family: var(--mono); font-size: .6rem; letter-spacing: .28em;
+  text-transform: uppercase; color: var(--wp-accent); margin-bottom: 18px;
+}
+.wp-copy h2 {
+  font-size: clamp(2.3rem, 5vw, 4.2rem); line-height: .95;
+  color: var(--wp-fg); margin-bottom: 20px; max-width: 15ch;
+}
+.wp-desc, .wp-cross {
+  font-family: var(--serif); font-size: clamp(1rem, 1.5vw, 1.2rem);
+  line-height: 1.65; max-width: 46ch; color: var(--wp-fg); opacity: .88;
+}
+.wp-cross { margin-top: 16px; font-size: .95rem; opacity: .72; }
+.wp-go {
+  display: inline-flex; align-items: center; gap: 14px; margin-top: 30px;
+  text-decoration: none; color: var(--wp-fg);
+  font-family: var(--mono); font-size: .62rem; letter-spacing: .2em; text-transform: uppercase;
+}
+.wp-go i {
+  display: grid; place-items: center; width: 46px; height: 46px;
+  border: 2px solid currentColor; font-style: normal; font-size: 1.1rem;
+  transition: background .18s ease, color .18s ease, transform .18s ease;
+}
+.wp-go:hover i { background: var(--wp-accent); color: var(--wp-ground); transform: translateX(5px); }
+.wp-go:focus-visible i { outline: 3px solid var(--wp-accent); outline-offset: 3px; }
+
+.wp-card {
+  background: var(--wp-ground); border: 2px solid var(--wp-fg);
+  box-shadow: 12px 12px 0 var(--wp-accent);
+  padding: clamp(26px, 3vw, 40px);
+}
+.wp-card-label {
+  font-family: var(--mono); font-size: .55rem; letter-spacing: .24em;
+  text-transform: uppercase; color: var(--wp-accent);
+  padding-bottom: 14px; margin-bottom: 16px; border-bottom: 1px solid currentColor;
+}
+.wp-tags { list-style: none; display: flex; flex-direction: column; }
+.wp-tags li {
+  font-family: var(--display); font-size: clamp(1.1rem, 1.9vw, 1.65rem);
+  letter-spacing: .05em; line-height: 1.35; color: var(--wp-fg);
+}
+
+@media (max-width: 940px) {
+  .wp { min-height: 0; }
+  .wp-inner { grid-template-columns: 1fr; gap: 28px; padding-block: clamp(48px, 8vh, 72px); }
+  .wp-bigtype { font-size: clamp(4.5rem, 34vw, 12rem); }
+}
+
 /* ---------------------------------------------------------- 12. RESPONSIVE */
 @media (max-width: 1080px) {
   .grid-4 { grid-template-columns: repeat(2, 1fr); }

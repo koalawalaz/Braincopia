@@ -105,6 +105,35 @@ Everything here rests at its final state and only moves what is already visible.
 Nothing is parked at `opacity: 0` waiting to be scrolled into, so with motion off,
 support missing or JavaScript disabled the page reads identically.
 
+## The world panels
+
+`worlds.html` presents the seven worlds as full-height rooms, one per world,
+after the drakedesign.work reference. Each panel carries four depths that move at
+their own rate on scroll:
+
+| Layer | `data-parallax` | Behaviour |
+| --- | --- | --- |
+| Ground | none | The flat brand colour. Fixed. |
+| Big word | `0.055` | The world's name, oversized behind everything, drifts slowest |
+| Copy | `0.03` | Headline, description, arrow. Barely moves |
+| Card | `0.15` | The tag list. Floats most |
+
+Measured over 500px of scroll those come out at roughly 26px, 15px and 64px —
+three genuinely distinct rates, which is what reads as depth.
+
+`WORLD_SKIN` in the build script holds a ground, a text colour and an accent per
+world, so each room is its own colour environment while staying inside the brand
+palette. The reference uses rounded cards; these are hard-edged with an offset
+block shadow, because that is this site's language and the rounded version fought
+it.
+
+Anything carrying a layout transform is wrapped in a positioning element — the
+parallax script owns `transform` on whatever it moves, so the two cannot share an
+element. That is why `.wp-bigtype` sits inside `.wp-bigtype-wrap`.
+
+Each panel's arrow links to `articles.html#<world key>`, and the archive applies
+that filter on load.
+
 ## Cover proportions
 
 **The magazine is A4, 210 x 297mm, a ratio of 1:1.4143.** `--cover-ratio` in the

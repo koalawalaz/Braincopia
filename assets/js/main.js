@@ -38,6 +38,14 @@
     });
   }
 
+  /* ---- filter the archive straight from a link ---------------------------
+     worlds.html sends people to articles.html#mind and the like. */
+  var wanted = (location.hash || '').replace('#', '');
+  if (wanted) {
+    var target = document.querySelector('[data-filter="' + wanted + '"]');
+    if (target) target.click();
+  }
+
   /* ---- reading progress ------------------------------------------------- */
   var bar = document.querySelector('.readbar i');
   if (bar) {
