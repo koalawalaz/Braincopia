@@ -250,6 +250,28 @@ Three places are front-end only and need connecting to your services:
    Stripe Hosted Checkout and land the customer back on step 6.
 3. **Funnel lead capture** — `funnel.html`, the `submitLead` function.
 
+## Pricing
+
+One price per thing, no tiers, nothing to choose between. `CATALOGUE` in the build
+script holds the three products; the funnel sells the method as a single offer.
+
+| Product | Price |
+| --- | --- |
+| The 29 Tricks | $29 |
+| Vol. I — The Parallel Universe (PDF) | $12 |
+| Tripple CH | $12 |
+| Vol. I in print | £7.90 |
+
+Tripple CH is sold on its own and is deliberately not bundled with anything.
+
+Every purchase carries 30% off wearyour.store, stated once on the store page and
+again on the funnel's confirmation step. **No code is issued by anything here** —
+that has to be created in the shop before launch, and it is flagged in-page.
+
+The previous four-tier ladder is gone. It priced the Essentials at $0.60 a trick
+against the Full System's $1.00, so buying more cost more per unit and there was
+no reason to climb; and the $2 tier lost 18% of its value to payment fees.
+
 ## Copy that still needs you
 
 Two blocks are placeholders, each flagged in a dashed gold box on the page:

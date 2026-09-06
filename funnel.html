@@ -123,6 +123,7 @@ body { font-family: 'Libre Baskerville', Georgia, serif; background: #fff; color
 .guarantee p { font-size: .87rem; color: #bbb; line-height: 1.7; }
 .guarantee p strong { color: #fff; }
 .cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+.cards-one { grid-template-columns: minmax(0, 520px); justify-content: center; }
 .card { background: #111; border: 1px solid #2a2a2a; padding: 32px 24px; position: relative; display: flex; flex-direction: column; transition: border-color .2s, transform .2s; }
 .card:hover { border-color: var(--violet); transform: translateY(-4px); }
 .card.featured { border: 2px solid var(--green); background: #0c1f16; }
@@ -329,9 +330,9 @@ body { font-family: 'Libre Baskerville', Georgia, serif; background: #fff; color
 <div id="page4" class="page">
   <div class="pricing">
     <div class="pricing-head">
-      <p class="tag">Choose Your Set</p>
+      <p class="tag">The Method</p>
       <h2>Get the Tricks</h2>
-      <p>One-time purchase. Yours permanently. No subscription.</p>
+      <p>One price. Every trick. Yours permanently, no subscription.</p>
     </div>
 
     <div class="cats">
@@ -362,60 +363,21 @@ body { font-family: 'Libre Baskerville', Georgia, serif; background: #fff; color
       <p><strong>Thirty days, full refund, no questions asked.</strong> Use every trick you bought. If your work doesn't read more like you by the end of the month, email us and the money goes back. You keep the files.</p>
     </div>
 
-    <div class="cards">
-      <div class="card">
-        <p class="card-name">First Contact</p>
-        <p class="card-price">$2</p>
-        <p class="card-terms">3 tricks · one time</p>
-        <ul>
-          <li>3 core voice tricks</li>
-          <li>Before / after examples</li>
-          <li>Instant access</li>
-        </ul>
-        <button onclick="showPage(5,'a')">Get 3 Tricks</button>
-      </div>
-
-      <div class="card featured">
-        <span class="badge">Most Popular</span>
-        <p class="card-name">The Essentials</p>
-        <p class="card-price">$3</p>
-        <p class="card-terms">5 tricks · one time</p>
-        <ul>
-          <li>Everything in First Contact</li>
-          <li>Voice tricks plus first Canva methods</li>
-          <li>The tell-detection checklist</li>
-          <li>Copy-paste edit prompts</li>
-        </ul>
-        <button onclick="showPage(5,'b')">Get 5 Tricks</button>
-      </div>
-
-      <div class="card">
-        <p class="card-name">The Toolkit</p>
-        <p class="card-price">$12</p>
-        <p class="card-terms">12 tricks · one time</p>
-        <ul>
-          <li>Everything in Essentials</li>
-          <li>Full Canva set — 8 tricks</li>
-          <li>Caption architecture system</li>
-          <li>Long-form structure fixes</li>
-          <li>Voice-print worksheet</li>
-        </ul>
-        <button onclick="showPage(5,'c')">Get 12 Tricks</button>
-      </div>
-
+    <div class="cards cards-one">
       <div class="card premium">
         <span class="badge">Everything</span>
-        <p class="card-name">The Full System</p>
+        <p class="card-name">The 29 Tricks</p>
         <p class="card-price">$29</p>
         <p class="card-terms">All 29 tricks · one time</p>
         <ul>
           <li>Every trick, all four disciplines</li>
-          <li>Complete Affinity production set</li>
-          <li>Genre-specific playbooks</li>
+          <li>A before and an after on each one</li>
+          <li>The complete Affinity production set</li>
+          <li>The caption architecture system</li>
           <li>Free updates forever</li>
           <li>Full Braincopia archive access</li>
         </ul>
-        <button onclick="showPage(5,'d')">Get Everything</button>
+        <button onclick="showPage(5)">Get the 29 Tricks</button>
       </div>
     </div>
   </div>
@@ -432,9 +394,9 @@ body { font-family: 'Libre Baskerville', Georgia, serif; background: #fff; color
     <div class="order-summary">
       <div>
         <p class="os-label">Your Selection</p>
-        <p class="os-name" id="osName">The Essentials — 5 tricks</p>
+        <p class="os-name" id="osName">The 29 Tricks</p>
       </div>
-      <p class="os-price" id="osPrice">$3</p>
+      <p class="os-price" id="osPrice">$29</p>
     </div>
 
     <form class="form-wrap" onsubmit="submitOrder(event)">
@@ -460,7 +422,7 @@ body { font-family: 'Libre Baskerville', Georgia, serif; background: #fff; color
           <input type="text" id="cvc" placeholder="123" required>
         </div>
       </div>
-      <button type="submit" class="checkout-submit" id="submitBtn">Complete Purchase — $3</button>
+      <button type="submit" class="checkout-submit" id="submitBtn">Complete Purchase — $29</button>
       <div class="reassure">
         <span>Stripe secured</span>
         <span>30-day refund</span>
@@ -512,6 +474,11 @@ body { font-family: 'Libre Baskerville', Georgia, serif; background: #fff; color
       </div>
     </div>
 
+    <div style="background:var(--yellow);border-left:4px solid var(--nearblack);padding:20px 24px;margin-top:36px;display:grid;grid-template-columns:auto 1fr;gap:20px;align-items:center">
+      <p style="font-family:'Bebas Neue',sans-serif;font-size:2.6rem;line-height:1;color:var(--nearblack)">30%</p>
+      <p style="font-size:.88rem;line-height:1.7;color:#3f3a1a"><strong>Off anything at wearyour.store.</strong> Your code is in the same email as your download. No expiry.</p>
+    </div>
+
     <p class="conf-foot">Neither is required. What you bought works on its own.<br>
       <a class="textlink" href="index.html" style="text-decoration:underline">Read the magazine</a> ·
       <button class="textlink" onclick="showPage(1)">Back to the start</button>
@@ -520,20 +487,13 @@ body { font-family: 'Libre Baskerville', Georgia, serif; background: #fff; color
 </div>
 
 <script>
-const PLANS = {
-  a: { name: 'First Contact — 3 tricks',    price: 2  },
-  b: { name: 'The Essentials — 5 tricks',   price: 3  },
-  c: { name: 'The Toolkit — 12 tricks',     price: 12 },
-  d: { name: 'The Full System — 29 tricks', price: 29 }
-};
-let selected = 'b';
+const PLAN = { name: 'The 29 Tricks', price: 29 };
 
-function showPage(n, plan) {
-  if (plan) {
-    selected = plan;
-    document.getElementById('osName').textContent = PLANS[plan].name;
-    document.getElementById('osPrice').textContent = '$' + PLANS[plan].price;
-    document.getElementById('submitBtn').textContent = 'Complete Purchase — $' + PLANS[plan].price;
+function showPage(n) {
+  if (n === 5) {
+    document.getElementById('osName').textContent = PLAN.name;
+    document.getElementById('osPrice').textContent = '$' + PLAN.price;
+    document.getElementById('submitBtn').textContent = 'Complete Purchase — $' + PLAN.price;
   }
   document.querySelectorAll('.page').forEach(p => p.classList.remove('visible'));
   document.getElementById('page' + n).classList.add('visible');
