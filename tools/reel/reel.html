@@ -1,0 +1,98 @@
+<!doctype html><html><head><meta charset="utf-8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Mono:wght@400;700&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1080px;height:1350px;overflow:hidden;background:#5B0ECC}
+.stage{position:relative;width:1080px;height:1350px;overflow:hidden;background:#5B0ECC}
+.grid{position:absolute;inset:0;background:
+  repeating-linear-gradient(90deg,rgba(255,255,255,.09) 0 2px,transparent 2px 92px),
+  repeating-linear-gradient(0deg,rgba(255,255,255,.09) 0 2px,transparent 2px 92px);}
+.mark{position:absolute;left:50%;top:392px;width:230px;height:230px;transform:translate(-50%,-50%)}
+.word{position:absolute;left:0;right:0;top:560px;text-align:center;font-family:'Bebas Neue',sans-serif;
+  font-size:118px;line-height:1;color:#fff;letter-spacing:.08em}
+.sub{position:absolute;left:0;right:0;top:700px;text-align:center;font-family:'Space Mono',monospace;
+  font-size:26px;letter-spacing:.42em;text-transform:uppercase;color:#FFD600}
+.cov{position:absolute;left:50%;top:632px;width:620px;transform:translate(-50%,-50%);
+  border:3px solid #1C1C1C;box-shadow:26px 26px 0 rgba(0,0,0,.45);display:block}
+.topbar{position:absolute;top:0;left:0;right:0;height:96px;background:#1C1C1C;display:flex;
+  align-items:center;justify-content:center;gap:20px}
+.topbar span{font-family:'Space Mono',monospace;font-size:22px;letter-spacing:.34em;
+  text-transform:uppercase;color:#fff}
+.topbar b{color:#FFD600}
+.band{position:absolute;left:0;right:0;bottom:0;height:250px;background:#FFD600;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px}
+.band .vol{font-family:'Space Mono',monospace;font-size:24px;letter-spacing:.36em;
+  text-transform:uppercase;color:#1C1C1C}
+.band .ttl{font-family:'Bebas Neue',sans-serif;font-size:82px;line-height:.94;color:#1C1C1C;letter-spacing:.02em}
+.band .dom{font-family:'Space Mono',monospace;font-size:22px;letter-spacing:.3em;color:#5B0ECC}
+</style></head><body>
+<div class="stage" id="stage">
+  <div class="grid"></div>
+  <div class="topbar" id="topbar"><span>HI / AI</span><span><b>&bull;</b></span><span>Braincopia</span></div>
+  <img class="mark" id="mark" src="../../assets/img/logo.png" alt="">
+  <div class="word" id="word">BRAINCOPIA</div>
+  <div class="sub" id="sub">Not a magazine</div>
+  <img class="cov" id="ca" src="../../assets/img/cover-vol1-a.jpg" alt="">
+  <img class="cov" id="cb" src="../../assets/img/cover-vol1-b.jpg" alt="">
+  <div class="band" id="band">
+    <p class="vol">Vol. I &middot; Spring 2025</p>
+    <p class="ttl">THE PARALLEL UNIVERSE</p>
+    <p class="dom">braincopia.com</p>
+  </div>
+</div>
+<script>
+var FPS = 25, DUR = 5.6, TOTAL = Math.round(FPS * DUR);
+function clamp(v,a,b){return Math.max(a,Math.min(b,v));}
+function seg(t,a,b){return clamp((t-a)/(b-a),0,1);}          // linear 0..1 across [a,b]
+function outCubic(x){return 1-Math.pow(1-x,3);}
+function inCubic(x){return x*x*x;}
+function lerp(a,b,x){return a+(b-a)*x;}
+function px(v){return v.toFixed(2)+'px';}
+
+function setFrame(n){
+  var t = n / FPS;
+  var mark=document.getElementById('mark'), word=document.getElementById('word'),
+      sub=document.getElementById('sub'), ca=document.getElementById('ca'),
+      cb=document.getElementById('cb'), band=document.getElementById('band'),
+      topbar=document.getElementById('topbar');
+
+  // BEAT 1 (0.0-1.5) the mark settles, the wordmark arrives
+  var mIn = outCubic(seg(t,0.05,0.75));
+  var mOut = outCubic(seg(t,1.30,1.75));
+  mark.style.opacity = (mIn * (1-mOut)).toFixed(3);
+  mark.style.transform = 'translate(-50%,-50%) scale('+lerp(0.80,1,mIn)+') translateY('+lerp(26,0,mIn)+'px)';
+
+  var wIn = outCubic(seg(t,0.35,1.05));
+  word.style.opacity = (wIn * (1-mOut)).toFixed(3);
+  word.style.letterSpacing = lerp(0.30,0.08,wIn).toFixed(3)+'em';
+  var sIn = outCubic(seg(t,0.70,1.25));
+  sub.style.opacity = (sIn * (1-mOut)).toFixed(3);
+
+  // topbar rides in once the logo clears
+  var tIn = outCubic(seg(t,1.45,1.90));
+  topbar.style.transform = 'translateY('+px(lerp(-96,0,tIn))+')';
+
+  // BEAT 2 (1.5-3.1) cover A rises
+  var aUp = outCubic(seg(t,1.50,2.30));
+  var aOut = inCubic(seg(t,3.10,3.75));
+  var aX = lerp(0,-1180,aOut);
+  ca.style.opacity = aUp > 0 ? 1 : 0;
+  ca.style.transform = 'translate(-50%,-50%) translate('+px(aX)+','+px(lerp(1500,0,aUp))+') rotate('+lerp(-3,0,aUp).toFixed(2)+'deg)';
+
+  // BEAT 3 (3.1-4.4) cover B crosses in
+  var bIn = outCubic(seg(t,3.10,3.85));
+  cb.style.opacity = bIn > 0 ? 1 : 0;
+  cb.style.transform = 'translate(-50%,-50%) translate('+px(lerp(1180,0,bIn))+',0) rotate('+lerp(3,0,bIn).toFixed(2)+'deg)';
+
+  // BEAT 4 (4.35-5.6) the band rises, the cover lifts to make room
+  var bandIn = outCubic(seg(t,4.35,4.95));
+  band.style.transform = 'translateY('+px(lerp(250,0,bandIn))+')';
+  if (bandIn > 0) {
+    var lift = lerp(0,-96,bandIn), sc = lerp(1,0.86,bandIn);
+    cb.style.transform = 'translate(-50%,-50%) translate(0,'+px(lift)+') scale('+sc.toFixed(3)+')';
+  }
+}
+window.setFrame = setFrame; window.TOTAL = TOTAL; window.FPS = FPS;
+setFrame(0);
+</script></body></html>

@@ -573,6 +573,55 @@ a.rack-item:focus-visible { outline: 3px solid var(--yellow); outline-offset: 6p
   letter-spacing: .1em; line-height: 1.8; text-transform: uppercase;
 }
 
+
+/* ------------------------------------------------- 13. SCROLL ANIMATION */
+/* Scroll-driven, CSS only, no JavaScript. Every animated element rests at its
+   final state, so with no support and no motion allowed the page is unchanged:
+   these only ever move things that are already on screen and already visible. */
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+
+    /* the hero cover drifts against the page as it passes */
+    .hero-art .cover-photo {
+      animation: coverDrift linear both;
+      animation-timeline: view();
+      animation-range: entry 0% exit 100%;
+      will-change: transform;
+    }
+    @keyframes coverDrift {
+      from { transform: translateY(-20px); }
+      to   { transform: translateY(20px); }
+    }
+
+    /* covers rise onto the shelf, left to right */
+    .rack-item {
+      animation: shelfRise linear both;
+      animation-timeline: view();
+      animation-range: entry 10% cover 34%;
+      will-change: transform;
+    }
+    .rack-item:nth-child(2) { animation-range: entry 10% cover 40%; }
+    .rack-item:nth-child(3) { animation-range: entry 10% cover 46%; }
+    .rack-item:nth-child(4) { animation-range: entry 10% cover 52%; }
+    .rack-item:nth-child(5) { animation-range: entry 10% cover 58%; }
+    @keyframes shelfRise {
+      from { transform: translateY(28px); }
+      to   { transform: translateY(0); }
+    }
+
+    /* section rules draw themselves as each section arrives */
+    .section-head {
+      animation: ruleDraw linear both;
+      animation-timeline: view();
+      animation-range: entry 0% cover 22%;
+    }
+    @keyframes ruleDraw {
+      from { clip-path: inset(0 100% 0 0); }
+      to   { clip-path: inset(0 0 0 0); }
+    }
+  }
+}
+
 /* ---------------------------------------------------------- 12. RESPONSIVE */
 @media (max-width: 1080px) {
   .grid-4 { grid-template-columns: repeat(2, 1fr); }

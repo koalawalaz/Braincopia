@@ -59,6 +59,8 @@ assets/img/logo.svg       earlier placeholder mark, no longer referenced
 assets/img/favicon.svg    placeholder favicon
 assets/img/cover-vol1-a.jpg  Vol. I cover version A, Big Head
 assets/img/cover-vol1-b.jpg  Vol. I cover version B, Copies of the Mind
+assets/video/braincopia-vol1.mp4  the Vol. I reel, 1080x1350, 5.6s
+tools/reel/                   source and render script for that reel
 ```
 
 ## The logo
@@ -75,6 +77,33 @@ header and footer set BRAINCOPIA in Bebas Neue beside the badge rather than
 placing the lockup as one image. Swapping to the lockup means replacing the
 `.brand-mark` image and dropping the `.brand-type` block so the name is not set
 twice.
+
+## Motion
+
+**Scroll animation.** Section 13 of the stylesheet, CSS only, no JavaScript. The
+hero cover drifts against the page as it passes, the rack covers rise onto the
+shelf left to right, and each section rule draws itself in. All three are
+scroll-driven via `animation-timeline: view()`.
+
+Every animated element rests at its final state and only ever moves things that
+are already visible — nothing is parked at `opacity: 0` waiting to be scrolled
+into. So the whole block sits behind `prefers-reduced-motion: no-preference` and
+`@supports (animation-timeline: view())`, and where either fails the page simply
+renders as normal. Safari and Firefox currently take that path.
+
+## The Vol. I reel
+
+`assets/video/braincopia-vol1.mp4` — 1080x1350, 5.6 seconds, H.264, portrait for
+social. Four beats: the mark and wordmark, cover A rising, cover B crossing over
+it, then the yellow end band.
+
+It is reproducible rather than hand-made. `tools/reel/reel.html` exposes
+`setFrame(n)` and positions everything by frame number rather than wall clock, so
+`python3 tools/reel/render.py` screenshots 140 frames in Chromium and pipes them
+through ffmpeg to the same file every time. Add `--gif` for a GIF beside it. It
+needs playwright and ffmpeg; set `FFMPEG` or `CHROMIUM` if they are not on PATH.
+
+Edit the storyboard timings at the bottom of `reel.html` and re-run.
 
 ## Design tokens
 
