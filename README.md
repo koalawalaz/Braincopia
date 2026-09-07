@@ -78,12 +78,13 @@ their cart intact.
 as an HTML string. It echoes back the name and address the customer typed, so
 string concatenation there would be an injection vector.
 
-### Before it goes live
+### The form endpoint
 
-`FORMSPREE_ENDPOINT` at the top of `script.js` is a placeholder
-(`https://formspree.io/f/YOUR_FORM_ID`). Create the form, paste the id in, and
-both the checkout and the contact form start delivering. Until then every submit
-shows the inline error, which is the correct failure.
+`FORMSPREE_ENDPOINT` at the top of `script.js` holds the Formspree form id. Both
+the checkout and the contact form POST to it. The real inbox lives in the
+Formspree dashboard and never appears in the page source — that is the whole
+point of routing through it. To move the mail somewhere else, change the id
+there; nothing else needs touching.
 
 ## Deploying
 

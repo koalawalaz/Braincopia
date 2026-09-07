@@ -12,7 +12,7 @@
      else needs changing. No mailto: or wa.me link appears anywhere in the
      source, which is the point.
      --------------------------------------------------------------------- */
-  var FORMSPREE_ENDPOINT = 'https://formspree.io/f/YOUR_FORM_ID';
+  var FORMSPREE_ENDPOINT = 'https://formspree.io/f/mvkowogd';
 
   var CATALOGUE = {
     tricks: { name: 'The 29 Tricks',                 price: 0,  note: 'Digital · instant' },
