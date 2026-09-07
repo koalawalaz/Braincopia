@@ -73,6 +73,17 @@ around the artwork but its own ink edge and the hard shadow.
 0.001ms globally, stops the marquee, holds the hero chant on one line, and shows
 all reveals immediately.
 
+**The die.** A die rolls along the bottom of the window as the page
+scrolls: the scroll position told as an object rather than a bar. A square
+does not spin as it rolls, it pivots on one corner at a time, so over each
+quarter turn the centre swings on an arc of radius `side/√2` about the
+resting corner and the die advances exactly one side length. Travel comes
+from scroll progress and the rotation is derived from the travel, never the
+reverse, or it skids. The face changes mid-tumble, while the die is up on a
+corner and the top face is edge-on, so the number is never seen to swap. It
+is `pointer-events: none`, sits under the cart drawer, and does not exist at
+all under `prefers-reduced-motion`.
+
 Scroll reveals use IntersectionObserver with staggered `nth-child` delays. If
 JavaScript never runs, a `<noscript>` block forces `.reveal` back to full opacity
 — otherwise every reveal element would sit invisible below the hero.

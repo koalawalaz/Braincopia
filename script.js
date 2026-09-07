@@ -108,6 +108,78 @@
     items.forEach(function (el) { io.observe(el); });
   })();
 
+  /* ------------------------------------------------------------------ DIE
+     A square does not spin as it rolls, it pivots on one corner at a time.
+     So the geometry: over a quarter turn the centre swings on an arc of
+     radius R (the half-diagonal) about the resting corner, which puts it
+     at R*sin(45deg + phi) above the ground and advances the die by exactly
+     one side length. Tie the travel to scroll progress and the rotation
+     follows from it, never the other way round, or the die skids.
+
+     The face changes mid-tumble, at the point where it is up on a corner
+     and the top face is edge-on, so the number is never seen to swap. */
+  (function die() {
+    var el = $('#die');
+    var face = $('#dieFace');
+    if (!el || !face || reduceMotion) return;
+
+    var FACES = {
+      1: [5], 2: [1, 9], 3: [1, 5, 9],
+      4: [1, 3, 7, 9], 5: [1, 3, 5, 7, 9], 6: [1, 3, 4, 6, 7, 9]
+    };
+    var pips = [];
+    for (var i = 1; i <= 9; i++) {
+      var pip = document.createElement('span');
+      pip.className = 'pip';
+      face.appendChild(pip);
+      pips.push(pip);
+    }
+    function show(n) {
+      var on = FACES[n];
+      pips.forEach(function (pip, idx) {
+        pip.classList.toggle('on', on.indexOf(idx + 1) !== -1);
+      });
+    }
+
+    var shown = 0;
+    var queued = false;
+
+    function place() {
+      queued = false;
+      var side = el.offsetWidth;
+      var scrollable = document.documentElement.scrollHeight - window.innerHeight;
+      // Up on a corner the square is wider than its side by (sqrt2-1)/2 each
+      // way, so inset the track by that much or the corners clip the edges.
+      var pad = side * (Math.SQRT2 - 1) / 2;
+      var run = window.innerWidth - side - pad * 2;
+      if (scrollable <= 0 || run <= 0) return;
+
+      var progress = Math.min(1, Math.max(0, window.scrollY / scrollable));
+      var x = pad + progress * run;
+
+      var quarters = (x - pad) / side;         // one quarter turn per side length travelled, measured from rest
+      var phi = (quarters - Math.floor(quarters)) * 90;
+      var R = side / Math.SQRT2;               // half-diagonal
+      var lift = R * Math.sin((45 + phi) * Math.PI / 180) - side / 2;
+
+      el.style.transform = 'translate(' + x + 'px, ' + (-lift) + 'px) rotate(' + (quarters * 90) + 'deg)';
+
+      var n = (Math.round(quarters) % 6 + 6) % 6 + 1;
+      if (n !== shown) { shown = n; show(n); }
+    }
+
+    function onScroll() {
+      if (queued) return;
+      queued = true;
+      requestAnimationFrame(place);
+    }
+
+    show(1);
+    place();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
+  })();
+
   /* ================================================================ CART */
   var STORE_KEY = 'braincopia.cart.v1';
   var cart = load();
