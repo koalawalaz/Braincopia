@@ -322,24 +322,17 @@ p { max-width: 62ch; }
   .ambassador-copy p { font-size: .92rem; }
 }
 
-/* The limited-time box. Loud on purpose: it sits above the prices, so it
-   has to be read before them, not after. */
-.flash {
-  margin-bottom: clamp(24px, 3vw, 34px);
-  padding: clamp(22px, 3vw, 34px);
-  background: var(--yellow);
-  display: grid; gap: 10px; justify-items: start;
-}
-.flash .tag { background: var(--ink); color: var(--yellow); }
-.flash h3 { color: var(--ink); }
-.flash p { font-size: .95rem; color: var(--ink); }
-
 /* ----------------------------------------------------------------- SHOP */
 .product { padding: 26px; display: flex; flex-direction: column; gap: 10px; }
 .product .tag { align-self: flex-start; }   /* a column flex parent stretches it otherwise */
 .product h3 { color: var(--card-color); font-size: 1.35rem; }
 .product p { font-size: .93rem; color: rgba(28,28,28,.78); }
 .product-price { font-family: var(--font-mono); font-weight: 700; font-size: 1.5rem; color: var(--card-color); }
+/* The period rides at the price's size, not the number's: it is a
+   qualifier, not part of the figure. */
+.product-price .per { font-size: .8rem; letter-spacing: .06em; opacity: .8; }
+.issue-note .price .per { font-family: var(--font-mono); font-size: .95rem; letter-spacing: .04em; }
+.qty button:disabled { opacity: .32; cursor: not-allowed; }
 .product .btn { margin-top: auto; }
 
 /* The Wear Your perk. The panel is their orange, not ours, so their mark

@@ -14,9 +14,13 @@
      --------------------------------------------------------------------- */
   var FORMSPREE_ENDPOINT = 'https://formspree.io/f/mvkowogd';
 
+  /* period marks a recurring line, and max caps it: nobody holds two of the
+     same monthly subscription, so the cart must not let them try. */
   var CATALOGUE = {
-    vol1: { name: 'Vol. I: The Parallel Universe', price: 20, note: 'PDF · both covers' },
-    book: { name: 'Tripple CH',                    price: 12, note: 'Digital · instant' }
+    vol1: { name: 'Vol. I: The Parallel Universe', price: 7, period: 'month', max: 1,
+            note: 'Subscription · both covers' },
+    book: { name: 'Tripple CH',                    price: 12,
+            note: 'Digital · instant' }
   };
 
   var COLLECTIONS = [
@@ -39,6 +43,10 @@
   var $ = function (sel, root) { return (root || document).querySelector(sel); };
   var $$ = function (sel, root) { return Array.prototype.slice.call((root || document).querySelectorAll(sel)); };
   var money = function (n) { return '$' + n; };   // nothing is free any more, and an empty cart reads $0
+  var priced = function (item, qty) {
+    var amount = money(item.price * (qty || 1));
+    return item.period ? amount + ' / ' + item.period : amount;
+  };
 
   /* ------------------------------------------------------------ MARQUEE */
   (function marquee() {
@@ -348,8 +356,23 @@
   function count() {
     return Object.keys(cart).reduce(function (n, id) { return n + cart[id]; }, 0);
   }
-  function total() {
-    return Object.keys(cart).reduce(function (n, id) { return n + CATALOGUE[id].price * cart[id]; }, 0);
+  /* A basket can hold a one-off and a subscription at once, and they are not
+     the same number. Adding them would tell someone they are paying $19 when
+     they are paying $12 now and $7 every month after. */
+  function totals() {
+    var once = 0, monthly = 0;
+    Object.keys(cart).forEach(function (id) {
+      var item = CATALOGUE[id];
+      var sum = item.price * cart[id];
+      if (item.period) monthly += sum; else once += sum;
+    });
+    return { once: once, monthly: monthly };
+  }
+  function totalLabel() {
+    var t = totals();
+    if (t.once && t.monthly) return money(t.once) + ' + ' + money(t.monthly) + ' / month';
+    if (t.monthly) return money(t.monthly) + ' / month';
+    return money(t.once);
   }
 
   var cartCount = $('#cartCount');
@@ -365,7 +388,7 @@
       cartCount.textContent = String(count());
       cartCount.hidden = count() === 0;
     }
-    if (cartTotal) cartTotal.textContent = money(total());
+    if (cartTotal) cartTotal.textContent = totalLabel();
     if (goCheckout) goCheckout.disabled = ids.length === 0;
     if (cartEmpty) cartEmpty.style.display = ids.length ? 'none' : 'block';
     if (!cartLines) return;
@@ -389,7 +412,7 @@
       var right = document.createElement('div');
       var price = document.createElement('p');
       price.className = 'price';
-      price.textContent = money(item.price * cart[id]);
+      price.textContent = priced(item, cart[id]);
       right.appendChild(price);
 
       var qty = document.createElement('div');
@@ -403,6 +426,7 @@
       var plus = document.createElement('button');
       plus.type = 'button';
       plus.textContent = '+';
+      plus.disabled = cart[id] >= (item.max || 99);
       plus.setAttribute('aria-label', 'Add one ' + item.name);
       minus.addEventListener('click', function () { change(id, -1); });
       plus.addEventListener('click', function () { change(id, 1); });
@@ -416,10 +440,12 @@
   }
 
   function change(id, delta) {
-    if (!CATALOGUE[id]) return;
+    var item = CATALOGUE[id];
+    if (!item) return;
+    var cap = item.max || 99;
     cart[id] = (cart[id] || 0) + delta;
     if (cart[id] < 1) delete cart[id];
-    if (cart[id] > 99) cart[id] = 99;
+    else if (cart[id] > cap) cart[id] = cap;
     save(); render();
   }
 
@@ -506,7 +532,7 @@
       var left = document.createElement('span');
       left.textContent = item.name + ' × ' + cart[id];
       var right = document.createElement('span');
-      right.textContent = money(item.price * cart[id]);
+      right.textContent = priced(item, cart[id]);
       line.appendChild(left); line.appendChild(right);
       box.appendChild(line);
     });
@@ -516,7 +542,7 @@
     var tl = document.createElement('span');
     tl.textContent = 'Total';
     var tr = document.createElement('span');
-    tr.textContent = money(total());
+    tr.textContent = totalLabel();
     totalLine.appendChild(tl); totalLine.appendChild(tr);
     box.appendChild(totalLine);
   }
@@ -524,7 +550,7 @@
   /* ------------------------------------------------------------ CHECKOUT */
   function orderText() {
     return Object.keys(cart).map(function (id) {
-      return CATALOGUE[id].name + ' x' + cart[id] + ' (' + money(CATALOGUE[id].price * cart[id]) + ')';
+      return CATALOGUE[id].name + ' x' + cart[id] + ' (' + priced(CATALOGUE[id], cart[id]) + ')';
     }).join('\n');
   }
 
@@ -563,7 +589,7 @@
       }
       var data = new FormData(checkoutForm);
       data.append('order', orderText());
-      data.append('total', money(total()));
+      data.append('total', totalLabel());
       data.append('_subject', 'Braincopia order');
 
       var ok = await post(FORMSPREE_ENDPOINT, data, errorBox, button, 'Sending…');

@@ -124,6 +124,16 @@ the Formspree dashboard. The view advances to the confirmation **only** on
 `res.ok`; anything else leaves the customer on the form with an inline error and
 their cart intact.
 
+**Recurring lines.** A catalogue entry with a `period` is a subscription
+and carries `max: 1`, because nobody holds two of the same monthly plan.
+Totals are kept apart rather than summed: a basket with the book and a
+subscription reads `$12 + $7 / month`, never `$19`, which would tell
+someone they are paying once what they are paying every month.
+
+**The checkout does not take money.** It posts an order to Formspree,
+which is fine for a one-off but cannot bill anyone monthly. A real
+subscription needs a processor that does recurring charges.
+
 **The order summary is built with `textContent`, node by node** — never assembled
 as an HTML string. It echoes back the name and address the customer typed, so
 string concatenation there would be an injection vector.
