@@ -108,6 +108,95 @@
     items.forEach(function (el) { io.observe(el); });
   })();
 
+  /* ---------------------------------------------------------------- SOUND
+     Browsers refuse to start audio before the visitor has interacted with
+     the page, so "plays when you open the site" means: try, and if the
+     browser says no, start on the first click, key or touch instead. A
+     visitor who turns it off is never asked again, and the toggle is
+     always on screen, because a page that makes noise owes you a way to
+     stop it. */
+  (function sound() {
+    var audio = $('#ambience');
+    var btn = $('#sound');
+    if (!audio || !btn) return;
+
+    var PREF = 'braincopia.sound.v1';
+    var VOLUME = 0.34;
+    var pref = null;
+    try { pref = localStorage.getItem(PREF); } catch (err) { /* private mode */ }
+
+    // No control for audio that will never arrive.
+    audio.addEventListener('error', function () { btn.classList.remove('ready'); });
+    audio.addEventListener('canplaythrough', function () { btn.classList.add('ready'); });
+    if (audio.readyState >= 3) btn.classList.add('ready');
+
+    var fade = 0;
+    function ramp(to, done) {
+      cancelAnimationFrame(fade);
+      var from = audio.volume;
+      var t0 = 0;
+      (function step(now) {
+        if (!t0) t0 = now;
+        var k = Math.min(1, (now - t0) / 900);
+        audio.volume = from + (to - from) * k;
+        if (k < 1) fade = requestAnimationFrame(step);
+        else if (done) done();
+      })(0);
+    }
+
+    function mark(on) {
+      btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+      btn.setAttribute('aria-label', on ? 'Turn the sound off' : 'Turn the sound on');
+    }
+
+    function start() {
+      audio.volume = 0;
+      var p = audio.play();
+      if (p && p.catch) {
+        return p.then(function () { mark(true); ramp(VOLUME); return true; })
+                .catch(function () { return false; });
+      }
+      mark(true); ramp(VOLUME);
+      return Promise.resolve(true);
+    }
+
+    function stop() {
+      ramp(0, function () { audio.pause(); });
+      mark(false);
+    }
+
+    btn.addEventListener('click', function () {
+      var on = btn.getAttribute('aria-pressed') === 'true';
+      if (on) {
+        stop();
+        try { localStorage.setItem(PREF, 'off'); } catch (err) {}
+      } else {
+        start();
+        try { localStorage.setItem(PREF, 'on'); } catch (err) {}
+      }
+    });
+
+    // Nothing plays into an unwatched tab.
+    document.addEventListener('visibilitychange', function () {
+      if (btn.getAttribute('aria-pressed') !== 'true') return;
+      if (document.hidden) audio.pause();
+      else audio.play().catch(function () {});
+    });
+
+    if (pref === 'off') { mark(false); return; }
+
+    start().then(function (playing) {
+      if (playing) return;
+      // Autoplay was refused. Wait for the first thing the visitor does.
+      var events = ['pointerdown', 'keydown', 'touchstart', 'wheel'];
+      function wake() {
+        events.forEach(function (e) { window.removeEventListener(e, wake); });
+        start();
+      }
+      events.forEach(function (e) { window.addEventListener(e, wake, { once: true, passive: true }); });
+    });
+  })();
+
   /* ------------------------------------------------------------------ DIE
      A square does not spin as it rolls, it pivots on one corner at a time.
      So the geometry: over a quarter turn the centre swings on an arc of
