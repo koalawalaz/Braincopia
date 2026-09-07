@@ -251,18 +251,22 @@ p { max-width: 62ch; }
   display: grid; grid-template-columns: 1fr 1fr 1fr;
   gap: clamp(22px, 3.4vw, 46px); align-items: start;
 }
-.cover { display: flex; flex-direction: column; gap: 14px; }
-.cover img {
-  width: 100%; height: auto;
-  border: var(--border-w); border-radius: 4px; box-shadow: var(--shadow);
-  transition: transform .3s cubic-bezier(.2,.8,.3,1), box-shadow .3s ease;
+/* The covers are not shown yet, so their two slots hold one plate.
+   span 2 rather than a fixed column so it still behaves when the grid
+   drops to two columns and then to one. */
+.coming {
+  grid-column: span 2;
+  min-height: clamp(230px, 27vw, 370px);
+  padding: clamp(28px, 4vw, 48px);
+  background: var(--violet); color: var(--cream);
+  border: var(--border-w); border-radius: var(--radius); box-shadow: var(--shadow);
+  display: grid; place-content: center; justify-items: center; gap: 14px; text-align: center;
 }
-.cover:hover img { transform: translate(-5px, -5px); box-shadow: var(--shadow-lg); }
-.cover figcaption {
-  font-family: var(--font-mono); font-size: .74rem; letter-spacing: .12em;
-  text-transform: uppercase; display: flex; gap: 10px; align-items: baseline;
+.coming h3 { color: var(--cream); font-size: clamp(1.9rem, 4.6vw, 3.2rem); }
+.coming p {
+  font-family: var(--font-mono); font-size: .72rem; letter-spacing: .18em;
+  text-transform: uppercase; color: rgba(255, 255, 255, .78);
 }
-.cover figcaption b { color: var(--violet); }
 .issue-note { display: flex; flex-direction: column; gap: 18px; align-items: flex-start; padding-bottom: 6px; }
 .issue-note p { font-size: 1rem; }
 .issue-note .price {
