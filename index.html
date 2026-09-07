@@ -3,361 +3,418 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Braincopia — HI / AI Magazine</title>
-<meta name="description" content="Braincopia is not a magazine. It is a parallel universe you enter every time you read. Seven worlds, five editorial laws, human intelligence amplified.">
-<meta name="theme-color" content="#5B0ECC">
-<meta property="og:site_name" content="Braincopia">
+<title>Braincopia — A Statement Surreal Magazine from Amman</title>
+<meta name="description" content="Braincopia is an independent surreal magazine made in Amman, Jordan. Seven worlds, five editorial laws, and a machine that amplifies human intelligence without ever being handed the last word.">
+<meta name="theme-color" content="#5b23e8">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Braincopia — HI / AI Magazine">
-<meta property="og:description" content="Braincopia is not a magazine. It is a parallel universe you enter every time you read. Seven worlds, five editorial laws, human intelligence amplified.">
+<meta property="og:title" content="Braincopia — A Statement Surreal Magazine from Amman">
+<meta property="og:description" content="Seven worlds, five editorial laws, one parallel universe. Independent, printed in Amman.">
+<meta property="og:image" content="assets/cover-vol-1.png">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="icon" href="assets/img/favicon.png" type="image/png">
+<link rel="icon" href="assets/favicon.png" type="image/png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/style.css">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<noscript><style>.reveal{opacity:1;transform:none}</style></noscript>
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
 
-<div class="topbar">
-  <div class="wrap">
-    <span>Vol. I &mdash; The Parallel Universe &mdash; out now</span>
-    <span class="topbar-alt">HI / AI &mdash; Your Voice. Your Edition.</span>
-    <a href="store.html">Read it &rarr;</a>
-  </div>
-</div>
-
-<header class="nav">
-  <div class="wrap nav-inner">
-    <a class="brand" href="index.html">
-      <img class="brand-mark" src="assets/img/logo.png" alt="">
-      <span class="brand-type">
-        <span class="brand-name">BRAINCOPIA</span>
-        <span class="brand-sub">HI / AI</span>
+<!-- ============================================================ HEADER -->
+<header class="site-header">
+  <div class="wrap-wide header-inner">
+    <a class="brand" href="#top">
+      <img class="brand-mark" src="assets/logo.png" alt="Braincopia">
+      <span>
+        <span class="brand-word">Braincopia</span>
+        <span class="brand-sub">Amman · HI / AI</span>
       </span>
     </a>
+
     <nav aria-label="Primary">
-      <ul class="nav-links">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="articles.html">Articles</a></li>
-        <li><a href="worlds.html">Worlds</a></li>
-        <li><a href="issues.html">Issues</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="store.html">Store</a></li>
+      <ul class="nav-list">
+        <li><a href="#collections">Issues</a></li>
+        <li><a href="#manifesto">Manifesto</a></li>
+        <li><a href="#shop">Shop</a></li>
+        <li><a href="#universe">The Universe</a></li>
+        <li><a href="#contact">Contact</a></li>
       </ul>
     </nav>
-    <div class="nav-cta">
-      <a class="btn btn-sm btn-yellow" href="funnel.html">Free trick</a>
-      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="navDrawer" aria-label="Open menu">
-        <span></span><span></span><span></span>
+
+    <div class="header-actions">
+      <a class="btn btn-primary btn-sm btn-shop" href="#shop">Shop Now</a>
+      <button class="btn btn-sm cart-btn" type="button" id="cartOpen" aria-label="Open cart">
+        Cart
+        <span class="cart-count" id="cartCount" hidden>0</span>
       </button>
+      <button class="btn btn-sm menu-toggle" type="button" id="menuToggle" aria-expanded="false" aria-controls="mobileNav">Menu</button>
     </div>
   </div>
-  <div class="nav-drawer" id="navDrawer">
+
+  <div class="mobile-nav" id="mobileNav">
     <ul>
-      <li><a href="index.html">Home</a></li>
-      <li><a href="articles.html">Articles</a></li>
-      <li><a href="worlds.html">The Seven Worlds</a></li>
-      <li><a href="issues.html">Issues</a></li>
-      <li><a href="about.html">About</a></li>
-      <li><a href="store.html">Store</a></li>
-      <li><a href="universe-guide.html">Universe Guide &rarr;</a></li>
-      <li><a href="funnel.html">Free trick &rarr;</a></li>
+      <li><a href="#collections">Issues</a></li>
+      <li><a href="#manifesto">Manifesto</a></li>
+      <li><a href="#shop">Shop</a></li>
+      <li><a href="#universe">The Universe</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li><a href="#shop">Shop Now →</a></li>
     </ul>
   </div>
 </header>
 
-<div class="ticker" aria-hidden="true">
-  <div class="ticker-track">
-    <span>Seven worlds</span><span>Five laws</span><span>Your voice, your edition</span><span>Human intelligence is the input</span><span>Artificial intelligence is the amplifier</span><span>Nothing is siloed here</span>
-    <span>Seven worlds</span><span>Five laws</span><span>Your voice, your edition</span><span>Human intelligence is the input</span><span>Artificial intelligence is the amplifier</span><span>Nothing is siloed here</span>
-  </div>
+<!-- =========================================================== MARQUEE -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track" id="marqueeTrack"></div>
 </div>
 
 <main id="main">
 
-<header class="vhero">
-  <video class="vhero-video" data-parallax="0.08"
-         autoplay muted loop playsinline preload="metadata"
-         poster="assets/img/structure-poster.jpg">
-    <source src="assets/video/braincopia-structure.mp4" type="video/mp4">
-    <source src="assets/video/braincopia-structure.webm" type="video/webm">
-  </video>
-  <div class="vhero-scrim" aria-hidden="true"></div>
-  <div class="wrap vhero-inner">
-    <p class="eyebrow eyebrow-light">Vol. I &middot; Human Intelligence / Artificial Intelligence</p>
-    <h1>Not a<br>Magazine.<br><span class="hl">A Parallel Universe.</span></h1>
-    <p class="lede">You enter it every time you read. Seven interconnected worlds, five editorial laws, and a machine that amplifies human intelligence without ever being handed the last word.</p>
-    <div class="hero-actions">
-      <a class="btn btn-yellow btn-arrow" href="issue-01.html">Read Vol. I</a>
-      <a class="btn btn-ghost" href="worlds.html">See the universe map</a>
+<!-- ============================================================== HERO -->
+<section class="hero" id="top">
+  <div class="wrap">
+    <p class="hero-chant" id="chant" aria-live="polite"></p>
+    <h1>Not a magazine.<br>A <span class="rotator" id="rotator">parallel</span> universe.</h1>
+    <p class="lede">Braincopia is an independent surreal magazine made in Amman. Seven interconnected worlds, five editorial laws, and a machine that amplifies human intelligence without ever being handed the last word.</p>
+    <div class="hero-cta">
+      <a class="btn btn-primary" href="#collections">See the Lineup</a>
+      <a class="btn btn-yellow" href="#shop">Get the Tricks — Free</a>
     </div>
-    <div class="hero-meta">
+    <div class="hero-stats">
       <div>Worlds<strong>7</strong></div>
       <div>Editorial laws<strong>5</strong></div>
-      <div>Reader editions<strong>&infin;</strong></div>
-    </div>
-  </div>
-</header>
-
-<section class="section-tight">
-  <div class="wrap">
-    <div class="section-head">
-      <h2>On the Shelf</h2>
-      <p><a href="issues.html" style="color:inherit">The issue map &rarr;</a></p>
-    </div>
-    <div class="rack"><div class="rack-row"><a class="rack-item" href="issue-01.html"><img src="assets/img/cover-vol1-a.jpg" alt="Braincopia Vol. I, The Parallel Universe: Big Head" width="768" height="1362" loading="lazy"><p class="rack-cap"><b>Vol. I</b>Big Head</p></a><a class="rack-item" href="issue-01.html"><img src="assets/img/cover-vol1-b.jpg" alt="Braincopia Vol. I, The Parallel Universe: Copies of the Mind" width="768" height="1362" loading="lazy"><p class="rack-cap"><b>Vol. I</b>Copies of the Mind</p></a><div class="rack-item"><div class="rack-slip"><b>THE BODY ELECTRIC</b><span>Vol. II &middot; Summer</span></div><p class="rack-cap"><b>Vol. II</b>Cover to come</p></div><div class="rack-item"><div class="rack-slip"><b>MACHINE DREAMS</b><span>Vol. III &middot; Autumn</span></div><p class="rack-cap"><b>Vol. III</b>Cover to come</p></div><div class="rack-item"><div class="rack-slip"><b>THE ATTENTION WAR</b><span>Vol. IV &middot; Winter</span></div><p class="rack-cap"><b>Vol. IV</b>Cover to come</p></div></div></div>
-  </div>
-</section>
-
-<section class="section">
-  <div class="wrap">
-    <div class="section-head">
-      <h2>The Cover Story</h2>
-      <p>Vol. I &mdash; The Parallel Universe</p>
-    </div>
-    <article class="feature">
-      <div class="cover cover-1"><span class="shape shape-a"></span><span class="shape shape-b"></span><span class="shape shape-d"></span><div class="cover-inner"><div class="cover-top"><span class="cover-kicker">Vol. I / Cover</span></div><p class="cover-title">THE SEVEN<br><em>WORLDS</em></p><p class="cover-foot">Universe map</p></div></div>
-      <div class="feature-body">
-        <div class="post-tags"><span class="pill pill-violet">Universe Map</span><span class="pill">11 min read</span></div>
-        <h3>The Seven Worlds</h3>
-        <p>Surreal fashion. Artificial and human intelligence. Visionary business. Culture and the zeitgeist. Neuroscience and the philosophy of mind. Speculative design. And at the crossroads where all six collide, the architecture of desire.</p>
-        <p>Seven territories, one law holding them together: nothing here is siloed.</p>
-        <p class="byline">Words by <b>The Editors</b> &middot; Spring 2025</p>
-        <div><a class="btn btn-ink btn-arrow" href="article-seven-worlds.html">Read the feature</a></div>
-      </div>
-    </article>
-  </div>
-</section>
-
-<section class="section-tight">
-  <div class="wrap">
-    <div class="section-head">
-      <h2>Latest</h2>
-      <p><a href="articles.html" style="color:inherit">All articles &rarr;</a></p>
-    </div>
-    <div class="grid grid-3"><a class="card card-hover post" data-tags="mind culture desire" href="article-attention-interiority.html">
-  <div class="cover cover-5"><span class="shape shape-a"></span><span class="shape shape-b"></span><span class="shape shape-c"></span><div class="cover-inner"><div class="cover-top"><span class="cover-kicker">World V / Mind</span></div><p class="cover-title">COLONISED<br><em>INTERIORITY</em></p><p class="cover-foot">Attention &amp; the self</p></div></div>
-  <div class="post-body">
-    <div class="post-tags"><span class="pill pill-violet">World V &middot; Mind</span></div>
-    <h3>The Algorithm Does Not Steal Your Time</h3>
-    <p>It quietly re-architects your boredom. What the attention economy takes is not your hours, it is the self that used to wander.</p>
-    <div class="post-foot"><span>Spring 2025</span><span>9 min read</span></div>
-  </div>
-</a>
-<a class="card card-hover post" data-tags="fashion mind ai" href="article-body-electric.html">
-  <div class="cover cover-2"><span class="shape shape-a"></span><span class="shape shape-b"></span><span class="shape shape-d"></span><div class="cover-inner"><div class="cover-top"><span class="cover-kicker">World I / Vol. II preview</span></div><p class="cover-title">THE BODY<br><em>ELECTRIC</em></p><p class="cover-foot">Measured vs lived</p></div></div>
-  <div class="post-body">
-    <div class="post-tags"><span class="pill pill-green">World I &middot; Fashion</span></div>
-    <h3>The Heart That Beats on a Graph</h3>
-    <p>The smartwatch does not track your heart. It replaces your heartbeat's meaning. A first report from Vol. II.</p>
-    <div class="post-foot"><span>Spring 2025</span><span>10 min read</span></div>
-  </div>
-</a>
-<a class="card card-hover post" data-tags="futures universe" href="article-discomfort-threshold.html">
-  <div class="cover cover-4"><span class="shape shape-a"></span><span class="shape shape-b"></span><span class="shape shape-c"></span><div class="cover-inner"><div class="cover-top"><span class="cover-kicker">The Surreal Mandate</span></div><p class="cover-title">DISCOMFORT<br><em>THRESHOLD</em></p><p class="cover-foot">Visual rules 01-04</p></div></div>
-  <div class="post-body">
-    <div class="post-tags"><span class="pill pill-yellow">World VI &middot; Futures</span></div>
-    <h3>The Discomfort Threshold</h3>
-    <p>Every Braincopia image must provoke a micro-moment of cognitive dissonance before it resolves into beauty. Four rules that make that repeatable.</p>
-    <div class="post-foot"><span>Spring 2025</span><span>8 min read</span></div>
-  </div>
-</a></div>
-  </div>
-</section>
-
-
-<section class="section-tight">
-  <div class="wrap">
-    <div class="section-head">
-      <h2>The Seven Worlds</h2>
-      <p><a href="worlds.html" style="color:inherit">Full universe map &rarr;</a></p>
-    </div>
-    <p class="lede" style="max-width:62ch;margin-bottom:32px">Braincopia is organised across seven interconnected worlds. Each issue travels through several of them. Every article belongs to at least one.</p>
-    <div class="grid grid-4">
-      <a class="card card-hover" href="worlds.html#world-fashion" style="padding:24px;text-decoration:none;color:inherit">
-  <p class="eyebrow" style="color:var(--green-ink)">World I</p>
-  <h3 style="margin-bottom:10px;font-size:1.15rem">Surreal Fashion &amp; Extreme Design</h3>
-  <p style="font-size:.84rem;color:var(--muted);line-height:1.6">Where garments become manifestos.</p>
-</a>
-<a class="card card-hover" href="worlds.html#world-ai" style="padding:24px;text-decoration:none;color:inherit">
-  <p class="eyebrow" style="color:var(--green-ink)">World II</p>
-  <h3 style="margin-bottom:10px;font-size:1.15rem">Artificial &amp; Human Intelligence</h3>
-  <p style="font-size:.84rem;color:var(--muted);line-height:1.6">The frontier territory where neural networks meet neurons.</p>
-</a>
-<a class="card card-hover" href="worlds.html#world-business" style="padding:24px;text-decoration:none;color:inherit">
-  <p class="eyebrow" style="color:var(--yellow-ink)">World III</p>
-  <h3 style="margin-bottom:10px;font-size:1.15rem">Visionary Business &amp; Strategy</h3>
-  <p style="font-size:.84rem;color:var(--muted);line-height:1.6">Business intelligence for people who find conventional commerce intellectually unbearable.</p>
-</a>
-<a class="card card-hover" href="worlds.html#world-culture" style="padding:24px;text-decoration:none;color:inherit">
-  <p class="eyebrow" style="color:var(--green-ink)">World IV</p>
-  <h3 style="margin-bottom:10px;font-size:1.15rem">Culture, Media &amp; the Zeitgeist</h3>
-  <p style="font-size:.84rem;color:var(--muted);line-height:1.6">What the culture is whispering before it starts screaming.</p>
-</a>
-<a class="card card-hover" href="worlds.html#world-mind" style="padding:24px;text-decoration:none;color:inherit">
-  <p class="eyebrow" style="color:var(--violet)">World V</p>
-  <h3 style="margin-bottom:10px;font-size:1.15rem">Neuroscience &amp; Philosophy of Mind</h3>
-  <p style="font-size:.84rem;color:var(--muted);line-height:1.6">The oldest questions with the newest tools.</p>
-</a>
-<a class="card card-hover" href="worlds.html#world-futures" style="padding:24px;text-decoration:none;color:inherit">
-  <p class="eyebrow" style="color:var(--yellow-ink)">World VI</p>
-  <h3 style="margin-bottom:10px;font-size:1.15rem">Speculative Design &amp; Visual Futures</h3>
-  <p style="font-size:.84rem;color:var(--muted);line-height:1.6">Design fiction for civilisations not yet built.</p>
-</a>
-<a class="card card-hover" href="worlds.html#world-desire" style="padding:24px;text-decoration:none;color:inherit">
-  <p class="eyebrow" style="color:var(--violet)">World VII</p>
-  <h3 style="margin-bottom:10px;font-size:1.15rem">Marketing, Persuasion &amp; the Architecture of Desire</h3>
-  <p style="font-size:.84rem;color:var(--muted);line-height:1.6">The dark arts made visible.</p>
-</a>
-
+      <div>Issues<strong>4</strong></div>
+      <div>Reader editions<strong>∞</strong></div>
     </div>
   </div>
 </section>
 
-
-<section class="section" id="laws">
-  <div class="wrap">
-    <div class="section-head"><h2>The Five Laws</h2><p>Editorial doctrine, Volume I</p></div>
-    <div class="law-list">
-      <div class="law-row">
-  <div class="law-roman">I</div>
-  <div class="law-content"><p class="law-title">The Intelligence Principle</p><p class="law-desc">Human intelligence is the input. Artificial intelligence is the amplifier. Braincopia is the output.</p></div>
-</div>
-<div class="law-row">
-  <div class="law-roman">II</div>
-  <div class="law-content"><p class="law-title">The Surreal Mandate</p><p class="law-desc">Reality is the starting point, never the destination. Every page distorts the ordinary into something worth seeing.</p></div>
-</div>
-<div class="law-row">
-  <div class="law-roman">III</div>
-  <div class="law-content"><p class="law-title">The Cross-Domain Law</p><p class="law-desc">Fashion informs business. Neuroscience informs design. AI informs culture. <strong>Nothing is siloed here.</strong></p></div>
-</div>
-<div class="law-row">
-  <div class="law-roman">IV</div>
-  <div class="law-content"><p class="law-title">The Reader Sovereignty Rule</p><p class="law-desc">Your Voice. Your Edition. The reader is not an audience, they are a <strong>co-author of meaning</strong>.</p></div>
-</div>
-<div class="law-row">
-  <div class="law-roman">V</div>
-  <div class="law-content"><p class="law-title">The Fearlessness Clause</p><p class="law-desc">We publish what the mind needs to encounter, not what it expects to find. <strong>Comfort is not our business.</strong></p></div>
-</div>
-
+<!-- ======================================================= COLLECTIONS -->
+<section class="section" id="collections">
+  <div class="wrap-wide">
+    <div class="section-head lineup-head reveal">
+      <p class="eyebrow">The Lineup</p>
+      <h2>Every issue is a world unto itself.</h2>
+      <p class="lede">Four editions a year. Every cover is a portal, every article rewires something, and no two issues travel the same worlds.</p>
     </div>
-  </div>
-</section>
 
-
-<section class="panel panel-ink section on-dark">
-  <div class="wrap">
-    <div class="signup">
-      <div>
-        <p class="eyebrow eyebrow-light">The Intelligence Principle</p>
-        <h2>Human In.<br>Machine Amplified.<br><span style="color:var(--yellow)">Human Out.</span></h2>
-        <p class="lede" style="color:#b4afa7">Our editors are human. Our provocations are machine-assisted. Our conclusions are always yours. Every article passes through three stages, and the machine never gets the last one.</p>
-        <div class="flex-actions mt-32">
-          <a class="btn btn-yellow btn-arrow" href="article-machine-assisted.html">See the workflow</a>
-          <a class="btn btn-ghost" style="color:#fff" href="universe-guide.html">Read the Universe Guide</a>
+    <div class="grid grid-3 reveal-group">
+      <article class="card card-hover collection reveal" style="--card-color:#5b23e8">
+        <span class="sticker sticker-limited">Limited Edition</span>
+        <div class="collection-media">
+          <img src="assets/cover-vol-1.png" alt="Braincopia Vol. I, cover version A: Big Head" width="560" height="993">
         </div>
-      </div>
-      <div>
-        <div class="stat-strip" style="border:1px solid #fff">
-          <div class="stat" style="border-right:1px solid #fff"><b>01</b><span>Human prompt</span></div>
-          <div class="stat" style="border-right:1px solid #fff"><b>02</b><span>Amplification</span></div>
-          <div class="stat"><b>03</b><span>Refinement</span></div>
+        <div class="collection-body">
+          <h3>The Parallel Universe</h3>
+          <p>The inaugural edition. Seven worlds introduced, the surreal visual grammar established, and the question the whole magazine runs on: what does intelligence look like when it dresses up?</p>
+          <div class="collection-meta">
+            <span>Vol. I · Spring</span>
+            <span class="collection-price">Out now</span>
+          </div>
         </div>
-        <p class="form-note" style="opacity:.6">Human intelligence is the input. Artificial intelligence is the amplifier. Braincopia is the output.</p>
-      </div>
+      </article>
+
+      <article class="card card-hover collection reveal" style="--card-color:#0e93a4">
+        <span class="sticker sticker-soon">Coming Soon</span>
+        <div class="collection-media">
+          <p class="collection-empty">The<br>Body<br>Electric</p>
+        </div>
+        <div class="collection-body">
+          <h3>The Body Electric</h3>
+          <p>Fashion, neuroscience and technology collide around the human body as interface. Wearable AI, biometric couture, the aesthetics of the extended self.</p>
+          <div class="collection-meta">
+            <span>Vol. II · Summer</span>
+            <span class="collection-price">In production</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="card card-hover collection reveal" style="--card-color:#f3701c">
+        <span class="sticker sticker-soon">Coming Soon</span>
+        <div class="collection-media">
+          <p class="collection-empty">Machine<br>Dreams</p>
+        </div>
+        <div class="collection-body">
+          <h3>Machine Dreams</h3>
+          <p>The aesthetics of artificial imagination. What does an AI dream of, and how is machine-generated imagery reshaping visual culture, advertising and the idea of authorship?</p>
+          <div class="collection-meta">
+            <span>Vol. III · Autumn</span>
+            <span class="collection-price">Commissioning</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="card card-hover collection reveal" style="--card-color:#8a1414">
+        <span class="sticker sticker-soon">Coming Soon</span>
+        <div class="collection-media">
+          <p class="collection-empty">The<br>Attention<br>War</p>
+        </div>
+        <div class="collection-body">
+          <h3>The Attention War</h3>
+          <p>Every second of focus is a battlefield. The architecture of distraction, the science of captivation, and the businesses built on the scarcity of human consciousness.</p>
+          <div class="collection-meta">
+            <span>Vol. IV · Winter</span>
+            <span class="collection-price">Commissioning</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="card card-hover collection reveal" style="--card-color:#2b5d1c">
+        <div class="collection-media">
+          <img src="assets/cover-vol-1-alt.png" alt="Braincopia Vol. I, cover version B: Copies of the Mind" width="560" height="993">
+        </div>
+        <div class="collection-body">
+          <h3>Vol. I — Second Cover</h3>
+          <p>One issue, two newsstand versions. Copies of the Mind runs the same ten features behind a different front, printed in the same run and sold at the same price.</p>
+          <div class="collection-meta">
+            <span>Vol. I · Version B</span>
+            <span class="collection-price">Out now</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="card card-hover collection reveal" style="--card-color:#0e93a4">
+        <div class="collection-media">
+          <p class="collection-empty">Wear<br>Your…</p>
+        </div>
+        <div class="collection-body">
+          <h3>Wear Your Resistance</h3>
+          <p>An independent Jordanian label built around one idea: what you wear can carry your voice. No noise, no overthinking — just honest pieces that feel good and mean more.</p>
+          <div class="collection-meta">
+            <span>A creative division</span>
+            <a class="collection-price" href="https://wearyour.store/" target="_blank" rel="noopener">Visit shop ↗</a>
+          </div>
+        </div>
+      </article>
     </div>
   </div>
 </section>
 
-
-<section class="panel panel-warm section-tight">
-  <div class="wrap center">
-    <p class="eyebrow">The Method</p>
-    <h2 style="margin-bottom:16px">29 Tricks for Sounding<br>Like Yourself Again. Free.</h2>
-    <p class="lede" style="max-width:52ch;margin:0 auto 26px">The magazine argues the case. The method is how you act on it. Voice, Canva, Affinity and captions, each written up with a before, an after, and the reason it works.</p>
-    <div class="flex-actions" style="justify-content:center">
-      <a class="btn btn-green btn-arrow" href="funnel.html">Get all 29 free</a>
-      <a class="btn btn-ghost" href="store.html">See the store</a>
-    </div>
-  </div>
-</section>
-
-
-<section class="panel panel-yellow section">
+<!-- ========================================================== MANIFESTO -->
+<section class="manifesto section" id="manifesto">
   <div class="wrap">
-    <div class="signup">
-      <div>
-        <p class="eyebrow">Your Voice. Your Edition.</p>
-        <h2>The Dispatch</h2>
-        <p class="lede">One provocation from one of the seven worlds, every other Thursday. Written by a human, amplified by a machine, refined by a human again. No round-ups, no digests, nothing left as the model produced it.</p>
+    <div class="section-head reveal">
+      <p class="eyebrow">Editorial Doctrine</p>
+      <h2>The Five Laws</h2>
+      <p class="lede" style="color:rgba(250,246,234,.82)">What the magazine is arguing, in five lines. Everything we publish answers to these.</p>
+    </div>
+
+    <div class="reveal">
+      <div class="law">
+        <span class="roman">I</span>
+        <div><h4>The Intelligence Principle</h4><p>Human intelligence is the input. Artificial intelligence is the amplifier. Braincopia is the output.</p></div>
       </div>
-      <div>
-        <form class="form-row" data-signup>
-          <input type="email" name="email" placeholder="your@email.com" aria-label="Email address" required>
-          <button class="btn btn-ink" type="submit">Subscribe</button>
-        </form>
-        <p class="form-status" role="status"></p>
-        <p class="form-note">Free. Unsubscribe in one click. We never sell the list.</p>
+      <div class="law">
+        <span class="roman">II</span>
+        <div><h4>The Surreal Mandate</h4><p>Reality is the starting point, never the destination. Every page distorts the ordinary into something worth seeing.</p></div>
+      </div>
+      <div class="law">
+        <span class="roman">III</span>
+        <div><h4>The Cross-Domain Law</h4><p>Fashion informs business. Neuroscience informs design. AI informs culture. Nothing is siloed here.</p></div>
+      </div>
+      <div class="law">
+        <span class="roman">IV</span>
+        <div><h4>The Reader Sovereignty Rule</h4><p>Your voice, your edition. The reader is not an audience, they are a co-author of meaning.</p></div>
+      </div>
+      <div class="law">
+        <span class="roman">V</span>
+        <div><h4>The Fearlessness Clause</h4><p>We publish what the mind needs to encounter, not what it expects to find. Comfort is not our business.</p></div>
       </div>
     </div>
   </div>
 </section>
 
+<!-- =========================================================== UNIVERSE -->
+<section class="section" id="universe">
+  <div class="wrap-wide">
+    <div class="section-head reveal">
+      <p class="eyebrow" style="--card-color:#0e93a4">The Universe</p>
+      <h2>Seven Worlds</h2>
+      <p class="lede">Braincopia is organised across seven interconnected worlds. Each issue travels through several. Every article belongs to at least one.</p>
+    </div>
+
+    <div class="grid grid-3 reveal-group">
+      <div class="card card-hover world-card reveal" style="--card-color:#2b5d1c"><p class="num">World I</p><h3>Surreal Fashion &amp; Extreme Design</h3><p>Where garments become manifestos. Fashion as philosophy, as protest, as hallucination.</p></div>
+      <div class="card card-hover world-card reveal" style="--card-color:#0e93a4"><p class="num">World II</p><h3>Artificial &amp; Human Intelligence</h3><p>The frontier where neural networks meet neurons. Reports from inside the algorithm.</p></div>
+      <div class="card card-hover world-card reveal" style="--card-color:#f3701c"><p class="num">World III</p><h3>Visionary Business &amp; Strategy</h3><p>For people who find conventional commerce intellectually unbearable. The economy as a design problem.</p></div>
+      <div class="card card-hover world-card reveal" style="--card-color:#5b23e8"><p class="num">World IV</p><h3>Culture, Media &amp; the Zeitgeist</h3><p>What the culture is whispering before it starts screaming.</p></div>
+      <div class="card card-hover world-card reveal" style="--card-color:#8a1414"><p class="num">World V</p><h3>Neuroscience &amp; Philosophy of Mind</h3><p>The oldest questions with the newest tools. Consciousness, identity, perception, free will.</p></div>
+      <div class="card card-hover world-card reveal" style="--card-color:#2b5d1c"><p class="num">World VI</p><h3>Speculative Design &amp; Visual Futures</h3><p>Design fiction for civilisations not yet built. Concept architecture, future interfaces.</p></div>
+      <div class="card card-hover world-card reveal" style="--card-color:#5b23e8"><p class="num">World VII — The Crossroads</p><h3>Marketing, Persuasion &amp; the Architecture of Desire</h3><p>The dark arts made visible. How desire is manufactured and attention harvested. The collision point of all six worlds above.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- =============================================================== SHOP -->
+<section class="section" id="shop" style="background:var(--cream);border-block:var(--border-w)">
+  <div class="wrap-wide">
+    <div class="section-head reveal">
+      <p class="eyebrow" style="--card-color:#f3701c">The Shop</p>
+      <h2>Three Things</h2>
+      <p class="lede">The method is free. The issue and the book are one-time purchases — nothing renews, nothing expires.</p>
+    </div>
+
+    <div class="grid grid-3 reveal-group" id="productGrid">
+      <div class="card product reveal" style="--card-color:#2b5d1c">
+        <span class="tag">Method</span>
+        <h3>The 29 Tricks</h3>
+        <p>Every trick, all four disciplines: voice, Canva, Affinity, captions. Each written up with a before, an after, and the reason it works.</p>
+        <p class="product-price">Free</p>
+        <button class="btn btn-green btn-block" type="button" data-add="tricks">Add to cart</button>
+      </div>
+
+      <div class="card product reveal" style="--card-color:#5b23e8">
+        <span class="tag">Magazine</span>
+        <h3>Vol. I — The Parallel Universe</h3>
+        <p>The full inaugural edition, both newsstand covers, ten features across the seven worlds. Print-ready PDF.</p>
+        <p class="product-price">$12</p>
+        <button class="btn btn-primary btn-block" type="button" data-add="vol1">Add to cart</button>
+      </div>
+
+      <div class="card product reveal" style="--card-color:#8a1414">
+        <span class="tag">Book</span>
+        <h3>Tripple CH</h3>
+        <p>The book the method came out of. Sold on its own, not bundled with anything else.</p>
+        <p class="product-price">$12</p>
+        <button class="btn btn-ink btn-block" type="button" data-add="book">Add to cart</button>
+      </div>
+    </div>
+
+    <div class="card reveal" style="--card-color:#0e93a4;margin-top:34px;padding:clamp(26px,4vw,44px);display:grid;grid-template-columns:auto 1fr;gap:clamp(20px,3vw,36px);align-items:center">
+      <p style="font-family:var(--font-display);font-size:clamp(2.6rem,6vw,4.2rem);line-height:.85;color:var(--teal)">30%</p>
+      <div>
+        <h3 style="color:var(--teal);margin-bottom:10px">Off anything at Wear Your Resistance</h3>
+        <p style="font-size:.95rem">Buy the issue or the book and your discount code arrives with the download. One code, no expiry.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ CONTACT -->
+<section class="section" id="contact">
+  <div class="wrap">
+    <div class="grid grid-2" style="align-items:start;gap:clamp(28px,5vw,60px)">
+      <div class="reveal">
+        <p class="eyebrow" style="--card-color:#8a1414">Contact</p>
+        <h2>Say Something</h2>
+        <p class="lede" style="margin-top:14px">Pitches, stockists, press, or a straight disagreement. All seven worlds are open and we answer within two weeks, either way.</p>
+        <p style="margin-top:18px;font-size:.95rem">Braincopia is made in Amman, Jordan.</p>
+      </div>
+
+      <form class="card reveal" id="contactForm" style="--card-color:#8a1414;padding:clamp(24px,3vw,34px)" novalidate>
+        <div class="form-error" id="contactError" role="alert"></div>
+        <div class="field">
+          <label for="cName">Name</label>
+          <input type="text" id="cName" name="name" required autocomplete="name">
+        </div>
+        <div class="field">
+          <label for="cEmail">Email</label>
+          <input type="email" id="cEmail" name="email" required autocomplete="email">
+        </div>
+        <div class="field">
+          <label for="cMessage">Message</label>
+          <textarea id="cMessage" name="message" required></textarea>
+        </div>
+        <button class="btn btn-primary btn-block" type="submit" id="contactSubmit">Send</button>
+        <p class="mono" id="contactDone" style="margin-top:14px;color:var(--green);display:none">Sent. We answer within two weeks.</p>
+      </form>
+    </div>
+  </div>
+</section>
 
 </main>
 
-<footer class="footer">
-  <div class="wrap">
-    <div class="footer-grid">
+<!-- ============================================================= FOOTER -->
+<footer class="site-footer">
+  <div class="wrap-wide">
+    <div class="footer-top">
       <div>
-        <a class="brand" href="index.html">
-          <img class="brand-mark" src="assets/img/logo.png" alt="">
-          <span class="brand-type">
-            <span class="brand-name">BRAINCOPIA</span>
-            <span class="brand-sub">HI / AI</span>
-          </span>
+        <a class="brand" href="#top">
+          <img class="brand-mark" src="assets/logo.png" alt="">
+          <span><span class="brand-word">Braincopia</span><span class="brand-sub">Amman · HI / AI</span></span>
         </a>
-        <p class="footer-blurb">Braincopia is not a magazine. It is a parallel universe you enter every time you read.</p>
-        <p class="footer-blurb" style="color:#77726b;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;font-family:var(--mono)">Fashion &middot; Design &middot; Business &middot; Culture &middot; Mind &middot; Media</p>
+        <p class="footer-slogan">AI is not creative.<br>You are.</p>
+        <p class="eyebrow" style="--card-color:var(--yellow)">Why We Make</p>
+        <p class="footer-lede">Your clothes can say something. So can a page.</p>
+        <p class="footer-body">Braincopia is an independent magazine built in Amman for people who refuse to choose between intellect and sensory shock. We don't gatekeep perspectives. We publish them.</p>
       </div>
+
       <div>
-        <h5>Read</h5>
+        <h4>Shop</h4>
         <ul>
-          <li><a href="articles.html">All articles</a></li>
-          <li><a href="worlds.html">The seven worlds</a></li>
-          <li><a href="issues.html">Issue map</a></li>
-          <li><a href="issue-01.html">Vol. I contents</a></li>
+          <li><a href="#shop">The 29 Tricks</a></li>
+          <li><a href="#shop">Vol. I — PDF</a></li>
+          <li><a href="#shop">Tripple CH</a></li>
+          <li><a href="https://wearyour.store/" target="_blank" rel="noopener">Wear Your Resistance ↗</a></li>
         </ul>
       </div>
+
       <div>
-        <h5>Get</h5>
+        <h4>Company</h4>
         <ul>
-          <li><a href="store.html">The 29 tricks</a></li>
-          <li><a href="store.html#book">Tripple CH</a></li>
-          <li><a href="store.html#issue">Vol. I &mdash; PDF</a></li>
-          <li><a href="funnel.html">One free trick</a></li>
-          <li><a href="https://wearyour.store/" target="_blank" rel="noopener">wearyour.store &nearr;</a></li>
+          <li><a href="#manifesto">Manifesto</a></li>
+          <li><a href="#universe">The Universe</a></li>
+          <li><a href="#collections">Issues</a></li>
+          <li><a href="#contact">Contact</a></li>
         </ul>
       </div>
+
       <div>
-        <h5>Doctrine</h5>
+        <h4>Follow</h4>
         <ul>
-          <li><a href="about.html">The manifesto</a></li>
-          <li><a href="about.html#laws">The Five Laws</a></li>
-          <li><a href="universe-guide.html">Universe Guide</a></li>
-          <li><a href="about.html#pitch">Pitch us</a></li>
+          <li><a href="https://instagram.com/braincopia" target="_blank" rel="noopener">Instagram ↗</a></li>
         </ul>
       </div>
     </div>
+
     <div class="footer-bar">
-      <span>&copy; <span data-year>2026</span> Braincopia &middot; braincopia.com</span>
-      <span>Your Voice. Your Edition.</span>
+      <span>© <span id="year">2026</span> Braincopia. Printed in Amman.</span>
+      <span class="footer-credit">A <img src="assets/logo.png" alt="Braincopia"> company</span>
     </div>
   </div>
 </footer>
 
-<script src="assets/js/main.js"></script>
+<!-- ======================================================== CART DRAWER -->
+<div class="drawer-backdrop" id="drawerBackdrop"></div>
+<aside class="drawer" id="drawer" aria-hidden="true" aria-label="Cart">
+  <div class="drawer-head">
+    <h2 id="drawerTitle">Your Cart</h2>
+    <button class="btn btn-sm" type="button" id="drawerClose" aria-label="Close cart">Close</button>
+  </div>
+
+  <div class="drawer-body" id="drawerBody">
+    <div id="cartView">
+      <div id="cartLines"></div>
+      <p class="cart-empty" id="cartEmpty">Nothing in the cart yet.</p>
+    </div>
+
+    <form id="checkoutForm" style="display:none" novalidate>
+      <div class="order-summary">
+        <h4>Order summary</h4>
+        <div id="orderSummary"></div>
+      </div>
+      <div class="form-error" id="checkoutError" role="alert"></div>
+      <div class="field"><label for="fName">Full name</label><input type="text" id="fName" name="name" required autocomplete="name"></div>
+      <div class="field"><label for="fEmail">Email</label><input type="email" id="fEmail" name="email" required autocomplete="email"></div>
+      <div class="field"><label for="fAddress">Delivery address</label><textarea id="fAddress" name="address" required autocomplete="street-address"></textarea></div>
+      <button class="btn btn-primary btn-block" type="submit" id="placeOrder">Place order</button>
+      <button class="btn btn-block btn-sm" type="button" id="backToCart" style="margin-top:10px">Back to cart</button>
+    </form>
+
+    <div class="confirm" id="confirmView" style="display:none">
+      <p class="big">Order in.</p>
+      <p>We've got it. You'll hear from us with delivery details shortly.</p>
+      <button class="btn btn-yellow" type="button" id="confirmClose" style="margin-top:20px">Keep looking</button>
+    </div>
+  </div>
+
+  <div class="drawer-foot" id="drawerFoot">
+    <div class="cart-total"><span>Total</span><span id="cartTotal">$0</span></div>
+    <button class="btn btn-primary btn-block" type="button" id="goCheckout" disabled>Checkout</button>
+  </div>
+</aside>
+
+<script src="script.js"></script>
 </body>
 </html>
