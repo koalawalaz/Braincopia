@@ -26,11 +26,11 @@
 
   var CHANTS = [
     'AI is not creative. You are.',
-    'Nothing is siloed here.',
+    'For outsiders and beautiful misfits.',
     'Your voice. Your edition.',
+    'Unapologetic. Visually obsessive.',
     'Comfort is not our business.',
-    'Reality is only the starting point.',
-    'We do not gatekeep perspectives.'
+    'Reality is only the starting point.'
   ];
 
   var ROTATING_WORDS = ['parallel', 'surreal', 'restless', 'wide-awake', 'unfiled'];
