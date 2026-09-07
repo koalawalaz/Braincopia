@@ -369,6 +369,9 @@ p { max-width: 62ch; }
 }
 
 /* ------------------------------------------------------------ CART DRAWER */
+.checkout-note { margin: 4px 0 14px; color: rgba(28,28,28,.62); font-size: .68rem; }
+
+
 .drawer-backdrop {
   position: fixed; inset: 0; z-index: 1000; background: rgba(28,28,28,.5);
   opacity: 0; pointer-events: none; transition: opacity .22s ease;

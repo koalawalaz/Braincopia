@@ -134,9 +134,13 @@ someone they are paying once what they are paying every month.
 which is fine for a one-off but cannot bill anyone monthly. A real
 subscription needs a processor that does recurring charges.
 
-**The order summary is built with `textContent`, node by node** — never assembled
-as an HTML string. It echoes back the name and address the customer typed, so
-string concatenation there would be an injection vector.
+**The order summary is built with `textContent`, node by node**, never assembled
+as an HTML string. It sits beside fields the customer typed into, so string
+concatenation there would be an injection vector.
+
+**Nothing ships.** Both products are digital, so the checkout asks for a name
+and an email and nothing else. There is no address field to fill in or to
+echo back.
 
 ### The form endpoint
 

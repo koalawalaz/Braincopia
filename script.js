@@ -583,7 +583,7 @@
       var errorBox = $('#checkoutError');
       var button = $('#placeOrder');
       if (!checkoutForm.checkValidity()) {
-        errorBox.textContent = 'Please fill in your name, email and address.';
+        errorBox.textContent = 'Please fill in your name and email.';
         errorBox.classList.add('show');
         return;
       }
