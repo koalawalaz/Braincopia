@@ -1,5 +1,5 @@
 /* ==========================================================================
-   BRAINCOPIA — site behaviour. No dependencies, no build step.
+   BRAINCOPIA. Site behaviour, No dependencies, no build step.
    ========================================================================== */
 (function () {
   'use strict';
@@ -16,14 +16,13 @@
 
   var CATALOGUE = {
     tricks: { name: 'The 29 Tricks',                 price: 0,  note: 'Digital · instant' },
-    vol1:   { name: 'Vol. I — The Parallel Universe', price: 12, note: 'PDF · both covers' },
+    vol1:   { name: 'Vol. I: The Parallel Universe', price: 12, note: 'PDF · both covers' },
     book:   { name: 'Tripple CH',                     price: 12, note: 'Digital · instant' }
   };
 
   var COLLECTIONS = [
-    'Vol. I — The Parallel Universe', 'Two covers, one price',
-    'Tripple CH', 'The 29 Tricks', 'Wear Your Resistance',
-    'Printed in Amman'
+    'Vol. I: The Parallel Universe', 'Two covers, one price',
+    'Tripple CH', 'The 29 Tricks', 'Wear Your Resistance'
   ];
 
   var CHANTS = [

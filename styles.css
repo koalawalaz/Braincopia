@@ -1,5 +1,5 @@
 /* ==========================================================================
-   BRAINCOPIA — Amman. A statement surreal magazine.
+   BRAINCOPIA. Amman. A statement surreal magazine.
    Sticker aesthetic: thick ink borders, hard offset shadows, no blur,
    rounded-square corners, per-card colour theming.
    ========================================================================== */
@@ -140,7 +140,7 @@ p { max-width: 62ch; }
 .header-inner { display: flex; align-items: center; gap: 18px; height: var(--header-h); }
 .brand { display: flex; align-items: center; gap: 12px; text-decoration: none; margin-right: auto; }
 /* The mark is already a violet disc with its own edge. Nothing is drawn
-   around it — no border, no tile, no shadow. */
+   around it: no border, no tile, no shadow. */
 .brand-mark { width: 46px; height: 46px; object-fit: contain; }
 .brand-word { display: block; font-family: var(--font-display); font-size: 1.6rem; letter-spacing: .04em; text-transform: uppercase; line-height: 1; }
 .brand-sub { display: block; margin-top: 4px; font-family: var(--font-mono); font-size: .58rem; letter-spacing: .2em; text-transform: uppercase; opacity: .62; }
@@ -362,7 +362,6 @@ p { max-width: 62ch; }
 .footer-top { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: 36px; padding: clamp(44px, 6vw, 76px) 0 44px; }
 .site-footer .brand-word { color: var(--paper); }
 .footer-slogan { font-family: var(--font-display); font-size: clamp(1.5rem, 2.6vw, 2.2rem); text-transform: uppercase; line-height: 1; margin: 20px 0 16px; color: var(--yellow); }
-.footer-lede { font-weight: 700; margin-bottom: 10px; }
 .footer-body { font-size: .92rem; color: rgba(247,244,238,.72); }
 .site-footer h4 { font-family: var(--font-mono); font-size: .7rem; letter-spacing: .18em; text-transform: uppercase; color: var(--pink); margin-bottom: 14px; }
 .site-footer ul { list-style: none; }
