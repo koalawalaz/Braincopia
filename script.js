@@ -15,14 +15,13 @@
   var FORMSPREE_ENDPOINT = 'https://formspree.io/f/mvkowogd';
 
   var CATALOGUE = {
-    tricks: { name: 'The 29 Tricks',                 price: 0,  note: 'Digital · instant' },
-    vol1:   { name: 'Vol. I: The Parallel Universe', price: 12, note: 'PDF · both covers' },
-    book:   { name: 'Tripple CH',                     price: 12, note: 'Digital · instant' }
+    vol1: { name: 'Vol. I: The Parallel Universe', price: 20, note: 'PDF · both covers' },
+    book: { name: 'Tripple CH',                    price: 12, note: 'Digital · instant' }
   };
 
   var COLLECTIONS = [
     'Vol. I: The Parallel Universe', 'Two covers, one price',
-    'Tripple CH', 'The 29 Tricks', 'Wear Your Resistance'
+    'Tripple CH', 'Wear Your'
   ];
 
   var CHANTS = [
@@ -39,7 +38,7 @@
   var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var $ = function (sel, root) { return (root || document).querySelector(sel); };
   var $$ = function (sel, root) { return Array.prototype.slice.call((root || document).querySelectorAll(sel)); };
-  var money = function (n) { return n === 0 ? 'Free' : '$' + n; };
+  var money = function (n) { return '$' + n; };   // nothing is free any more, and an empty cart reads $0
 
   /* ------------------------------------------------------------ MARQUEE */
   (function marquee() {
@@ -112,6 +111,7 @@
   /* ================================================================ CART */
   var STORE_KEY = 'braincopia.cart.v1';
   var cart = load();
+  save();   // a catalogue change leaves dead ids in storage; load() drops them, this writes the cleaned cart back
 
   function load() {
     try {

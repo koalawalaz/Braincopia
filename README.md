@@ -28,6 +28,7 @@ rounded-square corners, cards that lift and tilt on hover.
 | `--green` | `#24B574` | signal |
 | `--yellow` | `#FFD600` | signal |
 | `--pink` | `#FF90E8` | accent, ink grounds only |
+| `--orange` | `#FF751F` | Wear Your's orange, not Braincopia's |
 | `--green-ink` | `#14724A` | green, dark enough to read as text |
 | `--yellow-ink` | `#7A6100` | yellow, ditto |
 | `--error` / `--error-bg` | `#B3261E` / `#FCECEA` | semantic, outside the brand set |

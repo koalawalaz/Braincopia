@@ -15,6 +15,7 @@
   --green:      #24B574;
   --yellow:     #FFD600;
   --pink:       #FF90E8;
+  --orange:     #FF751F;   /* Wear Your's own orange, sampled from their mark */
   --green-ink:  #14724A;
   --yellow-ink: #7A6100;
 
@@ -108,7 +109,6 @@ p { max-width: 62ch; }
 .btn:active { transform: translate(2px, 2px); box-shadow: 2px 2px 0 var(--ink); }
 .btn-primary { background: var(--violet); color: var(--cream); }
 .btn-yellow  { background: var(--yellow); }
-.btn-green   { background: var(--green);  color: var(--ink); }
 .btn-ink     { background: var(--ink);    color: var(--paper); }
 .btn-block   { width: 100%; }
 .btn-sm      { padding: 10px 18px; font-size: .86rem; }
@@ -303,10 +303,32 @@ p { max-width: 62ch; }
 
 /* ----------------------------------------------------------------- SHOP */
 .product { padding: 26px; display: flex; flex-direction: column; gap: 10px; }
+.product .tag { align-self: flex-start; }   /* a column flex parent stretches it otherwise */
 .product h3 { color: var(--card-color); font-size: 1.35rem; }
 .product p { font-size: .93rem; color: rgba(28,28,28,.78); }
 .product-price { font-family: var(--font-mono); font-weight: 700; font-size: 1.5rem; color: var(--card-color); }
 .product .btn { margin-top: auto; }
+
+/* The Wear Your perk. The panel is their orange, not ours, so their mark
+   sits on the ground it was drawn for and needs no cutout of its own. */
+.perk {
+  margin-top: 34px; padding: clamp(24px, 3.4vw, 40px);
+  background: var(--orange);
+  display: grid; grid-template-columns: auto 1fr auto;
+  gap: clamp(18px, 3vw, 40px); align-items: center;
+}
+.perk-figure {
+  font-family: var(--font-display); font-size: clamp(2.6rem, 6vw, 4.2rem);
+  line-height: .85; color: var(--ink);
+}
+.perk-body h3 { margin-bottom: 10px; color: var(--ink); }
+.perk-body p { font-size: .95rem; color: var(--ink); }
+.perk-mark { height: clamp(76px, 9vw, 116px); width: auto; }
+@media (max-width: 760px) {
+  .perk { grid-template-columns: auto 1fr; }
+  .perk-mark { grid-row: 1; grid-column: 2; justify-self: end; height: 64px; }
+  .perk-body { grid-column: 1 / -1; }
+}
 
 /* ------------------------------------------------------------ CART DRAWER */
 .drawer-backdrop {
