@@ -30,7 +30,6 @@ rounded-square corners, cards that lift and tilt on hover.
 | `--pink` | `#FF90E8` | accent, ink grounds only |
 | `--green-ink` | `#14724A` | green, dark enough to read as text |
 | `--yellow-ink` | `#7A6100` | yellow, ditto |
-| `--yellow-tint` | `#FFF4B8` | yellow as a ground for line art |
 | `--error` / `--error-bg` | `#B3261E` / `#FCECEA` | semantic, outside the brand set |
 | `--ink` | `#1C1C1C` | |
 | `--paper` | `#F7F4EE` | |
@@ -58,8 +57,10 @@ bottom edge, not inside a panel. Her PNG is the supplied artwork with the
 white background flood-filled to transparency from the edges, plus the one
 enclosed pocket between her arm and torso cleared by its own pixels — a
 seed-point fill there lands on line work and eats into the drawing. The
-band uses `--yellow-tint` rather than `--yellow`: her outlines were drawn
-on white, and over the full-strength yellow the thinner ones go olive.
+PNG ships close to native size (769px wide, quantised to 256 colours to
+keep it near 600KB): her outlines are thin, and pre-scaling costs weight
+the browser cannot put back, which is what makes them read olive over the
+yellow instead of black.
 
 **The covers.** The two Vol. I covers run at their native proportion inside the
 issue section — no crop, no letterbox, no panel behind them. Nothing is drawn

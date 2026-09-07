@@ -17,7 +17,6 @@
   --pink:       #FF90E8;
   --green-ink:  #14724A;
   --yellow-ink: #7A6100;
-  --yellow-tint: #FFF4B8;   /* yellow let down to a ground line art can sit on */
 
   /* Semantic, deliberately outside the brand set: an error is not a colour
      the magazine gets to style. */
@@ -279,22 +278,27 @@ p { max-width: 62ch; }
 }
 
 /* ------------------------------------------------------------- SULAYMA
-   A full-bleed band she stands on rather than a panel she sits inside.
-   The ground is yellow let down to a tint: her line work was drawn on
-   white, and over the full-strength yellow the thinner outlines go olive. */
-.ambassador { background: var(--yellow-tint); border-block: var(--border-w); overflow: hidden; }
+   A full-bleed yellow band she stands on rather than a panel she sits
+   inside. Figure left, words right, at every width: on a phone the two
+   columns just get tighter, they do not stack. Her PNG ships close to
+   native size because her outlines are thin, and any pre-scaling here is
+   weight the browser can never put back. */
+.ambassador { background: var(--yellow); border-block: var(--border-w); overflow: hidden; }
 .ambassador-inner {
   display: grid; grid-template-columns: auto 1fr;
-  gap: clamp(26px, 5vw, 72px); align-items: end;
-  padding-top: clamp(44px, 6vw, 76px);
+  gap: clamp(22px, 5vw, 72px); align-items: end;
+  padding-top: clamp(40px, 6vw, 76px);
 }
-.ambassador-figure { height: clamp(320px, 40vw, 520px); width: auto; align-self: end; }
-.ambassador-copy { align-self: center; padding-bottom: clamp(44px, 6vw, 76px); }
+.ambassador-figure { height: clamp(340px, 44vw, 580px); width: auto; align-self: end; }
+.ambassador-copy { align-self: center; padding-bottom: clamp(40px, 6vw, 76px); }
 .ambassador-copy .lede { margin-bottom: 14px; }
 @media (max-width: 700px) {
-  .ambassador-inner { grid-template-columns: 1fr; gap: 0; justify-items: center; }
-  .ambassador-copy { order: -1; padding-bottom: clamp(26px, 6vw, 38px); justify-self: start; }
-  .ambassador-figure { height: clamp(300px, 74vw, 380px); }
+  .ambassador-inner { gap: 18px; padding-top: 34px; }
+  .ambassador-figure { height: clamp(300px, 82vw, 400px); }
+  .ambassador-copy { padding-bottom: 34px; }
+  .ambassador-copy h2 { font-size: clamp(1.45rem, 7.4vw, 2.4rem); }
+  .ambassador-copy .lede { font-size: 1rem; }
+  .ambassador-copy p { font-size: .92rem; }
 }
 
 /* ----------------------------------------------------------------- SHOP */
