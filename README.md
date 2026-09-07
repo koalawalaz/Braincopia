@@ -138,21 +138,33 @@ there; nothing else needs touching.
 
 ## Deploying
 
-GitHub Pages, from the `main` branch, root folder. `CNAME` holds `braincopia.com`
-— change it if the domain differs.
+GitHub Pages, from the `main` branch, root folder. `CNAME` holds
+`braincopia.com`; change it if the domain differs.
 
-DNS at your registrar:
+DNS at the registrar. The four A records point the apex at GitHub's Pages
+servers, the four AAAA records do the same over IPv6, and the CNAME sends
+`www` to the same site:
 
-| Type | Name | Value |
-| --- | --- | --- |
-| A | `@` | `185.199.108.153` |
-| A | `@` | `185.199.109.153` |
-| A | `@` | `185.199.110.153` |
-| A | `@` | `185.199.111.153` |
-| CNAME | `www` | `<user>.github.io` |
+| Type | Name | Value | TTL |
+| --- | --- | --- | --- |
+| A | `@` | `185.199.108.153` | 3600 |
+| A | `@` | `185.199.109.153` | 3600 |
+| A | `@` | `185.199.110.153` | 3600 |
+| A | `@` | `185.199.111.153` | 3600 |
+| AAAA | `@` | `2606:50c0:8000::153` | 3600 |
+| AAAA | `@` | `2606:50c0:8001::153` | 3600 |
+| AAAA | `@` | `2606:50c0:8002::153` | 3600 |
+| AAAA | `@` | `2606:50c0:8003::153` | 3600 |
+| CNAME | `www` | `koalawalaz.github.io` | 3600 |
 
-Then enable **Enforce HTTPS** in the repository's Pages settings once the
-certificate is issued.
+All four A records are needed, not one of them: they are alternative routes
+to the same site. Delete any other A, AAAA or CNAME on `@` or `www` first,
+including a registrar parking page, or they will fight. Never put a CNAME on
+the apex.
+
+In the repository, Settings → Pages: source `main` / root, custom domain
+`braincopia.com`, then tick **Enforce HTTPS** once the certificate is issued,
+which takes a few minutes after DNS resolves.
 
 ## A note on the images
 
