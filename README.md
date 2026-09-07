@@ -10,7 +10,7 @@ it works; push it and GitHub Pages serves it as-is.
 index.html      the whole site, one page
 styles.css      the design system
 script.js       cart, checkout, motion
-assets/         PNGs, referenced by relative path
+assets/         PNGs and the hero film, referenced by relative path
 CNAME           custom domain for GitHub Pages
 legacy/         the earlier multi-page site, kept for reference
 tools/reel/     renders the Vol. I promo video with ffmpeg
@@ -21,33 +21,40 @@ tools/reel/     renders the Vol. I promo video with ffmpeg
 Sticker aesthetic: thick ink borders, hard offset shadows with no blur,
 rounded-square corners, cards that lift and tilt on hover.
 
-| Token | Value |
-| --- | --- |
-| `--green` | `#2b5d1c` |
-| `--teal` | `#0e93a4` |
-| `--purple` | `#5b23e8` |
-| `--red` | `#8a1414` |
-| `--orange` | `#f3701c` |
-| `--yellow` | `#f5c518` |
-| `--ink` | `#16150f` |
-| `--paper` | `#faf6ea` |
-| `--cream` | `#ffffff` |
-| `--line` | `rgba(22,21,15,0.14)` |
+| Token | Value | Role |
+| --- | --- | --- |
+| `--violet` | `#5B0ECC` | the brand |
+| `--deep` | `#3D0999` | its shadow |
+| `--green` | `#24B574` | signal |
+| `--yellow` | `#FFD600` | signal |
+| `--pink` | `#FF90E8` | accent, ink grounds only |
+| `--green-ink` | `#14724A` | green, dark enough to read as text |
+| `--yellow-ink` | `#7A6100` | yellow, ditto |
+| `--error` / `--error-bg` | `#B3261E` / `#FCECEA` | semantic, outside the brand set |
+| `--ink` | `#1C1C1C` | |
+| `--paper` | `#F7F4EE` | |
+| `--cream` | `#FFFFFF` | |
+| `--line` | `rgba(28,28,28,0.14)` | |
 
 Anton for display, Archivo for headings and body, Space Mono for eyebrows,
 labels and prices. Borders are `--border-w: 2.5px solid var(--ink)`, corners
 `--radius: 20px`, shadows `7px 7px 0 var(--ink)` growing to `11px` on hover with
 a `-4px/-4px` translate and a ±0.6° tilt.
 
-**Per-card theming.** Any card takes `style="--card-color:#hex"`, which drives its
-heading colour, its price and its links. That is how one grid holds six different
-colour identities without six classes.
+**Per-card theming.** Any card takes `style="--card-color:var(--token)"`, which
+drives its heading colour, its price and its links. That is how one grid holds
+several colour identities without a class per colour.
 
-**Stickers.** `.sticker` is a rotated pill with a border and hard shadow, wobbling
-on a 3.4s loop. `.sticker-soon` and `.sticker-limited` change only the fill.
-Cards deliberately do not clip: the sticker sits 19px above the card's top edge,
-so `.collection` has no `overflow: hidden` and the rounding lives on
-`.collection-media` instead.
+**The hero film.** `assets/video/braincopia-structure.mp4` plays behind the
+masthead, muted and looping, with a WebM alongside it because not every browser
+build ships an H.264 decoder — MP4 first so Safari takes it. The video is laid
+out 116% of the hero's height and offset upward so no edge is ever uncovered,
+and a two-axis scrim keeps the type legible over any frame. Under
+`prefers-reduced-motion` the offset collapses to a plain full-height frame.
+
+**The covers.** The two Vol. I covers run at their native proportion inside the
+issue section — no crop, no letterbox, no panel behind them. Nothing is drawn
+around the artwork but its own ink edge and the hard shadow.
 
 ## Motion
 
@@ -57,7 +64,7 @@ all reveals immediately.
 
 Scroll reveals use IntersectionObserver with staggered `nth-child` delays. If
 JavaScript never runs, a `<noscript>` block forces `.reveal` back to full opacity
-— otherwise 24 elements would sit invisible below the hero.
+— otherwise every reveal element would sit invisible below the hero.
 
 ## Cart and checkout
 

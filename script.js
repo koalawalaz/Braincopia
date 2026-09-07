@@ -21,9 +21,9 @@
   };
 
   var COLLECTIONS = [
-    'The Parallel Universe', 'The Body Electric', 'Machine Dreams',
-    'The Attention War', 'Tripple CH', 'Wear Your Resistance',
-    'Seven Worlds', 'Printed in Amman'
+    'Vol. I — The Parallel Universe', 'Two covers, one price',
+    'Tripple CH', 'The 29 Tricks', 'Wear Your Resistance',
+    'Printed in Amman'
   ];
 
   var CHANTS = [
