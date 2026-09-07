@@ -79,7 +79,12 @@ does not spin as it rolls, it pivots on one corner at a time, so over each
 quarter turn the centre swings on an arc of radius `side/√2` about the
 resting corner and the die advances exactly one side length. Travel comes
 from scroll progress and the rotation is derived from the travel, never the
-reverse, or it skids. The face changes mid-tumble, while the die is up on a
+reverse, or it skids. On load it drops in and bounces itself to rest
+first: each impact keeps 46% of the speed it arrived with, so the hops
+shrink the way a real one does, and the whole spin is spent on the way
+down so it lands flat on a face. Scrolling during the drop hands over to
+the scroll immediately, and opening the page part-way down (a reload, a
+#link) skips the drop entirely. The face changes mid-tumble, while the die is up on a
 corner and the top face is edge-on, so the number is never seen to swap. It
 is `pointer-events: none`, sits under the cart drawer, and does not exist at
 all under `prefers-reduced-motion`.

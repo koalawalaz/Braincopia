@@ -143,9 +143,11 @@
 
     var shown = 0;
     var queued = false;
+    var introing = false;
 
     function place() {
       queued = false;
+      if (introing) return;                    // the intro owns the transform until it lands
       var side = el.offsetWidth;
       var scrollable = document.documentElement.scrollHeight - window.innerHeight;
       // Up on a corner the square is wider than its side by (sqrt2-1)/2 each
@@ -169,15 +171,70 @@
     }
 
     function onScroll() {
+      if (introing) { introing = false; }       // a scroll during the intro takes over from it
       if (queued) return;
       queued = true;
       requestAnimationFrame(place);
     }
 
+    /* The die drops in on load and bounces itself to rest before the scroll
+       takes over. Each impact keeps BOUNCE of the speed it arrived with, so
+       the hops shrink the way a real one does; the spin is spent entirely on
+       the way down, which lands it flat on a face for the first bounce. */
+    var GRAVITY = 3600;      // px/s squared
+    var BOUNCE = 0.46;       // share of the speed that survives an impact
+    var SPIN = -450;         // degrees turned during the fall
+
+    function heightAt(t, h0) {
+      var fall = Math.sqrt(2 * h0 / GRAVITY);
+      if (t < fall) return h0 - 0.5 * GRAVITY * t * t;
+      t -= fall;
+      var v = Math.sqrt(2 * GRAVITY * h0);
+      for (var guard = 0; guard < 40; guard++) {
+        v *= BOUNCE;
+        var dur = 2 * v / GRAVITY;
+        if (dur < 0.06) return 0;              // too small to see: it has settled
+        if (t < dur) return v * t - 0.5 * GRAVITY * t * t;
+        t -= dur;
+      }
+      return 0;
+    }
+
+    function runIntro() {
+      var side = el.offsetWidth;
+      var pad = side * (Math.SQRT2 - 1) / 2;
+      var h0 = Math.max(160, window.innerHeight * 0.62);
+      var fall = Math.sqrt(2 * h0 / GRAVITY);
+      var start = 0;
+      introing = true;
+      el.classList.add('ready');
+
+      (function frame(now) {
+        if (!introing) { place(); return; }     // handed over to the scroll
+        if (!start) start = now;
+        var t = (now - start) / 1000;
+        var h = heightAt(t, h0);
+        var deg = t < fall ? SPIN * (1 - easeOut(t / fall)) : 0;
+        el.style.transform = 'translate(' + pad + 'px, ' + (-h) + 'px) rotate(' + deg + 'deg)';
+        if (h === 0 && t > fall) { introing = false; place(); return; }
+        requestAnimationFrame(frame);
+      })(0);
+    }
+
+    function easeOut(x) { return 1 - Math.pow(1 - x, 3); }
+
     show(1);
-    place();
     window.addEventListener('scroll', onScroll, { passive: true });
     window.addEventListener('resize', onScroll);
+
+    // Landing part-way down the page (a reload, a #link) means the die
+    // belongs where the scroll says, not falling out of the sky.
+    if (window.scrollY > 4) {
+      el.classList.add('ready');
+      place();
+    } else {
+      runIntro();
+    }
   })();
 
   /* ================================================================ CART */
