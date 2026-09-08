@@ -49,9 +49,9 @@
   };
 
   /* --------------------------------------------------------------- LOADER
-     The mark draws itself, then hands the page over. One pen travelling at a
-     constant speed across all 26 strokes, not 26 strokes each taking the same
-     time, which is what separates a drawing from a set of wipes. */
+     A held breath. The mark arrives, then the page. All this does is decide
+     when the overlay leaves and tell the rest of the page it may begin: the
+     die must not bounce behind it, and nothing should scroll under it. */
   var READY = 'braincopia:ready';
   var handedOver = false;
 
@@ -64,59 +64,23 @@
 
   (function loader() {
     var el = $('#loader');
-    if (!el) { handOver(); return; }
-    if (reduceMotion) { el.remove(); handOver(); return; }
+    if (!el || reduceMotion) {
+      if (el) el.remove();
+      handOver();
+      return;
+    }
 
-    var paths = $$('path', el);
-    if (!paths.length) { el.remove(); handOver(); return; }
-
-    document.documentElement.style.overflow = 'hidden';   // nothing scrolls behind it
-
-    var DRAW = 1500;      // total ink time
-    var lengths = paths.map(function (p) { return p.getTotalLength(); });
-    var total = lengths.reduce(function (a, b) { return a + b; }, 0);
-
-    var starts = [];
-    var run = 0;
-    lengths.forEach(function (len, i) {
-      starts[i] = run / total;
-      run += len;
-      paths[i].style.strokeDasharray = len;
-      paths[i].style.strokeDashoffset = len;
-    });
-
-    var disc = $('.loader-disc', el);
-    var t0 = 0;
+    document.documentElement.style.overflow = 'hidden';
 
     function finish() {
       el.classList.add('done');
       handOver();
-      setTimeout(function () { if (el.parentNode) el.remove(); }, 600);
+      setTimeout(function () { if (el.parentNode) el.remove(); }, 400);
     }
 
-    function frame(now) {
-      if (!t0) t0 = now;
-      var t = now - t0;
-
-      // the disc lands first, with a little overshoot
-      var d = Math.min(1, t / 340);
-      var pop = d < 1 ? 1.06 - 0.06 * Math.pow(1 - d, 2) : 1;
-      if (disc) disc.style.transform = 'scale(' + (d < 1 ? d * pop : 1) + ')';
-
-      var ink = Math.max(0, Math.min(1, (t - 220) / DRAW));
-      lengths.forEach(function (len, i) {
-        var share = len / total;
-        var local = Math.max(0, Math.min(1, (ink - starts[i]) / share));
-        paths[i].style.strokeDashoffset = len * (1 - local);
-      });
-
-      if (ink >= 1) { el.classList.add('lettering'); setTimeout(finish, 420); return; }
-      requestAnimationFrame(frame);
-    }
-    requestAnimationFrame(frame);
-
-    el.addEventListener('click', finish);                 // let anyone skip it
-    setTimeout(finish, DRAW + 2500);                      // and never trap the page
+    setTimeout(finish, 480);        // mark in, brief hold, gone
+    el.addEventListener('click', finish);
+    setTimeout(finish, 4000);       // and never trap the page
   })();
 
   /* ------------------------------------------------------------ MARQUEE */

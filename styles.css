@@ -132,26 +132,25 @@ p { max-width: 62ch; }
 }
 
 /* -------------------------------------------------------------- LOADER
-   The mark draws itself. The logo is a PNG with no pen path in it, so the
-   strokes here are its skeleton, traced and animated with dashoffset. JS
-   owns the timing; this is only how it looks and how it leaves. */
+   A held breath, not a performance: the mark arrives, the page follows.
+   JS only decides when it leaves and tells the rest of the page it may
+   start; the timing of the mark itself is here. */
 .loader {
   position: fixed; inset: 0; z-index: 5000;
   background: var(--paper);
   display: grid; place-items: center;
-  transition: opacity .45s ease;
+  transition: opacity .28s ease;
 }
 .loader.done { opacity: 0; pointer-events: none; }
-.loader-mark { display: grid; justify-items: center; gap: 18px; }
-.loader svg { width: clamp(112px, 17vw, 158px); height: auto; overflow: visible; }
-.loader-disc { fill: var(--violet); transform-origin: 50% 50%; transform: scale(0); }
-.loader-word {
-  font-family: var(--font-display); font-size: clamp(1.1rem, 2vw, 1.5rem);
-  letter-spacing: .3em; text-transform: uppercase; color: var(--ink);
-  opacity: 0; transition: opacity .5s ease .15s;
+.loader-mark {
+  width: clamp(84px, 12vw, 120px); height: auto;
+  animation: markIn .34s cubic-bezier(.2, .8, .3, 1) both;
 }
-.loader.lettering .loader-word { opacity: 1; }
-/* Nothing to watch being drawn if motion is unwelcome: the page is simply there. */
+@keyframes markIn {
+  from { opacity: 0; transform: scale(.88); }
+  to   { opacity: 1; transform: none; }
+}
+/* Nothing to wait through if motion is unwelcome. */
 @media (prefers-reduced-motion: reduce) { .loader { display: none; } }
 
 /* --------------------------------------------------------------- HEADER */

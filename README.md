@@ -73,22 +73,14 @@ around the artwork but its own ink edge and the hard shadow.
 0.001ms globally, stops the marquee, holds the hero chant on one line, and shows
 all reveals immediately.
 
-**The loader.** The mark draws itself before the page appears. The logo is
-a PNG, so there is no pen path in it to animate; `tools/logo/trace.py`
-recovers one. It masks the white marks, thins them to a single-pixel
-skeleton (Zhang-Suen), walks the skeleton into polylines, simplifies them
-with Douglas-Peucker, and orders them the way a hand would move: longest
-gesture first, then always the stroke starting nearest where the last one
-ended, reversed when that end is closer. The 26 paths animate with
-`stroke-dashoffset`, timed so one pen travels at a constant speed across
-all of them rather than each stroke taking an equal slice, which is what
-separates a drawing from a set of wipes.
-
-It locks scrolling while it runs, hands over with a `braincopia:ready`
-event (the die waits for it rather than bouncing behind the overlay),
-takes a click to skip, force-finishes on a timer so it can never trap the
-page, hides itself under `prefers-reduced-motion`, and is hidden by the
-`<noscript>` block since nothing would be left to take it away.
+**The loader.** A held breath, not a performance: the logo mark scales and
+fades in over 340ms, holds, and the overlay fades out, gone inside 900ms.
+It locks scrolling while it is up and releases it on every exit path,
+finishing, a click to skip, or the timer that force-finishes so the page
+can never be trapped. It hands over with a `braincopia:ready` event, which
+the die waits for rather than bouncing behind the overlay. No loader at all
+under `prefers-reduced-motion`, and the `<noscript>` block hides it since
+nothing would be left to remove it.
 
 **Sound.** `assets/audio/ambience.mp3` loops behind the page. Browsers
 refuse to start audio before the visitor has interacted, so the site tries
