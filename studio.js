@@ -121,6 +121,27 @@
   showPieces();
   syncPicks();
 
+  /* ------------------------------------------------------------- THE SWING
+     The joke is well down the page, so it plays when it arrives rather than
+     on load, which is the only moment anybody is there to see it. Arming in
+     here means a page whose script never ran shows the line plainly. */
+  (function swing() {
+    var row = $('.meet-row');
+    if (!row) return;
+    var still = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (still || !('IntersectionObserver' in window)) return;
+
+    row.classList.add('armed');
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        e.target.classList.add('swung');
+        io.unobserve(e.target);
+      });
+    }, { threshold: 0.35 });
+    io.observe(row);
+  })();
+
   /* -------------------------------------------------------- MOBILE MENU */
   var toggle = $('#menuToggle');
   var mobile = $('#mobileNav');
