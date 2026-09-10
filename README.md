@@ -68,6 +68,10 @@ keep it near 600KB): her outlines are thin, and pre-scaling costs weight
 the browser cannot put back, which is what makes them read olive over the
 yellow instead of black.
 
+**The founder's plate.** The painting beside the letter is 412x512 at
+source, so the column is capped near that rather than blown up soft. If a
+larger original turns up, swap the file and raise the cap.
+
 **The covers.** The two Vol. I covers run at their native proportion inside the
 issue section — no crop, no letterbox, no panel behind them. Nothing is drawn
 around the artwork but its own ink edge and the hard shadow.

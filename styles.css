@@ -287,6 +287,18 @@ p { max-width: 62ch; }
 .founder { background: var(--ink); color: var(--paper); border-block: var(--border-w); }
 .founder .eyebrow { color: var(--yellow); }
 .founder h2 { color: var(--paper); max-width: 20ch; }
+/* The letter and the picture of it. The plate is small at source, so the
+   column is capped near its native width rather than blown up soft. */
+.founder-grid {
+  display: grid; grid-template-columns: minmax(0, 1fr) minmax(240px, 380px);
+  gap: clamp(30px, 5vw, 68px); align-items: start;
+}
+.founder-plate { margin: 0; }
+.founder-plate img {
+  width: 100%; height: auto;
+  border: var(--border-w); border-radius: var(--radius-sm);
+  box-shadow: var(--shadow);
+}
 .founder-body {
   margin-top: clamp(26px, 3.4vw, 44px);
   display: grid; gap: 20px; max-width: 62ch;
@@ -456,6 +468,8 @@ p { max-width: 62ch; }
 /* ----------------------------------------------------------- RESPONSIVE */
 @media (max-width: 1020px) {
   .grid-3 { grid-template-columns: repeat(2, 1fr); }
+  .founder-grid { grid-template-columns: 1fr; }
+  .founder-plate { max-width: 380px; }
   .footer-top { grid-template-columns: 1fr 1fr; }
 }
 @media (max-width: 860px) {
