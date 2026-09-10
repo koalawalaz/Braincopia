@@ -108,8 +108,41 @@
   <div class="wrap">
     <div class="head">
       <p class="eyebrow">Start here</p>
-      <h2>What is the actual problem?</h2>
-      <p class="lede">Not what you want made. Most briefs arrive as a shopping list and the list is usually wrong, because the thing that is broken is rarely the thing that gets ordered. Pick the one that is true and we will tell you what we think it actually is.</p>
+      <h2>Where do you stand?</h2>
+      <p class="lede">Not what you want made. Most briefs arrive as a shopping list and the list is usually wrong, because the thing that is broken is rarely the thing that gets ordered. Drag to the one that is true and we will tell you what we think it actually is.</p>
+    </div>
+
+    <div class="stand">
+      <div class="stand-track">
+        <input class="stand-range" id="standRange" type="range" min="0" max="2" step="1" value="1"
+               aria-label="Where do you stand">
+      </div>
+
+      <div class="stand-axis">
+        <button class="stand-stop" type="button" data-i="0">Invisible</button>
+        <button class="stand-stop" type="button" data-i="1">Overlooked</button>
+        <button class="stand-stop" type="button" data-i="2">Forgettable</button>
+      </div>
+
+      <div class="stand-panel" id="standPanel" aria-live="polite">
+        <div class="stand-item" style="--accent: var(--green-ink)" data-problem="Nobody knows we exist.">
+          <p class="stand-quote">Nobody knows we exist.</p>
+          <p class="stand-line"><b>What that usually is</b>Almost never a visibility problem. It is that nothing you have made is repeatable enough for someone to describe you to somebody else.</p>
+          <p class="stand-line"><b>Where we would start</b>With the sentence a customer would use about you when you are not in the room.</p>
+        </div>
+
+        <div class="stand-item on" style="--accent: var(--violet)" data-problem="They look, and then they leave.">
+          <p class="stand-quote">They look, and then they leave.</p>
+          <p class="stand-line"><b>What that usually is</b>Rarely the design. It is that nothing on the page tells them what changes for them if they stay, and nothing separates you from the other tabs they have open.</p>
+          <p class="stand-line"><b>Where we would start</b>With the story, and only then the layout.</p>
+        </div>
+
+        <div class="stand-item" style="--accent: var(--pink-ink)" data-problem="It all works, but it does not mean anything.">
+          <p class="stand-quote">It all works, but it does not mean anything.</p>
+          <p class="stand-line"><b>What that usually is</b>The hardest one. Everything is competent and nothing is chosen, and competence is what a template already gives you.</p>
+          <p class="stand-line"><b>Where we would start</b>By throwing out the parts nobody would miss.</p>
+        </div>
+      </div>
     </div>
 
     <div class="presets">
@@ -131,81 +164,9 @@
       </div>
     </div>
 
-    <div class="problems">
-      <label class="prob" style="--accent: var(--yellow-ink)">
-        <input type="radio" name="need" value="Nobody knows we exist.">
-        <span class="prob-face">
-          <span class="prob-mark" aria-hidden="true"></span>
-          <span class="prob-body">
-            <span class="prob-title">Nobody knows we exist.</span>
-            <span class="prob-more">
-              <span class="prob-diag"><b>What that usually is.</b> Almost never a visibility problem. It is that nothing you have made is repeatable enough for someone to describe you to somebody else.</span>
-              <span class="prob-start"><b>Where we would start.</b> We start with the sentence a customer would use about you when you are not in the room.</span>
-            </span>
-          </span>
-        </span>
-      </label>
-
-      <label class="prob" style="--accent: var(--violet)">
-        <input type="radio" name="need" value="People look, and then they leave.">
-        <span class="prob-face">
-          <span class="prob-mark" aria-hidden="true"></span>
-          <span class="prob-body">
-            <span class="prob-title">People look, and then they leave.</span>
-            <span class="prob-more">
-              <span class="prob-diag"><b>What that usually is.</b> Rarely the design. It is that nothing on the page tells them what changes for them if they stay.</span>
-              <span class="prob-start"><b>Where we would start.</b> We start with the story, and only then touch the layout.</span>
-            </span>
-          </span>
-        </span>
-      </label>
-
-      <label class="prob" style="--accent: var(--deep)">
-        <input type="radio" name="need" value="We look like everyone else in our category.">
-        <span class="prob-face">
-          <span class="prob-mark" aria-hidden="true"></span>
-          <span class="prob-body">
-            <span class="prob-title">We look like everyone else in our category.</span>
-            <span class="prob-more">
-              <span class="prob-diag"><b>What that usually is.</b> Usually because you are all describing the same category instead of a point of view. Sameness is a writing problem before it is a visual one.</span>
-              <span class="prob-start"><b>Where we would start.</b> We start by finding what you are willing to say that your competitors are not.</span>
-            </span>
-          </span>
-        </span>
-      </label>
-
-      <label class="prob" style="--accent: var(--green-ink)">
-        <input type="radio" name="need" value="We are launching, and we have nothing yet.">
-        <span class="prob-face">
-          <span class="prob-mark" aria-hidden="true"></span>
-          <span class="prob-body">
-            <span class="prob-title">We are launching, and we have nothing yet.</span>
-            <span class="prob-more">
-              <span class="prob-diag"><b>What that usually is.</b> The good position: nothing to undo. The risk is building the logo first and discovering later that it is decorating an idea nobody settled.</span>
-              <span class="prob-start"><b>Where we would start.</b> We start with the world, then build outward until it is a thing people can meet.</span>
-            </span>
-          </span>
-        </span>
-      </label>
-
-      <label class="prob" style="--accent: var(--pink-ink)">
-        <input type="radio" name="need" value="It all works, but it does not mean anything.">
-        <span class="prob-face">
-          <span class="prob-mark" aria-hidden="true"></span>
-          <span class="prob-body">
-            <span class="prob-title">It all works, but it does not mean anything.</span>
-            <span class="prob-more">
-              <span class="prob-diag"><b>What that usually is.</b> The hardest one, and the most common at your stage. Everything is competent and nothing is chosen. Competence is what a template already gives you.</span>
-              <span class="prob-start"><b>Where we would start.</b> We start by throwing out the parts nobody would miss.</span>
-            </span>
-          </span>
-        </span>
-      </label>
-    </div>
-
     <div class="pick-bar" id="pickBar">
-      <p class="pick-count" id="pickCount">Nothing selected yet</p>
-      <a class="btn btn-primary" href="#brief">Take these to the brief</a>
+      <p class="pick-count" id="pickCount">Drag the slider to where you stand</p>
+      <a class="btn btn-primary" href="#brief">Take this to the brief</a>
     </div>
   </div>
 </section>

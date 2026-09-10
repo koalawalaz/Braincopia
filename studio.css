@@ -160,54 +160,111 @@ p { max-width: 64ch; }
 .hero-reel video { width: 100%; height: auto; display: block; }
 @media (max-width: 860px) { .hero-grid { grid-template-columns: 1fr; } }
 
-/* --------------------------------------------------------------- PROBLEMS
-   Five statements, not a service list. Choosing one opens the diagnosis,
-   which is the actual product being sold: being right about the problem
-   before anyone has been hired. Closed, each is a single line, so the whole
-   section stays short however much thinking sits inside it. */
+/* ------------------------------------------------------------------ STAND
+   Three positions on one scale, not a menu. Invisible, overlooked,
+   forgettable: the same problem at three depths. Dragging is the whole
+   interaction, and what it uncovers is a diagnosis rather than a service,
+   because being right about the problem is the thing actually being sold. */
 .head { display: grid; gap: 14px; margin-bottom: clamp(26px, 4vw, 44px); }
-.problems { display: grid; gap: 12px; }
-.prob { display: block; cursor: pointer; }
-.prob input { position: absolute; width: 1px; height: 1px; margin: -1px; clip-path: inset(50%); }
-.prob-face {
-  display: grid; grid-template-columns: auto 1fr; gap: 16px; align-items: start;
-  padding: 20px 22px;
-  background: var(--cream); border: var(--border-w); border-radius: var(--radius-sm);
-  box-shadow: var(--shadow-sm);
-  transition: transform .16s ease, box-shadow .16s ease, background .16s ease;
-}
-.prob:hover .prob-face { transform: translate(-3px, -3px); box-shadow: var(--shadow); }
-.prob input:focus-visible + .prob-face { outline: 3px solid var(--violet); outline-offset: 3px; }
-.prob-mark {
-  width: 22px; height: 22px; margin-top: 2px; flex: none;
-  border: 2.5px solid var(--ink); border-radius: 999px; background: var(--paper);
-}
-.prob-title {
-  display: block; font-family: var(--font-display); font-size: clamp(1.15rem, 2.1vw, 1.55rem);
-  letter-spacing: .02em; text-transform: uppercase; line-height: 1.1; color: var(--accent);
-}
-/* Shut until chosen: grid-template-rows animates where height cannot. */
-.prob-more { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .28s cubic-bezier(.2,.8,.3,1); }
-.prob-more > * { overflow: hidden; }
-.prob-diag, .prob-start { display: block; font-size: .96rem; line-height: 1.55; }
-.prob-diag { padding-top: 14px; }
-.prob-start { padding-top: 10px; }
-.prob-diag b, .prob-start b { font-family: var(--font-mono); font-size: .68rem; letter-spacing: .14em; text-transform: uppercase; display: block; margin-bottom: 4px; }
 
-.prob input:checked + .prob-face { background: var(--accent); box-shadow: var(--shadow); }
-.prob input:checked + .prob-face .prob-title { color: var(--cream); }
-.prob input:checked + .prob-face .prob-diag,
-.prob input:checked + .prob-face .prob-start { color: rgba(255,255,255,.88); }
-.prob input:checked + .prob-face .prob-diag b,
-.prob input:checked + .prob-face .prob-start b { color: var(--yellow); }
-.prob input:checked + .prob-face .prob-mark { background: var(--yellow); border-color: var(--yellow); box-shadow: inset 0 0 0 4px var(--accent); }
-.prob input:checked + .prob-face .prob-more { grid-template-rows: 1fr; }
+.stand { display: grid; gap: 0; }
+.stand-track { position: relative; height: 34px; }
+/* The rail and its filled part are drawn by the wrapper; the input supplies
+   only the thumb, so the fill can be animated independently of the value. */
+.stand-track::before,
+.stand-track::after {
+  content: ''; position: absolute; top: 50%; left: 0; height: 14px;
+  transform: translateY(-50%); border: var(--border-w); border-radius: 999px;
+}
+.stand-track::before { right: 0; background: var(--paper); }
+.stand-track::after {
+  width: calc(17px + var(--p, .5) * (100% - 34px));
+  background: var(--accent, var(--violet));
+  transition: width .3s cubic-bezier(.2,.8,.3,1), background .3s ease;
+}
+
+.stand-range {
+  position: relative; z-index: 2; width: 100%; height: 34px; margin: 0;
+  background: transparent; cursor: grab; display: block;
+  -webkit-appearance: none; appearance: none;
+}
+.stand-range:active { cursor: grabbing; }
+.stand-range::-webkit-slider-runnable-track { height: 34px; background: transparent; }
+.stand-range::-webkit-slider-thumb {
+  -webkit-appearance: none; appearance: none;
+  width: 34px; height: 34px; border-radius: 999px;
+  background: var(--cream); border: var(--border-w); box-shadow: var(--shadow-sm);
+}
+.stand-range::-moz-range-track { height: 34px; background: transparent; border: 0; }
+.stand-range::-moz-range-thumb {
+  width: 29px; height: 29px; border-radius: 999px;
+  background: var(--cream); border: var(--border-w); box-shadow: var(--shadow-sm);
+}
+.stand-range:focus { outline: none; }
+.stand-range:focus-visible::-webkit-slider-thumb { outline: 3px solid var(--violet); outline-offset: 3px; }
+.stand-range:focus-visible::-moz-range-thumb { outline: 3px solid var(--violet); outline-offset: 3px; }
+
+/* Anchored to the thumb centres, not to thirds, so a label always sits
+   under the stop it names. */
+.stand-axis { position: relative; height: 30px; margin-top: 10px; }
+.stand-stop {
+  position: absolute; top: 0; padding: 4px 2px;
+  font-family: var(--font-mono); font-size: .7rem; font-weight: 700;
+  letter-spacing: .16em; text-transform: uppercase;
+  background: none; border: 0; cursor: pointer; color: var(--ink); opacity: .45;
+  transition: opacity .2s ease, color .2s ease;
+}
+.stand-stop:nth-of-type(1) { left: 0; }
+.stand-stop:nth-of-type(2) { left: 50%; transform: translateX(-50%); }
+.stand-stop:nth-of-type(3) { right: 0; }
+.stand-stop:hover { opacity: .8; }
+.stand-stop[aria-current="true"] { opacity: 1; color: var(--accent, var(--violet)); }
+
+.stand-panel {
+  margin-top: clamp(22px, 3vw, 32px); padding: clamp(22px, 3.4vw, 34px);
+  background: var(--accent, var(--violet)); color: var(--cream);
+  border: var(--border-w); border-radius: var(--radius); box-shadow: var(--shadow);
+  transition: background .3s ease;
+  display: grid;
+}
+/* All three share one grid cell, so the panel is as tall as the longest and
+   never jumps while the slider is being dragged. The middle one is marked
+   on in the markup, which is also what shows if the script never runs. */
+.stand-item { grid-area: 1 / 1; visibility: hidden; opacity: 0; transition: opacity .25s ease; }
+.stand-item.on { visibility: visible; opacity: 1; }
+.stand-quote {
+  font-family: var(--font-display); font-size: clamp(1.5rem, 3.6vw, 2.6rem);
+  line-height: 1.05; letter-spacing: .01em; text-transform: uppercase;
+  color: var(--yellow); margin-bottom: clamp(18px, 2.4vw, 26px);
+}
+.stand-line { font-size: 1rem; line-height: 1.6; color: rgba(255,255,255,.9); max-width: 62ch; }
+.stand-line + .stand-line { margin-top: 16px; }
+.stand-line b {
+  display: block; margin-bottom: 5px; color: var(--yellow);
+  font-family: var(--font-mono); font-size: .68rem; font-weight: 700;
+  letter-spacing: .14em; text-transform: uppercase;
+}
+/* The bar under the picker had lost its own rules when the tiles went; it
+   sits below whatever is chosen and carries the way through to the brief. */
+.pick-bar {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 16px 22px;
+  margin-top: clamp(26px, 3.6vw, 38px);
+}
+.pick-count { font-size: .98rem; opacity: .7; }
+
+@media (max-width: 430px) {
+  .stand-stop { font-size: .6rem; letter-spacing: .1em; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .stand-track::after { transition: none; }
+}
 
 /* ---------------------------------------------------------------- PRESETS
    The packages, as a shortcut rather than a wall of bullets: one press ticks
    the pieces that make up the job. What is included stays visible in the
    tiles, so nobody has to read a spec sheet to see it. */
-.presets { margin-bottom: clamp(28px, 4vw, 40px); }
+.presets { margin-top: clamp(30px, 4.2vw, 46px); }
 .presets-label {
   font-family: var(--font-mono); font-size: .68rem; font-weight: 700;
   letter-spacing: .18em; text-transform: uppercase; opacity: .6; margin-bottom: 12px;

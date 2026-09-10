@@ -5,44 +5,78 @@
 
   $('#year').textContent = new Date().getFullYear();
 
-  /* ----------------------------------------------------------- PROBLEMS
-     One statement at a time, because this is a diagnosis rather than a
-     shopping list. Whatever is chosen travels down to the brief along with
-     any package, so nobody types out what they already clicked. */
-  var probs = $$('.prob input');
-  var presetInputs = [];
+  /* -------------------------------------------------------------- STAND
+     One scale with three stops instead of a list. The slider is the whole
+     control: every stop is a diagnosis, and whichever one is left showing
+     travels down to the brief so nobody retypes what they already chose.
+     Nothing reaches the brief until the visitor actually moves it, so a
+     default position never puts words in their mouth. */
+  var range = $('#standRange');
+  var items = $$('.stand-item');
+  var stops = $$('.stand-stop');
+  var track = $('.stand-track');
+  var panel = $('#standPanel');
   var count = $('#pickCount');
   var serviceField = $('#bService');
   var presets = $$('.preset');
   var presetPick = null;
+  var moved = false;
+
+  function showStand() {
+    var i = Math.min(items.length - 1, Math.max(0, parseInt(range.value, 10) || 0));
+    var accent = items[i].style.getPropertyValue('--accent');
+
+    items.forEach(function (el, n) {
+      el.classList.toggle('on', n === i);
+      el.setAttribute('aria-hidden', n === i ? 'false' : 'true');
+    });
+    stops.forEach(function (b, n) { b.setAttribute('aria-current', n === i ? 'true' : 'false'); });
+
+    track.style.setProperty('--p', i / (items.length - 1));
+    track.style.setProperty('--accent', accent);
+    panel.style.setProperty('--accent', accent);
+    stops[i].style.setProperty('--accent', accent);
+    range.setAttribute('aria-valuetext', items[i].getAttribute('data-problem'));
+  }
 
   function syncPicks() {
-    var chosen = probs.filter(function (i) { return i.checked; }).map(function (i) { return i.value; });
     var lines = [];
-    if (chosen.length) lines.push('Problem: ' + chosen[0]);
+    if (moved) lines.push('Problem: ' + $('.stand-item.on').getAttribute('data-problem'));
     if (presetPick) lines.push('Package: ' + presetPick);
 
-    count.textContent = lines.length
-      ? (chosen.length ? 'We think we know what that is. Tell us if we are wrong.' : 'Package chosen.')
-      : 'Nothing chosen yet';
+    count.textContent = !lines.length ? 'Drag the slider to where you stand'
+      : moved ? 'We think we know what that is. Tell us if we are wrong.'
+      : 'Package chosen.';
 
     serviceField.value = lines.join('\n');
-
     presets.forEach(function (btn) {
       var name = btn.getAttribute('data-name');
       btn.setAttribute('aria-pressed', name && name === presetPick ? 'true' : 'false');
     });
   }
 
-  probs.forEach(function (i) { i.addEventListener('change', syncPicks); });
+  range.addEventListener('input', function () {
+    moved = true;
+    showStand();
+    syncPicks();
+  });
+
+  stops.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      range.value = btn.getAttribute('data-i');
+      moved = true;
+      showStand();
+      syncPicks();
+    });
+  });
 
   presets.forEach(function (btn) {
     btn.setAttribute('aria-pressed', 'false');
     btn.addEventListener('click', function () {
       var name = btn.getAttribute('data-name');
       if (!name) {                               // Clear
-        probs.forEach(function (i) { i.checked = false; });
         presetPick = null;
+        moved = false;
       } else {
         presetPick = (presetPick === name) ? null : name;
       }
@@ -50,6 +84,7 @@
     });
   });
 
+  showStand();
   syncPicks();
 
   /* -------------------------------------------------------- MOBILE MENU */
