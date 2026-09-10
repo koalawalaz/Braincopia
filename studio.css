@@ -242,18 +242,6 @@ p { max-width: 64ch; }
 .preset[aria-pressed="true"] span { color: var(--cream); opacity: .8; }
 .preset-clear { color: var(--ink); font-size: .82rem; padding: 11px 16px; }
 
-/* ----------------------------------------------------------- EVERY PROJECT */
-.always-band { background: var(--ink); color: var(--paper); border-block: var(--border-w); }
-.always-band h2 { color: var(--yellow); margin-bottom: clamp(20px, 3vw, 30px); }
-.always-list { list-style: none; display: grid; gap: 14px; grid-template-columns: repeat(2, minmax(0, 1fr)); }
-.always-list li { display: grid; grid-template-columns: 18px 1fr; gap: 12px; font-size: 1rem; max-width: 46ch; }
-.always-list li::before {
-  content: ""; width: 12px; height: 6.5px; margin-top: .5em;
-  border-left: 2.5px solid var(--yellow); border-bottom: 2.5px solid var(--yellow);
-  transform: rotate(-45deg);
-}
-.always-list b { font-family: var(--font-mono); font-size: .86em; }
-
 /* ------------------------------------------------------------- THE ARGUMENT
    The one dark band on the page. This is where the boldness is spent. */
 .argument { background: var(--ink); color: var(--paper); border-block: var(--border-w); }
@@ -323,7 +311,6 @@ p { max-width: 64ch; }
 @media (max-width: 560px) {
   .footer-grid { grid-template-columns: 1fr; }
   .picks { grid-template-columns: 1fr; }
-  .always-list { grid-template-columns: 1fr; }
   .pick-bar { justify-content: stretch; }
   .pick-bar .btn { width: 100%; }
 }
