@@ -164,7 +164,7 @@ p { max-width: 64ch; }
    forgettable: the same problem at three depths. Dragging is the whole
    interaction, and what it uncovers is a diagnosis rather than a service,
    because being right about the problem is the thing actually being sold. */
-.head { display: grid; gap: 14px; margin-bottom: clamp(26px, 4vw, 44px); }
+.head { display: grid; gap: 14px; margin-bottom: clamp(26px, 4vw, 44px); position: relative; }
 
 .stand { display: grid; gap: 0; }
 .stand-track { position: relative; height: 34px; }
@@ -323,71 +323,56 @@ p { max-width: 64ch; }
 }
 
 /* ------------------------------------------------------------- NO MEETINGS
-   A beat between the argument and the form, and the closest thing on the
-   page to a joke. It also does a job: it tells someone what happens next
-   before they have to ask. It is set as a rubber stamp, which is what a
-   line delivered at an angle wants to be, and it comes down like one. */
-.meetings { background: var(--yellow); border-block: var(--border-w); padding: clamp(48px, 7vw, 92px) 0; overflow: hidden; }
-.meet-row { display: flex; justify-content: center; }
-
+   Not a section. A stamp is a mark somebody puts on a page, not a part of
+   one, so it sits over the top of the question rather than owning a band of
+   its own. Short, because a stamp that needs a sentence is a sign. */
 .stamp {
-  display: inline-flex; align-items: center; gap: clamp(16px, 2.6vw, 34px);
-  padding: clamp(20px, 3vw, 34px) clamp(24px, 3.6vw, 46px);
+  position: absolute; top: -6px; right: 0; z-index: 2;
+  display: inline-flex; align-items: center; gap: 12px;
+  padding: 12px 16px;
   color: var(--violet);
-  border: 5px solid currentColor; border-radius: 16px;
-  transform: rotate(-3deg);
+  border: 3.5px solid currentColor; border-radius: 12px;
+  transform: rotate(-5deg);
 }
 /* The inner rule, set in from the outer one, is what makes a box read as a
    stamp rather than as a card. */
 .stamp::before {
-  content: ''; position: absolute; inset: 5px;
-  border: 2px solid currentColor; border-radius: 10px; pointer-events: none;
+  content: ''; position: absolute; inset: 3px;
+  border: 1.5px solid currentColor; border-radius: 8px; pointer-events: none;
 }
-.stamp { position: relative; }
-
-.meet-face { width: clamp(58px, 7.5vw, 104px); height: auto; flex: none; }
-.meet-line { max-width: 20ch; color: currentColor; }
+.meet-face { width: 34px; height: auto; flex: none; }
+.meet-line {
+  font-family: var(--font-display); font-size: 1.05rem; line-height: 1.02;
+  letter-spacing: .05em; text-transform: uppercase; color: currentColor;
+}
 .meet-eye { transform-box: fill-box; transform-origin: center; animation: meet-blink 7s infinite; }
 @keyframes meet-blink {
   0%, 92%, 100% { transform: scaleY(1); }
   95%           { transform: scaleY(.1); }
 }
 
-/* Armed by the script, so a page without one never hides the line. It drops
-   from above the page, hits, squashes a hair and settles, and the band takes
-   the knock a fraction later. */
+/* Armed by the script, so a page without one never hides the stamp. It comes
+   down from above the page, hits, squashes a hair and settles. */
 .stamp.armed { opacity: 0; }
-.stamp.armed.struck {
-  opacity: 1;
-  animation: stamp-down .52s cubic-bezier(.55, 0, .35, 1) both;
-}
-.meet-row.knocked { animation: stamp-knock .26s ease-out .4s both; }
+.stamp.armed.struck { opacity: 1; animation: stamp-down .5s cubic-bezier(.55, 0, .35, 1) both; }
 @keyframes stamp-down {
-  0%   { opacity: 0; transform: rotate(-13deg) scale(2.7); }
+  0%   { opacity: 0; transform: rotate(-15deg) scale(3.4); }
   40%  { opacity: 1; }
-  62%  { transform: rotate(-3deg) scale(.94); }
-  78%  { transform: rotate(-3deg) scale(1.03); }
-  100% { transform: rotate(-3deg) scale(1); }
-}
-@keyframes stamp-knock {
-  0%, 100% { transform: translateY(0); }
-  35%      { transform: translateY(5px); }
-  70%      { transform: translateY(-2px); }
+  62%  { transform: rotate(-5deg) scale(.92); }
+  78%  { transform: rotate(-5deg) scale(1.04); }
+  100% { transform: rotate(-5deg) scale(1); }
 }
 
-@media (max-width: 720px) {
-  /* The rotated corners reach further than the box does, so the stamp gives
-     up padding and type size at this width to keep clear of the band edge. */
-  .meet-row { padding-inline: calc(var(--gutter) + 8px); }
-  .stamp { gap: 16px; padding: 18px 20px; transform: rotate(-2.2deg); }
-  .meet-face { width: 52px; }
-  .meet-line { max-width: none; font-size: clamp(1.35rem, 5.6vw, 1.9rem); }
+/* No room to hang it beside the question here, so it goes above it, in flow. */
+@media (max-width: 900px) {
+  .stamp { position: static; align-self: flex-start; margin-bottom: 4px; transform: rotate(-4deg); }
+  .head { justify-items: start; }
   @keyframes stamp-down {
-    0%   { opacity: 0; transform: rotate(-10deg) scale(2.2); }
+    0%   { opacity: 0; transform: rotate(-14deg) scale(3); }
     40%  { opacity: 1; }
-    62%  { transform: rotate(-2.2deg) scale(.94); }
-    78%  { transform: rotate(-2.2deg) scale(1.03); }
-    100% { transform: rotate(-2.2deg) scale(1); }
+    62%  { transform: rotate(-4deg) scale(.92); }
+    78%  { transform: rotate(-4deg) scale(1.04); }
+    100% { transform: rotate(-4deg) scale(1); }
   }
 }
 

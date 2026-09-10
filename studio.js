@@ -128,7 +128,6 @@
      plainly instead of hiding it forever. */
   (function stamp() {
     var mark = $('.stamp');
-    var row = $('.meet-row');
     if (!mark) return;
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches
         || !('IntersectionObserver' in window)) return;
@@ -138,10 +137,9 @@
       entries.forEach(function (e) {
         if (!e.isIntersecting) return;
         mark.classList.add('struck');
-        row.classList.add('knocked');
         io.unobserve(e.target);
       });
-    }, { threshold: 0.4 });
+    }, { threshold: 0.9 });
     io.observe(mark);
   })();
 
