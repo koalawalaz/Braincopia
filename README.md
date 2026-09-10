@@ -13,6 +13,8 @@ script.js       cart, checkout, motion
 studio.html     the agency page: services, packages, brief
 studio.css      the studio page's styles
 studio.js       the service picker, presets, brief form
+site.css        chrome shared by every page: loader, die, sound
+site.js         the same, in behaviour
 assets/         PNGs and the hero film, referenced by relative path
 CNAME           custom domain for GitHub Pages
 legacy/         the earlier multi-page site, kept for reference
@@ -75,6 +77,14 @@ around the artwork but its own ink edge and the hard shadow.
 `prefers-reduced-motion: reduce` collapses every animation and transition to
 0.001ms globally, stops the marquee, holds the hero chant on one line, and shows
 all reveals immediately.
+
+**One set of chrome, every page.** The loader, the rolling die and the sound
+toggle live in `site.css` and `site.js`, which both pages load before their
+own. They are styled only through tokens each page already declares, so the
+furniture takes whichever palette it lands in. `site.js` exposes
+`braincopia.ready(fn)` for anything that must wait for the overlay to leave.
+The sound preference is one `localStorage` key for the whole origin, so
+switching it off on one page keeps it off on the next.
 
 **The loader.** A held breath, not a performance: the logo mark scales and
 fades in over 340ms, holds, and the overlay fades out, gone inside 900ms.

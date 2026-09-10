@@ -1,0 +1,83 @@
+/* ==========================================================================
+   BRAINCOPIA. The chrome every page carries: the loader, the die that rolls
+   with the scroll, and the sound toggle. Loaded before each page's own
+   stylesheet, and styled entirely through tokens the page already defines,
+   so the same furniture picks up whichever palette it lands in.
+   ========================================================================== */
+
+/* -------------------------------------------------------------- LOADER
+   A held breath, not a performance: the mark arrives, the page follows.
+   JS only decides when it leaves and tells the rest of the page it may
+   start; the timing of the mark itself is here. */
+.loader {
+  position: fixed; inset: 0; z-index: 5000;
+  background: var(--paper);
+  display: grid; place-items: center;
+  transition: opacity .28s ease;
+}
+.loader.done { opacity: 0; pointer-events: none; }
+.loader-mark {
+  width: clamp(84px, 12vw, 120px); height: auto;
+  animation: markIn .34s cubic-bezier(.2, .8, .3, 1) both;
+}
+@keyframes markIn {
+  from { opacity: 0; transform: scale(.88); }
+  to   { opacity: 1; transform: none; }
+}
+/* Nothing to wait through if motion is unwelcome. */
+@media (prefers-reduced-motion: reduce) { .loader { display: none; } }
+
+/* -------------------------------------------------------------- SOUND
+   The one control the page owes anyone it plays audio at. Bottom right,
+   opposite the die, above everything but the cart. */
+.sound {
+  position: fixed; right: var(--gutter); bottom: 12px; z-index: 600;
+  display: none; align-items: center; gap: 9px;
+  padding: 9px 16px 9px 13px;
+  font-family: var(--font-mono); font-weight: 700; font-size: .68rem;
+  letter-spacing: .16em; text-transform: uppercase;
+  background: var(--cream); color: var(--ink);
+  border: var(--border-w); border-radius: 999px; box-shadow: var(--shadow-sm);
+  cursor: pointer;
+  transition: transform .16s ease, box-shadow .16s ease;
+}
+.sound.ready { display: inline-flex; }
+.sound:hover { transform: translate(-2px, -2px); box-shadow: var(--shadow); }
+.bars { display: flex; align-items: flex-end; gap: 2px; height: 13px; }
+.bars i { width: 3px; height: 4px; background: var(--ink); border-radius: 1px; }
+.sound[aria-pressed="true"] { background: var(--yellow); }
+.sound[aria-pressed="true"] .bars i { animation: eq .9s ease-in-out infinite; }
+.sound[aria-pressed="true"] .bars i:nth-child(2) { animation-duration: 1.25s; }
+.sound[aria-pressed="true"] .bars i:nth-child(3) { animation-duration: .72s; }
+.sound[aria-pressed="true"] .bars i:nth-child(4) { animation-duration: 1.05s; }
+@keyframes eq { 0%, 100% { height: 4px; } 50% { height: 13px; } }
+/* Bars that never move under reduced motion, but the sound still works. */
+@media (prefers-reduced-motion: reduce) {
+  .sound[aria-pressed="true"] .bars i { animation: none; height: 9px; }
+}
+@media (max-width: 480px) { .sound .sound-word { display: none; } .sound { padding: 10px 12px; } }
+
+/* ---------------------------------------------------------------- DIE
+   A die that rolls along the bottom of the window as the page scrolls: it
+   is the scroll position, told as an object rather than a bar. JS drives
+   the transform; everything here is just how it looks. */
+.die {
+  position: fixed; left: 0; bottom: 12px; z-index: 500;   /* clear of the edge so its shadow is not clipped */
+  width: 52px; height: 52px;
+  pointer-events: none; will-change: transform;
+  opacity: 0;                                     /* nothing on screen until JS has placed it */
+}
+.die.ready { opacity: 1; }
+.die-face {
+  width: 100%; height: 100%;
+  background: var(--cream); border: var(--border-w); border-radius: 9px;
+  box-shadow: var(--shadow-sm);
+  display: grid; grid-template: repeat(3, 1fr) / repeat(3, 1fr);
+  padding: 6px; gap: 2px;
+}
+.pip { border-radius: 50%; background: transparent; }
+.pip.on { background: var(--ink); }
+@media (max-width: 640px) { .die { width: 40px; height: 40px; } .die-face { padding: 4px; } }
+/* No die when motion is unwelcome: it exists only to move. */
+@media (prefers-reduced-motion: reduce) { .die { display: none; } }
+
