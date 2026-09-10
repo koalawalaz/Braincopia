@@ -105,8 +105,9 @@ because a page that makes noise owes you a way to stop it. It shows as
 soon as the page loads and only takes itself away if the file actually
 fails: gating it on `canplaythrough` hid it permanently on iOS, which
 does not fetch media until the visitor interacts, so the event never
-fired. Below 480px it drops the word and holds 46x46, a thumb-sized
-target. turning it off
+fired. It keeps the word at every width: hiding it on a phone left
+the bars alone in a square, which turned the pill into a circle and made
+the tap target 46x37, under the 44px a finger needs. turning it off
 is remembered in `localStorage` and it never auto-starts again. It pauses
 on a hidden tab and fades in and out over 900ms rather than cutting.
 

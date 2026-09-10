@@ -55,11 +55,12 @@
 @media (prefers-reduced-motion: reduce) {
   .sound[aria-pressed="true"] .bars i { animation: none; height: 9px; }
 }
-/* Thumb-sized once the word is gone: 46x37 is under the 44px a finger
-   needs, and this is the one control the page owes anyone. */
+/* The same pill at every width. Hiding the word on a phone left the bars
+   alone in a square, which turned the control into a circle and made the
+   tap target 46x37, under the 44px a finger needs. Keeping the word keeps
+   the shape and clears the minimum without a special case. */
 @media (max-width: 480px) {
-  .sound .sound-word { display: none; }
-  .sound { padding: 12px; min-width: 46px; min-height: 46px; justify-content: center; }
+  .sound { padding: 11px 16px 11px 13px; min-height: 46px; }
 }
 
 /* ---------------------------------------------------------------- DIE
