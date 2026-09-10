@@ -165,11 +165,12 @@ p { max-width: 64ch; }
    the button carries its own count so a closed panel still tells you what is
    in it, and only one opens at a time so the row never becomes a stack. */
 .head { display: grid; gap: 14px; margin-bottom: clamp(26px, 4vw, 44px); }
-.drops { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; align-items: start; }
+.drops { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; align-items: start; }
 .drop { position: relative; }
 .drop-btn {
   display: grid; grid-template-columns: 1fr auto auto; align-items: center; gap: 12px;
   width: 100%; padding: 16px 18px; cursor: pointer; text-align: left;
+  min-height: 92px;
   font: inherit; color: var(--accent);
   background: var(--cream); border: var(--border-w); border-radius: var(--radius-sm);
   box-shadow: var(--shadow-sm);
@@ -177,7 +178,12 @@ p { max-width: 64ch; }
 }
 .drop-btn:hover { transform: translate(-3px, -3px); box-shadow: var(--shadow); }
 .drop-btn[aria-expanded="true"] { background: var(--accent); color: var(--cream); }
+.drop-head { display: grid; gap: 5px; }
 .drop-name { font-family: var(--font-display); font-size: 1.15rem; letter-spacing: .04em; text-transform: uppercase; }
+/* The line under each name is the point: it says what the group decides,
+   not what it delivers. */
+.drop-line { font-size: .82rem; font-weight: 500; line-height: 1.3; color: rgba(28,28,28,.62); }
+.drop-btn[aria-expanded="true"] .drop-line { color: rgba(255,255,255,.78); }
 .drop-count {
   font-family: var(--font-mono); font-size: .62rem; font-weight: 700;
   letter-spacing: .12em; text-transform: uppercase; color: var(--ink);
@@ -283,7 +289,7 @@ p { max-width: 64ch; }
 .footer-bar { margin-top: 34px; padding-top: 18px; border-top: 1px solid rgba(247, 244, 238, .2); font-family: var(--font-mono); font-size: .66rem; letter-spacing: .1em; text-transform: uppercase; opacity: .66; }
 
 /* ------------------------------------------------------------- RESPONSIVE */
-@media (max-width: 1040px) { .drops { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+
 @media (max-width: 900px) {
   .brief-grid { grid-template-columns: 1fr; }
   .footer-grid { grid-template-columns: 1fr 1fr; }

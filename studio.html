@@ -43,10 +43,9 @@
             Services <span class="caret" aria-hidden="true"></span>
           </button>
           <ul class="dropdown" id="svcMenu" hidden>
-            <li><a href="#story" data-open="story"><b>Story</b><span>Messaging, naming, copy</span></a></li>
-            <li><a href="#print" data-open="print"><b>Print</b><span>Profiles, editorial, posters</span></a></li>
-            <li><a href="#digital" data-open="digital"><b>Digital</b><span>Identity, motion, campaigns</span></a></li>
-            <li><a href="#web" data-open="web"><b>Web</b><span>Sites, apps, landing pages</span></a></li>
+            <li><a href="#story" data-open="story"><b>Story</b><span>What you are saying</span></a></li>
+            <li><a href="#world" data-open="world"><b>World</b><span>What it looks like</span></a></li>
+            <li><a href="#lands" data-open="lands"><b>Where it lands</b><span>Where people meet it</span></a></li>
           </ul>
         </li>
         <li><a href="index.html">Magazine</a></li>
@@ -63,9 +62,8 @@
     <ul>
       <li><a href="#services">Services</a></li>
       <li><a class="sub" href="#story" data-open="story">Story</a></li>
-      <li><a class="sub" href="#print" data-open="print">Print</a></li>
-      <li><a class="sub" href="#digital" data-open="digital">Digital</a></li>
-      <li><a class="sub" href="#web" data-open="web">Web</a></li>
+      <li><a class="sub" href="#world" data-open="world">World</a></li>
+      <li><a class="sub" href="#lands" data-open="lands">Where it lands</a></li>
       <li><a href="index.html">Magazine</a></li>
       <li><a href="studio.html">Studio</a></li>
       <li><a href="index.html#founder">About</a></li>
@@ -122,8 +120,8 @@
   <div class="wrap">
     <div class="head">
       <p class="eyebrow">Start here</p>
-      <h2>What do you need?</h2>
-      <p class="lede">Story first, because it decides everything after it. Pick as many as apply and they travel down to the brief, so you only say it once.</p>
+      <h2>Where do you want to start?</h2>
+      <p class="lede">You are not buying files. You are buying the decisions behind them: what to say, what the thing should be, and what it has to do to the person who meets it. Pick where you want to start and it travels down to the brief.</p>
     </div>
 
     <div class="presets">
@@ -132,13 +130,13 @@
         <button class="preset" type="button" data-preset="Story: Brand story and messaging|Story: Naming and tone of voice|Story: Copywriting" style="--accent: var(--yellow-ink)">
           Story First <span>3 pieces</span>
         </button>
-        <button class="preset" type="button" data-preset="Story: Brand story and messaging|Digital: Brand identity|Print: Stationery|Digital: Social campaign|Story: Pitch and presentation" style="--accent: var(--deep)">
+        <button class="preset" type="button" data-preset="Story: Brand story and messaging|World: Brand identity|World: Visual grammar and art direction|Where it lands: Something to hold|Story: Pitch and presentation" style="--accent: var(--deep)">
           Brand Essentials <span>5 pieces</span>
         </button>
-        <button class="preset" type="button" data-preset="Story: Copywriting|Web: Website|Web: Landing page" style="--accent: var(--violet)">
+        <button class="preset" type="button" data-preset="Story: Copywriting|World: Design system|Where it lands: Somewhere to go" style="--accent: var(--violet)">
           Website <span>3 pieces</span>
         </button>
-        <button class="preset" type="button" data-preset="Story: Campaign concept|Digital: Social campaign|Digital: Motion graphics" style="--accent: var(--pink-ink)">
+        <button class="preset" type="button" data-preset="Story: Campaign concept|World: Motion language|Where it lands: Something that follows them" style="--accent: var(--pink-ink)">
           Social Campaign <span>3 pieces</span>
         </button>
         <button class="preset preset-clear" type="button" data-preset="">Clear</button>
@@ -148,7 +146,7 @@
     <div class="drops">
       <div class="drop" id="story" style="--accent: var(--yellow-ink)">
         <button class="drop-btn" type="button" aria-expanded="false" aria-controls="story-panel">
-          <span class="drop-name">Story</span>
+          <span class="drop-head"><span class="drop-name">Story</span><span class="drop-line">What you are actually saying, and who to</span></span>
           <span class="drop-count" data-count>None</span>
           <span class="caret" aria-hidden="true"></span>
         </button>
@@ -186,124 +184,84 @@
         </div>
       </div>
 
-      <div class="drop" id="print" style="--accent: var(--green-ink)">
-        <button class="drop-btn" type="button" aria-expanded="false" aria-controls="print-panel">
-          <span class="drop-name">Print</span>
+      <div class="drop" id="world" style="--accent: var(--deep)">
+        <button class="drop-btn" type="button" aria-expanded="false" aria-controls="world-panel">
+          <span class="drop-head"><span class="drop-name">World</span><span class="drop-line">What it looks like when it is a place, not a logo</span></span>
           <span class="drop-count" data-count>None</span>
           <span class="caret" aria-hidden="true"></span>
         </button>
-        <div class="drop-panel" id="print-panel" hidden>
+        <div class="drop-panel" id="world-panel" hidden>
           <label class="opt">
-            <input type="checkbox" name="need" value="Print: Company profile">
-            <span class="opt-box" aria-hidden="true"></span>
-            <span>Company profile</span>
-          </label>
-          <label class="opt">
-            <input type="checkbox" name="need" value="Print: Brochure">
-            <span class="opt-box" aria-hidden="true"></span>
-            <span>Brochure</span>
-          </label>
-          <label class="opt">
-            <input type="checkbox" name="need" value="Print: Flyer">
-            <span class="opt-box" aria-hidden="true"></span>
-            <span>Flyer</span>
-          </label>
-          <label class="opt">
-            <input type="checkbox" name="need" value="Print: Magazine and editorial">
-            <span class="opt-box" aria-hidden="true"></span>
-            <span>Magazine and editorial</span>
-          </label>
-          <label class="opt">
-            <input type="checkbox" name="need" value="Print: Book cover">
-            <span class="opt-box" aria-hidden="true"></span>
-            <span>Book cover</span>
-          </label>
-          <label class="opt">
-            <input type="checkbox" name="need" value="Print: Poster and billboard">
-            <span class="opt-box" aria-hidden="true"></span>
-            <span>Poster and billboard</span>
-          </label>
-          <label class="opt">
-            <input type="checkbox" name="need" value="Print: Menu">
-            <span class="opt-box" aria-hidden="true"></span>
-            <span>Menu</span>
-          </label>
-          <label class="opt">
-            <input type="checkbox" name="need" value="Print: Stationery">
-            <span class="opt-box" aria-hidden="true"></span>
-            <span>Stationery</span>
-          </label>
-        </div>
-      </div>
-
-      <div class="drop" id="digital" style="--accent: var(--deep)">
-        <button class="drop-btn" type="button" aria-expanded="false" aria-controls="digital-panel">
-          <span class="drop-name">Digital</span>
-          <span class="drop-count" data-count>None</span>
-          <span class="caret" aria-hidden="true"></span>
-        </button>
-        <div class="drop-panel" id="digital-panel" hidden>
-          <label class="opt">
-            <input type="checkbox" name="need" value="Digital: Brand identity">
+            <input type="checkbox" name="need" value="World: Brand identity">
             <span class="opt-box" aria-hidden="true"></span>
             <span>Brand identity</span>
           </label>
           <label class="opt">
-            <input type="checkbox" name="need" value="Digital: Illustration">
+            <input type="checkbox" name="need" value="World: Visual grammar and art direction">
+            <span class="opt-box" aria-hidden="true"></span>
+            <span>Visual grammar and art direction</span>
+          </label>
+          <label class="opt">
+            <input type="checkbox" name="need" value="World: Illustration">
             <span class="opt-box" aria-hidden="true"></span>
             <span>Illustration</span>
           </label>
           <label class="opt">
-            <input type="checkbox" name="need" value="Digital: Character design">
+            <input type="checkbox" name="need" value="World: Character design">
             <span class="opt-box" aria-hidden="true"></span>
             <span>Character design</span>
           </label>
           <label class="opt">
-            <input type="checkbox" name="need" value="Digital: Motion graphics">
+            <input type="checkbox" name="need" value="World: Motion language">
             <span class="opt-box" aria-hidden="true"></span>
-            <span>Motion graphics</span>
+            <span>Motion language</span>
           </label>
           <label class="opt">
-            <input type="checkbox" name="need" value="Digital: Infographic">
+            <input type="checkbox" name="need" value="World: Design system">
             <span class="opt-box" aria-hidden="true"></span>
-            <span>Infographic</span>
-          </label>
-          <label class="opt">
-            <input type="checkbox" name="need" value="Digital: Social campaign">
-            <span class="opt-box" aria-hidden="true"></span>
-            <span>Social campaign</span>
+            <span>Design system</span>
           </label>
         </div>
       </div>
 
-      <div class="drop" id="web" style="--accent: var(--violet)">
-        <button class="drop-btn" type="button" aria-expanded="false" aria-controls="web-panel">
-          <span class="drop-name">Web</span>
+      <div class="drop" id="lands" style="--accent: var(--violet)">
+        <button class="drop-btn" type="button" aria-expanded="false" aria-controls="lands-panel">
+          <span class="drop-head"><span class="drop-name">Where it lands</span><span class="drop-line">The same world, wherever someone meets it</span></span>
           <span class="drop-count" data-count>None</span>
           <span class="caret" aria-hidden="true"></span>
         </button>
-        <div class="drop-panel" id="web-panel" hidden>
+        <div class="drop-panel" id="lands-panel" hidden>
           <label class="opt">
-            <input type="checkbox" name="need" value="Web: Website">
+            <input type="checkbox" name="need" value="Where it lands: Something to hold">
             <span class="opt-box" aria-hidden="true"></span>
-            <span>Website</span>
+            <span>Something to hold</span>
           </label>
           <label class="opt">
-            <input type="checkbox" name="need" value="Web: Landing page">
+            <input type="checkbox" name="need" value="Where it lands: Somewhere to go">
             <span class="opt-box" aria-hidden="true"></span>
-            <span>Landing page</span>
+            <span>Somewhere to go</span>
           </label>
           <label class="opt">
-            <input type="checkbox" name="need" value="Web: Application design">
+            <input type="checkbox" name="need" value="Where it lands: Something that follows them">
             <span class="opt-box" aria-hidden="true"></span>
-            <span>Application design</span>
+            <span>Something that follows them</span>
+          </label>
+          <label class="opt">
+            <input type="checkbox" name="need" value="Where it lands: Something on a wall">
+            <span class="opt-box" aria-hidden="true"></span>
+            <span>Something on a wall</span>
+          </label>
+          <label class="opt">
+            <input type="checkbox" name="need" value="Where it lands: A room, an event, a launch">
+            <span class="opt-box" aria-hidden="true"></span>
+            <span>A room, an event, a launch</span>
           </label>
         </div>
       </div>
 
       <div class="drop" id="else" style="--accent: var(--ink)">
         <button class="drop-btn" type="button" aria-expanded="false" aria-controls="else-panel">
-          <span class="drop-name">Something else</span>
+          <span class="drop-head"><span class="drop-name">Something else</span><span class="drop-line">Bring us the problem, not the spec</span></span>
           <span class="drop-count" data-count>None</span>
           <span class="caret" aria-hidden="true"></span>
         </button>
@@ -311,7 +269,7 @@
           <label class="opt">
             <input type="checkbox" name="need" value="Something else">
             <span class="opt-box" aria-hidden="true"></span>
-            <span>Not on the list. Tell us in the brief and we will price it.</span>
+            <span>Not on the list. Describe it in the brief and we will work out what it wants to be.</span>
           </label>
         </div>
       </div>
@@ -386,9 +344,9 @@
         <h4>Services</h4>
         <ul>
           <li><a href="#story">Story</a></li>
-          <li><a href="#print">Print</a></li>
-          <li><a href="#digital">Digital</a></li>
-          <li><a href="#web">Web</a></li>
+          <li><a href="#story">Story</a></li>
+          <li><a href="#world">World</a></li>
+          <li><a href="#lands">Where it lands</a></li>
         </ul>
       </div>
       <div>
