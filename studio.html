@@ -49,9 +49,10 @@
             <li><a href="#web" data-open="web"><b>Web</b><span>Sites, apps, landing pages</span></a></li>
           </ul>
         </li>
-        <li><a href="#argument">Why us</a></li>
         <li><a href="index.html">Magazine</a></li>
-        <li><a href="#brief">Start a brief</a></li>
+        <li><a href="studio.html">Studio</a></li>
+        <li><a href="index.html#founder">About</a></li>
+        <li><a href="#brief">Contact</a></li>
       </ul>
     </nav>
 
@@ -65,9 +66,10 @@
       <li><a class="sub" href="#print" data-open="print">Print</a></li>
       <li><a class="sub" href="#digital" data-open="digital">Digital</a></li>
       <li><a class="sub" href="#web" data-open="web">Web</a></li>
-      <li><a href="#argument">Why us</a></li>
       <li><a href="index.html">Magazine</a></li>
-      <li><a href="#brief">Start a brief</a></li>
+      <li><a href="studio.html">Studio</a></li>
+      <li><a href="index.html#founder">About</a></li>
+      <li><a href="#brief">Contact</a></li>
     </ul>
   </div>
 </header>
@@ -143,230 +145,177 @@
       </div>
     </div>
 
-    <section class="group" id="story" style="--accent: var(--yellow-ink)">
-      <h3 class="group-head"><span class="group-dot"></span>Story</h3>
-      <p class="group-line">The part a prompt cannot do for you</p>
-      <div class="picks">
-        <label class="pick">
-          <input type="checkbox" name="need" value="Story: Brand story and messaging">
-          <span class="pick-face">
-            <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-pen"></use></svg>
-            <span class="pick-name">Brand story and messaging</span>
-            <span class="tick" aria-hidden="true"></span>
-          </span>
-        </label>
-        <label class="pick">
-          <input type="checkbox" name="need" value="Story: Naming and tone of voice">
-          <span class="pick-face">
-            <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-pen"></use></svg>
-            <span class="pick-name">Naming and tone of voice</span>
-            <span class="tick" aria-hidden="true"></span>
-          </span>
-        </label>
-        <label class="pick">
-          <input type="checkbox" name="need" value="Story: Copywriting">
-          <span class="pick-face">
-            <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-poster"></use></svg>
-            <span class="pick-name">Copywriting</span>
-            <span class="tick" aria-hidden="true"></span>
-          </span>
-        </label>
-        <label class="pick">
-          <input type="checkbox" name="need" value="Story: Campaign concept">
-          <span class="pick-face">
-            <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-burst"></use></svg>
-            <span class="pick-name">Campaign concept</span>
-            <span class="tick" aria-hidden="true"></span>
-          </span>
-        </label>
-        <label class="pick">
-          <input type="checkbox" name="need" value="Story: Case studies and impact stories">
-          <span class="pick-face">
-            <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-book"></use></svg>
-            <span class="pick-name">Case studies and impact stories</span>
-            <span class="tick" aria-hidden="true"></span>
-          </span>
-        </label>
-        <label class="pick">
-          <input type="checkbox" name="need" value="Story: Pitch and presentation">
-          <span class="pick-face">
-            <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-slide"></use></svg>
-            <span class="pick-name">Pitch and presentation</span>
-            <span class="tick" aria-hidden="true"></span>
-          </span>
-        </label>
+    <div class="drops">
+      <div class="drop" id="story" style="--accent: var(--yellow-ink)">
+        <button class="drop-btn" type="button" aria-expanded="false" aria-controls="story-panel">
+          <span class="drop-name">Story</span>
+          <span class="drop-count" data-count>None</span>
+          <span class="caret" aria-hidden="true"></span>
+        </button>
+        <div class="drop-panel" id="story-panel" hidden>
+          <label class="opt">
+            <input type="checkbox" name="need" value="Story: Brand story and messaging">
+            <span class="opt-box" aria-hidden="true"></span>
+            <span>Brand story and messaging</span>
+          </label>
+          <label class="opt">
+            <input type="checkbox" name="need" value="Story: Naming and tone of voice">
+            <span class="opt-box" aria-hidden="true"></span>
+            <span>Naming and tone of voice</span>
+          </label>
+          <label class="opt">
+            <input type="checkbox" name="need" value="Story: Copywriting">
+            <span class="opt-box" aria-hidden="true"></span>
+            <span>Copywriting</span>
+          </label>
+          <label class="opt">
+            <input type="checkbox" name="need" value="Story: Campaign concept">
+            <span class="opt-box" aria-hidden="true"></span>
+            <span>Campaign concept</span>
+          </label>
+          <label class="opt">
+            <input type="checkbox" name="need" value="Story: Case studies and impact stories">
+            <span class="opt-box" aria-hidden="true"></span>
+            <span>Case studies and impact stories</span>
+          </label>
+          <label class="opt">
+            <input type="checkbox" name="need" value="Story: Pitch and presentation">
+            <span class="opt-box" aria-hidden="true"></span>
+            <span>Pitch and presentation</span>
+          </label>
+        </div>
       </div>
-    </section>
 
-    <section class="group" id="print" style="--accent: var(--green-ink)">
-      <h3 class="group-head"><span class="group-dot"></span>Print</h3>
-      <p class="group-line">Made to be held, and to survive the press</p>
-      <div class="picks">
-        <label class="pick">
-          <input type="checkbox" name="need" value="Print: Company profile">
-          <span class="pick-face">
-            <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-book"></use></svg>
-            <span class="pick-name">Company profile</span>
-            <span class="tick" aria-hidden="true"></span>
-          </span>
-        </label>
-        <label class="pick">
-          <input type="checkbox" name="need" value="Print: Brochure">
-          <span class="pick-face">
-            <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-book"></use></svg>
-            <span class="pick-name">Brochure</span>
-            <span class="tick" aria-hidden="true"></span>
-          </span>
-        </label>
-        <label class="pick">
-          <input type="checkbox" name="need" value="Print: Flyer">
-          <span class="pick-face">
-            <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-poster"></use></svg>
-            <span class="pick-name">Flyer</span>
-            <span class="tick" aria-hidden="true"></span>
-          </span>
-        </label>
-        <label class="pick">
-          <input type="checkbox" name="need" value="Print: Magazine and editorial">
-          <span class="pick-face">
-            <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-book"></use></svg>
-            <span class="pick-name">Magazine and editorial</span>
-            <span class="tick" aria-hidden="true"></span>
-          </span>
-        </label>
-        <label class="pick">
-          <input type="checkbox" name="need" value="Print: Book cover">
-          <span class="pick-face">
-            <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-book"></use></svg>
-            <span class="pick-name">Book cover</span>
-            <span class="tick" aria-hidden="true"></span>
-          </span>
-        </label>
-        <label class="pick">
-          <input type="checkbox" name="need" value="Print: Poster and billboard">
-          <span class="pick-face">
-            <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-poster"></use></svg>
-            <span class="pick-name">Poster and billboard</span>
-            <span class="tick" aria-hidden="true"></span>
-          </span>
-        </label>
-        <label class="pick">
-          <input type="checkbox" name="need" value="Print: Menu">
-          <span class="pick-face">
-            <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-poster"></use></svg>
-            <span class="pick-name">Menu</span>
-            <span class="tick" aria-hidden="true"></span>
-          </span>
-        </label>
-        <label class="pick">
-          <input type="checkbox" name="need" value="Print: Stationery">
-          <span class="pick-face">
-            <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-card"></use></svg>
-            <span class="pick-name">Stationery</span>
-            <span class="tick" aria-hidden="true"></span>
-          </span>
-        </label>
+      <div class="drop" id="print" style="--accent: var(--green-ink)">
+        <button class="drop-btn" type="button" aria-expanded="false" aria-controls="print-panel">
+          <span class="drop-name">Print</span>
+          <span class="drop-count" data-count>None</span>
+          <span class="caret" aria-hidden="true"></span>
+        </button>
+        <div class="drop-panel" id="print-panel" hidden>
+          <label class="opt">
+            <input type="checkbox" name="need" value="Print: Company profile">
+            <span class="opt-box" aria-hidden="true"></span>
+            <span>Company profile</span>
+          </label>
+          <label class="opt">
+            <input type="checkbox" name="need" value="Print: Brochure">
+            <span class="opt-box" aria-hidden="true"></span>
+            <span>Brochure</span>
+          </label>
+          <label class="opt">
+            <input type="checkbox" name="need" value="Print: Flyer">
+            <span class="opt-box" aria-hidden="true"></span>
+            <span>Flyer</span>
+          </label>
+          <label class="opt">
+            <input type="checkbox" name="need" value="Print: Magazine and editorial">
+            <span class="opt-box" aria-hidden="true"></span>
+            <span>Magazine and editorial</span>
+          </label>
+          <label class="opt">
+            <input type="checkbox" name="need" value="Print: Book cover">
+            <span class="opt-box" aria-hidden="true"></span>
+            <span>Book cover</span>
+          </label>
+          <label class="opt">
+            <input type="checkbox" name="need" value="Print: Poster and billboard">
+            <span class="opt-box" aria-hidden="true"></span>
+            <span>Poster and billboard</span>
+          </label>
+          <label class="opt">
+            <input type="checkbox" name="need" value="Print: Menu">
+            <span class="opt-box" aria-hidden="true"></span>
+            <span>Menu</span>
+          </label>
+          <label class="opt">
+            <input type="checkbox" name="need" value="Print: Stationery">
+            <span class="opt-box" aria-hidden="true"></span>
+            <span>Stationery</span>
+          </label>
+        </div>
       </div>
-    </section>
 
-    <section class="group" id="digital" style="--accent: var(--deep)">
-      <h3 class="group-head"><span class="group-dot"></span>Digital</h3>
-      <p class="group-line">The brand, and everything it needs to move</p>
-      <div class="picks">
-        <label class="pick">
-          <input type="checkbox" name="need" value="Digital: Brand identity">
-          <span class="pick-face">
-            <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-star"></use></svg>
-            <span class="pick-name">Brand identity</span>
-            <span class="tick" aria-hidden="true"></span>
-          </span>
-        </label>
-        <label class="pick">
-          <input type="checkbox" name="need" value="Digital: Illustration">
-          <span class="pick-face">
-            <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-pen"></use></svg>
-            <span class="pick-name">Illustration</span>
-            <span class="tick" aria-hidden="true"></span>
-          </span>
-        </label>
-        <label class="pick">
-          <input type="checkbox" name="need" value="Digital: Character design">
-          <span class="pick-face">
-            <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-pen"></use></svg>
-            <span class="pick-name">Character design</span>
-            <span class="tick" aria-hidden="true"></span>
-          </span>
-        </label>
-        <label class="pick">
-          <input type="checkbox" name="need" value="Digital: Motion graphics">
-          <span class="pick-face">
-            <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-play"></use></svg>
-            <span class="pick-name">Motion graphics</span>
-            <span class="tick" aria-hidden="true"></span>
-          </span>
-        </label>
-        <label class="pick">
-          <input type="checkbox" name="need" value="Digital: Infographic">
-          <span class="pick-face">
-            <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-chart"></use></svg>
-            <span class="pick-name">Infographic</span>
-            <span class="tick" aria-hidden="true"></span>
-          </span>
-        </label>
-        <label class="pick">
-          <input type="checkbox" name="need" value="Digital: Social campaign">
-          <span class="pick-face">
-            <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-burst"></use></svg>
-            <span class="pick-name">Social campaign</span>
-            <span class="tick" aria-hidden="true"></span>
-          </span>
-        </label>
+      <div class="drop" id="digital" style="--accent: var(--deep)">
+        <button class="drop-btn" type="button" aria-expanded="false" aria-controls="digital-panel">
+          <span class="drop-name">Digital</span>
+          <span class="drop-count" data-count>None</span>
+          <span class="caret" aria-hidden="true"></span>
+        </button>
+        <div class="drop-panel" id="digital-panel" hidden>
+          <label class="opt">
+            <input type="checkbox" name="need" value="Digital: Brand identity">
+            <span class="opt-box" aria-hidden="true"></span>
+            <span>Brand identity</span>
+          </label>
+          <label class="opt">
+            <input type="checkbox" name="need" value="Digital: Illustration">
+            <span class="opt-box" aria-hidden="true"></span>
+            <span>Illustration</span>
+          </label>
+          <label class="opt">
+            <input type="checkbox" name="need" value="Digital: Character design">
+            <span class="opt-box" aria-hidden="true"></span>
+            <span>Character design</span>
+          </label>
+          <label class="opt">
+            <input type="checkbox" name="need" value="Digital: Motion graphics">
+            <span class="opt-box" aria-hidden="true"></span>
+            <span>Motion graphics</span>
+          </label>
+          <label class="opt">
+            <input type="checkbox" name="need" value="Digital: Infographic">
+            <span class="opt-box" aria-hidden="true"></span>
+            <span>Infographic</span>
+          </label>
+          <label class="opt">
+            <input type="checkbox" name="need" value="Digital: Social campaign">
+            <span class="opt-box" aria-hidden="true"></span>
+            <span>Social campaign</span>
+          </label>
+        </div>
       </div>
-    </section>
 
-    <section class="group" id="web" style="--accent: var(--violet)">
-      <h3 class="group-head"><span class="group-dot"></span>Web</h3>
-      <p class="group-line">Built to be used, not just looked at</p>
-      <div class="picks">
-        <label class="pick">
-          <input type="checkbox" name="need" value="Web: Website">
-          <span class="pick-face">
-            <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-win"></use></svg>
-            <span class="pick-name">Website</span>
-            <span class="tick" aria-hidden="true"></span>
-          </span>
-        </label>
-        <label class="pick">
-          <input type="checkbox" name="need" value="Web: Landing page">
-          <span class="pick-face">
-            <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-win"></use></svg>
-            <span class="pick-name">Landing page</span>
-            <span class="tick" aria-hidden="true"></span>
-          </span>
-        </label>
-        <label class="pick">
-          <input type="checkbox" name="need" value="Web: Application design">
-          <span class="pick-face">
-            <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-phone"></use></svg>
-            <span class="pick-name">Application design</span>
-            <span class="tick" aria-hidden="true"></span>
-          </span>
-        </label>
+      <div class="drop" id="web" style="--accent: var(--violet)">
+        <button class="drop-btn" type="button" aria-expanded="false" aria-controls="web-panel">
+          <span class="drop-name">Web</span>
+          <span class="drop-count" data-count>None</span>
+          <span class="caret" aria-hidden="true"></span>
+        </button>
+        <div class="drop-panel" id="web-panel" hidden>
+          <label class="opt">
+            <input type="checkbox" name="need" value="Web: Website">
+            <span class="opt-box" aria-hidden="true"></span>
+            <span>Website</span>
+          </label>
+          <label class="opt">
+            <input type="checkbox" name="need" value="Web: Landing page">
+            <span class="opt-box" aria-hidden="true"></span>
+            <span>Landing page</span>
+          </label>
+          <label class="opt">
+            <input type="checkbox" name="need" value="Web: Application design">
+            <span class="opt-box" aria-hidden="true"></span>
+            <span>Application design</span>
+          </label>
+        </div>
       </div>
-    </section>
 
-    <section class="group" id="else" style="--accent: var(--ink)">
-      <div class="picks">
-        <label class="pick pick-wide">
-          <input type="checkbox" name="need" value="Something else">
-          <span class="pick-face">
-            <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-ask"></use></svg>
-            <span class="pick-name">Something else. Tell us in the brief and we will price it.</span>
-            <span class="tick" aria-hidden="true"></span>
-          </span>
-        </label>
+      <div class="drop" id="else" style="--accent: var(--ink)">
+        <button class="drop-btn" type="button" aria-expanded="false" aria-controls="else-panel">
+          <span class="drop-name">Something else</span>
+          <span class="drop-count" data-count>None</span>
+          <span class="caret" aria-hidden="true"></span>
+        </button>
+        <div class="drop-panel" id="else-panel" hidden>
+          <label class="opt">
+            <input type="checkbox" name="need" value="Something else">
+            <span class="opt-box" aria-hidden="true"></span>
+            <span>Not on the list. Tell us in the brief and we will price it.</span>
+          </label>
+        </div>
       </div>
-    </section>
+    </div>
 
     <div class="pick-bar" id="pickBar">
       <p class="pick-count" id="pickCount">Nothing selected yet</p>

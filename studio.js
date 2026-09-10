@@ -27,13 +27,41 @@
   });
 
   /* ------------------------------------------------------------- PICKER
-     Every choice made up here is carried down to the brief, so nobody has
-     to type out what they already clicked. */
-  var picks = $$('.pick input');
+     Four multi-select dropdowns. Each button carries its own count so a
+     closed panel still says what is inside it, and only one opens at a
+     time so the row never turns into a stack. Everything chosen still
+     travels down to the brief. */
+  var picks = $$('.opt input');
   var count = $('#pickCount');
   var serviceField = $('#bService');
-
+  var drops = $$('.drop');
   var presets = $$('.preset');
+
+  function closeDrops(except) {
+    drops.forEach(function (d) {
+      if (d === except) return;
+      $('.drop-btn', d).setAttribute('aria-expanded', 'false');
+      $('.drop-panel', d).hidden = true;
+    });
+  }
+
+  drops.forEach(function (d) {
+    var btn = $('.drop-btn', d);
+    var panel = $('.drop-panel', d);
+    btn.addEventListener('click', function (e) {
+      e.stopPropagation();
+      var open = btn.getAttribute('aria-expanded') === 'true';
+      closeDrops(d);
+      btn.setAttribute('aria-expanded', open ? 'false' : 'true');
+      panel.hidden = open;
+    });
+  });
+  document.addEventListener('click', function (e) {
+    if (!e.target.closest('.drop')) closeDrops(null);
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') closeDrops(null);
+  });
 
   function chosenValues() {
     return picks.filter(function (i) { return i.checked; }).map(function (i) { return i.value; });
@@ -43,15 +71,20 @@
     var chosen = chosenValues();
     var n = chosen.length;
 
-    /* The bar says what the selection has become, not just how many boxes are
-       ticked. Four or more is a package-sized brief and worth saying so. */
     if (!n) count.textContent = 'Nothing selected yet';
     else if (n >= 4) count.textContent = n + ' selected. That is a package-sized brief.';
     else count.textContent = n + (n === 1 ? ' thing selected' : ' things selected');
 
     serviceField.value = chosen.join('\n');
 
-    /* A preset reads as on only while everything in it is still ticked. */
+    drops.forEach(function (d) {
+      var on = $$('input:checked', d).length;
+      var tag = $('[data-count]', d);
+      tag.textContent = on ? on + ' picked' : 'None';
+      if (on) tag.setAttribute('data-on', '');
+      else tag.removeAttribute('data-on');
+    });
+
     presets.forEach(function (btn) {
       var want = btn.getAttribute('data-preset');
       if (!want) return;
@@ -69,9 +102,7 @@
       } else {
         var wanted = want.split('|');
         var on = btn.getAttribute('aria-pressed') === 'true';
-        picks.forEach(function (i) {
-          if (wanted.indexOf(i.value) !== -1) i.checked = !on;
-        });
+        picks.forEach(function (i) { if (wanted.indexOf(i.value) !== -1) i.checked = !on; });
       }
       syncPicks();
     });
@@ -80,9 +111,15 @@
   picks.forEach(function (i) { i.addEventListener('change', syncPicks); });
   syncPicks();
 
-  /* Choosing a discipline from the menu should land you on that group. */
+  /* Choosing a discipline from the menu opens that dropdown. */
   $$('[data-open]').forEach(function (link) {
     link.addEventListener('click', function () {
+      var d = document.getElementById(link.getAttribute('data-open'));
+      if (d && d.classList.contains('drop')) {
+        closeDrops(d);
+        $('.drop-btn', d).setAttribute('aria-expanded', 'true');
+        $('.drop-panel', d).hidden = false;
+      }
       closeMenu();
       $('#mobileNav').classList.remove('open');
       $('#menuToggle').setAttribute('aria-expanded', 'false');
