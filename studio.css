@@ -326,8 +326,11 @@ p { max-width: 64ch; }
    A beat between the argument and the form, and the closest thing on the
    page to a joke. It also does a job: it tells someone what happens next
    before they have to ask. */
-.meetings { background: var(--yellow); border-block: var(--border-w); padding: clamp(40px, 6vw, 76px) 0; }
-.meet-row { display: flex; align-items: center; gap: clamp(18px, 3.2vw, 40px); }
+.meetings { background: var(--yellow); border-block: var(--border-w); padding: clamp(40px, 6vw, 76px) 0; overflow: hidden; }
+/* The band stays a clean stripe and the line inside it leans, so the joke is
+   delivered as an aside rather than as a statement. Two degrees is the most
+   it can take before it stops reading as deliberate. */
+.meet-row { display: flex; align-items: center; gap: clamp(18px, 3.2vw, 40px); transform: rotate(-1.6deg); }
 .meet-face { width: clamp(72px, 10vw, 136px); height: auto; flex: none; color: var(--ink); }
 .meet-line { max-width: 26ch; }
 .meet-eye { transform-box: fill-box; transform-origin: center; animation: meet-blink 7s infinite; }
