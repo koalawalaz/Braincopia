@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Braincopia Studio</title>
+<meta name="description" content="Design and storytelling grounded in research, experience and human behaviour.">
+<meta name="theme-color" content="#5b23e8">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Braincopia Studio">
+<meta property="og:description" content="Design and storytelling grounded in research, experience and human behaviour.">
+<meta property="og:image" content="assets/studio-poster.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="assets/favicon.png" type="image/png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="studio.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a class="brand" href="#top">
+      <img src="assets/logo.png" alt="">
+      <span>
+        <span class="brand-word">Braincopia</span>
+        <span class="brand-sub">Studio</span>
+      </span>
+    </a>
+
+    <nav aria-label="Primary">
+      <ul class="nav">
+        <li>
+          <button class="nav-trigger" id="svcTrigger" type="button" aria-expanded="false" aria-controls="svcMenu">
+            Services <span class="caret" aria-hidden="true"></span>
+          </button>
+          <ul class="dropdown" id="svcMenu" hidden>
+            <li><a href="#story" data-open="story"><b>Story</b><span>Messaging, naming, copy</span></a></li>
+            <li><a href="#print" data-open="print"><b>Print</b><span>Profiles, editorial, posters</span></a></li>
+            <li><a href="#digital" data-open="digital"><b>Digital</b><span>Identity, motion, campaigns</span></a></li>
+            <li><a href="#web" data-open="web"><b>Web</b><span>Sites, apps, landing pages</span></a></li>
+          </ul>
+        </li>
+        <li><a href="#argument">Why us</a></li>
+      <li><a href="index.html">Magazine</a></li>
+        <li><a href="index.html">Magazine</a></li>
+        <li><a href="#brief">Start a brief</a></li>
+      </ul>
+    </nav>
+
+    <button class="btn btn-sm menu-toggle" id="menuToggle" type="button" aria-expanded="false" aria-controls="mobileNav" style="padding:10px 16px">Menu</button>
+  </div>
+
+  <div class="mobile-nav" id="mobileNav">
+    <ul>
+      <li><a href="#services">Services</a></li>
+      <li><a class="sub" href="#story" data-open="story">Story</a></li>
+      <li><a class="sub" href="#print" data-open="print">Print</a></li>
+      <li><a class="sub" href="#digital" data-open="digital">Digital</a></li>
+      <li><a class="sub" href="#web" data-open="web">Web</a></li>
+      <li><a href="#argument">Why us</a></li>
+      <li><a href="index.html">Magazine</a></li>
+      <li><a href="#brief">Start a brief</a></li>
+    </ul>
+  </div>
+</header>
+
+<main id="top">
+
+<!-- =============================================================== HERO -->
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <p class="eyebrow">Design and storytelling studio</p>
+      <h1>A machine can make it fast. <span class="hl">A human</span> can make it matter.</h1>
+      <p class="lede">We build the work that changes what people do: brand worlds, editorial, campaigns. Every decision grounded in research, in the years we have spent making things, and in how human beings actually behave.</p>
+      <div class="hero-cta">
+        <a class="btn btn-primary" href="#brief">Start a brief</a>
+        <a class="btn btn-yellow" href="#services">See what we do</a>
+      </div>
+    </div>
+
+    <div class="hero-reel">
+      <video autoplay muted loop playsinline preload="metadata" poster="assets/studio-poster.jpg" aria-hidden="true" tabindex="-1">
+        <source src="assets/video/studio-hero.webm" type='video/webm; codecs="vp9"'>
+        <source src="assets/video/studio-hero.mp4" type="video/mp4">
+      </video>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================= PICKER -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <symbol id="i-win" viewBox="0 0 24 24"><rect x="2.5" y="4" width="19" height="16" rx="2.5"/><path d="M2.5 9h19M6 6.5h.01M8.5 6.5h.01"/></symbol>
+  <symbol id="i-cart" viewBox="0 0 24 24"><path d="M3 4h2.2l2.4 10.5h9.9L20 7H6.2"/><circle cx="9.5" cy="19" r="1.6"/><circle cx="17" cy="19" r="1.6"/></symbol>
+  <symbol id="i-grid" viewBox="0 0 24 24"><rect x="3" y="3" width="7.5" height="7.5" rx="1.6"/><rect x="13.5" y="3" width="7.5" height="7.5" rx="1.6"/><rect x="3" y="13.5" width="7.5" height="7.5" rx="1.6"/><rect x="13.5" y="13.5" width="7.5" height="7.5" rx="1.6"/></symbol>
+  <symbol id="i-star" viewBox="0 0 24 24"><path d="M12 2.5v19M2.5 12h19M5.2 5.2l13.6 13.6M18.8 5.2 5.2 18.8"/></symbol>
+  <symbol id="i-book" viewBox="0 0 24 24"><path d="M12 5.5C10 3.9 7.4 3.4 4 3.8v14c3.4-.4 6 .1 8 1.7 2-1.6 4.6-2.1 8-1.7v-14c-3.4-.4-6 .1-8 1.7z"/><path d="M12 5.5v14"/></symbol>
+  <symbol id="i-box" viewBox="0 0 24 24"><path d="M3 7.6 12 3l9 4.6v9L12 21l-9-4.4z"/><path d="M3 7.6 12 12l9-4.4M12 12v9"/></symbol>
+  <symbol id="i-poster" viewBox="0 0 24 24"><rect x="4.5" y="2.5" width="15" height="19" rx="2"/><path d="M8 7.5h8M8 11.5h8M8 15.5h4.5"/></symbol>
+  <symbol id="i-card" viewBox="0 0 24 24"><rect x="2.5" y="5.5" width="19" height="13" rx="2.5"/><path d="M6 14.5h5M6 11h8"/></symbol>
+  <symbol id="i-play" viewBox="0 0 24 24"><rect x="2.5" y="4.5" width="19" height="15" rx="2.5"/><path d="M10.2 9.3v5.4l4.6-2.7z"/></symbol>
+  <symbol id="i-mail" viewBox="0 0 24 24"><rect x="2.5" y="4.5" width="19" height="15" rx="2.5"/><path d="m3.5 6.5 8.5 6.5 8.5-6.5"/></symbol>
+  <symbol id="i-burst" viewBox="0 0 24 24"><path d="M4 9.5v5h3.5L14 19V5L7.5 9.5z"/><path d="M17.5 9a4.5 4.5 0 0 1 0 6"/></symbol>
+  <symbol id="i-pen" viewBox="0 0 24 24"><path d="M4 20.2 4.9 16 16.4 4.5a2.2 2.2 0 0 1 3.1 3.1L8 19.1z"/><path d="M14.4 6.5 17.5 9.6"/></symbol>
+  <symbol id="i-chart" viewBox="0 0 24 24"><path d="M4 20h16"/><rect x="5.5" y="11" width="3.6" height="6" rx="1"/><rect x="10.8" y="6.5" width="3.6" height="10.5" rx="1"/><rect x="16.1" y="13.5" width="3.6" height="3.5" rx="1"/></symbol>
+  <symbol id="i-phone" viewBox="0 0 24 24"><rect x="6.5" y="2.5" width="11" height="19" rx="2.6"/><path d="M10.6 5.4h2.8M12 18.3h.01"/></symbol>
+  <symbol id="i-slide" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="12.5" rx="2"/><path d="M12 16.5V21M8.6 21h6.8"/></symbol>
+  <symbol id="i-ask" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9.2"/><path d="M9.4 9.6a2.7 2.7 0 0 1 5.2.9c0 1.8-2.6 2.3-2.6 4"/><path d="M12 17.4h.01"/></symbol>
+</defs></svg>
+
+<section class="section picker" id="services">
+  <div class="wrap">
+    <div class="head">
+      <p class="eyebrow">Start here</p>
+      <h2>What do you need?</h2>
+      <p class="lede">Story first, because it decides everything after it. Pick as many as apply and they travel down to the brief, so you only say it once.</p>
+    </div>
+
+    <div class="presets">
+      <p class="presets-label">Start from a package</p>
+      <div class="preset-row">
+        <button class="preset" type="button" data-preset="Story: Brand story and messaging|Story: Naming and tone of voice|Story: Copywriting" style="--accent: var(--yellow-ink)">
+          Story First <span>3 pieces</span>
+        </button>
+        <button class="preset" type="button" data-preset="Story: Brand story and messaging|Digital: Brand identity|Print: Stationery|Digital: Social campaign|Story: Pitch and presentation" style="--accent: var(--deep)">
+          Brand Essentials <span>5 pieces</span>
+        </button>
+        <button class="preset" type="button" data-preset="Story: Copywriting|Web: Website|Web: Landing page" style="--accent: var(--violet)">
+          Website <span>3 pieces</span>
+        </button>
+        <button class="preset" type="button" data-preset="Story: Campaign concept|Digital: Social campaign|Digital: Motion graphics" style="--accent: var(--pink-ink)">
+          Social Campaign <span>3 pieces</span>
+        </button>
+        <button class="preset preset-clear" type="button" data-preset="">Clear</button>
+      </div>
+    </div>
+
+    <section class="group" id="story" style="--accent: var(--yellow-ink)">
+      <h3 class="group-head"><span class="group-dot"></span>Story</h3>
+      <p class="group-line">The part a prompt cannot do for you</p>
+      <div class="picks">
+        <label class="pick">
+          <input type="checkbox" name="need" value="Story: Brand story and messaging">
+          <span class="pick-face">
+            <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-pen"></use></svg>
+            <span class="pick-name">Brand story and messaging</span>
+            <span class="tick" aria-hidden="true"></span>
+          </span>
+        </label>
+        <label class="pick">
+          <input type="checkbox" name="need" value="Story: Naming and tone of voice">
+          <span class="pick-face">
+            <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-pen"></use></svg>
+            <span class="pick-name">Naming and tone of voice</span>
+            <span class="tick" aria-hidden="true"></span>
+          </span>
+        </label>
+        <label class="pick">
+          <input type="checkbox" name="need" value="Story: Copywriting">
+          <span class="pick-face">
+            <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-poster"></use></svg>
+            <span class="pick-name">Copywriting</span>
+            <span class="tick" aria-hidden="true"></span>
+          </span>
+        </label>
+        <label class="pick">
+          <input type="checkbox" name="need" value="Story: Campaign concept">
+          <span class="pick-face">
+            <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-burst"></use></svg>
+            <span class="pick-name">Campaign concept</span>
+            <span class="tick" aria-hidden="true"></span>
+          </span>
+        </label>
+        <label class="pick">
+          <input type="checkbox" name="need" value="Story: Case studies and impact stories">
+          <span class="pick-face">
+            <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-book"></use></svg>
+            <span class="pick-name">Case studies and impact stories</span>
+            <span class="tick" aria-hidden="true"></span>
+          </span>
+        </label>
+        <label class="pick">
+          <input type="checkbox" name="need" value="Story: Pitch and presentation">
+          <span class="pick-face">
+            <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-slide"></use></svg>
+            <span class="pick-name">Pitch and presentation</span>
+            <span class="tick" aria-hidden="true"></span>
+          </span>
+        </label>
+      </div>
+    </section>
+
+    <section class="group" id="print" style="--accent: var(--green-ink)">
+      <h3 class="group-head"><span class="group-dot"></span>Print</h3>
+      <p class="group-line">Made to be held, and to survive the press</p>
+      <div class="picks">
+        <label class="pick">
+          <input type="checkbox" name="need" value="Print: Company profile">
+          <span class="pick-face">
+            <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-book"></use></svg>
+            <span class="pick-name">Company profile</span>
+            <span class="tick" aria-hidden="true"></span>
+          </span>
+        </label>
+        <label class="pick">
+          <input type="checkbox" name="need" value="Print: Brochure">
+          <span class="pick-face">
+            <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-book"></use></svg>
+            <span class="pick-name">Brochure</span>
+            <span class="tick" aria-hidden="true"></span>
+          </span>
+        </label>
+        <label class="pick">
+          <input type="checkbox" name="need" value="Print: Flyer">
+          <span class="pick-face">
+            <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-poster"></use></svg>
+            <span class="pick-name">Flyer</span>
+            <span class="tick" aria-hidden="true"></span>
+          </span>
+        </label>
+        <label class="pick">
+          <input type="checkbox" name="need" value="Print: Magazine and editorial">
+          <span class="pick-face">
+            <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-book"></use></svg>
+            <span class="pick-name">Magazine and editorial</span>
+            <span class="tick" aria-hidden="true"></span>
+          </span>
+        </label>
+        <label class="pick">
+          <input type="checkbox" name="need" value="Print: Book cover">
+          <span class="pick-face">
+            <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-book"></use></svg>
+            <span class="pick-name">Book cover</span>
+            <span class="tick" aria-hidden="true"></span>
+          </span>
+        </label>
+        <label class="pick">
+          <input type="checkbox" name="need" value="Print: Poster and billboard">
+          <span class="pick-face">
+            <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-poster"></use></svg>
+            <span class="pick-name">Poster and billboard</span>
+            <span class="tick" aria-hidden="true"></span>
+          </span>
+        </label>
+        <label class="pick">
+          <input type="checkbox" name="need" value="Print: Menu">
+          <span class="pick-face">
+            <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-poster"></use></svg>
+            <span class="pick-name">Menu</span>
+            <span class="tick" aria-hidden="true"></span>
+          </span>
+        </label>
+        <label class="pick">
+          <input type="checkbox" name="need" value="Print: Stationery">
+          <span class="pick-face">
+            <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-card"></use></svg>
+            <span class="pick-name">Stationery</span>
+            <span class="tick" aria-hidden="true"></span>
+          </span>
+        </label>
+      </div>
+    </section>
+
+    <section class="group" id="digital" style="--accent: var(--deep)">
+      <h3 class="group-head"><span class="group-dot"></span>Digital</h3>
+      <p class="group-line">The brand, and everything it needs to move</p>
+      <div class="picks">
+        <label class="pick">
+          <input type="checkbox" name="need" value="Digital: Brand identity">
+          <span class="pick-face">
+            <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-star"></use></svg>
+            <span class="pick-name">Brand identity</span>
+            <span class="tick" aria-hidden="true"></span>
+          </span>
+        </label>
+        <label class="pick">
+          <input type="checkbox" name="need" value="Digital: Illustration">
+          <span class="pick-face">
+            <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-pen"></use></svg>
+            <span class="pick-name">Illustration</span>
+            <span class="tick" aria-hidden="true"></span>
+          </span>
+        </label>
+        <label class="pick">
+          <input type="checkbox" name="need" value="Digital: Character design">
+          <span class="pick-face">
+            <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-pen"></use></svg>
+            <span class="pick-name">Character design</span>
+            <span class="tick" aria-hidden="true"></span>
+          </span>
+        </label>
+        <label class="pick">
+          <input type="checkbox" name="need" value="Digital: Motion graphics">
+          <span class="pick-face">
+            <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-play"></use></svg>
+            <span class="pick-name">Motion graphics</span>
+            <span class="tick" aria-hidden="true"></span>
+          </span>
+        </label>
+        <label class="pick">
+          <input type="checkbox" name="need" value="Digital: Infographic">
+          <span class="pick-face">
+            <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-chart"></use></svg>
+            <span class="pick-name">Infographic</span>
+            <span class="tick" aria-hidden="true"></span>
+          </span>
+        </label>
+        <label class="pick">
+          <input type="checkbox" name="need" value="Digital: Social campaign">
+          <span class="pick-face">
+            <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-burst"></use></svg>
+            <span class="pick-name">Social campaign</span>
+            <span class="tick" aria-hidden="true"></span>
+          </span>
+        </label>
+      </div>
+    </section>
+
+    <section class="group" id="web" style="--accent: var(--violet)">
+      <h3 class="group-head"><span class="group-dot"></span>Web</h3>
+      <p class="group-line">Built to be used, not just looked at</p>
+      <div class="picks">
+        <label class="pick">
+          <input type="checkbox" name="need" value="Web: Website">
+          <span class="pick-face">
+            <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-win"></use></svg>
+            <span class="pick-name">Website</span>
+            <span class="tick" aria-hidden="true"></span>
+          </span>
+        </label>
+        <label class="pick">
+          <input type="checkbox" name="need" value="Web: Landing page">
+          <span class="pick-face">
+            <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-win"></use></svg>
+            <span class="pick-name">Landing page</span>
+            <span class="tick" aria-hidden="true"></span>
+          </span>
+        </label>
+        <label class="pick">
+          <input type="checkbox" name="need" value="Web: Application design">
+          <span class="pick-face">
+            <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-phone"></use></svg>
+            <span class="pick-name">Application design</span>
+            <span class="tick" aria-hidden="true"></span>
+          </span>
+        </label>
+      </div>
+    </section>
+
+    <section class="group" id="else" style="--accent: var(--ink)">
+      <div class="picks">
+        <label class="pick pick-wide">
+          <input type="checkbox" name="need" value="Something else">
+          <span class="pick-face">
+            <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-ask"></use></svg>
+            <span class="pick-name">Something else. Tell us in the brief and we will price it.</span>
+            <span class="tick" aria-hidden="true"></span>
+          </span>
+        </label>
+      </div>
+    </section>
+
+    <div class="pick-bar" id="pickBar">
+      <p class="pick-count" id="pickCount">Nothing selected yet</p>
+      <a class="btn btn-primary" href="#brief">Take these to the brief</a>
+    </div>
+  </div>
+</section>
+
+<!-- ====================================================== EVERY PROJECT -->
+<section class="section always-band">
+  <div class="wrap">
+    <h2>In every project</h2>
+    <ul class="always-list">
+      <li>Files that print and files that go online: <b>.ai .psd .pdf .png .jpg</b></li>
+      <li>Print set in <b>CMYK</b>, screen set in <b>RGB</b></li>
+      <li>Full copyright, transferred to you on delivery</li>
+      <li>A signed design transfer agreement, emailed with the final files</li>
+    </ul>
+  </div>
+</section>
+
+<!-- =========================================================== ARGUMENT -->
+<section class="section argument" id="argument">
+  <div class="wrap argument-grid">
+    <div class="argument-copy">
+      <p class="eyebrow">Why a studio, not a prompt</p>
+      <h2>A human understands what a human wants</h2>
+      <p class="pull">A model can give you a thousand options before your coffee goes cold. It cannot tell you which one a person will believe.</p>
+      <p>That is why the story comes before the design here. A logo is a shape until something makes people care about it. The work of deciding what a brand is actually saying, who it is saying it to, and what it wants them to do about it, is the work that cannot be handed over.</p>
+      <p>We use those tools where they help, the way we use a camera or a press. They are never handed the decision. What ships is judged by people who know what they are asking of the person on the other side.</p>
+    </div>
+
+    <div class="grounds">
+      <div class="ground">
+        <span class="ground-key">Studies</span>
+        <div>
+          <h3>We read before we draw</h3>
+          <p>Behavioural science, category research, and whatever the client already knows and has never been asked for. The brief starts as a question, not a moodboard.</p>
+        </div>
+      </div>
+      <div class="ground">
+        <span class="ground-key">Experience</span>
+        <div>
+          <h3>We have been wrong before</h3>
+          <p>Years of work that shipped, and the parts of it that did not land. That is the part no model has: a memory of consequences.</p>
+        </div>
+      </div>
+      <div class="ground">
+        <span class="ground-key">Behaviour</span>
+        <div>
+          <h3>We design for what people do</h3>
+          <p>Not what they say they will do. Attention is short, scepticism is high, and every choice on the page is made against that reality.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================== BRIEF -->
+<section class="section brief" id="brief">
+  <div class="wrap brief-grid">
+    <div>
+      <p class="eyebrow">Start a brief</p>
+      <h2>Tell us what you are trying to change</h2>
+      <p class="lede" style="margin-top:14px">Not what you want made. What you want different. The making is our problem.</p>
+      <p style="margin-top:16px">Send it in a paragraph or in ten pages. We answer every brief, including the ones we are wrong for, and we will say so.</p>
+    </div>
+
+    <form class="card-form" id="briefForm" novalidate>
+      <div class="form-msg bad" id="formError" role="alert"></div>
+      <div class="form-msg good" id="formDone" role="status"></div>
+
+      <div class="field">
+        <label for="bName">Name</label>
+        <input type="text" id="bName" name="name" required autocomplete="name">
+      </div>
+      <div class="field">
+        <label for="bEmail">Email</label>
+        <input type="email" id="bEmail" name="email" required autocomplete="email">
+      </div>
+      <div class="field">
+        <label for="bService">What you picked</label>
+        <textarea id="bService" name="service" rows="2" readonly placeholder="Nothing selected yet. Pick above, or just describe it below."></textarea>
+      </div>
+      <div class="field">
+        <label for="bBrief">The brief</label>
+        <textarea id="bBrief" name="brief" required placeholder="What are you trying to change, and by when?"></textarea>
+      </div>
+      <p class="form-note">We answer within two weeks, either way.</p>
+      <button class="btn btn-primary btn-block" type="submit" id="briefSubmit">Send the brief</button>
+    </form>
+  </div>
+</section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <a class="brand" href="#top">
+          <img src="assets/logo.png" alt="">
+          <span><span class="brand-word">Braincopia</span><span class="brand-sub">Studio</span></span>
+        </a>
+        <p class="footer-slogan">AI is not creative.<br>You are.</p>
+        <p style="font-size:.95rem;color:rgba(247,244,238,.78)">A design and storytelling studio. We make the work, and we stand behind the decisions in it.</p>
+      </div>
+      <div>
+        <h4>Services</h4>
+        <ul>
+          <li><a href="#story">Story</a></li>
+          <li><a href="#print">Print</a></li>
+          <li><a href="#digital">Digital</a></li>
+          <li><a href="#web">Web</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Studio</h4>
+        <ul>
+          <li><a href="#argument">Why us</a></li>
+      <li><a href="index.html">Magazine</a></li>
+        <li><a href="index.html">Magazine</a></li>
+          <li><a href="#brief">Start a brief</a></li>
+          <li><a href="index.html">The magazine</a></li>
+          <li><a href="https://wearyour.store/" target="_blank" rel="noopener">Wear Your &#8599;</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bar">&#169; <span id="year">2026</span> Braincopia Studio</div>
+  </div>
+</footer>
+
+<script src="studio.js"></script>
+</body>
+</html>

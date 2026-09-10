@@ -7,9 +7,12 @@ Static site: one `index.html`, one `styles.css`, one `script.js`, images in
 it works; push it and GitHub Pages serves it as-is.
 
 ```
-index.html      the whole site, one page
-styles.css      the design system
+index.html      the magazine
+styles.css      the magazine's design system
 script.js       cart, checkout, motion
+studio.html     the agency page: services, packages, brief
+studio.css      the studio page's styles
+studio.js       the service picker, presets, brief form
 assets/         PNGs and the hero film, referenced by relative path
 CNAME           custom domain for GitHub Pages
 legacy/         the earlier multi-page site, kept for reference
