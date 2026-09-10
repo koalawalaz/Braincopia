@@ -19,8 +19,32 @@
   var count = $('#pickCount');
   var serviceField = $('#bService');
   var presets = $$('.preset');
+  var detail = $('#presetDetail');
+  var detailHead = $('#presetDetailHead');
+  var detailList = $('#presetList');
   var presetPick = null;
+  var presetBtn = null;
   var moved = false;
+
+  /* A count of pieces is a price tag. The pieces themselves are the answer to
+     what am I actually getting, so the chosen package opens and says. Built
+     node by node rather than as markup, out of habit. */
+  function showPieces() {
+    detailList.textContent = '';
+    if (!presetBtn) { detail.hidden = true; return; }
+
+    var pieces = (presetBtn.getAttribute('data-pieces') || '').split('|');
+    detail.hidden = false;
+    detail.style.setProperty('--accent', presetBtn.style.getPropertyValue('--accent'));
+    detailHead.textContent = presetPick + ' is ' + pieces.length + ' pieces';
+    pieces.forEach(function (name) {
+      var li = document.createElement('li');
+      var span = document.createElement('span');
+      span.textContent = name;
+      li.appendChild(span);
+      detailList.appendChild(li);
+    });
+  }
 
   function showStand() {
     var i = Math.min(items.length - 1, Math.max(0, parseInt(range.value, 10) || 0));
@@ -42,13 +66,19 @@
   function syncPicks() {
     var lines = [];
     if (moved) lines.push('Problem: ' + $('.stand-item.on').getAttribute('data-problem'));
-    if (presetPick) lines.push('Package: ' + presetPick);
+    if (presetBtn) {
+      lines.push('Package: ' + presetPick);
+      (presetBtn.getAttribute('data-pieces') || '').split('|').forEach(function (name) {
+        lines.push('  \u2022 ' + name);
+      });
+    }
 
     count.textContent = !lines.length ? 'Drag the slider to where you stand'
       : moved ? 'We think we know what that is. Tell us if we are wrong.'
       : 'Package chosen.';
 
     serviceField.value = lines.join('\n');
+    serviceField.rows = Math.min(9, Math.max(2, lines.length));
     presets.forEach(function (btn) {
       var name = btn.getAttribute('data-name');
       btn.setAttribute('aria-pressed', name && name === presetPick ? 'true' : 'false');
@@ -75,16 +105,20 @@
     btn.addEventListener('click', function () {
       var name = btn.getAttribute('data-name');
       if (!name) {                               // Clear
-        presetPick = null;
+        presetPick = null; presetBtn = null;
         moved = false;
+      } else if (presetPick === name) {           // Pressing it again closes it
+        presetPick = null; presetBtn = null;
       } else {
-        presetPick = (presetPick === name) ? null : name;
+        presetPick = name; presetBtn = btn;
       }
+      showPieces();
       syncPicks();
     });
   });
 
   showStand();
+  showPieces();
   syncPicks();
 
   /* -------------------------------------------------------- MOBILE MENU */
