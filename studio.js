@@ -121,25 +121,28 @@
   showPieces();
   syncPicks();
 
-  /* ------------------------------------------------------------- THE SWING
-     The joke is well down the page, so it plays when it arrives rather than
-     on load, which is the only moment anybody is there to see it. Arming in
-     here means a page whose script never ran shows the line plainly. */
-  (function swing() {
+  /* ------------------------------------------------------------- THE STAMP
+     The joke is well down the page, so it comes down when the band arrives
+     rather than on load, which is the only moment anybody is there to see
+     it. Arming in here means a page whose script never ran shows the stamp
+     plainly instead of hiding it forever. */
+  (function stamp() {
+    var mark = $('.stamp');
     var row = $('.meet-row');
-    if (!row) return;
-    var still = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (still || !('IntersectionObserver' in window)) return;
+    if (!mark) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches
+        || !('IntersectionObserver' in window)) return;
 
-    row.classList.add('armed');
+    mark.classList.add('armed');
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (e) {
         if (!e.isIntersecting) return;
-        e.target.classList.add('swung');
+        mark.classList.add('struck');
+        row.classList.add('knocked');
         io.unobserve(e.target);
       });
-    }, { threshold: 0.35 });
-    io.observe(row);
+    }, { threshold: 0.4 });
+    io.observe(mark);
   })();
 
   /* -------------------------------------------------------- MOBILE MENU */

@@ -325,50 +325,74 @@ p { max-width: 64ch; }
 /* ------------------------------------------------------------- NO MEETINGS
    A beat between the argument and the form, and the closest thing on the
    page to a joke. It also does a job: it tells someone what happens next
-   before they have to ask. */
-.meetings { background: var(--yellow); border-block: var(--border-w); padding: clamp(40px, 6vw, 76px) 0; overflow: hidden; }
-/* The band stays a clean stripe and the line inside it leans, so the joke is
-   delivered as an aside rather than as a statement. */
-.meet-row {
-  display: flex; align-items: center; gap: clamp(18px, 3.2vw, 40px);
-  transform: rotate(-3deg); transform-origin: 20% 50%;
+   before they have to ask. It is set as a rubber stamp, which is what a
+   line delivered at an angle wants to be, and it comes down like one. */
+.meetings { background: var(--yellow); border-block: var(--border-w); padding: clamp(48px, 7vw, 92px) 0; overflow: hidden; }
+.meet-row { display: flex; justify-content: center; }
+
+.stamp {
+  display: inline-flex; align-items: center; gap: clamp(16px, 2.6vw, 34px);
+  padding: clamp(20px, 3vw, 34px) clamp(24px, 3.6vw, 46px);
+  color: var(--violet);
+  border: 5px solid currentColor; border-radius: 16px;
+  transform: rotate(-3deg);
 }
-/* Armed by the script, so a page without one never hides the line. It swings
-   in like something hung on a nail: past the mark, back, and settles. */
-.meet-row.armed { opacity: 0; }
-.meet-row.armed.swung { opacity: 1; animation: meet-swing 1s cubic-bezier(.3,.7,.3,1) both; }
-.meet-row.armed.swung .meet-face { animation: meet-pop .5s cubic-bezier(.2,1.5,.4,1) .34s both; }
-@keyframes meet-swing {
-  0%   { opacity: 0; transform: rotate(-12deg) translateY(34px); }
-  45%  { opacity: 1; }
-  58%  { transform: rotate(.4deg) translateY(0); }
-  80%  { transform: rotate(-4.4deg); }
-  100% { transform: rotate(-3deg); }
+/* The inner rule, set in from the outer one, is what makes a box read as a
+   stamp rather than as a card. */
+.stamp::before {
+  content: ''; position: absolute; inset: 5px;
+  border: 2px solid currentColor; border-radius: 10px; pointer-events: none;
 }
-@keyframes meet-pop {
-  0%   { transform: scale(.2) rotate(-24deg); opacity: 0; }
-  100% { transform: none; opacity: 1; }
-}
-.meet-face { width: clamp(72px, 10vw, 136px); height: auto; flex: none; color: var(--ink); }
-.meet-line { max-width: 26ch; }
+.stamp { position: relative; }
+
+.meet-face { width: clamp(58px, 7.5vw, 104px); height: auto; flex: none; }
+.meet-line { max-width: 20ch; color: currentColor; }
 .meet-eye { transform-box: fill-box; transform-origin: center; animation: meet-blink 7s infinite; }
 @keyframes meet-blink {
   0%, 92%, 100% { transform: scaleY(1); }
   95%           { transform: scaleY(.1); }
 }
-@media (max-width: 620px) {
-  .meet-row { flex-direction: column; align-items: flex-start; gap: 20px; transform: rotate(-2.2deg); }
-  @keyframes meet-swing {
-    0%   { opacity: 0; transform: rotate(-10deg) translateY(30px); }
-    45%  { opacity: 1; }
-    58%  { transform: rotate(.4deg) translateY(0); }
-    80%  { transform: rotate(-3.4deg); }
-    100% { transform: rotate(-2.2deg); }
+
+/* Armed by the script, so a page without one never hides the line. It drops
+   from above the page, hits, squashes a hair and settles, and the band takes
+   the knock a fraction later. */
+.stamp.armed { opacity: 0; }
+.stamp.armed.struck {
+  opacity: 1;
+  animation: stamp-down .52s cubic-bezier(.55, 0, .35, 1) both;
+}
+.meet-row.knocked { animation: stamp-knock .26s ease-out .4s both; }
+@keyframes stamp-down {
+  0%   { opacity: 0; transform: rotate(-13deg) scale(2.7); }
+  40%  { opacity: 1; }
+  62%  { transform: rotate(-3deg) scale(.94); }
+  78%  { transform: rotate(-3deg) scale(1.03); }
+  100% { transform: rotate(-3deg) scale(1); }
+}
+@keyframes stamp-knock {
+  0%, 100% { transform: translateY(0); }
+  35%      { transform: translateY(5px); }
+  70%      { transform: translateY(-2px); }
+}
+
+@media (max-width: 720px) {
+  /* The rotated corners reach further than the box does, so the stamp gives
+     up padding and type size at this width to keep clear of the band edge. */
+  .meet-row { padding-inline: calc(var(--gutter) + 8px); }
+  .stamp { gap: 16px; padding: 18px 20px; transform: rotate(-2.2deg); }
+  .meet-face { width: 52px; }
+  .meet-line { max-width: none; font-size: clamp(1.35rem, 5.6vw, 1.9rem); }
+  @keyframes stamp-down {
+    0%   { opacity: 0; transform: rotate(-10deg) scale(2.2); }
+    40%  { opacity: 1; }
+    62%  { transform: rotate(-2.2deg) scale(.94); }
+    78%  { transform: rotate(-2.2deg) scale(1.03); }
+    100% { transform: rotate(-2.2deg) scale(1); }
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .meet-row.armed { opacity: 1; }
+  .stamp.armed { opacity: 1; }
   .meet-eye { animation: none; }
 }
 
