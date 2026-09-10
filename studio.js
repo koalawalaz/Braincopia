@@ -8,7 +8,8 @@
   /* -------------------------------------------------------------- STAND
      One scale with three stops instead of a list. The slider is the whole
      control: every stop is a diagnosis, and whichever one is left showing
-     travels down to the brief so nobody retypes what they already chose.
+     travels down to the brief, along with the pieces of any package, so
+     nobody retypes what they already chose.
      Nothing reaches the brief until the visitor actually moves it, so a
      default position never puts words in their mouth. */
   var range = $('#standRange');
@@ -19,32 +20,9 @@
   var count = $('#pickCount');
   var serviceField = $('#bService');
   var presets = $$('.preset');
-  var detail = $('#presetDetail');
-  var detailHead = $('#presetDetailHead');
-  var detailList = $('#presetList');
   var presetPick = null;
   var presetBtn = null;
   var moved = false;
-
-  /* A count of pieces is a price tag. The pieces themselves are the answer to
-     what am I actually getting, so the chosen package opens and says. Built
-     node by node rather than as markup, out of habit. */
-  function showPieces() {
-    detailList.textContent = '';
-    if (!presetBtn) { detail.hidden = true; return; }
-
-    var pieces = (presetBtn.getAttribute('data-pieces') || '').split('|');
-    detail.hidden = false;
-    detail.style.setProperty('--accent', presetBtn.style.getPropertyValue('--accent'));
-    detailHead.textContent = presetPick + ' is ' + pieces.length + ' pieces';
-    pieces.forEach(function (name) {
-      var li = document.createElement('li');
-      var span = document.createElement('span');
-      span.textContent = name;
-      li.appendChild(span);
-      detailList.appendChild(li);
-    });
-  }
 
   function showStand() {
     var i = Math.min(items.length - 1, Math.max(0, parseInt(range.value, 10) || 0));
@@ -107,18 +85,16 @@
       if (!name) {                               // Clear
         presetPick = null; presetBtn = null;
         moved = false;
-      } else if (presetPick === name) {           // Pressing it again closes it
+      } else if (presetPick === name) {           // Pressing it again lets it go
         presetPick = null; presetBtn = null;
       } else {
         presetPick = name; presetBtn = btn;
       }
-      showPieces();
       syncPicks();
     });
   });
 
   showStand();
-  showPieces();
   syncPicks();
 
   /* ------------------------------------------------------------- THE STAMP
