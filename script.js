@@ -17,14 +17,14 @@
   /* period marks a recurring line, and max caps it: nobody holds two of the
      same monthly subscription, so the cart must not let them try. */
   var CATALOGUE = {
-    vol1: { name: 'Vol. I: The Parallel Universe', price: 7, period: 'month', max: 1,
+    vol1: { name: 'The Parallel Universe', price: 7, period: 'month', max: 1,
             note: 'Subscription · both covers' },
     book: { name: 'Tripple CH',                    price: 12,
             note: 'Digital · instant' }
   };
 
   var COLLECTIONS = [
-    'Vol. I: The Parallel Universe', 'Two covers, one price',
+    'The Parallel Universe', 'Two covers, one price',
     'Tripple CH', 'Wear Your'
   ];
 

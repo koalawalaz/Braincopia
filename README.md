@@ -17,8 +17,6 @@ site.css        chrome shared by every page: loader, die, sound
 site.js         the same, in behaviour
 assets/         PNGs and the hero film, referenced by relative path
 CNAME           custom domain for GitHub Pages
-legacy/         the earlier multi-page site, kept for reference
-tools/reel/     renders the Vol. I promo video with ffmpeg
 ```
 
 ## Design system
