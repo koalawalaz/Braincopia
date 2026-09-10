@@ -5,126 +5,52 @@
 
   $('#year').textContent = new Date().getFullYear();
 
-  /* ------------------------------------------------------ SERVICES MENU */
-  var trigger = $('#svcTrigger');
-  var menu = $('#svcMenu');
-
-  function closeMenu() {
-    menu.hidden = true;
-    trigger.setAttribute('aria-expanded', 'false');
-  }
-  trigger.addEventListener('click', function (e) {
-    e.stopPropagation();
-    var open = trigger.getAttribute('aria-expanded') === 'true';
-    menu.hidden = open;
-    trigger.setAttribute('aria-expanded', open ? 'false' : 'true');
-  });
-  document.addEventListener('click', function (e) {
-    if (!menu.hidden && !menu.contains(e.target) && e.target !== trigger) closeMenu();
-  });
-  document.addEventListener('keydown', function (e) {
-    if (e.key === 'Escape' && !menu.hidden) { closeMenu(); trigger.focus(); }
-  });
-
-  /* ------------------------------------------------------------- PICKER
-     Four multi-select dropdowns. Each button carries its own count so a
-     closed panel still says what is inside it, and only one opens at a
-     time so the row never turns into a stack. Everything chosen still
-     travels down to the brief. */
-  var picks = $$('.opt input');
+  /* ----------------------------------------------------------- PROBLEMS
+     One statement at a time, because this is a diagnosis rather than a
+     shopping list. Whatever is chosen travels down to the brief along with
+     any package, so nobody types out what they already clicked. */
+  var probs = $$('.prob input');
+  var presetInputs = [];
   var count = $('#pickCount');
   var serviceField = $('#bService');
-  var drops = $$('.drop');
   var presets = $$('.preset');
-
-  function closeDrops(except) {
-    drops.forEach(function (d) {
-      if (d === except) return;
-      $('.drop-btn', d).setAttribute('aria-expanded', 'false');
-      $('.drop-panel', d).hidden = true;
-    });
-  }
-
-  drops.forEach(function (d) {
-    var btn = $('.drop-btn', d);
-    var panel = $('.drop-panel', d);
-    btn.addEventListener('click', function (e) {
-      e.stopPropagation();
-      var open = btn.getAttribute('aria-expanded') === 'true';
-      closeDrops(d);
-      btn.setAttribute('aria-expanded', open ? 'false' : 'true');
-      panel.hidden = open;
-    });
-  });
-  document.addEventListener('click', function (e) {
-    if (!e.target.closest('.drop')) closeDrops(null);
-  });
-  document.addEventListener('keydown', function (e) {
-    if (e.key === 'Escape') closeDrops(null);
-  });
-
-  function chosenValues() {
-    return picks.filter(function (i) { return i.checked; }).map(function (i) { return i.value; });
-  }
+  var presetPick = null;
 
   function syncPicks() {
-    var chosen = chosenValues();
-    var n = chosen.length;
+    var chosen = probs.filter(function (i) { return i.checked; }).map(function (i) { return i.value; });
+    var lines = [];
+    if (chosen.length) lines.push('Problem: ' + chosen[0]);
+    if (presetPick) lines.push('Package: ' + presetPick);
 
-    if (!n) count.textContent = 'Nothing selected yet';
-    else if (n >= 4) count.textContent = n + ' selected. That is a package-sized brief.';
-    else count.textContent = n + (n === 1 ? ' thing selected' : ' things selected');
+    count.textContent = lines.length
+      ? (chosen.length ? 'We think we know what that is. Tell us if we are wrong.' : 'Package chosen.')
+      : 'Nothing chosen yet';
 
-    serviceField.value = chosen.join('\n');
-
-    drops.forEach(function (d) {
-      var on = $$('input:checked', d).length;
-      var tag = $('[data-count]', d);
-      tag.textContent = on ? on + ' picked' : 'None';
-      if (on) tag.setAttribute('data-on', '');
-      else tag.removeAttribute('data-on');
-    });
+    serviceField.value = lines.join('\n');
 
     presets.forEach(function (btn) {
-      var want = btn.getAttribute('data-preset');
-      if (!want) return;
-      var all = want.split('|').every(function (v) { return chosen.indexOf(v) !== -1; });
-      btn.setAttribute('aria-pressed', all ? 'true' : 'false');
+      var name = btn.getAttribute('data-name');
+      btn.setAttribute('aria-pressed', name && name === presetPick ? 'true' : 'false');
     });
   }
+
+  probs.forEach(function (i) { i.addEventListener('change', syncPicks); });
 
   presets.forEach(function (btn) {
     btn.setAttribute('aria-pressed', 'false');
     btn.addEventListener('click', function () {
-      var want = btn.getAttribute('data-preset');
-      if (!want) {
-        picks.forEach(function (i) { i.checked = false; });
+      var name = btn.getAttribute('data-name');
+      if (!name) {                               // Clear
+        probs.forEach(function (i) { i.checked = false; });
+        presetPick = null;
       } else {
-        var wanted = want.split('|');
-        var on = btn.getAttribute('aria-pressed') === 'true';
-        picks.forEach(function (i) { if (wanted.indexOf(i.value) !== -1) i.checked = !on; });
+        presetPick = (presetPick === name) ? null : name;
       }
       syncPicks();
     });
   });
 
-  picks.forEach(function (i) { i.addEventListener('change', syncPicks); });
   syncPicks();
-
-  /* Choosing a discipline from the menu opens that dropdown. */
-  $$('[data-open]').forEach(function (link) {
-    link.addEventListener('click', function () {
-      var d = document.getElementById(link.getAttribute('data-open'));
-      if (d && d.classList.contains('drop')) {
-        closeDrops(d);
-        $('.drop-btn', d).setAttribute('aria-expanded', 'true');
-        $('.drop-panel', d).hidden = false;
-      }
-      closeMenu();
-      $('#mobileNav').classList.remove('open');
-      $('#menuToggle').setAttribute('aria-expanded', 'false');
-    });
-  });
 
   /* -------------------------------------------------------- MOBILE MENU */
   var toggle = $('#menuToggle');

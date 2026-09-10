@@ -160,65 +160,48 @@ p { max-width: 64ch; }
 .hero-reel video { width: 100%; height: auto; display: block; }
 @media (max-width: 860px) { .hero-grid { grid-template-columns: 1fr; } }
 
-/* ------------------------------------------------------------------ PICKER
-   Four dropdowns rather than a wall of tiles. Each one is a real multi-select:
-   the button carries its own count so a closed panel still tells you what is
-   in it, and only one opens at a time so the row never becomes a stack. */
+/* --------------------------------------------------------------- PROBLEMS
+   Five statements, not a service list. Choosing one opens the diagnosis,
+   which is the actual product being sold: being right about the problem
+   before anyone has been hired. Closed, each is a single line, so the whole
+   section stays short however much thinking sits inside it. */
 .head { display: grid; gap: 14px; margin-bottom: clamp(26px, 4vw, 44px); }
-.drops { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; align-items: start; }
-.drop { position: relative; }
-.drop-btn {
-  display: grid; grid-template-columns: 1fr auto auto; align-items: center; gap: 12px;
-  width: 100%; padding: 16px 18px; cursor: pointer; text-align: left;
-  min-height: 92px;
-  font: inherit; color: var(--accent);
+.problems { display: grid; gap: 12px; }
+.prob { display: block; cursor: pointer; }
+.prob input { position: absolute; width: 1px; height: 1px; margin: -1px; clip-path: inset(50%); }
+.prob-face {
+  display: grid; grid-template-columns: auto 1fr; gap: 16px; align-items: start;
+  padding: 20px 22px;
   background: var(--cream); border: var(--border-w); border-radius: var(--radius-sm);
   box-shadow: var(--shadow-sm);
-  transition: transform .16s ease, box-shadow .16s ease;
+  transition: transform .16s ease, box-shadow .16s ease, background .16s ease;
 }
-.drop-btn:hover { transform: translate(-3px, -3px); box-shadow: var(--shadow); }
-.drop-btn[aria-expanded="true"] { background: var(--accent); color: var(--cream); }
-.drop-head { display: grid; gap: 5px; }
-.drop-name { font-family: var(--font-display); font-size: 1.15rem; letter-spacing: .04em; text-transform: uppercase; }
-/* The line under each name is the point: it says what the group decides,
-   not what it delivers. */
-.drop-line { font-size: .82rem; font-weight: 500; line-height: 1.3; color: rgba(28,28,28,.62); }
-.drop-btn[aria-expanded="true"] .drop-line { color: rgba(255,255,255,.78); }
-.drop-count {
-  font-family: var(--font-mono); font-size: .62rem; font-weight: 700;
-  letter-spacing: .12em; text-transform: uppercase; color: var(--ink);
-  background: var(--paper); border: 2px solid var(--ink); border-radius: 999px; padding: 4px 9px;
+.prob:hover .prob-face { transform: translate(-3px, -3px); box-shadow: var(--shadow); }
+.prob input:focus-visible + .prob-face { outline: 3px solid var(--violet); outline-offset: 3px; }
+.prob-mark {
+  width: 22px; height: 22px; margin-top: 2px; flex: none;
+  border: 2.5px solid var(--ink); border-radius: 999px; background: var(--paper);
 }
-.drop-btn[aria-expanded="true"] .drop-count { background: var(--yellow); }
-.drop-count[data-on] { background: var(--yellow); }
-.drop-btn .caret {
-  width: 9px; height: 9px; border-right: 2.5px solid currentColor; border-bottom: 2.5px solid currentColor;
-  transform: rotate(45deg) translate(-2px, -2px); transition: transform .18s ease;
+.prob-title {
+  display: block; font-family: var(--font-display); font-size: clamp(1.15rem, 2.1vw, 1.55rem);
+  letter-spacing: .02em; text-transform: uppercase; line-height: 1.1; color: var(--accent);
 }
-.drop-btn[aria-expanded="true"] .caret { transform: rotate(-135deg) translate(-3px, -3px); }
+/* Shut until chosen: grid-template-rows animates where height cannot. */
+.prob-more { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .28s cubic-bezier(.2,.8,.3,1); }
+.prob-more > * { overflow: hidden; }
+.prob-diag, .prob-start { display: block; font-size: .96rem; line-height: 1.55; }
+.prob-diag { padding-top: 14px; }
+.prob-start { padding-top: 10px; }
+.prob-diag b, .prob-start b { font-family: var(--font-mono); font-size: .68rem; letter-spacing: .14em; text-transform: uppercase; display: block; margin-bottom: 4px; }
 
-.drop-panel {
-  position: absolute; top: calc(100% + 8px); left: 0; right: 0; z-index: 400;
-  display: grid; gap: 2px; padding: 8px; max-height: 320px; overflow-y: auto;
-  background: var(--cream); border: var(--border-w); border-radius: var(--radius-sm);
-  box-shadow: var(--shadow);
-}
-.drop-panel[hidden] { display: none; }
-.opt {
-  display: grid; grid-template-columns: auto 1fr; align-items: center; gap: 11px;
-  padding: 11px 12px; border-radius: 8px; cursor: pointer; font-size: .95rem; font-weight: 600;
-}
-.opt:hover { background: var(--paper); }
-.opt input { position: absolute; width: 1px; height: 1px; margin: -1px; clip-path: inset(50%); }
-.opt-box { width: 20px; height: 20px; border: 2px solid var(--ink); border-radius: 5px; background: var(--paper); }
-.opt-box::after {
-  content: ""; display: block; width: 9px; height: 5px; margin: 3px auto 0;
-  border-left: 2.5px solid var(--ink); border-bottom: 2.5px solid var(--ink);
-  transform: rotate(-45deg) scale(0); transition: transform .16s cubic-bezier(.2,.8,.3,1);
-}
-.opt input:checked + .opt-box { background: var(--yellow); }
-.opt input:checked + .opt-box::after { transform: rotate(-45deg) scale(1); }
-.opt input:focus-visible + .opt-box { outline: 3px solid var(--violet); outline-offset: 2px; }
+.prob input:checked + .prob-face { background: var(--accent); box-shadow: var(--shadow); }
+.prob input:checked + .prob-face .prob-title { color: var(--cream); }
+.prob input:checked + .prob-face .prob-diag,
+.prob input:checked + .prob-face .prob-start { color: rgba(255,255,255,.88); }
+.prob input:checked + .prob-face .prob-diag b,
+.prob input:checked + .prob-face .prob-start b { color: var(--yellow); }
+.prob input:checked + .prob-face .prob-mark { background: var(--yellow); border-color: var(--yellow); box-shadow: inset 0 0 0 4px var(--accent); }
+.prob input:checked + .prob-face .prob-more { grid-template-rows: 1fr; }
 
 /* ---------------------------------------------------------------- PRESETS
    The packages, as a shortcut rather than a wall of bullets: one press ticks
@@ -300,7 +283,6 @@ p { max-width: 64ch; }
 }
 @media (max-width: 560px) {
   .footer-grid { grid-template-columns: 1fr; }
-  .drops { grid-template-columns: 1fr; }
   .pick-bar { justify-content: stretch; }
   .pick-bar .btn { width: 100%; }
 }
