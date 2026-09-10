@@ -12,7 +12,6 @@
   --pink:       #FF90E8;
   --green-ink:  #14724A;
   --pink-ink:   #A81F86;
-  --yellow-ink: #8A6A00;   /* yellow pulled dark enough to read as text on paper */   /* pink pulled dark enough to read as text on paper */
 
   --ink:    #1C1C1C;
   --paper:  #F7F4EE;
@@ -297,6 +296,23 @@ p { max-width: 64ch; }
 .argument .pull {
   font-family: var(--font-display); font-size: clamp(1.6rem, 3.2vw, 2.5rem);
   line-height: 1.15; text-transform: uppercase; color: var(--yellow); max-width: 34ch;
+}
+
+/* ------------------------------------------------------------- NO MEETINGS
+   A beat between the argument and the form, and the closest thing on the
+   page to a joke. It also does a job: it tells someone what happens next
+   before they have to ask. */
+.meetings { background: var(--yellow); border-block: var(--border-w); padding: clamp(40px, 6vw, 76px) 0; }
+.meet-row { display: flex; align-items: center; gap: clamp(18px, 3.2vw, 40px); }
+.meet-face { width: clamp(72px, 10vw, 136px); height: auto; flex: none; color: var(--ink); }
+.meet-line { max-width: 26ch; }
+.meet-eye { transform-box: fill-box; transform-origin: center; animation: meet-blink 7s infinite; }
+@keyframes meet-blink {
+  0%, 92%, 100% { transform: scaleY(1); }
+  95%           { transform: scaleY(.1); }
+}
+@media (max-width: 620px) {
+  .meet-row { flex-direction: column; align-items: flex-start; gap: 20px; }
 }
 
 /* ------------------------------------------------------------------ BRIEF */
