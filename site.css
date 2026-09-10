@@ -55,7 +55,12 @@
 @media (prefers-reduced-motion: reduce) {
   .sound[aria-pressed="true"] .bars i { animation: none; height: 9px; }
 }
-@media (max-width: 480px) { .sound .sound-word { display: none; } .sound { padding: 10px 12px; } }
+/* Thumb-sized once the word is gone: 46x37 is under the 44px a finger
+   needs, and this is the one control the page owes anyone. */
+@media (max-width: 480px) {
+  .sound .sound-word { display: none; }
+  .sound { padding: 12px; min-width: 46px; min-height: 46px; justify-content: center; }
+}
 
 /* ---------------------------------------------------------------- DIE
    A die that rolls along the bottom of the window as the page scrolls: it

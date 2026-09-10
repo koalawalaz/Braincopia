@@ -101,7 +101,12 @@ nothing would be left to remove it.
 refuse to start audio before the visitor has interacted, so the site tries
 to play on load and, when the browser says no, starts on the first click,
 key or touch instead. The toggle at bottom right is always on screen,
-because a page that makes noise owes you a way to stop it; turning it off
+because a page that makes noise owes you a way to stop it. It shows as
+soon as the page loads and only takes itself away if the file actually
+fails: gating it on `canplaythrough` hid it permanently on iOS, which
+does not fetch media until the visitor interacts, so the event never
+fired. Below 480px it drops the word and holds 46x46, a thumb-sized
+target. turning it off
 is remembered in `localStorage` and it never auto-starts again. It pauses
 on a hidden tab and fades in and out over 900ms rather than cutting.
 

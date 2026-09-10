@@ -65,10 +65,12 @@
     var pref = null;
     try { pref = localStorage.getItem(PREF); } catch (err) { /* private mode */ }
 
-    // No control for audio that will never arrive.
+    /* Show the control straight away and take it back only if the file
+       genuinely fails. Waiting for canplaythrough hides it forever on iOS,
+       which does not fetch media at all until the visitor interacts, so the
+       event never fires and the button never appears. */
+    btn.classList.add('ready');
     audio.addEventListener('error', function () { btn.classList.remove('ready'); });
-    audio.addEventListener('canplaythrough', function () { btn.classList.add('ready'); });
-    if (audio.readyState >= 3) btn.classList.add('ready');
 
     var fade = 0;
     function ramp(to, done) {
