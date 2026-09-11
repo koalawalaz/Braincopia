@@ -124,40 +124,24 @@
   .adslot-block .adslot-box { min-height: 250px; max-width: 300px; }
 }
 
-/* -------------------------------------------------------- FULL-PAGE AD
-   A whole section, edge to edge, the way a magazine hands an advertiser a
-   page rather than a corner. The label and the line sit on cream strips
-   above and below, so the art is never overprinted and the ad is still
-   plainly an ad.
-
-   The row is sized rather than left to the images: two 4:5 panels at full
-   width would run past a metre tall on a wide screen, so the height is
-   capped and the art is cropped to it. */
-.adfull { border-block: var(--border-w); background: var(--cream); }
-/* The band runs full width; the art does not. Two 4:5 panels stretched edge
-   to edge came out a whole screen tall, and cropping them to fit cut the
-   headline off the top and the logo off the bottom, which is where these
-   creatives put both. So the height is set first and the art is sized to it,
-   whole and uncropped, centred on the band. */
-.adfull-row {
-  display: flex; justify-content: center; align-items: center;
-  gap: clamp(14px, 2.5vw, 30px); padding: 0 var(--gutter) clamp(18px, 2.5vw, 26px);
-}
-.adfull-row img {
-  height: clamp(260px, 32vw, 420px); width: auto; max-width: 46%;
-  object-fit: contain; display: block;
+/* ------------------------------------------------------------ AD STRIP
+   One landscape unit, small on purpose. The page is the product and the ad
+   is a line in it, not a chapter: a portrait creative blown to full width
+   ran a whole screen tall, which is a chapter. Label and reason share one
+   row so the strip costs two lines of height, not four. */
+.adfull { border-block: var(--border-w); background: var(--cream);
+          padding: 14px 0 clamp(18px, 2.2vw, 26px); }
+.adfull-strip {
+  max-width: var(--wrap); margin: 0 auto; padding: 0 var(--gutter) 12px;
+  display: flex; flex-wrap: wrap; gap: 6px 18px; justify-content: space-between;
 }
 .adfull-tag, .adfull-why {
-  font-family: var(--font-mono); font-size: .66rem; font-weight: 700;
-  letter-spacing: .2em; text-transform: uppercase; opacity: .5;
-  padding: 14px var(--gutter);
-  max-width: var(--wrap); margin: 0 auto;
+  font-family: var(--font-mono); font-size: .62rem; font-weight: 700;
+  letter-spacing: .18em; text-transform: uppercase; opacity: .45; margin: 0;
 }
-/* One panel on a phone. Two stacked 4:5 blocks is a page and a half of ad
-   before anybody reaches the founder. */
-@media (max-width: 760px) {
-  .adfull-row img { height: auto; width: 100%; max-width: 320px; }
-  /* Scoped past .adfull-row img, which is the more specific of the two and
-     would otherwise keep this panel on screen. */
-  .adfull-row .adfull-second { display: none; }
+.adfull-row { padding: 0 var(--gutter); display: flex; justify-content: center; }
+.adfull-row a { display: block; max-width: 970px; width: 100%; }
+.adfull-row img {
+  width: 100%; height: auto; aspect-ratio: 970 / 250;
+  object-fit: cover; display: block; border-radius: 6px;
 }
