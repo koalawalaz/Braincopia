@@ -125,33 +125,16 @@
 }
 
 /* ------------------------------------------------------------ AD STRIP
-   One landscape unit, small on purpose. The page is the product and the ad
-   is a line in it, not a chapter: a portrait creative blown to full width
-   ran a whole screen tall, which is a chapter. The unit wears the same box
-   as every card on the site: ink border, the site radius, the hard offset
-   shadow. An ad framed like the furniture stops looking like a hole. */
+   One landscape unit, small on purpose: the page is the product and the ad
+   is a line in it, not a chapter. The unit carries .card, so it is the same
+   object as the product cards and the Wear Your panel rather than a copy of
+   them; anything that changes there changes here. */
 .adfull { border-block: var(--border-w); background: var(--cream);
-          padding: 14px 0 clamp(18px, 2.2vw, 26px); }
-.adfull-strip {
-  max-width: var(--wrap); margin: 0 auto; padding: 0 var(--gutter) 14px;
-}
-.adfull-why {
-  font-family: var(--font-mono); font-size: .62rem; font-weight: 700;
-  letter-spacing: .18em; text-transform: uppercase; opacity: .45; margin: 0;
-}
-.adfull-row { padding: 0 var(--gutter); display: flex; justify-content: center; }
-/* The shadow is cast by the link, not the image, so it stays square with
-   the rounded corners instead of leaking out behind them. */
-.adfull-row a {
-  display: block; max-width: 970px; width: 100%;
-  border: var(--border-w); border-radius: var(--radius);
-  box-shadow: var(--shadow); overflow: hidden;
-  transition: transform .16s ease, box-shadow .16s ease;
-}
-.adfull-row a:hover { transform: translate(-3px, -3px); box-shadow: 10px 10px 0 var(--ink); }
+          padding: clamp(26px, 3.6vw, 44px) 0; }
+.adfull-row { padding: 0 var(--gutter) 9px; display: flex; justify-content: center; }
+.adfull-row .card { display: block; max-width: 970px; width: 100%; overflow: hidden; }
+.adfull-row .card:hover { transform: translate(-4px, -4px); box-shadow: var(--shadow-lg); }
 .adfull-row img {
   width: 100%; height: auto; aspect-ratio: 970 / 250;
   object-fit: cover; display: block;
 }
-/* The shadow needs somewhere to fall. */
-.adfull-row { padding-bottom: 9px; }
