@@ -124,17 +124,18 @@
   .adslot-block .adslot-box { min-height: 250px; max-width: 300px; }
 }
 
-/* ------------------------------------------------------------ AD STRIP
-   One landscape unit, small on purpose: the page is the product and the ad
-   is a line in it, not a chapter. The unit carries .card, so it is the same
-   object as the product cards and the Wear Your panel rather than a copy of
-   them; anything that changes there changes here. */
-.adfull { border-block: var(--border-w); background: var(--cream);
-          padding: clamp(26px, 3.6vw, 44px) 0; }
-.adfull-row { padding: 0 var(--gutter) 9px; display: flex; justify-content: center; }
-.adfull-row .card { display: block; max-width: 970px; width: 100%; overflow: hidden; }
-.adfull-row .card:hover { transform: translate(-4px, -4px); box-shadow: var(--shadow-lg); }
-.adfull-row img {
-  width: 100%; height: auto; aspect-ratio: 970 / 250;
-  object-fit: cover; display: block;
+/* ---------------------------------------------------------------- AD SLOT
+   Built rather than uploaded. An advertiser gets the same card the 30%
+   panel uses, so the slot is drawn by the site instead of supplied as a
+   JPEG that has to be made at the right size and kept current. Nothing
+   here to break, nothing to go missing. */
+.adfull { padding: clamp(40px, 6vw, 72px) 0; background: var(--paper);
+          border-block: var(--border-w); }
+.adfull .perk { margin-top: 0; }
+/* Two columns, not the perk's three: there is no figure in the ad, so
+   without this the mark would sit beside the text instead of at the edge. */
+.perk-ad { grid-template-columns: 1fr auto; }
+@media (max-width: 760px) {
+  .perk-ad { grid-template-columns: 1fr auto; }
+  .perk-ad .perk-body { grid-column: 1; }
 }
