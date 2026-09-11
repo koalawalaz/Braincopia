@@ -87,3 +87,28 @@
 /* No die when motion is unwelcome: it exists only to move. */
 @media (prefers-reduced-motion: reduce) { .die { display: none; } }
 
+
+/* ------------------------------------------------------------------ ADS
+   Reserved space, not live ads. The box holds the exact height a unit will
+   occupy so the page never jumps when one loads, which is the single thing
+   that makes ads feel cheap. Labelled, because an ad that reads as editorial
+   costs more trust than it earns, and AdSense asks for the label anyway. */
+.adslot { padding: clamp(30px, 5vw, 56px) var(--gutter); background: var(--paper); }
+.adslot-inner { max-width: var(--wrap); margin: 0 auto; display: grid; gap: 8px; justify-items: center; }
+.adslot-tag {
+  font-family: var(--font-mono); font-size: .6rem; font-weight: 700;
+  letter-spacing: .2em; text-transform: uppercase; opacity: .38;
+}
+.adslot-box {
+  width: 100%; display: grid; place-items: center;
+  border: 2px dashed rgba(28, 28, 28, .28); border-radius: 10px;
+  color: rgba(28, 28, 28, .38);
+  font-family: var(--font-mono); font-size: .72rem; letter-spacing: .12em;
+}
+/* Heights match the real units, so what you are judging is the real hole. */
+.adslot-wide  .adslot-box { min-height: 90px;  max-width: 728px; }
+.adslot-block .adslot-box { min-height: 250px; max-width: 336px; }
+@media (max-width: 700px) {
+  .adslot-wide  .adslot-box { min-height: 100px; max-width: 320px; }
+  .adslot-block .adslot-box { min-height: 250px; max-width: 300px; }
+}
