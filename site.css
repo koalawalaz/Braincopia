@@ -127,21 +127,31 @@
 /* ------------------------------------------------------------ AD STRIP
    One landscape unit, small on purpose. The page is the product and the ad
    is a line in it, not a chapter: a portrait creative blown to full width
-   ran a whole screen tall, which is a chapter. Label and reason share one
-   row so the strip costs two lines of height, not four. */
+   ran a whole screen tall, which is a chapter. The unit wears the same box
+   as every card on the site: ink border, the site radius, the hard offset
+   shadow. An ad framed like the furniture stops looking like a hole. */
 .adfull { border-block: var(--border-w); background: var(--cream);
           padding: 14px 0 clamp(18px, 2.2vw, 26px); }
 .adfull-strip {
-  max-width: var(--wrap); margin: 0 auto; padding: 0 var(--gutter) 12px;
-  display: flex; flex-wrap: wrap; gap: 6px 18px; justify-content: space-between;
+  max-width: var(--wrap); margin: 0 auto; padding: 0 var(--gutter) 14px;
 }
-.adfull-tag, .adfull-why {
+.adfull-why {
   font-family: var(--font-mono); font-size: .62rem; font-weight: 700;
   letter-spacing: .18em; text-transform: uppercase; opacity: .45; margin: 0;
 }
 .adfull-row { padding: 0 var(--gutter); display: flex; justify-content: center; }
-.adfull-row a { display: block; max-width: 970px; width: 100%; }
+/* The shadow is cast by the link, not the image, so it stays square with
+   the rounded corners instead of leaking out behind them. */
+.adfull-row a {
+  display: block; max-width: 970px; width: 100%;
+  border: var(--border-w); border-radius: var(--radius);
+  box-shadow: var(--shadow); overflow: hidden;
+  transition: transform .16s ease, box-shadow .16s ease;
+}
+.adfull-row a:hover { transform: translate(-3px, -3px); box-shadow: 10px 10px 0 var(--ink); }
 .adfull-row img {
   width: 100%; height: auto; aspect-ratio: 970 / 250;
-  object-fit: cover; display: block; border-radius: 6px;
+  object-fit: cover; display: block;
 }
+/* The shadow needs somewhere to fall. */
+.adfull-row { padding-bottom: 9px; }
