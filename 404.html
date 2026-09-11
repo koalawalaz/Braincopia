@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nothing here: Braincopia</title>
+<meta name="description" content="This page does not exist. The rest of Braincopia does.">
+<meta name="theme-color" content="#5b23e8">
+<meta name="robots" content="noindex">
+<link rel="icon" href="/assets/favicon.png" type="image/png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<!-- Root-absolute, because Pages serves this file for a miss at any depth and
+     a relative path would resolve against the address that was not found. -->
+<link rel="stylesheet" href="/styles.css">
+<style>
+  .lost { min-height: 100svh; display: grid; align-content: center; gap: clamp(20px, 3vw, 30px);
+          padding: clamp(40px, 8vw, 90px) var(--gutter); }
+  .lost-mark { display: flex; align-items: center; gap: 14px; width: max-content; text-decoration: none; color: inherit; }
+  .lost-mark img { width: 52px; height: 52px; }
+  .lost-mark span { font-family: var(--font-display); font-size: 1.5rem; letter-spacing: .03em; text-transform: uppercase; }
+  .lost p { font-size: clamp(1.05rem, 2vw, 1.35rem); line-height: 1.5; max-width: 30ch; }
+  /* Scoped past .lost p, which is the more specific of the two and would
+     otherwise hand the number the body size. */
+  .lost .lost-num { font-family: var(--font-display); font-size: clamp(5rem, 20vw, 13rem);
+                    line-height: .8; letter-spacing: .02em; color: var(--violet); max-width: none; }
+  .lost-row { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 6px; }
+</style>
+</head>
+<body>
+<main class="lost">
+  <a class="lost-mark" href="/">
+    <img src="/assets/logo.png" alt="" width="512" height="512">
+    <span>Braincopia</span>
+  </a>
+
+  <p class="lost-num">404</p>
+  <p>This one is living between what is real and what could be. The rest of it is real enough.</p>
+
+  <div class="lost-row">
+    <a class="btn btn-primary" href="/">The magazine</a>
+    <a class="btn btn-yellow" href="/studio.html">The studio</a>
+  </div>
+</main>
+</body>
+</html>
