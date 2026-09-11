@@ -134,12 +134,19 @@
    width would run past a metre tall on a wide screen, so the height is
    capped and the art is cropped to it. */
 .adfull { border-block: var(--border-w); background: var(--cream); }
-/* No crop. These creatives carry the headline at the top edge and the logo
-   at the bottom, so capping the height and cropping to it cut both off. The
-   panels keep their 4:5 and the section is as tall as that makes it, which
-   on a wide screen is most of a screen. That is what a full page is. */
-.adfull-row { display: grid; grid-template-columns: 1fr 1fr; }
-.adfull-row img { width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; display: block; }
+/* The band runs full width; the art does not. Two 4:5 panels stretched edge
+   to edge came out a whole screen tall, and cropping them to fit cut the
+   headline off the top and the logo off the bottom, which is where these
+   creatives put both. So the height is set first and the art is sized to it,
+   whole and uncropped, centred on the band. */
+.adfull-row {
+  display: flex; justify-content: center; align-items: center;
+  gap: clamp(14px, 2.5vw, 30px); padding: 0 var(--gutter) clamp(18px, 2.5vw, 26px);
+}
+.adfull-row img {
+  height: clamp(260px, 32vw, 420px); width: auto; max-width: 46%;
+  object-fit: contain; display: block;
+}
 .adfull-tag, .adfull-why {
   font-family: var(--font-mono); font-size: .66rem; font-weight: 700;
   letter-spacing: .2em; text-transform: uppercase; opacity: .5;
@@ -149,7 +156,7 @@
 /* One panel on a phone. Two stacked 4:5 blocks is a page and a half of ad
    before anybody reaches the founder. */
 @media (max-width: 760px) {
-  .adfull-row { grid-template-columns: 1fr; }
+  .adfull-row img { height: auto; width: 100%; max-width: 320px; }
   /* Scoped past .adfull-row img, which is the more specific of the two and
      would otherwise keep this panel on screen. */
   .adfull-row .adfull-second { display: none; }
