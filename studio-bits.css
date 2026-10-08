@@ -14,8 +14,8 @@
   font-family: var(--font-display); font-size: clamp(1.6rem, 3.2vw, 2.6rem);
   line-height: 1.02; text-transform: uppercase; letter-spacing: .01em;
   color: var(--yellow);
-  margin-top: clamp(16px, 2.2vw, 24px);
-  margin-bottom: clamp(22px, 3vw, 32px);
+  margin-top: clamp(18px, 2.4vw, 26px);
+  margin-bottom: clamp(34px, 4.4vw, 48px);
 }
 
 /* ----------------------------------------------------------------- OFFERS
@@ -84,38 +84,6 @@
 
 
 
-/* ------------------------------------------------------------------ HERO
-   The hero stops being a dark plate with a film behind it. That film was a
-   pile of printed magazines, and there is no magazine any more. The reel
-   that replaces it ends on the mark, which makes it the right film for a
-   studio and the wrong one to hide words in front of: it is nearly white.
-   So it sits beside the copy in its own frame, and the hero turns to paper.
-   Every dark beat the page needs is still below it. */
-.hero {
-  background: var(--paper); align-items: center; overflow: visible;
-  min-height: 0; padding-block: clamp(54px, 9vh, 104px);
-}
-.hero-inner {
-  color: var(--ink);
-  display: grid; grid-template-columns: 1.04fr .96fr;
-  gap: clamp(28px, 5vw, 64px); align-items: center;
-}
-.hero h1 { color: var(--ink); }
-.hero .lede { color: rgba(28, 28, 28, .76); }
-.hero-chant { color: var(--violet); }
-.hero-spine { color: var(--violet); }
-
-.hero-reel {
-  border: var(--border-w); border-radius: var(--radius);
-  box-shadow: var(--shadow); overflow: hidden; background: var(--cream);
-}
-.hero-reel video { width: 100%; height: auto; display: block; }
-
-@media (max-width: 880px) {
-  .hero-inner { grid-template-columns: 1fr; }
-  .hero-reel { order: -1; }
-}
-
 /* ------------------------------------------------------------ THE WORLD
    The argument and the founder's letter were both ink, with ink rules
    between them, so on a phone they ran together as one unbroken black
@@ -127,3 +95,16 @@
    yellow. */
 .founder { background: var(--deep); }
 .founder .founder-plate img { box-shadow: 7px 7px 0 var(--ink); }
+
+/* ------------------------------------------------------------------ MARK
+   A breath between the argument and the letter, and the one place the mark
+   resolves on its own. Paper, because the film is nearly white: as a band
+   it reads as a held beat, and behind words it would read as a fault. */
+.mark { background: var(--paper); border-block: var(--border-w); }
+.mark-inner { display: flex; justify-content: center; }
+.hero-reel {
+  width: 100%; max-width: 840px;
+  border: var(--border-w); border-radius: var(--radius);
+  box-shadow: var(--shadow); overflow: hidden; background: var(--cream);
+}
+.hero-reel video { width: 100%; height: auto; display: block; }
