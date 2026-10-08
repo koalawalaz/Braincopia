@@ -116,18 +116,31 @@
   (function offers() {
     var picks = $$('.offer input');
     var count = $('#pickCount');
-    var field = $('#bService');
-    if (!picks.length || !field) return;
+    var link = $('#toBrief');
+    if (!picks.length || !count || !link) return;
 
     function sync() {
       var chosen = picks.filter(function (i) { return i.checked; });
       count.textContent = chosen.length
         ? 'Tell us what it is for and we will say if it is the right one.'
         : 'Pick one, or just tell us what is going on';
-      field.value = chosen.length ? chosen[0].value : '';
+      /* The brief lives on its own page now, so the choice travels in the
+         link rather than in the field. */
+      link.href = chosen.length
+        ? 'contact.html?pick=' + encodeURIComponent(chosen[0].value)
+        : 'contact.html';
     }
     picks.forEach(function (i) { i.addEventListener('change', sync); });
     sync();
+  })();
+
+  /* The other end of that link: whatever was picked arrives as a query and
+     goes straight into the field, read-only, the way it was on one page. */
+  (function carried() {
+    var field = $('#bService');
+    if (!field) return;
+    var pick = new URLSearchParams(window.location.search).get('pick');
+    if (pick) field.value = pick;
   })();
 
   /* ---------------------------------------------------------------- STAMP
