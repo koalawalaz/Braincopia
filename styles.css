@@ -291,6 +291,28 @@ p { max-width: 62ch; }
   .ambassador-copy p { font-size: .92rem; }
 }
 
+/* ---------------------------------------------------------------- FORMS
+   These lived inside the cart drawer, under a checkout sub-heading, because
+   the checkout was the only form on the site when they were written. The
+   cart is gone and the brief is not, so they sit on their own now. */
+.field { margin-bottom: 14px; }
+.field label {
+  display: block; font-family: var(--font-mono); font-size: .68rem; font-weight: 700;
+  letter-spacing: .14em; text-transform: uppercase; margin-bottom: 6px;
+}
+.field input, .field textarea {
+  width: 100%; padding: 12px 14px; font-family: var(--font-body); font-size: 1rem;
+  border: var(--border-w); border-radius: var(--radius-sm);
+  background: var(--cream); color: var(--ink);
+}
+.field textarea { min-height: 84px; resize: vertical; }
+.form-error {
+  display: none; margin-bottom: 14px; padding: 12px 14px;
+  border: var(--border-w); border-radius: var(--radius-sm);
+  background: var(--error-bg); color: var(--error); font-size: .9rem; font-weight: 600;
+}
+.form-error.show { display: block; }
+
 /* --------------------------------------------------------------- FOOTER */
 .site-footer { background: var(--ink); color: var(--paper); border-top: var(--border-w); }
 .footer-top { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: 36px; padding: clamp(44px, 6vw, 76px) 0 44px; }
