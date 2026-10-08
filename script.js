@@ -108,6 +108,71 @@
     items.forEach(function (el) { io.observe(el); });
   })();
 
+  /* ----------------------------------------------------------- THE STEPS
+     Four fields at once reads as paperwork. One question at a time reads as
+     a conversation, and the only cost is two clicks.
+
+     Every field stays in the form the whole way through, hidden rather than
+     built on demand, so FormData still collects all of it on submit and a
+     visitor who goes back does not lose what they typed. */
+  (function steps() {
+    var form = $('#contactForm');
+    if (!form) return;
+    var panes = $$('.step', form);
+    if (panes.length < 2) return;
+
+    var count = $('#stepCount');
+    var back = $('#stepBack');
+    var next = $('#stepNext');
+    var send = $('#contactSubmit');
+    var err = $('#contactError');
+    var at = 0;
+
+    function show(i, focus) {
+      at = i;
+      panes.forEach(function (p, n) { p.hidden = n !== i; });
+      count.textContent = 'Step ' + (i + 1) + ' of ' + panes.length;
+      back.hidden = i === 0;
+      next.hidden = i === panes.length - 1;
+      send.hidden = i !== panes.length - 1;
+      err.classList.remove('show');
+      err.textContent = '';   /* role=alert: stale text must not be re-announced */
+      if (focus) {
+        var first = panes[i].querySelector('input, textarea');
+        if (first) first.focus();
+      }
+    }
+
+    /* The browser cannot focus an invalid field it is not showing, so each
+       step is checked on its own rather than leaning on the form's. */
+    function valid() {
+      var fields = $$('input, textarea', panes[at]);
+      for (var i = 0; i < fields.length; i++) {
+        if (!fields[i].checkValidity()) {
+          err.textContent = fields[i].validity.valueMissing
+            ? 'This one we need.'
+            : 'That does not look right yet.';
+          err.classList.add('show');
+          fields[i].focus();
+          return false;
+        }
+      }
+      return true;
+    }
+
+    next.addEventListener('click', function () { if (valid()) show(at + 1, true); });
+    back.addEventListener('click', function () { show(at - 1, true); });
+
+    /* Enter means next until the last step, where the submit button is the
+       one in the form and Enter can have it. */
+    form.addEventListener('keydown', function (e) {
+      if (e.key !== 'Enter' || e.target.tagName === 'TEXTAREA') return;
+      if (at < panes.length - 1) { e.preventDefault(); next.click(); }
+    });
+
+    show(0, false);
+  })();
+
   async function post(endpoint, data, errorBox, button, busyLabel) {
     errorBox.classList.remove('show');
     var original = button.textContent;
