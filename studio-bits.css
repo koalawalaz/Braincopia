@@ -27,8 +27,7 @@
 .head { display: grid; gap: 14px; margin-bottom: clamp(26px, 4vw, 44px); position: relative; }
 
 .offers { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(14px, 1.8vw, 22px); }
-.offer { display: block; cursor: pointer; }
-.offer input { position: absolute; width: 1px; height: 1px; margin: -1px; clip-path: inset(50%); }
+.offer { display: block; }
 .offer-face {
   display: grid; align-content: start; gap: 8px; height: 100%;
   padding: clamp(22px, 2.6vw, 30px);
@@ -36,12 +35,7 @@
   box-shadow: var(--shadow-sm);
   transition: transform .16s ease, box-shadow .16s ease, background .16s ease;
 }
-.offer:hover .offer-face { transform: translate(-3px, -3px); box-shadow: var(--shadow); }
-.offer input:focus-visible + .offer-face { outline: 3px solid var(--violet); outline-offset: 3px; }
-.offer-mark {
-  width: 20px; height: 20px; border: 2.5px solid var(--ink); border-radius: 999px;
-  background: var(--paper); margin-bottom: 4px;
-}
+
 .offer-name {
   font-family: var(--font-display); font-size: clamp(1.4rem, 2.4vw, 1.95rem);
   line-height: 1.02; letter-spacing: .02em; text-transform: uppercase; color: var(--accent);
@@ -52,15 +46,7 @@
 }
 .offer-copy { font-size: .97rem; line-height: 1.55; margin-top: 6px; }
 
-.offer input:checked + .offer-face { background: var(--accent); box-shadow: var(--shadow); }
-.offer input:checked + .offer-face .offer-name { color: var(--yellow); }
-.offer input:checked + .offer-face .offer-kind { color: var(--yellow); opacity: .9; }
-.offer input:checked + .offer-face .offer-copy { color: rgba(255,255,255,.9); }
-.offer input:checked + .offer-face .offer-mark {
-  background: var(--yellow); border-color: var(--yellow); box-shadow: inset 0 0 0 4px var(--accent);
-}
-
-/* The bar under the three, carrying whatever is chosen down to the brief. */
+/* The line under the three, and the way through to the brief. */
 .pick-bar {
   display: flex; flex-wrap: wrap; align-items: center; gap: 16px 22px;
   margin-top: clamp(26px, 3.6vw, 38px);

@@ -108,58 +108,6 @@
     items.forEach(function (el) { io.observe(el); });
   })();
 
-  /* --------------------------------------------------------------- OFFERS
-     Three products, one at a time. Whichever is chosen travels down to the
-     brief so nobody retypes what they already clicked, and nothing reaches
-     the brief until somebody actually chooses. */
-  (function offers() {
-    var picks = $$('.offer input');
-    var count = $('#pickCount');
-    var link = $('#toBrief');
-    if (!picks.length || !count || !link) return;
-
-    function sync() {
-      var chosen = picks.filter(function (i) { return i.checked; });
-      count.textContent = chosen.length
-        ? 'Tell us what it is for and we will say if it is the right one.'
-        : 'Pick one, or just tell us what is going on';
-      /* The brief lives on its own page now, so the choice travels in the
-         link rather than in the field. */
-      link.href = chosen.length
-        ? 'contact.html?pick=' + encodeURIComponent(chosen[0].value)
-        : 'contact.html';
-    }
-    picks.forEach(function (i) { i.addEventListener('change', sync); });
-    sync();
-  })();
-
-  /* The other end of that link: whatever was picked arrives as a query and
-     goes straight into the field, read-only, the way it was on one page. */
-  (function carried() {
-    var field = $('#bService');
-    if (!field) return;
-    var pick = new URLSearchParams(window.location.search).get('pick');
-    if (pick) field.value = pick;
-  })();
-
-  /* ---------------------------------------------------------------- STAMP
-     It comes down when the section arrives, which is the only moment anybody
-     is there to see it. Armed in here, so a page whose script never ran
-     shows the stamp plainly instead of hiding it forever. */
-  (function stamp() {
-    var mark = $('.stamp');
-    if (!mark || reduceMotion || !('IntersectionObserver' in window)) return;
-    mark.classList.add('armed');
-    var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (e) {
-        if (!e.isIntersecting) return;
-        mark.classList.add('struck');
-        io.unobserve(e.target);
-      });
-    }, { threshold: 0.9 });
-    io.observe(mark);
-  })();
-
   async function post(endpoint, data, errorBox, button, busyLabel) {
     errorBox.classList.remove('show');
     var original = button.textContent;
