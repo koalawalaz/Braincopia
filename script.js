@@ -15,7 +15,7 @@
   var FORMSPREE_ENDPOINT = 'https://formspree.io/f/mvkowogd';
 
   var COLLECTIONS = [
-    'The Angle', 'The Voice', 'The Notes',
+    'The Concept', 'The Voice', 'The Decision',
     'No meetings required', 'Wear Your'
   ];
 
