@@ -45,7 +45,7 @@
 
     <nav aria-label="Primary">
       <ul class="nav">
-        <li><a href="#services">Start here</a></li>
+        <li><a href="#services">Borrow</a></li>
         <li><a href="index.html">Magazine</a></li>
         <li><a href="index.html#shop">Shop</a></li>
         <li><a href="studio.html">Studio</a></li>
@@ -59,7 +59,7 @@
 
   <div class="mobile-nav" id="mobileNav">
     <ul>
-      <li><a href="#services">Start here</a></li>
+      <li><a href="#services">Borrow</a></li>
       <li><a href="index.html">Magazine</a></li>
       <li><a href="index.html#shop">Shop</a></li>
       <li><a href="studio.html">Studio</a></li>
@@ -75,12 +75,13 @@
 <section class="hero">
   <div class="wrap hero-grid">
     <div class="hero-copy">
-      <p class="eyebrow">Design and storytelling studio</p>
-      <h1>A machine can make it fast. <span class="hl">A human</span> can make it matter.</h1>
-      <p class="lede">We build the work that changes what people do: brand worlds, editorial, campaigns. Every decision grounded in research, in the years we have spent making things, and in how human beings actually behave.</p>
+      <p class="eyebrow">Independent creative studio</p>
+      <h1>Ideas that <span class="hl">earn</span> attention.</h1>
+      <p class="lede">We don&#8217;t replace your agency. We give you the ideas, the voice, and the outside eye that make their work sharper.</p>
+      <p class="hero-spine">You keep your team.<br>You borrow our thinking.</p>
       <div class="hero-cta">
-        <a class="btn btn-primary" href="#brief">Start a brief</a>
-        <a class="btn btn-yellow" href="#services">See what we do</a>
+        <a class="btn btn-primary" href="#brief">Let&#8217;s find the idea</a>
+        <a class="btn btn-yellow" href="#services">What you can borrow</a>
       </div>
     </div>
 
@@ -126,62 +127,45 @@
         <p class="meet-line">No meetings<br>required</p>
       </div>
 
-      <p class="eyebrow">Start here</p>
-      <h2>Where do you stand?</h2>
-      <p class="lede">Not what you want made. Most briefs arrive as a shopping list and the list is usually wrong, because the thing that is broken is rarely the thing that gets ordered. Drag to the one that is true and we will tell you what we think it actually is.</p>
+      <p class="eyebrow">What you can borrow</p>
+      <h2>Three ways in</h2>
+      <p class="lede">Each one is thinking, not production. Nobody has to be fired, rebriefed or replaced for any of them to start.</p>
     </div>
 
-    <div class="stand">
-      <div class="stand-track">
-        <input class="stand-range" id="standRange" type="range" min="0" max="2" step="1" value="1"
-               aria-label="Where do you stand">
-      </div>
+    <div class="offers">
+      <label class="offer" style="--accent: var(--violet)">
+        <input type="radio" name="offer" value="The Spark">
+        <span class="offer-face">
+          <span class="offer-mark" aria-hidden="true"></span>
+          <span class="offer-name">The Spark</span>
+          <span class="offer-kind">A concept sprint</span>
+          <span class="offer-copy">A focused brainstorming session and a written creative direction: the big idea, the angle, and how it should feel. For when a brand or campaign needs a strong place to start.</span>
+        </span>
+      </label>
 
-      <div class="stand-axis">
-        <button class="stand-stop" type="button" data-i="0">Invisible</button>
-        <button class="stand-stop" type="button" data-i="1">Overlooked</button>
-        <button class="stand-stop" type="button" data-i="2">Forgettable</button>
-      </div>
+      <label class="offer" style="--accent: var(--green-ink)">
+        <input type="radio" name="offer" value="The Voice">
+        <span class="offer-face">
+          <span class="offer-mark" aria-hidden="true"></span>
+          <span class="offer-name">The Voice</span>
+          <span class="offer-kind">An editorial voice guide</span>
+          <span class="offer-copy">We define how your brand speaks: tone, vocabulary, dos and don&#8217;ts, and sample posts. Your team or agency executes everything with it. Yours to keep.</span>
+        </span>
+      </label>
 
-      <div class="stand-panel" id="standPanel" aria-live="polite">
-        <div class="stand-item" style="--accent: var(--green-ink)" data-problem="Nobody knows we exist.">
-          <p class="stand-quote">Nobody knows we exist.</p>
-          <p class="stand-line"><b>What that usually is</b>Almost never a visibility problem. It is that nothing you have made is repeatable enough for someone to describe you to somebody else.</p>
-          <p class="stand-line"><b>Where we would start</b>With the sentence a customer would use about you when you are not in the room.</p>
-        </div>
-
-        <div class="stand-item on" style="--accent: var(--violet)" data-problem="They look, and then they leave.">
-          <p class="stand-quote">They look, and then they leave.</p>
-          <p class="stand-line"><b>What that usually is</b>Rarely the design. It is that nothing on the page tells them what changes for them if they stay, and nothing separates you from the other tabs they have open.</p>
-          <p class="stand-line"><b>Where we would start</b>With the story, and only then the layout.</p>
-        </div>
-
-        <div class="stand-item" style="--accent: var(--pink-ink)" data-problem="It all works, but it does not mean anything.">
-          <p class="stand-quote">It all works, but it does not mean anything.</p>
-          <p class="stand-line"><b>What that usually is</b>The hardest one. Everything is competent and nothing is chosen, and competence is what a template already gives you.</p>
-          <p class="stand-line"><b>Where we would start</b>By throwing out the parts nobody would miss.</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="presets">
-      <p class="presets-label">Or, if you already know</p>
-      <div class="preset-row">
-        <button class="preset" type="button" data-name="Story First"
-                data-pieces="Brand story and messaging|Naming and tone of voice|Copywriting"
-                style="--accent: var(--green-ink)">Story First</button>
-        <button class="preset" type="button" data-name="Brand Essentials"
-                data-pieces="Brand story and messaging|Brand identity|Stationery|Pitch and presentation"
-                style="--accent: var(--deep)">Brand Essentials</button>
-        <button class="preset" type="button" data-name="Digital Campaign"
-                data-pieces="Campaign concept|Social campaign|Motion graphics|Landing page"
-                style="--accent: var(--pink-ink)">Digital Campaign</button>
-        <button class="preset preset-clear" type="button">Clear</button>
-      </div>
+      <label class="offer" style="--accent: var(--pink-ink)">
+        <input type="radio" name="offer" value="The Second Opinion">
+        <span class="offer-face">
+          <span class="offer-mark" aria-hidden="true"></span>
+          <span class="offer-name">The Second Opinion</span>
+          <span class="offer-kind">A creative review, monthly</span>
+          <span class="offer-copy">Send us campaigns before they launch. We give sharp, honest feedback, catch the weak ideas, and push the thinking further.</span>
+        </span>
+      </label>
     </div>
 
     <div class="pick-bar" id="pickBar">
-      <p class="pick-count" id="pickCount">Drag the slider to where you stand</p>
+      <p class="pick-count" id="pickCount">Pick one, or just tell us what is going on</p>
       <a class="btn btn-primary" href="#brief">Take this to the brief</a>
     </div>
   </div>
@@ -201,8 +185,8 @@
   <div class="wrap brief-grid">
     <div>
       <p class="eyebrow">Start a brief</p>
-      <h2>Tell us what you are trying to change</h2>
-      <p class="lede" style="margin-top:14px">Not what you want made. What you want different. The making is our problem.</p>
+      <h2>Have something real to say?</h2>
+      <p class="lede" style="margin-top:14px">Let&#8217;s find the idea. Tell us what you are trying to change, and who has to believe it.</p>
       <p style="margin-top:16px">Send it in a paragraph or in ten pages. We answer every brief, including the ones we are wrong for, and we will say so.</p>
     </div>
 
@@ -220,7 +204,7 @@
       </div>
       <div class="field">
         <label for="bService">What you picked</label>
-        <textarea id="bService" name="service" rows="2" readonly placeholder="Nothing selected yet. Pick above, or just describe it below."></textarea>
+        <input type="text" id="bService" name="service" readonly placeholder="Nothing picked yet. That is fine.">
       </div>
       <div class="field">
         <label for="bBrief">The brief</label>
@@ -248,7 +232,7 @@
       <div>
         <h4>The work</h4>
         <ul>
-          <li><a href="#services">Start here</a></li>
+          <li><a href="#services">What you can borrow</a></li>
           <li><a href="#argument">Why us</a></li>
           <li><a href="#brief">Start a brief</a></li>
         </ul>

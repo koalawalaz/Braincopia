@@ -5,96 +5,25 @@
 
   $('#year').textContent = new Date().getFullYear();
 
-  /* -------------------------------------------------------------- STAND
-     One scale with three stops instead of a list. The slider is the whole
-     control: every stop is a diagnosis, and whichever one is left showing
-     travels down to the brief, along with the pieces of any package, so
-     nobody retypes what they already chose.
-     Nothing reaches the brief until the visitor actually moves it, so a
-     default position never puts words in their mouth. */
-  var range = $('#standRange');
-  var items = $$('.stand-item');
-  var stops = $$('.stand-stop');
-  var track = $('.stand-track');
-  var panel = $('#standPanel');
+  /* --------------------------------------------------------------- OFFERS
+     Three products, one at a time. Whichever is chosen travels down to the
+     brief so nobody retypes what they already clicked, and nothing reaches
+     the brief until somebody actually chooses. */
+  var offers = $$('.offer input');
   var count = $('#pickCount');
   var serviceField = $('#bService');
-  var presets = $$('.preset');
-  var presetPick = null;
-  var presetBtn = null;
-  var moved = false;
-
-  function showStand() {
-    var i = Math.min(items.length - 1, Math.max(0, parseInt(range.value, 10) || 0));
-    var accent = items[i].style.getPropertyValue('--accent');
-
-    items.forEach(function (el, n) {
-      el.classList.toggle('on', n === i);
-      el.setAttribute('aria-hidden', n === i ? 'false' : 'true');
-    });
-    stops.forEach(function (b, n) { b.setAttribute('aria-current', n === i ? 'true' : 'false'); });
-
-    track.style.setProperty('--p', i / (items.length - 1));
-    track.style.setProperty('--accent', accent);
-    panel.style.setProperty('--accent', accent);
-    stops[i].style.setProperty('--accent', accent);
-    range.setAttribute('aria-valuetext', items[i].getAttribute('data-problem'));
-  }
 
   function syncPicks() {
-    var lines = [];
-    if (moved) lines.push('Problem: ' + $('.stand-item.on').getAttribute('data-problem'));
-    if (presetBtn) {
-      lines.push('Package: ' + presetPick);
-      (presetBtn.getAttribute('data-pieces') || '').split('|').forEach(function (name) {
-        lines.push('  \u2022 ' + name);
-      });
-    }
+    var chosen = offers.filter(function (i) { return i.checked; });
 
-    count.textContent = !lines.length ? 'Drag the slider to where you stand'
-      : moved ? 'We think we know what that is. Tell us if we are wrong.'
-      : 'Package chosen.';
+    count.textContent = chosen.length
+      ? 'Tell us what it is for and we will say if it is the right one.'
+      : 'Pick one, or just tell us what is going on';
 
-    serviceField.value = lines.join('\n');
-    serviceField.rows = Math.min(9, Math.max(2, lines.length));
-    presets.forEach(function (btn) {
-      var name = btn.getAttribute('data-name');
-      btn.setAttribute('aria-pressed', name && name === presetPick ? 'true' : 'false');
-    });
+    serviceField.value = chosen.length ? chosen[0].value : '';
   }
 
-  range.addEventListener('input', function () {
-    moved = true;
-    showStand();
-    syncPicks();
-  });
-
-  stops.forEach(function (btn) {
-    btn.addEventListener('click', function () {
-      range.value = btn.getAttribute('data-i');
-      moved = true;
-      showStand();
-      syncPicks();
-    });
-  });
-
-  presets.forEach(function (btn) {
-    btn.setAttribute('aria-pressed', 'false');
-    btn.addEventListener('click', function () {
-      var name = btn.getAttribute('data-name');
-      if (!name) {                               // Clear
-        presetPick = null; presetBtn = null;
-        moved = false;
-      } else if (presetPick === name) {           // Pressing it again lets it go
-        presetPick = null; presetBtn = null;
-      } else {
-        presetPick = name; presetBtn = btn;
-      }
-      syncPicks();
-    });
-  });
-
-  showStand();
+  offers.forEach(function (i) { i.addEventListener('change', syncPicks); });
   syncPicks();
 
   /* ------------------------------------------------------------- THE STAMP
