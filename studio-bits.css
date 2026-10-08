@@ -82,3 +82,11 @@
   box-shadow: var(--shadow); overflow: hidden; background: var(--cream);
 }
 .hero-reel video { width: 100%; height: auto; display: block; }
+
+/* A phone number is useful and asking for it is not. Marked optional in the
+   label, so nobody abandons the form over a field they did not want to
+   fill, and nobody wonders whether they have to. */
+.field-opt {
+  font-weight: 400; letter-spacing: .1em; opacity: .55; margin-left: 6px;
+  text-transform: none;
+}
