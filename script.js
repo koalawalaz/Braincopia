@@ -19,10 +19,12 @@
     'No meetings required', 'Wear Your'
   ];
 
+  var ROTATING_WORDS = ['parallel', 'surreal', 'restless', 'wide-awake', 'unfiled'];
+
   var CHANTS = [
     'AI is not creative. You are.',
     'For outsiders and beautiful misfits.',
-    'Your voice. Your edition.',
+    'Your voice. Your rules.',
     'Unapologetic. Visually obsessive.',
     'Comfort is not our business.',
     'Reality is only the starting point.'
@@ -49,6 +51,8 @@
   /* -------------------------------------------------- HERO CHANT + WORD */
   (function hero() {
     var chant = $('#chant');
+    var rotator = $('#rotator');
+    var article = $('#article');
     var i = 0;
 
     function setChant() {
@@ -58,9 +62,18 @@
       span.textContent = CHANTS[i % CHANTS.length];
       chant.appendChild(span);
     }
-    setChant();
+    function setWord() {
+      if (!rotator) return;
+      var word = ROTATING_WORDS[i % ROTATING_WORDS.length];
+      rotator.textContent = word;
+      /* unfiled is the only one that takes an, and a headline that reads
+         "a unfiled universe" undoes the sentence it is selling. */
+      if (article) article.textContent = /^[aeiou]/i.test(word) ? 'An' : 'A';
+    }
+
+    setChant(); setWord();
     if (reduceMotion) return;             // one line, held still
-    setInterval(function () { i++; setChant(); }, 2600);
+    setInterval(function () { i++; setChant(); setWord(); }, 2600);
   })();
 
   /* -------------------------------------------------------- MOBILE MENU */
