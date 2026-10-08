@@ -113,3 +113,20 @@
 .step-nav [hidden] { display: none; }
 .step-back { flex: none; }
 @media (max-width: 480px) { .form-steps { min-height: 254px; } }
+
+/* ------------------------------------------------------------ HERO, SMALL
+   The hero hangs its copy off the bottom edge, which is right on a wide
+   screen where the film has room beside the words. On a phone the film is
+   behind them and the block is shorter than the plate, so all the slack
+   piles up above the text: 156px of empty dark over the first line on a
+   tall phone against 49 under the buttons.
+
+   Centred instead, with the plate a little shorter, so the slack is split
+   and the first line starts where the eye already is. */
+@media (max-width: 760px) {
+  .hero {
+    align-items: center;
+    min-height: clamp(460px, 70vh, 640px);
+    padding-block: clamp(34px, 5vh, 54px);
+  }
+}
