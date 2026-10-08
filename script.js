@@ -19,7 +19,7 @@
     'No meetings required', 'Wear Your'
   ];
 
-  var ROTATING_WORDS = ['parallel', 'surreal', 'restless', 'wide-awake', 'unfiled'];
+  var ROTATING_WORDS = ['parallel', 'surreal'];
 
   var CHANTS = [
     'AI is not creative. You are.',

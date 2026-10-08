@@ -13,7 +13,9 @@
 .hero-spine {
   font-family: var(--font-display); font-size: clamp(1.6rem, 3.2vw, 2.6rem);
   line-height: 1.02; text-transform: uppercase; letter-spacing: .01em;
-  color: var(--yellow); margin-top: clamp(16px, 2.2vw, 24px);
+  color: var(--yellow);
+  margin-top: clamp(16px, 2.2vw, 24px);
+  margin-bottom: clamp(22px, 3vw, 32px);
 }
 
 /* ----------------------------------------------------------------- OFFERS
@@ -81,62 +83,35 @@
 }
 
 
-/* ------------------------------------------------------------- NO MEETINGS
-   Not a section. A stamp is a mark somebody puts on a page, not a part of
-   one, so it sits over the top of the question rather than owning a band of
-   its own. Short, because a stamp that needs a sentence is a sign. */
-.stamp {
-  position: absolute; top: -6px; right: 0; z-index: 2;
-  display: inline-flex; align-items: center; gap: 12px;
-  padding: 12px 16px;
-  color: var(--violet);
-  border: 3.5px solid currentColor; border-radius: 12px;
-  transform: rotate(-5deg);
-}
-/* The inner rule, set in from the outer one, is what makes a box read as a
-   stamp rather than as a card. */
-.stamp::before {
-  content: ''; position: absolute; inset: 3px;
-  border: 1.5px solid currentColor; border-radius: 8px; pointer-events: none;
-}
-.meet-face { width: 34px; height: auto; flex: none; }
-.meet-line {
-  font-family: var(--font-display); font-size: 1.05rem; line-height: 1.02;
-  letter-spacing: .05em; text-transform: uppercase; color: currentColor;
-}
-.meet-eye { transform-box: fill-box; transform-origin: center; animation: meet-blink 7s infinite; }
-@keyframes meet-blink {
-  0%, 92%, 100% { transform: scaleY(1); }
-  95%           { transform: scaleY(.1); }
-}
 
-/* Armed by the script, so a page without one never hides the stamp. It comes
-   down from above the page, hits, squashes a hair and settles. */
-.stamp.armed { opacity: 0; }
-.stamp.armed.struck { opacity: 1; animation: stamp-down .5s cubic-bezier(.55, 0, .35, 1) both; }
-@keyframes stamp-down {
-  0%   { opacity: 0; transform: rotate(-15deg) scale(3.4); }
-  40%  { opacity: 1; }
-  62%  { transform: rotate(-5deg) scale(.92); }
-  78%  { transform: rotate(-5deg) scale(1.04); }
-  100% { transform: rotate(-5deg) scale(1); }
+/* ------------------------------------------------------------------ HERO
+   The hero stops being a dark plate with a film behind it. That film was a
+   pile of printed magazines, and there is no magazine any more. The reel
+   that replaces it ends on the mark, which makes it the right film for a
+   studio and the wrong one to hide words in front of: it is nearly white.
+   So it sits beside the copy in its own frame, and the hero turns to paper.
+   Every dark beat the page needs is still below it. */
+.hero {
+  background: var(--paper); align-items: center; overflow: visible;
+  min-height: 0; padding-block: clamp(54px, 9vh, 104px);
 }
-
-/* No room to hang it beside the question here, so it goes above it, in flow. */
-@media (max-width: 900px) {
-  .stamp { position: static; align-self: flex-start; margin-bottom: 4px; transform: rotate(-4deg); }
-  .head { justify-items: start; }
-  @keyframes stamp-down {
-    0%   { opacity: 0; transform: rotate(-14deg) scale(3); }
-    40%  { opacity: 1; }
-    62%  { transform: rotate(-4deg) scale(.92); }
-    78%  { transform: rotate(-4deg) scale(1.04); }
-    100% { transform: rotate(-4deg) scale(1); }
-  }
+.hero-inner {
+  color: var(--ink);
+  display: grid; grid-template-columns: 1.04fr .96fr;
+  gap: clamp(28px, 5vw, 64px); align-items: center;
 }
+.hero h1 { color: var(--ink); }
+.hero .lede { color: rgba(28, 28, 28, .76); }
+.hero-chant { color: var(--violet); }
+.hero-spine { color: var(--violet); }
 
-@media (prefers-reduced-motion: reduce) {
-  .stamp.armed { opacity: 1; }
-  .meet-eye { animation: none; }
+.hero-reel {
+  border: var(--border-w); border-radius: var(--radius);
+  box-shadow: var(--shadow); overflow: hidden; background: var(--cream);
 }
+.hero-reel video { width: 100%; height: auto; display: block; }
 
+@media (max-width: 880px) {
+  .hero-inner { grid-template-columns: 1fr; }
+  .hero-reel { order: -1; }
+}
