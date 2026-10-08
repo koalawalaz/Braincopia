@@ -79,7 +79,7 @@
 <main id="main">
 
 <!-- ============================================================== HERO -->
-<section class="hero" id="top">
+<section class="hero" id="top" data-enter>
   <video class="hero-video" autoplay muted loop playsinline preload="metadata"
          poster="assets/hero-poster.jpg" aria-hidden="true" tabindex="-1">
     <source src="assets/video/braincopia-structure.mp4" type="video/mp4">
@@ -100,14 +100,14 @@
 
 <section class="section picker" id="services">
   <div class="wrap">
-    <div class="head">
+    <div class="head reveal">
       <p class="eyebrow">What you can add</p>
       <h2>The Brain</h2>
       <p class="lede">It comes in three parts and you can take one. Each is thinking, not production: nobody has to be fired, rebriefed or replaced for any of it to start.</p>
     </div>
 
-    <div class="offers">
-      <div class="offer" style="--accent: var(--violet)">
+    <div class="offers reveal-group">
+      <div class="offer reveal" style="--accent: var(--violet)">
         <span class="offer-face">
           <span class="offer-name">The Concept</span>
           <span class="offer-kind">A sprint, and a written direction</span>
@@ -115,7 +115,7 @@
         </span>
       </div>
 
-      <div class="offer" style="--accent: var(--green-ink)">
+      <div class="offer reveal" style="--accent: var(--green-ink)">
         <span class="offer-face">
           <span class="offer-name">The Voice</span>
           <span class="offer-kind">An editorial voice guide</span>
@@ -123,7 +123,7 @@
         </span>
       </div>
 
-      <div class="offer" style="--accent: var(--pink-ink)">
+      <div class="offer reveal" style="--accent: var(--pink-ink)">
         <span class="offer-face">
           <span class="offer-name">The Decision</span>
           <span class="offer-kind">A creative review, monthly</span>
@@ -132,7 +132,7 @@
       </div>
     </div>
 
-    <div class="pick-bar">
+    <div class="pick-bar reveal">
       <p class="pick-count">Not sure which one? Tell us what is going on and we will say.</p>
       <a class="btn btn-primary" href="contact.html">Start a brief</a>
     </div>
@@ -140,26 +140,11 @@
 </section>
 
 <section class="section argument" id="argument">
-  <div class="wrap">
+  <div class="wrap reveal">
     <p class="eyebrow">Why a human, not a prompt</p>
     <h2>A human understands what a human wants</h2>
     <p class="pull">An AI model can give you a thousand options before your coffee goes cold. It cannot tell you which one a person will believe.</p>
   </div>
-</section>
-
-<!-- ============================================================= SAID -->
-<!-- SPECIMEN. The words below are written to show the shape of a good
-     testimonial, not to be published. Replace with a real quote and a real
-     name, or delete the section. Nothing here is from a client. -->
-<section class="section said" id="said">
-  <figure class="wrap said-inner">
-    <p class="said-mark" aria-hidden="true">&#8220;</p>
-    <blockquote class="said-text">They told me the idea I was most attached to was the weakest one. I argued for a week, then cut it. The campaign worked because it was not in it.</blockquote>
-    <figcaption class="said-by">
-      <span class="said-name">Client name</span>
-      <span class="said-role">Role, Company</span>
-    </figcaption>
-  </figure>
 </section>
 
 <!-- ============================================================== MARK -->
@@ -167,7 +152,7 @@
      to resolve on its own. The film is nearly white, which is why it is a
      band of its own rather than something to put words in front of. -->
 <section class="section mark">
-  <div class="wrap mark-inner">
+  <div class="wrap mark-inner reveal">
     <div class="hero-reel">
       <video autoplay muted loop playsinline preload="metadata" poster="assets/studio-poster.jpg" aria-hidden="true" tabindex="-1">
         <source src="assets/video/studio-hero.webm" type='video/webm; codecs="vp9"'>
@@ -216,6 +201,27 @@
 </section>
 
 <!-- ============================================================ CONTACT -->
+
+<!-- ============================================================= SAID -->
+<!-- SPECIMEN. The words below are written to show the shape of a good
+     testimonial, not to be published. Replace with a real quote and a real
+     name, or delete the section. Nothing here is from a client. -->
+<section class="section said" id="said">
+  <div class="wrap">
+    <div class="head said-head reveal">
+      <p class="eyebrow">What they said</p>
+      <h2>Somebody else&#8217;s words</h2>
+    </div>
+  </div>
+  <figure class="wrap said-inner reveal">
+    <p class="said-mark" aria-hidden="true">&#8220;</p>
+    <blockquote class="said-text">They told me the idea I was most attached to was the weakest one. I argued for a week, then cut it. The campaign worked because it was not in it.</blockquote>
+    <figcaption class="said-by">
+      <span class="said-name">Client name</span>
+      <span class="said-role">Role, Company</span>
+    </figcaption>
+  </figure>
+</section>
 
 </main>
 

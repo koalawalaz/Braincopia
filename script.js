@@ -34,6 +34,18 @@
   var $ = function (sel, root) { return (root || document).querySelector(sel); };
   var $$ = function (sel, root) { return Array.prototype.slice.call((root || document).querySelectorAll(sel)); };
 
+  /* ------------------------------------------------------------ ENTRANCE
+     The hero arrives after the loader lets go, rather than being there all
+     along. The class is added here and not in the markup, so a page whose
+     script never runs is a page with a hero on it. */
+  (function entrance() {
+    var hero = document.querySelector('[data-enter]');
+    if (!hero) return;
+    var go = function () { hero.classList.add('in'); };
+    if (window.braincopia && window.braincopia.ready) window.braincopia.ready(go);
+    else go();
+  })();
+
   /* ------------------------------------------------------------ MARQUEE */
   (function marquee() {
     var track = $('#marqueeTrack');
