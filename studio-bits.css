@@ -115,3 +115,15 @@
   .hero-inner { grid-template-columns: 1fr; }
   .hero-reel { order: -1; }
 }
+
+/* ------------------------------------------------------------ THE WORLD
+   The argument and the founder's letter were both ink, with ink rules
+   between them, so on a phone they ran together as one unbroken black
+   stretch and the second heading looked like more of the first.
+
+   The letter takes the deep violet instead. It keeps the dark half of the
+   page, the rules now show on both sides of it, and the run through the
+   page reads paper, ink, violet, yellow rather than paper, black, black,
+   yellow. */
+.founder { background: var(--deep); }
+.founder .founder-plate img { box-shadow: 7px 7px 0 var(--ink); }
