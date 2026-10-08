@@ -1,0 +1,142 @@
+/* ==========================================================================
+   STUDIO BITS. The rules the studio sections need, on top of styles.css.
+   Only what the magazine stylesheet does not already carry: the three
+   products, the dark argument band, the stamp, and the line under the
+   headline. Everything else, cards, fields, reveal and the whole palette,
+   is already there, which is why the two halves sit together without a
+   seam.
+   ========================================================================== */
+:root { --pink-ink: #A81F86; }
+
+/* The sentence the whole offer rests on, set apart from the lede rather
+   than buried at the end of it. */
+.hero-spine {
+  font-family: var(--font-display); font-size: clamp(1.6rem, 3.2vw, 2.6rem);
+  line-height: 1.02; text-transform: uppercase; letter-spacing: .01em;
+  color: var(--yellow); margin-top: clamp(16px, 2.2vw, 24px);
+}
+
+/* ----------------------------------------------------------------- OFFERS
+   Three products, not a menu of deliverables: every one of them is thinking
+   sold as thinking, which is the only kind of thing a studio with no
+   portfolio yet can honestly put a price on. Side by side, because the whole
+   proposition is that you choose how much of us you want beside your team,
+   not what you want made. */
+.head { display: grid; gap: 14px; margin-bottom: clamp(26px, 4vw, 44px); position: relative; }
+
+.offers { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(14px, 1.8vw, 22px); }
+.offer { display: block; cursor: pointer; }
+.offer input { position: absolute; width: 1px; height: 1px; margin: -1px; clip-path: inset(50%); }
+.offer-face {
+  display: grid; align-content: start; gap: 8px; height: 100%;
+  padding: clamp(22px, 2.6vw, 30px);
+  background: var(--cream); border: var(--border-w); border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+  transition: transform .16s ease, box-shadow .16s ease, background .16s ease;
+}
+.offer:hover .offer-face { transform: translate(-3px, -3px); box-shadow: var(--shadow); }
+.offer input:focus-visible + .offer-face { outline: 3px solid var(--violet); outline-offset: 3px; }
+.offer-mark {
+  width: 20px; height: 20px; border: 2.5px solid var(--ink); border-radius: 999px;
+  background: var(--paper); margin-bottom: 4px;
+}
+.offer-name {
+  font-family: var(--font-display); font-size: clamp(1.4rem, 2.4vw, 1.95rem);
+  line-height: 1.02; letter-spacing: .02em; text-transform: uppercase; color: var(--accent);
+}
+.offer-kind {
+  font-family: var(--font-mono); font-size: .66rem; font-weight: 700;
+  letter-spacing: .16em; text-transform: uppercase; opacity: .55;
+}
+.offer-copy { font-size: .97rem; line-height: 1.55; margin-top: 6px; }
+
+.offer input:checked + .offer-face { background: var(--accent); box-shadow: var(--shadow); }
+.offer input:checked + .offer-face .offer-name { color: var(--yellow); }
+.offer input:checked + .offer-face .offer-kind { color: var(--yellow); opacity: .9; }
+.offer input:checked + .offer-face .offer-copy { color: rgba(255,255,255,.9); }
+.offer input:checked + .offer-face .offer-mark {
+  background: var(--yellow); border-color: var(--yellow); box-shadow: inset 0 0 0 4px var(--accent);
+}
+
+/* The bar under the three, carrying whatever is chosen down to the brief. */
+.pick-bar {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 16px 22px;
+  margin-top: clamp(26px, 3.6vw, 38px);
+}
+.pick-count { font-size: .98rem; opacity: .7; }
+
+@media (max-width: 900px) { .offers { grid-template-columns: 1fr; } }
+
+
+/* ------------------------------------------------------------- THE ARGUMENT
+   One dark band, one claim. This is where the boldness is spent, so nothing
+   else on the page needs to raise its voice. */
+.argument { background: var(--ink); color: var(--paper); border-block: var(--border-w); }
+.argument .eyebrow { color: var(--yellow); }
+.argument h2 { color: var(--paper); max-width: 22ch; margin-block: 14px 28px; }
+/* Beats .argument p, which is the more specific selector of the two. */
+.argument .pull {
+  font-family: var(--font-display); font-size: clamp(1.6rem, 3.2vw, 2.5rem);
+  line-height: 1.15; text-transform: uppercase; color: var(--yellow); max-width: 34ch;
+}
+
+
+/* ------------------------------------------------------------- NO MEETINGS
+   Not a section. A stamp is a mark somebody puts on a page, not a part of
+   one, so it sits over the top of the question rather than owning a band of
+   its own. Short, because a stamp that needs a sentence is a sign. */
+.stamp {
+  position: absolute; top: -6px; right: 0; z-index: 2;
+  display: inline-flex; align-items: center; gap: 12px;
+  padding: 12px 16px;
+  color: var(--violet);
+  border: 3.5px solid currentColor; border-radius: 12px;
+  transform: rotate(-5deg);
+}
+/* The inner rule, set in from the outer one, is what makes a box read as a
+   stamp rather than as a card. */
+.stamp::before {
+  content: ''; position: absolute; inset: 3px;
+  border: 1.5px solid currentColor; border-radius: 8px; pointer-events: none;
+}
+.meet-face { width: 34px; height: auto; flex: none; }
+.meet-line {
+  font-family: var(--font-display); font-size: 1.05rem; line-height: 1.02;
+  letter-spacing: .05em; text-transform: uppercase; color: currentColor;
+}
+.meet-eye { transform-box: fill-box; transform-origin: center; animation: meet-blink 7s infinite; }
+@keyframes meet-blink {
+  0%, 92%, 100% { transform: scaleY(1); }
+  95%           { transform: scaleY(.1); }
+}
+
+/* Armed by the script, so a page without one never hides the stamp. It comes
+   down from above the page, hits, squashes a hair and settles. */
+.stamp.armed { opacity: 0; }
+.stamp.armed.struck { opacity: 1; animation: stamp-down .5s cubic-bezier(.55, 0, .35, 1) both; }
+@keyframes stamp-down {
+  0%   { opacity: 0; transform: rotate(-15deg) scale(3.4); }
+  40%  { opacity: 1; }
+  62%  { transform: rotate(-5deg) scale(.92); }
+  78%  { transform: rotate(-5deg) scale(1.04); }
+  100% { transform: rotate(-5deg) scale(1); }
+}
+
+/* No room to hang it beside the question here, so it goes above it, in flow. */
+@media (max-width: 900px) {
+  .stamp { position: static; align-self: flex-start; margin-bottom: 4px; transform: rotate(-4deg); }
+  .head { justify-items: start; }
+  @keyframes stamp-down {
+    0%   { opacity: 0; transform: rotate(-14deg) scale(3); }
+    40%  { opacity: 1; }
+    62%  { transform: rotate(-4deg) scale(.92); }
+    78%  { transform: rotate(-4deg) scale(1.04); }
+    100% { transform: rotate(-4deg) scale(1); }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .stamp.armed { opacity: 1; }
+  .meet-eye { animation: none; }
+}
+
