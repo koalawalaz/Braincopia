@@ -23,7 +23,6 @@
 
   var CHANTS = [
     'AI is not creative. You are.',
-    'For outsiders and beautiful misfits.',
     'Your voice. Your rules.',
     'Unapologetic. Visually obsessive.',
     'Comfort is not our business.',
