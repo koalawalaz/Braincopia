@@ -154,32 +154,39 @@
    testimonial is that somebody reads all of it. */
 .said { background: var(--cream); border-block: var(--border-w); }
 .said-head { text-align: center; justify-items: center;
-  margin-bottom: clamp(16px, 2.2vw, 26px); }
+  margin-bottom: clamp(20px, 3vw, 34px); }
 .said-head h2 { max-width: 18ch; }
-/* The heading already says this is a quote, so the mark is a flourish now,
-   not a signpost. It shrinks and moves up against the words it opens. */
-.said-inner { display: grid; justify-items: center; text-align: center; margin: 0; }
-.said-mark {
-  font-family: var(--font-display); font-size: clamp(2.4rem, 4.6vw, 3.6rem);
-  line-height: .7; color: var(--violet); margin-bottom: clamp(8px, 1.2vw, 14px);
+
+/* THE CARD. Sized to be the point of its own band, but built as the tile a
+   wall of quotes would be made of: disc, name, role, words, in that order.
+   When there are six of these, the width drops to about 340px, several sit
+   in a row and the row moves. Nothing here needs redrawing for that, which
+   is why the quote mark went: a mark per tile is noise, and the card edge
+   already says "someone said this". */
+.said-card {
+  width: min(660px, 100%); margin: 0 auto;
+  display: grid; gap: 20px; align-content: start;
+  padding: clamp(26px, 3.4vw, 36px) clamp(24px, 3.4vw, 40px);
+  background: var(--cream); color: var(--ink);
+  border: var(--border-w); border-radius: var(--radius-sm);
+  box-shadow: var(--shadow);
 }
-/* A real quote is longer than a slogan. At 24ch and 2.5rem this one ran
-   nine lines of display caps, which stops being a quotation and becomes
-   shouting. Wider measure, smaller type: five lines, still the display
-   face, still the loudest thing in the section. */
-.said-text {
-  font-family: var(--font-display); font-size: clamp(1.2rem, 2.3vw, 1.85rem);
-  line-height: 1.2; letter-spacing: .01em; text-transform: uppercase;
-  max-width: 34ch; margin: 0;
+.said-top { display: flex; align-items: center; gap: 13px; }
+.said-disc {
+  flex: 0 0 auto; width: 56px; height: 56px; border-radius: 50%;
+  border: var(--border-w); display: grid; place-items: center;
+  background: var(--violet); color: var(--cream);
+  font-family: var(--font-display); font-size: 1.4rem; letter-spacing: .02em;
 }
-.said-by { margin-top: clamp(22px, 3vw, 32px); display: grid; gap: 4px; }
-.said-name {
-  font-family: var(--font-mono); font-size: .74rem; font-weight: 700;
-  letter-spacing: .18em; text-transform: uppercase;
-}
+.said-who { min-width: 0; display: grid; gap: 4px; }
+.said-name { font-weight: 700; font-size: 1.2rem; line-height: 1.1; }
 .said-role {
-  font-family: var(--font-mono); font-size: .7rem;
-  letter-spacing: .12em; text-transform: uppercase; opacity: .55;
+  font-family: var(--font-mono); font-size: .68rem; font-weight: 700;
+  letter-spacing: .13em; text-transform: uppercase; color: var(--pink-ink);
+}
+.said-text {
+  margin: 0; font-weight: 500;
+  font-size: clamp(1.04rem, 1.7vw, 1.26rem); line-height: 1.52;
 }
 
 /* ----------------------------------------------------------- THE ENTRANCE
