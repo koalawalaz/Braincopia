@@ -1,10 +1,10 @@
 /* ==========================================================================
    STUDIO BITS. The rules the studio sections need, on top of styles.css.
    Only what the magazine stylesheet does not already carry: the three
-   products, the dark argument band, the stamp, and the line under the
-   headline. Everything else, cards, fields, reveal and the whole palette,
-   is already there, which is why the two halves sit together without a
-   seam.
+   products, the dark argument band, the testimonial, the entrance, and the
+   line under the headline. Everything else, cards, fields, reveal and the
+   whole palette, is already there, which is why the two halves sit
+   together without a seam.
    ========================================================================== */
 :root { --pink-ink: #A81F86; }
 

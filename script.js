@@ -14,9 +14,13 @@
      --------------------------------------------------------------------- */
   var FORMSPREE_ENDPOINT = 'https://formspree.io/f/mvkowogd';
 
+  /* The ticker says what we sell: the umbrella, then its three parts. It
+     used to carry "No meetings required", from a stamp the site no longer
+     has, and a bare "Wear Your", which reads as an unfinished sentence
+     among service names. Wear Your is still linked in the footer, where a
+     brand name has context. */
   var COLLECTIONS = [
-    'The Concept', 'The Voice', 'The Decision',
-    'No meetings required', 'Wear Your'
+    'The Brain', 'The Concept', 'The Voice', 'The Decision'
   ];
 
   var ROTATING_WORDS = ['parallel', 'surreal'];
@@ -50,13 +54,26 @@
   (function marquee() {
     var track = $('#marqueeTrack');
     if (!track) return;
-    // Two identical runs so the -50% keyframe loops seamlessly.
-    var run = COLLECTIONS.concat(COLLECTIONS);
-    run.forEach(function (name) {
+
+    function add(name) {
       var span = document.createElement('span');
       span.textContent = name;
       track.appendChild(span);
-    });
+    }
+
+    /* The keyframe slides the track by -50%, so one run has to be at least
+       as wide as the window or the loop shows the gap behind it. Four short
+       words are not, on a wide screen, so the run repeats until it is and
+       only then is doubled. */
+    var width = track.parentNode.offsetWidth || 1280;
+    var guard = 0;
+    do {
+      COLLECTIONS.forEach(add);
+      guard += 1;
+    } while (track.scrollWidth < width && guard < 12);
+
+    var run = track.innerHTML;
+    track.insertAdjacentHTML('beforeend', run);
   })();
 
   /* -------------------------------------------------- HERO CHANT + WORD */
