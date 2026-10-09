@@ -55,38 +55,6 @@
      visitor who turns it off is never asked again, and the toggle is
      always on screen, because a page that makes noise owes you a way to
      stop it. */
-  /* ----------------------------------------------------------- DOCKING
-     The sound pill floats bottom-right, which is fine over a wide column
-     and not fine over a narrow one: on a phone it was landing on the pull
-     quote, the founder's letter, the footer links, and worst of all on the
-     brief form's Next button, where it covered the only thing on screen a
-     visitor needed to press.
-
-     So on a phone it stops floating and moves into the sticky header,
-     which is always on screen and never over the words. It is the same
-     button either way, moved rather than duplicated, so its state, its
-     listeners and its aria-label travel with it. */
-  (function dockSound() {
-    var btn = $('#sound');
-    var slot = $('.header-actions');
-    if (!btn || !slot || !window.matchMedia) return;
-
-    var home = btn.parentNode;
-    var narrow = window.matchMedia('(max-width: 640px)');
-
-    function place() {
-      if (narrow.matches) {
-        if (btn.parentNode !== slot) slot.insertBefore(btn, slot.firstChild);
-      } else if (btn.parentNode !== home) {
-        home.appendChild(btn);
-      }
-    }
-
-    place();
-    if (narrow.addEventListener) narrow.addEventListener('change', place);
-    else if (narrow.addListener) narrow.addListener(place);   /* Safari < 14 */
-  })();
-
   (function sound() {
     var audio = $('#ambience');
     var btn = $('#sound');
