@@ -100,8 +100,20 @@
   letter-spacing: .18em; text-transform: uppercase; opacity: .5;
   margin-bottom: 14px;
 }
-.form-steps { min-height: 232px; }
-.step[hidden] { display: none; }
+/* The three steps share one grid cell, so the card is always as tall as
+   the tallest of them and never jumps when you move between them. That
+   used to be a reserved min-height, a number guessed at one font size:
+   it was 63px taller than the tallest step actually needs on a phone,
+   and all of that slack sat under the fields pushing Next down into the
+   corner where the sound pill floats, on top of the only control that
+   screen has. Stacking measures instead of guessing, at any font.
+
+   A hidden step keeps its box and loses its visibility, which also takes
+   it out of the tab order and out of the way of clicks, so every field
+   stays in the form for FormData and for the form's own validity check. */
+.form-steps { display: grid; }
+.step { grid-area: 1 / 1; display: block; }
+.step[hidden] { visibility: hidden; }
 .step-ask {
   font-family: var(--font-display); font-size: clamp(1.35rem, 2.4vw, 1.8rem);
   line-height: 1.05; text-transform: uppercase; letter-spacing: .01em;
@@ -112,7 +124,6 @@
    buttons for the other steps sat there in plain sight. */
 .step-nav [hidden] { display: none; }
 .step-back { flex: none; }
-@media (max-width: 480px) { .form-steps { min-height: 254px; } }
 
 /* ------------------------------------------------------------ HERO, SMALL
    The hero hangs its copy off the bottom edge, which is right on a wide
