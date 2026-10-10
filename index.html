@@ -108,12 +108,14 @@
       <p class="eyebrow">Is this your week?</p>
       <h2>Come to us when</h2>
     </div>
-    <ul class="when-list reveal-group">
-      <li class="when-item reveal">your campaign is due Thursday and every idea on the table is fine.</li>
-      <li class="when-item reveal">your agency is doing good work and all of it sounds like everyone else.</li>
-      <li class="when-item reveal">you have five directions and no way to choose between them.</li>
-      <li class="when-item reveal">the brief changed and nobody wants to say the idea no longer fits.</li>
-    </ul>
+    <!-- The reveal sets a transform, so it cannot sit on a slip without
+         wiping out that slip's rotation. It goes on the container. -->
+    <div class="when-scatter reveal">
+      <p class="when-slip">your campaign is due Thursday and every idea on the table is fine.</p>
+      <p class="when-slip">your agency is doing good work and all of it sounds like everyone else.</p>
+      <p class="when-slip">you have five directions and no way to choose between them.</p>
+      <p class="when-slip">the brief changed and nobody wants to say the idea no longer fits.</p>
+    </div>
     <p class="when-close reveal">Any one of those is a brief. <a href="contact.html">Tell us which.</a></p>
   </div>
 </section>

@@ -93,19 +93,51 @@
    into a third product grid. Hairlines and type, nothing else. */
 .when { background: var(--cream); border-block: var(--border-w); }
 .when-head { margin-bottom: clamp(18px, 2.6vw, 30px); }
-.when-list { list-style: none; margin: 0; padding: 0; max-width: 54ch; }
-.when-item {
-  position: relative; padding: clamp(14px, 1.8vw, 20px) 0 clamp(14px, 1.8vw, 20px) 34px;
-  border-top: 2px solid var(--line);
-  font-size: clamp(1.04rem, 1.8vw, 1.32rem); line-height: 1.45; font-weight: 500;
+/* Four slips pinned at four angles, which is the one arrangement that ties
+   back to the hero film: pages pinned on a wall. It also does something a
+   list cannot — four complaints in four boxes read as four different
+   voices, rather than one list written about ourselves.
+
+   Each rotation is different and all are under two degrees. Tilted text is
+   harder to read than straight text, and four identical angles would just
+   be a crooked grid. They flatten on a phone, where a slip fills the width
+   and the tilt only costs legibility. */
+.when-scatter {
+  display: grid; grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(18px, 2.6vw, 30px);
+  /* start, not stretch: a slip hugs its own words. Stretched to the row
+     height they come out as four equal rectangles with the text stranded
+     in the middle, which is a grid wearing a costume. */
+  align-items: start;
+  max-width: 920px;
 }
-.when-item:last-child { border-bottom: 2px solid var(--line); }
-/* One accent, not three: the coloured discs belong to the people and the
-   coloured names belong to the parts. */
-.when-item::before {
-  content: ''; position: absolute; left: 0; top: calc(clamp(14px, 1.8vw, 20px) + .62em);
-  width: 18px; height: 3px; border-radius: 2px; background: var(--violet);
+.when-slip {
+  position: relative; margin: 0;
+  padding: clamp(18px, 2.2vw, 26px);
+  background: var(--cream); border: var(--border-w); border-radius: 4px;
+  box-shadow: var(--shadow);
+  font-size: clamp(1rem, 1.6vw, 1.18rem); line-height: 1.45; font-weight: 500;
+  max-width: none;   /* styles.css caps every p at 62ch */
 }
+.when-slip:nth-child(1) { transform: rotate(-1.6deg) translateY(6px); }
+.when-slip:nth-child(2) { transform: rotate(1.3deg)  translateY(-14px); }
+.when-slip:nth-child(3) { transform: rotate(.9deg)   translateY(-4px); }
+.when-slip:nth-child(4) { transform: rotate(-1.1deg) translateY(-22px); }
+/* The pin. One colour per slip, so no two notes look like the same hand. */
+.when-slip::before {
+  content: ''; position: absolute; top: -9px; left: 22px;
+  width: 16px; height: 16px; border-radius: 50%;
+  background: var(--pin, var(--violet)); border: var(--border-w);
+}
+.when-slip:nth-child(2)::before { --pin: var(--yellow); }
+.when-slip:nth-child(3)::before { --pin: var(--green-ink); }
+.when-slip:nth-child(4)::before { --pin: var(--pink-ink); }
+@media (max-width: 680px) {
+  .when-scatter { grid-template-columns: 1fr; }
+  .when-slip:nth-child(n) { transform: rotate(-1deg); }
+  .when-slip:nth-child(even) { transform: rotate(1deg); }
+}
+
 .when-close {
   margin: clamp(22px, 3vw, 30px) 0 0;
   font-family: var(--font-mono); font-size: .74rem; font-weight: 700;
