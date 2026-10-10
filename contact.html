@@ -81,6 +81,10 @@
       </div>
 
       <form class="card reveal" id="contactForm" style="--card-color:var(--deep);padding:clamp(24px,3vw,34px)" novalidate>
+        <!-- Filled from ?from= when someone arrives by clicking one of the
+             three parts. They are never asked to choose a package; this only
+             records which card they came in through. -->
+        <input type="hidden" name="came_from" id="cameFrom" value="">
         <p class="step-count" id="stepCount">Step 1 of 3</p>
         <div class="form-error" id="contactError" role="alert"></div>
         <div class="form-steps">

@@ -223,6 +223,22 @@
     sync();
   })();
 
+  /* -------------------------------------------------------- WHERE THEY CAME
+     Clicking one of the three parts brings its name along in the URL. It
+     goes into a hidden field so the brief arrives saying which card caught
+     them, which is worth knowing and is not the same as making a visitor
+     choose a package before they have spoken to anyone.
+
+     Only the three known values are accepted, so nothing a stranger puts in
+     the query string can reach the field. */
+  (function cameFrom() {
+    var field = $('#cameFrom');
+    if (!field) return;
+    var PARTS = { 'the-concept': 'The Concept', 'the-voice': 'The Voice', 'the-decision': 'The Decision' };
+    var from = /[?&]from=([a-z-]{1,20})(?:&|$)/.exec(window.location.search);
+    field.value = (from && PARTS[from[1]]) || '';
+  })();
+
   /* ----------------------------------------------------------- THE STEPS
      Four fields at once reads as paperwork. One question at a time reads as
      a conversation, and the only cost is two clicks.
