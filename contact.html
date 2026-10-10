@@ -104,8 +104,10 @@
               <input type="email" id="cEmail" name="email" required autocomplete="email">
             </div>
             <div class="field">
-              <label for="cPhone">Phone <span class="field-opt">optional</span></label>
-              <input type="tel" id="cPhone" name="phone" inputmode="tel" autocomplete="tel">
+              <label for="cPhone">Phone</label>
+              <input type="tel" id="cPhone" name="phone" inputmode="tel" autocomplete="tel"
+                     aria-describedby="phoneNote">
+              <p class="field-note" id="phoneNote">We usually call before we write.</p>
             </div>
           </div>
 

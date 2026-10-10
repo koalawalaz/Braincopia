@@ -266,7 +266,7 @@
       back.hidden = i === 0;
       next.hidden = i === panes.length - 1;
       send.hidden = i !== panes.length - 1;
-      err.classList.remove('show');
+      err.classList.remove('show', 'soft');
       err.textContent = '';   /* role=alert: stale text must not be re-announced */
       if (focus) {
         var first = panes[i].querySelector('input, textarea');
@@ -283,6 +283,7 @@
           err.textContent = fields[i].validity.valueMissing
             ? 'This one we need.'
             : 'That does not look right yet.';
+          err.classList.remove('soft');
           err.classList.add('show');
           fields[i].focus();
           return false;
@@ -291,7 +292,26 @@
       return true;
     }
 
-    next.addEventListener('click', function () { if (valid()) show(at + 1, true); });
+    /* Phone is wanted, not required. Leaving it blank gets asked about once,
+       and a second press goes through: a hard requirement on a number costs
+       more briefs than a missing number does, and a field nobody is asked
+       about is a field nobody fills. */
+    var asked = false;
+    function wanted() {
+      var phone = $('#cPhone', form);
+      if (!phone || asked || phone.value.trim()) return true;
+      /* Only ask on the step that actually holds the field. */
+      if (!panes[at].contains(phone)) return true;
+      asked = true;
+      err.textContent = 'No number? We usually call before we write. Press Next again to carry on without it.';
+      err.classList.add('show', 'soft');
+      phone.focus();
+      return false;
+    }
+
+    next.addEventListener('click', function () {
+      if (valid() && wanted()) show(at + 1, true);
+    });
     back.addEventListener('click', function () { show(at - 1, true); });
 
     /* Enter means next until the last step, where the submit button is the

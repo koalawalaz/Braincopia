@@ -113,9 +113,17 @@
 /* A phone number is useful and asking for it is not. Marked optional in the
    label, so nobody abandons the form over a field they did not want to
    fill, and nobody wonders whether they have to. */
-.field-opt {
-  font-weight: 400; letter-spacing: .1em; opacity: .55; margin-left: 6px;
-  text-transform: none;
+/* Phone is not marked optional and is not enforced either: the label
+   says nothing, a line under it says we will ring, and the step asks once
+   before letting anyone past. The "optional" tag that used to sit here was
+   an instruction to skip it. */
+.field-note {
+  margin: 6px 0 0; font-size: .82rem; line-height: 1.45; opacity: .62;
+}
+/* A nudge is not a failure, so it does not wear the error's colours. */
+.form-error.soft {
+  background: var(--cream); color: var(--ink);
+  border-color: var(--ink); box-shadow: inset 4px 0 0 var(--violet);
 }
 
 /* ------------------------------------------------------------ THE STEPS
