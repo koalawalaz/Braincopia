@@ -203,25 +203,40 @@
 <!-- ============================================================ CONTACT -->
 
 <!-- ============================================================= SAID -->
-<!-- One card, because there is one quote. The card is deliberately the
-     same component a wall of them would be built from: when there are six,
-     this shrinks and the rows start moving, with no redesign in between. -->
+<!-- Two cards, in a grid that adds columns as quotes arrive. The card is
+     deliberately the tile a scrolling wall is built from: at six of them
+     the grid becomes two moving rows, and nothing in here is redrawn. -->
 <section class="section said" id="said">
   <div class="wrap">
     <div class="head said-head reveal">
       <p class="eyebrow">What they said</p>
       <h2>Somebody else&#8217;s words</h2>
     </div>
-    <figure class="said-card reveal">
-      <figcaption class="said-top">
-        <span class="said-disc" aria-hidden="true">SN</span>
-        <span class="said-who">
-          <span class="said-name">Sophia N.</span>
-          <span class="said-role">Communications Specialist</span>
-        </span>
-      </figcaption>
-      <blockquote class="said-text">Knowledgeable, dependable, and highly professional, with excellent time management and prioritization skills. Wala understood exactly what was needed and delivered results that exceeded expectations.</blockquote>
-    </figure>
+    <div class="said-list reveal-group">
+
+      <figure class="said-card reveal" style="--disc: var(--violet)">
+        <figcaption class="said-top">
+          <span class="said-disc" aria-hidden="true">SN</span>
+          <span class="said-who">
+            <span class="said-name">Sophia N.</span>
+            <span class="said-role">Communications Specialist</span>
+          </span>
+        </figcaption>
+        <blockquote class="said-text">Knowledgeable, dependable, and highly professional, with excellent time management and prioritization skills. Wala understood exactly what was needed and delivered results that exceeded expectations.</blockquote>
+      </figure>
+
+      <figure class="said-card reveal" style="--disc: var(--green-ink)">
+        <figcaption class="said-top">
+          <span class="said-disc" aria-hidden="true">JT</span>
+          <span class="said-who">
+            <span class="said-name">Jose T.</span>
+            <span class="said-role">Marketing Manager</span>
+          </span>
+        </figcaption>
+        <blockquote class="said-text">From our very first brainstorming session, Wala brought so much creative energy to the table. She is great at coming up with creative ideas, and she was there with us from the very beginning till the end of the campaign.</blockquote>
+      </figure>
+
+    </div>
   </div>
 </section>
 
