@@ -157,33 +157,54 @@
   margin-bottom: clamp(20px, 3vw, 34px); }
 .said-head h2 { max-width: 18ch; }
 
-/* THE CARDS. Each one is the tile a scrolling wall would be built from:
-   disc, name, role, words, in that order. The track adds a column per
-   quote rather than stretching the ones already there, so the section
-   grows by filling up instead of by spreading out, and at six of them it
-   becomes two moving rows with nothing redrawn. That is also why there is
-   no quote mark: one per tile is noise, and a card edge already says
-   somebody said this.
+/* THE RAIL. The cards sit in one row you swipe, which is what a phone
+   expects of a row of cards and what a laptop gets through the arrows,
+   the dots, a trackpad or the arrow keys. Snap points mean it always
+   comes to rest on a card rather than between two.
 
-   The cap keeps two cards from running the full 1200px and turning into
-   banners; it lifts as columns are added. */
-.said-list {
-  display: grid; gap: clamp(16px, 2vw, 24px);
-  grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
-  max-width: 980px; margin-inline: auto;
+   Each card is still the tile a wall would be built from: nothing here
+   changes when there are six, there is just more to swipe through.
+
+   One card fills most of a phone with the next one showing at the edge,
+   because a card that stops exactly at the screen edge looks like the
+   end of the list. Two fill a laptop. */
+.said-rail { --rail-gap: clamp(14px, 2vw, 20px); }
+.said-track {
+  display: grid; grid-auto-flow: column; grid-auto-columns: 86%;
+  gap: var(--rail-gap);
+  overflow-x: auto; overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  /* Room for the hard shadow, which falls outside the card's own box and
+     would otherwise be sliced off by the scroller's edges. */
+  padding: 8px 8px 18px; margin-inline: -8px;
+  scrollbar-width: none;
 }
+.said-track::-webkit-scrollbar { display: none; }
+.said-track:focus-visible { outline: 3px solid var(--violet); outline-offset: 2px; border-radius: var(--radius-sm); }
+@media (min-width: 760px) {
+  .said-track { grid-auto-columns: calc((100% - var(--rail-gap)) / 2); }
+}
+
 .said-card {
+  scroll-snap-align: center;
   display: grid; gap: 20px; align-content: start;
   padding: clamp(24px, 3vw, 32px) clamp(22px, 3vw, 34px);
   background: var(--cream); color: var(--ink);
   border: var(--border-w); border-radius: var(--radius-sm);
   box-shadow: var(--shadow);
 }
+@media (min-width: 760px) { .said-card { scroll-snap-align: start; } }
+/* The disc colour cycles, so a new card needs no styling of its own and
+   a row never reads as one person repeated. */
+.said-card:nth-child(3n+1) .said-disc { background: var(--violet); }
+.said-card:nth-child(3n+2) .said-disc { background: var(--green-ink); }
+.said-card:nth-child(3n+3) .said-disc { background: var(--pink-ink); }
+
 .said-top { display: flex; align-items: center; gap: 13px; }
 .said-disc {
   flex: 0 0 auto; width: 56px; height: 56px; border-radius: 50%;
   border: var(--border-w); display: grid; place-items: center;
-  background: var(--disc, var(--violet)); color: var(--cream);
+  background: var(--violet); color: var(--cream);
   font-family: var(--font-display); font-size: 1.4rem; letter-spacing: .02em;
 }
 .said-who { min-width: 0; display: grid; gap: 4px; }
@@ -196,6 +217,27 @@
   margin: 0; font-weight: 500;
   font-size: clamp(1rem, 1.4vw, 1.1rem); line-height: 1.55;
 }
+
+/* The controls. JS unhides them only when there is something off screen,
+   so with two cards on a laptop they are not there at all. */
+.said-nav { display: flex; align-items: center; justify-content: center; gap: 16px; margin-top: 6px; }
+.said-nav[hidden] { display: none; }
+.rail-btn {
+  display: grid; place-items: center; width: 46px; height: 46px; padding: 0;
+  background: var(--cream); color: var(--ink);
+  border: var(--border-w); border-radius: 50%; box-shadow: var(--shadow-sm);
+  cursor: pointer; transition: transform .16s ease, box-shadow .16s ease, opacity .16s ease;
+}
+.rail-btn svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 2.6; stroke-linecap: round; stroke-linejoin: round; }
+.rail-btn:hover:not(:disabled) { transform: translate(-2px, -2px); box-shadow: var(--shadow); }
+.rail-btn:disabled { opacity: .3; cursor: default; }
+.rail-dots { display: flex; align-items: center; gap: 9px; }
+.rail-dot {
+  width: 11px; height: 11px; padding: 0; border-radius: 50%;
+  border: 2px solid var(--ink); background: transparent; cursor: pointer;
+  transition: background .18s ease, transform .18s ease;
+}
+.rail-dot[aria-current="true"] { background: var(--violet); transform: scale(1.18); }
 
 /* ----------------------------------------------------------- THE ENTRANCE
    The loader hands over to a page that was simply there. Now the hero

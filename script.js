@@ -137,6 +137,92 @@
     items.forEach(function (el) { io.observe(el); });
   })();
 
+  /* ------------------------------------------------------------ THE RAIL
+     A row of quotes you swipe. The scrolling is the browser's, with snap
+     points doing the work, so a phone behaves the way a phone should with
+     no JavaScript involved at all. This only adds what a pointer needs:
+     arrows, dots, and the arithmetic to know when neither is wanted.
+
+     Everything is measured rather than configured, so adding a card to the
+     markup is the whole job of adding a card. */
+  (function rail() {
+    var track = $('#saidTrack');
+    var nav = $('#saidNav');
+    if (!track || !nav) return;
+
+    var prev = $('#saidPrev');
+    var next = $('#saidNext');
+    var dotWrap = $('#saidDots');
+    var dots = [];
+
+    function pageWidth() { return track.clientWidth; }
+    /* Count pages from how far the track can travel, not from how wide it
+       is. Its width includes the padding that holds the card shadows, and
+       dividing that by the viewport invented a page the arrows could never
+       reach: four cards, two screens, three dots. The slack absorbs that
+       padding and any sub-pixel rounding. */
+    function pageCount() {
+      var far = track.scrollWidth - track.clientWidth;
+      return 1 + Math.ceil(Math.max(0, far - 24) / pageWidth());
+    }
+    function pageNow() {
+      return Math.min(pageCount() - 1, Math.round(track.scrollLeft / pageWidth()));
+    }
+    function overflows() { return track.scrollWidth - track.clientWidth > 2; }
+
+    function goTo(i) {
+      track.scrollTo({
+        left: i * pageWidth(),
+        behavior: reduceMotion ? 'auto' : 'smooth'
+      });
+    }
+
+    function buildDots() {
+      var want = pageCount();
+      if (dots.length === want) return;
+      dotWrap.textContent = '';
+      dots = [];
+      for (var i = 0; i < want; i++) {
+        (function (n) {
+          var b = document.createElement('button');
+          b.type = 'button';
+          b.className = 'rail-dot';
+          b.setAttribute('aria-label', 'Testimonials ' + (n + 1) + ' of ' + want);
+          b.addEventListener('click', function () { goTo(n); });
+          dotWrap.appendChild(b);
+          dots.push(b);
+        })(i);
+      }
+    }
+
+    function sync() {
+      /* Two cards on a laptop need no controls: there is nowhere to go. */
+      nav.hidden = !overflows();
+      if (nav.hidden) return;
+      buildDots();
+      var at = pageNow();
+      dots.forEach(function (d, i) {
+        d.setAttribute('aria-current', i === at ? 'true' : 'false');
+      });
+      prev.disabled = track.scrollLeft <= 2;
+      next.disabled = track.scrollLeft >= track.scrollWidth - track.clientWidth - 2;
+    }
+
+    prev.addEventListener('click', function () { goTo(Math.max(0, pageNow() - 1)); });
+    next.addEventListener('click', function () { goTo(Math.min(pageCount() - 1, pageNow() + 1)); });
+
+    /* Scroll fires far more often than anything here needs to run. */
+    var queued = false;
+    track.addEventListener('scroll', function () {
+      if (queued) return;
+      queued = true;
+      requestAnimationFrame(function () { queued = false; sync(); });
+    }, { passive: true });
+
+    window.addEventListener('resize', function () { dots = []; sync(); });
+    sync();
+  })();
+
   /* ----------------------------------------------------------- THE STEPS
      Four fields at once reads as paperwork. One question at a time reads as
      a conversation, and the only cost is two clicks.

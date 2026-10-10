@@ -203,39 +203,54 @@
 <!-- ============================================================ CONTACT -->
 
 <!-- ============================================================= SAID -->
-<!-- Two cards, in a grid that adds columns as quotes arrive. The card is
-     deliberately the tile a scrolling wall is built from: at six of them
-     the grid becomes two moving rows, and nothing in here is redrawn. -->
+<!-- A rail you swipe. To add a quote, copy one <figure> and change the
+     three fields: the initials, the name, the role, the words. Nothing
+     else needs touching â the disc colour cycles on its own, the arrows
+     and dots recount themselves, and both hide while everything fits. -->
 <section class="section said" id="said">
   <div class="wrap">
     <div class="head said-head reveal">
       <p class="eyebrow">What they said</p>
       <h2>Somebody else&#8217;s words</h2>
     </div>
-    <div class="said-list reveal-group">
 
-      <figure class="said-card reveal" style="--disc: var(--violet)">
-        <figcaption class="said-top">
-          <span class="said-disc" aria-hidden="true">SN</span>
-          <span class="said-who">
-            <span class="said-name">Sophia N.</span>
-            <span class="said-role">Communications Specialist</span>
-          </span>
-        </figcaption>
-        <blockquote class="said-text">Knowledgeable, dependable, and highly professional, with excellent time management and prioritization skills. Wala understood exactly what was needed and delivered results that exceeded expectations.</blockquote>
-      </figure>
+    <div class="said-rail reveal">
+      <div class="said-track" id="saidTrack" tabindex="0" role="group"
+           aria-label="What clients said. Scroll sideways for more.">
 
-      <figure class="said-card reveal" style="--disc: var(--green-ink)">
-        <figcaption class="said-top">
-          <span class="said-disc" aria-hidden="true">JT</span>
-          <span class="said-who">
-            <span class="said-name">Jose T.</span>
-            <span class="said-role">Marketing Manager</span>
-          </span>
-        </figcaption>
-        <blockquote class="said-text">From our very first brainstorming session, Wala brought so much creative energy to the table. She is great at coming up with creative ideas, and she was there with us from the very beginning till the end of the campaign.</blockquote>
-      </figure>
+        <figure class="said-card">
+          <figcaption class="said-top">
+            <span class="said-disc" aria-hidden="true">SN</span>
+            <span class="said-who">
+              <span class="said-name">Sophia N.</span>
+              <span class="said-role">Communications Specialist</span>
+            </span>
+          </figcaption>
+          <blockquote class="said-text">Knowledgeable, dependable, and highly professional, with excellent time management and prioritization skills. Wala understood exactly what was needed and delivered results that exceeded expectations.</blockquote>
+        </figure>
 
+        <figure class="said-card">
+          <figcaption class="said-top">
+            <span class="said-disc" aria-hidden="true">JT</span>
+            <span class="said-who">
+              <span class="said-name">Jose T.</span>
+              <span class="said-role">Marketing Manager</span>
+            </span>
+          </figcaption>
+          <blockquote class="said-text">From our very first brainstorming session, Wala brought so much creative energy to the table. She is great at coming up with creative ideas, and she was there with us from the very beginning till the end of the campaign.</blockquote>
+        </figure>
+
+      </div>
+
+      <div class="said-nav" id="saidNav" hidden>
+        <button class="rail-btn" type="button" id="saidPrev" aria-label="Previous testimonials">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 4 7 12l8 8"/></svg>
+        </button>
+        <div class="rail-dots" id="saidDots"></div>
+        <button class="rail-btn" type="button" id="saidNext" aria-label="More testimonials">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 4l8 8-8 8"/></svg>
+        </button>
+      </div>
     </div>
   </div>
 </section>
