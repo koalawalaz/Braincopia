@@ -127,16 +127,27 @@
 
     if (pref === 'off') { mark(false); return; }
 
-    start().then(function (playing) {
-      if (playing) return;
-      // Autoplay was refused. Wait for the first thing the visitor does.
-      var events = ['pointerdown', 'keydown', 'touchstart', 'wheel'];
+    /* Sound on is the default: a visitor who has never touched the toggle
+       gets it. Most browsers refuse to start audio before the page has been
+       touched, so the attempt is made again on the first thing the visitor
+       does, and again after that if the browser is still not satisfied.
+       iOS in particular can refuse the first gesture it is offered, and one
+       failed try used to be the end of it: the site stayed silent for the
+       whole visit despite the preference saying otherwise. */
+    var EVENTS = ['pointerdown', 'keydown', 'touchstart', 'wheel'];
+    var tries = 0;
+
+    function armed() {
       function wake() {
-        events.forEach(function (e) { window.removeEventListener(e, wake); });
-        start();
+        EVENTS.forEach(function (e) { window.removeEventListener(e, wake); });
+        start().then(function (playing) {
+          if (!playing && ++tries < 4) armed();
+        });
       }
-      events.forEach(function (e) { window.addEventListener(e, wake, { once: true, passive: true }); });
-    });
+      EVENTS.forEach(function (e) { window.addEventListener(e, wake, { passive: true }); });
+    }
+
+    start().then(function (playing) { if (!playing) armed(); });
   })();
 
   /* ------------------------------------------------------------------ DIE
