@@ -234,7 +234,10 @@
   (function cameFrom() {
     var field = $('#cameFrom');
     if (!field) return;
-    var PARTS = { 'the-concept': 'The Concept', 'the-voice': 'The Voice', 'the-decision': 'The Decision' };
+    var PARTS = {
+      'the-concept': 'The Concept', 'the-voice': 'The Voice',
+      'the-decision': 'The Decision', 'the-hour': 'The Hour'
+    };
     var from = /[?&]from=([a-z-]{1,20})(?:&|$)/.exec(window.location.search);
     field.value = (from && PARTS[from[1]]) || '';
   })();
