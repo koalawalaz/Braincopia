@@ -155,7 +155,12 @@
    Not a card in the offers grid on purpose. The lede above says the brain
    comes in three parts; a fourth tile would contradict it. This is the
    first hour of any of the three. */
-.hour { background: var(--paper); }
+/* Its own band, not the tail of the one above. On the same paper as the
+   three parts it read as a fourth item in that section, which is exactly
+   what it must not be: the brain comes in three, and this is the way in
+   rather than a part. Cream between two rules separates it, and keeps the
+   page alternating — film, cream, paper, cream, ink. */
+.hour { background: var(--cream); border-block: var(--border-w); }
 .hour-card {
   display: grid; grid-template-columns: minmax(0, 1fr) auto;
   gap: clamp(20px, 2.6vw, 34px) clamp(22px, 3.4vw, 48px); align-items: start;
