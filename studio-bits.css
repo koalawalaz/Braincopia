@@ -223,6 +223,61 @@
   .hour-card { grid-template-columns: 1fr; }
 }
 
+/* -------------------------------------------------------------- PROCESS
+   One torn ticket, five stubs, dashed perforations. It is one object
+   rather than five, because it describes one engagement rather than five
+   stages, and that is the whole reason this shape was chosen over a row
+   of numbered circles.
+
+   The last stub is yellow and says you build it. Every agency process
+   diagram ends with the agency delivering; the colour makes it impossible
+   to miss that this one does not.
+
+   On paper, so the band sits between the cream of The Hour and the ink of
+   the argument without two of either touching. */
+.process { background: var(--paper); }
+.ticket {
+  display: grid; grid-template-columns: repeat(5, minmax(0, 1fr));
+  background: var(--cream); color: var(--ink);
+  border: var(--border-w); border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;   /* keeps the yellow stub inside the rounded corner */
+}
+.stub {
+  /* Column flex rather than grid, so the timing can be pushed to the foot
+     of every stub with an auto margin. Left to flow, each one sat wherever
+     its own description happened to end and the five times staggered down
+     the ticket like a broken hem. */
+  display: flex; flex-direction: column; gap: 9px;
+  padding: clamp(20px, 2.4vw, 30px) clamp(15px, 1.8vw, 24px);
+}
+/* The perforation. A dashed rule, not a solid one: a ticket tears. */
+.stub + .stub { border-left: 2.5px dashed rgba(28, 28, 28, .32); }
+.stub:last-child { background: var(--yellow); }
+.stub-n {
+  font-family: var(--font-mono); font-size: .62rem; font-weight: 700;
+  letter-spacing: .18em; text-transform: uppercase; color: var(--hue, var(--violet));
+}
+.stub:nth-child(2) .stub-n { --hue: var(--deep); }
+.stub:nth-child(3) .stub-n { --hue: var(--green-ink); }
+.stub:nth-child(4) .stub-n { --hue: var(--pink-ink); }
+.stub:nth-child(5) .stub-n { --hue: var(--ink); }
+.stub-t {
+  font-family: var(--font-display); font-weight: 400;
+  font-size: clamp(1.1rem, 2vw, 1.55rem); line-height: 1.02;
+  text-transform: uppercase; letter-spacing: .02em;
+}
+.stub-d { margin: 0; max-width: none; font-size: .92rem; line-height: 1.45; }
+.stub-w {
+  margin: auto 0 0; max-width: none;
+  font-family: var(--font-mono); font-size: .58rem; font-weight: 700;
+  letter-spacing: .14em; text-transform: uppercase; opacity: .52;
+}
+@media (max-width: 900px) {
+  .ticket { grid-template-columns: 1fr; }
+  .stub + .stub { border-left: none; border-top: 2.5px dashed rgba(28, 28, 28, .32); }
+}
+
 /* ------------------------------------------------------------- THE ARGUMENT
    One dark band, one claim. This is where the boldness is spent, so nothing
    else on the page needs to raise its voice. */
