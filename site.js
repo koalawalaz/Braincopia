@@ -12,12 +12,52 @@
   var $ = function (sel, root) { return (root || document).querySelector(sel); };
   var $$ = function (sel, root) { return Array.prototype.slice.call((root || document).querySelectorAll(sel)); };
   var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var READY = 'braincopia:ready';
+
+  /* ---------------------------------------------------------------- START
+     Where a page opens. Two separate things were dragging a refresh back
+     down the page: the browser restores the old scroll offset by itself,
+     and any click on "The Brain" or "Pick a brain" leaves #services in the
+     address bar, so reloading jumped there for ever afterwards.
+
+     A refresh means start again: scroll restoration is turned off and a
+     stale hash is dropped from the URL. A hash someone was actually sent
+     (a fresh visit to /#services) is still honoured, but re-measured after
+     the loader lets go and the fonts land, because the browser's own jump
+     is calculated before the hero animates in and lands short. */
+  (function start() {
+    try { if ('scrollRestoration' in history) history.scrollRestoration = 'manual'; } catch (e) {}
+
+    var nav = (performance.getEntriesByType ? performance.getEntriesByType('navigation')[0] : null);
+    var reloaded = nav ? nav.type === 'reload' : performance.navigation && performance.navigation.type === 1;
+    var hash = location.hash;
+
+    if (reloaded || !hash) {
+      if (reloaded && hash) {
+        try { history.replaceState(null, '', location.pathname + location.search); } catch (e) {}
+      }
+      window.scrollTo(0, 0);
+      // The browser may still be mid-restore when this runs.
+      requestAnimationFrame(function () { window.scrollTo(0, 0); });
+      return;
+    }
+
+    var target;
+    try { target = document.querySelector(hash); } catch (e) { return; }
+    if (!target) return;
+
+    function land() {
+      target.scrollIntoView({ block: 'start', behavior: 'auto' });
+    }
+    document.addEventListener(READY, function () { requestAnimationFrame(land); });
+    window.addEventListener('load', land);
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(land);
+  })();
 
   /* --------------------------------------------------------------- LOADER
      A held breath. The mark arrives, then the page. All this does is decide
      when the overlay leaves and tell the rest of the page it may begin: the
      die must not bounce behind it, and nothing should scroll under it. */
-  var READY = 'braincopia:ready';
   var handedOver = false;
 
   function handOver() {
