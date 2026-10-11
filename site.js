@@ -150,6 +150,111 @@
     start().then(function (playing) { if (!playing) armed(); });
   })();
 
+  /* -------------------------------------------------------- COMPANIONS
+     A butterfly and a paper plane, either of which can be flying or not.
+     Neither is doing a job: the die says where you are in the page, these
+     say nothing at all. That is exactly why these two have switches and
+     the die does not.
+
+     The flight is one spring toward a moving target, and the target is
+     never the cursor itself but a point circling near it, so each keeps
+     overshooting and coming back. A thing that sits exactly under the
+     pointer stops reading as alive and starts reading as a cursor. */
+  (function companions() {
+    var bar = $('#critters');
+    var fly = { butterfly: $('#butterfly'), paper: $('#paperPlane') };
+    var tap = { butterfly: $('#toggleButterfly'), paper: $('#togglePaper') };
+    if (!bar || !fly.butterfly || !fly.paper || reduceMotion) return;
+
+    var PREF = 'braincopia.critters.v1';
+    var TRAIT = {
+      butterfly: { pull: .055, drag: .80, jitter: 2.6, lead: 90, wander: .9, phase: 0 },
+      paper:     { pull: .018, drag: .92, jitter: .35, lead: 150, wander: .35, phase: 2.1 }
+    };
+    var S = {
+      butterfly: { x: window.innerWidth * .5, y: window.innerHeight * .4, vx: 0, vy: 0 },
+      paper:     { x: window.innerWidth * .4, y: window.innerHeight * .6, vx: 0, vy: 0 }
+    };
+
+    /* No pointer means nothing to follow, so on a phone they fly
+       themselves rather than waiting to be led. */
+    var hasPointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+    var px = window.innerWidth * .5, py = window.innerHeight * .4;
+    var lastMove = -9999;
+
+    if (hasPointer) {
+      window.addEventListener('pointermove', function (e) {
+        px = e.clientX; py = e.clientY; lastMove = performance.now();
+      }, { passive: true });
+    }
+
+    /* Two sines of different periods never line up on a round number, so
+       the wandering path does not visibly repeat. The phase offset stops
+       the pair flying in formation. */
+    function roam(t) {
+      return [
+        window.innerWidth  * (.5 + .36 * Math.sin(t * .00042) + .1 * Math.sin(t * .0019)),
+        window.innerHeight * (.45 + .3 * Math.cos(t * .00058) + .08 * Math.cos(t * .0023))
+      ];
+    }
+
+    function step(node, kind, now) {
+      var s = S[kind], k = TRAIT[kind], tx, ty;
+      if (!hasPointer || now - lastMove > 2200) {
+        var r = roam(now + k.phase * 4000);
+        tx = r[0]; ty = r[1];
+      } else {
+        tx = px + Math.cos(now * .0013 + k.phase) * k.lead * k.wander;
+        ty = py + Math.sin(now * .0017 + k.phase) * k.lead * k.wander - 26;
+      }
+      s.vx = (s.vx + (tx - s.x) * k.pull) * k.drag;
+      s.vy = (s.vy + (ty - s.y) * k.pull) * k.drag;
+      s.x += s.vx + (Math.random() - .5) * k.jitter;
+      s.y += s.vy + (Math.random() - .5) * k.jitter;
+
+      /* Never off screen: the spring overshoots near an edge, and a
+         companion you cannot see is just a running animation. */
+      s.x = Math.max(26, Math.min(window.innerWidth - 26, s.x));
+      s.y = Math.max(26, Math.min(window.innerHeight - 26, s.y));
+
+      var tilt = kind === 'paper'
+        ? Math.atan2(s.vy, s.vx) * 57.3
+        : Math.max(-22, Math.min(22, s.vx * 2.2));
+      node.style.transform =
+        'translate3d(' + (s.x - 19) + 'px,' + (s.y - 17) + 'px,0) rotate(' + tilt + 'deg)';
+    }
+
+    (function frame(now) {
+      requestAnimationFrame(frame);
+      if (!fly.butterfly.hidden) step(fly.butterfly, 'butterfly', now);
+      if (!fly.paper.hidden) step(fly.paper, 'paper', now);
+    })(0);
+
+    function set(kind, on) {
+      fly[kind].hidden = !on;
+      tap[kind].setAttribute('aria-pressed', String(on));
+    }
+
+    Object.keys(tap).forEach(function (kind) {
+      tap[kind].addEventListener('click', function () {
+        set(kind, fly[kind].hidden);
+        try {
+          localStorage.setItem(PREF,
+            (fly.butterfly.hidden ? '' : 'b') + (fly.paper.hidden ? '' : 'p'));
+        } catch (err) { /* private mode */ }
+      });
+    });
+
+    /* Someone who switched one off keeps it off. Nobody has chosen on a
+       first visit, so the butterfly starts flying and the paper waits. */
+    var pref = null;
+    try { pref = localStorage.getItem(PREF); } catch (err) {}
+    if (pref === null) pref = 'b';
+    set('butterfly', pref.indexOf('b') !== -1);
+    set('paper', pref.indexOf('p') !== -1);
+    bar.classList.add('ready');
+  })();
+
   /* ------------------------------------------------------------------ DIE
      A square does not spin as it rolls, it pivots on one corner at a time.
      So the geometry: over a quarter turn the centre swings on an arc of

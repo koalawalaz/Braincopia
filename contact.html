@@ -185,6 +185,49 @@
 </button>
 
 <!-- =============================================================== DIE -->
+<!-- =========================================================== COMPANIONS -->
+<!-- For pleasure, not for use. Both can be switched off; the die cannot,
+     because the die is telling you where you are. -->
+<div class="companion" id="butterfly" aria-hidden="true" hidden>
+  <svg width="38" height="34" viewBox="0 0 38 34" fill="none">
+    <g class="wing l">
+      <path d="M19 18C13 4 4 2 2 8c-2 6 4 13 11 15 3 1 6 0 6-5Z" fill="#5B0ECC" stroke="#1C1C1C" stroke-width="2" stroke-linejoin="round"/>
+      <circle cx="9" cy="11" r="2" fill="#FFD600" stroke="#1C1C1C" stroke-width="1.2"/>
+    </g>
+    <g class="wing r">
+      <path d="M19 18c6-14 15-16 17-10 2 6-4 13-11 15-3 1-6 0-6-5Z" fill="#3D0999" stroke="#1C1C1C" stroke-width="2" stroke-linejoin="round"/>
+      <circle cx="29" cy="11" r="2" fill="#FFD600" stroke="#1C1C1C" stroke-width="1.2"/>
+    </g>
+    <path d="M19 12v14" stroke="#1C1C1C" stroke-width="3.4" stroke-linecap="round"/>
+    <path d="M19 12l-3-5M19 12l3-5" stroke="#1C1C1C" stroke-width="1.8" stroke-linecap="round"/>
+  </svg>
+</div>
+
+<div class="companion" id="paperPlane" aria-hidden="true" hidden>
+  <svg width="34" height="34" viewBox="0 0 34 34" fill="none">
+    <g class="plane-body">
+      <path d="M31 4 3 15l10 4 4 11 14-26Z" fill="#FFFFFF" stroke="#1C1C1C" stroke-width="2.2" stroke-linejoin="round"/>
+      <path d="M31 4 13 19" stroke="#1C1C1C" stroke-width="1.8" stroke-linejoin="round"/>
+    </g>
+  </svg>
+</div>
+
+<div class="critters" id="critters">
+  <button class="critter" type="button" id="toggleButterfly" aria-pressed="false" aria-label="Butterfly">
+    <svg viewBox="0 0 38 34" fill="none" aria-hidden="true">
+      <path d="M19 18C13 4 4 2 2 8c-2 6 4 13 11 15 3 1 6 0 6-5Z" fill="#5B0ECC" stroke="#1C1C1C" stroke-width="2.4" stroke-linejoin="round"/>
+      <path d="M19 18c6-14 15-16 17-10 2 6-4 13-11 15-3 1-6 0-6-5Z" fill="#3D0999" stroke="#1C1C1C" stroke-width="2.4" stroke-linejoin="round"/>
+      <path d="M19 12v14" stroke="#1C1C1C" stroke-width="3.4" stroke-linecap="round"/>
+    </svg>
+  </button>
+  <button class="critter" type="button" id="togglePaper" aria-pressed="false" aria-label="Paper plane">
+    <svg viewBox="0 0 34 34" fill="none" aria-hidden="true">
+      <path d="M31 4 3 15l10 4 4 11 14-26Z" fill="#FFFFFF" stroke="#1C1C1C" stroke-width="2.6" stroke-linejoin="round"/>
+      <path d="M31 4 13 19" stroke="#1C1C1C" stroke-width="2" stroke-linejoin="round"/>
+    </svg>
+  </button>
+</div>
+
 <div class="die" id="die" aria-hidden="true"><div class="die-face" id="dieFace"></div></div>
 
 <script src="site.js"></script>

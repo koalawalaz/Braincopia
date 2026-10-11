@@ -63,6 +63,48 @@
   .sound { padding: 11px 16px 11px 13px; min-height: 46px; }
 }
 
+/* ------------------------------------------------------- THE COMPANIONS
+   A butterfly and a folded sheet of paper that come with you: on a pointer
+   they chase a spot near the cursor and keep missing it, and on a phone,
+   where there is nothing to chase, they fly themselves.
+
+   Neither can take a click, and both stand down entirely for anyone who
+   has asked for less motion. They are for pleasure, not for use: the die
+   says where you are in the page, these say nothing at all. */
+.companion {
+  position: fixed; left: 0; top: 0; z-index: 560;
+  pointer-events: none; will-change: transform;
+}
+.companion[hidden] { display: none !important; }
+.companion svg { display: block; overflow: visible; }
+.wing { transform-box: fill-box; transform-origin: right center; animation: beat .17s linear infinite alternate; }
+.wing.r { transform-origin: left center; }
+@keyframes beat { from { transform: scaleX(1); } to { transform: scaleX(.34); } }
+.plane-body { transform-box: fill-box; transform-origin: center; animation: bank 3.4s ease-in-out infinite alternate; }
+@keyframes bank { from { transform: rotate(-7deg); } to { transform: rotate(7deg); } }
+
+/* The two switches, stacked just above the sound pill so the bottom right
+   stays one cluster rather than three separate floating things. */
+.critters {
+  position: fixed; right: var(--gutter); bottom: 68px; z-index: 600;
+  display: none; gap: 8px;
+}
+.critters.ready { display: flex; }
+.critter {
+  width: 42px; height: 42px; padding: 0; display: grid; place-items: center;
+  background: var(--cream); color: var(--ink);
+  border: var(--border-w); border-radius: 50%; box-shadow: var(--shadow-sm);
+  cursor: pointer; transition: transform .16s ease, box-shadow .16s ease, background .16s ease;
+}
+.critter svg { width: 21px; height: 21px; display: block; }
+.critter:hover { transform: translate(-2px, -2px); box-shadow: var(--shadow); }
+.critter[aria-pressed="true"] { background: var(--yellow); }
+
+@media (prefers-reduced-motion: reduce) {
+  .companion { display: none !important; }
+  .critters { display: none !important; }
+}
+
 /* ---------------------------------------------------------------- DIE
    A die that rolls along the bottom of the window as the page scrolls: it
    is the scroll position, told as an object rather than a bar. JS drives
