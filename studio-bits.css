@@ -295,7 +295,11 @@
 /* ------------------------------------------------------------------ MARK
    A breath between the argument and the letter, and the one place the mark
    resolves on its own. Paper, because the film is nearly white: as a band
-   it reads as a held beat, and behind words it would read as a fault. */
+   it reads as a held beat, and behind words it would read as a fault.
+
+   The band is empty while the animation is being replaced. These rules stay
+   so putting the new one back is a matter of restoring the section and
+   dropping the file inside .hero-reel. */
 .mark { background: var(--paper); border-block: var(--border-w); }
 .mark-inner { display: flex; justify-content: center; }
 .hero-reel {
