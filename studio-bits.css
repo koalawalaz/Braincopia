@@ -281,7 +281,12 @@
 /* ------------------------------------------------------------- THE ARGUMENT
    One dark band, one claim. This is where the boldness is spent, so nothing
    else on the page needs to raise its voice. */
-.argument { background: var(--ink); color: var(--paper); border-block: var(--border-w); }
+/* Deep violet, not ink. The paper band that used to separate this from the
+   founder's letter went with the film, and two ink sections in a row read as
+   one very long dark stretch. The letter keeps the ink; the argument takes
+   the brand colour, so the seam is a change of colour rather than a 2.5px
+   border nobody can see. Yellow and paper both carry on deep. */
+.argument { background: var(--deep); color: var(--paper); border-block: var(--border-w); }
 .argument .eyebrow { color: var(--yellow); }
 .argument h2 { color: var(--paper); max-width: 22ch; margin-block: 14px 28px; }
 /* Beats .argument p, which is the more specific selector of the two. */
