@@ -332,15 +332,23 @@
 
 /* The seal. A sticker, pressed slightly crooked, because a stamp that lands
    square is a stamp nobody pressed. */
-.human-seal { display: flex; justify-content: center; }
+/* A wide plate rather than a badge: it reads as something pressed across
+   the band, and on a phone it runs the width of the column instead of
+   sitting as a small square in the middle of it. The cap is what keeps the
+   rotation and the offset shadow inside the gutter.
+
+   The cap lives here, on the container, so the type inside can be sized in
+   cqw against the plate's real width. Sized against the viewport instead,
+   the words stayed put when the plate grew and left a field of yellow
+   around them. */
+.human-seal {
+  width: min(100%, 360px); margin-inline: auto;
+  container-type: inline-size;
+}
 .human-stamp {
-  display: grid; justify-items: center; gap: 6px;
-  /* A wide plate rather than a badge: it reads as something pressed across
-     the band, and on a phone it fills the column instead of sitting in the
-     middle of it. Capped so the rotation and the offset shadow stay inside
-     the gutter. */
-  width: min(100%, 360px);
-  padding: clamp(22px, 2.8vw, 30px) clamp(24px, 3.2vw, 36px);
+  display: grid; justify-items: center; gap: 2cqw;
+  width: 100%;
+  padding: 7cqw 6cqw 6cqw;
   background: var(--yellow); color: var(--ink);
   border: var(--border-w); border-radius: var(--radius);
   box-shadow: var(--shadow-lg);
@@ -349,17 +357,22 @@
   text-align: center;
 }
 .stamp-sm {
-  font-family: var(--font-mono); font-size: clamp(.58rem, 1.1vw, .68rem);
+  font-family: var(--font-mono); font-size: 3.3cqw;
   font-weight: 700; letter-spacing: .18em; text-transform: uppercase;
 }
+/* Set to the plate, not the page: the words carry the plate rather than
+   sitting in the middle of it. */
 .stamp-lg {
   font-family: var(--font-display); font-weight: 400;
-  font-size: clamp(2rem, 4.6vw, 3rem); line-height: .92;
+  font-size: 22cqw; line-height: .9;
   text-transform: uppercase; letter-spacing: .01em;
+  /* One line. Left to wrap it breaks after the article, which strands a
+     lone A above the word and makes the plate twice as tall as it needs. */
+  white-space: nowrap;
 }
 .stamp-rule {
-  width: 54px; height: 2.5px; background: var(--ink); border-radius: 2px;
-  margin-block: 4px;
+  width: 30cqw; height: 2.5px; background: var(--ink); border-radius: 2px;
+  margin-block: 1.5cqw;
 }
 
 @media (max-width: 680px) {
