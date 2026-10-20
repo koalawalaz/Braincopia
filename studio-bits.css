@@ -297,6 +297,70 @@
 
 
 
+/* ----------------------------------------------------------------- HUMAN
+   The statement that a person made the work, sitting under the argument it
+   belongs to. Two columns on a wide screen, stacked on a phone.
+
+   Everything here is paper and yellow on the band's deep violet, so no new
+   colour enters the page for the sake of one section. */
+.human {
+  display: grid; gap: clamp(34px, 5vw, 56px);
+  grid-template-columns: 1fr; align-items: center;
+  margin-top: clamp(40px, 5.5vw, 70px);
+}
+@media (min-width: 900px) { .human { grid-template-columns: 1.3fr .7fr; } }
+
+.human-list { list-style: none; display: grid; gap: clamp(20px, 2.6vw, 30px); }
+.human-list li {
+  display: grid; grid-template-columns: auto 1fr; align-items: start;
+  gap: clamp(14px, 1.8vw, 20px);
+  font-size: clamp(1.08rem, 2.1vw, 1.45rem); line-height: 1.4;
+  font-weight: 600; color: var(--paper);
+}
+/* Drawn rather than ticked: a round cap, an open path and a wobble, so it
+   reads as something a hand made and not a glyph from a set. */
+.human-list .tick {
+  width: clamp(28px, 3.4vw, 38px); height: auto; flex: none;
+  margin-top: .1em; overflow: visible;
+}
+.human-list .tick path {
+  fill: none; stroke: var(--yellow); stroke-width: 3.4;
+  stroke-linecap: round; stroke-linejoin: round;
+}
+.human-list li:nth-child(2) .tick { transform: rotate(-5deg); }
+.human-list li:nth-child(3) .tick { transform: rotate(4deg); }
+
+/* The seal. A sticker, pressed slightly crooked, because a stamp that lands
+   square is a stamp nobody pressed. */
+.human-seal { display: flex; justify-content: center; }
+.human-stamp {
+  display: grid; justify-items: center; gap: 6px;
+  padding: clamp(22px, 2.8vw, 30px) clamp(26px, 3.4vw, 38px);
+  background: var(--yellow); color: var(--ink);
+  border: var(--border-w); border-radius: var(--radius);
+  box-shadow: var(--shadow-lg);
+  transform: rotate(-4.5deg);
+  max-width: none;          /* styles.css caps every p at 62ch */
+  text-align: center;
+}
+.stamp-sm {
+  font-family: var(--font-mono); font-size: clamp(.58rem, 1.1vw, .68rem);
+  font-weight: 700; letter-spacing: .18em; text-transform: uppercase;
+}
+.stamp-lg {
+  font-family: var(--font-display); font-weight: 400;
+  font-size: clamp(2rem, 4.6vw, 3rem); line-height: .92;
+  text-transform: uppercase; letter-spacing: .01em;
+}
+.stamp-rule {
+  width: 54px; height: 2.5px; background: var(--ink); border-radius: 2px;
+  margin-block: 4px;
+}
+
+@media (max-width: 680px) {
+  .human-stamp { transform: rotate(-3deg); }
+}
+
 /* ------------------------------------------------------------------ MARK
    A breath between the argument and the letter, and the one place the mark
    resolves on its own. Paper, because the film is nearly white: as a band
