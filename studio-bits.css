@@ -362,13 +362,18 @@
 }
 /* Set to the plate, not the page: the words carry the plate rather than
    sitting in the middle of it. */
-.stamp-lg {
-  font-family: var(--font-display); font-weight: 400;
-  font-size: 22cqw; line-height: .9;
-  text-transform: uppercase; letter-spacing: .01em;
-  /* One line. Left to wrap it breaks after the article, which strands a
-     lone A above the word and makes the plate twice as tall as it needs. */
-  white-space: nowrap;
+/* Drawn, not set. As CSS text this line could only be held to one line with
+   nowrap, and nowrap turns a missing Anton into an overflow: the fallback
+   face is wider, so the words would run out past the plate's edge with no
+   way to come back. As SVG with a fixed viewBox and a textLength the line
+   is one line by construction and always exactly this wide, whichever face
+   the phone ends up rendering. lengthAdjust is spacing, so the letters keep
+   their shapes and only the gaps between them give. */
+.stamp-lg { display: block; width: 82%; }
+.stamp-lg svg { display: block; width: 100%; height: auto; overflow: visible; }
+.stamp-lg text {
+  font-family: var(--font-display); font-weight: 400; font-size: 64px;
+  fill: var(--ink); letter-spacing: .01em;
 }
 .stamp-rule {
   width: 30cqw; height: 2.5px; background: var(--ink); border-radius: 2px;
